@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage Calculator — Free Payment & Amortization Tool | Calcify</title>
+<meta name="description" content="Calculate your monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up required.">
+<link rel="stylesheet" href="style.css">
+<!-- AdSense placeholder -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="logo">Calc<span>ify</span></a>
+    <a href="index.html">Tools</a>
+    <a href="index.html#guides">Guides</a>
+    <a href="privacy-policy.html">Privacy</a>
+  </div>
+</nav>
+
+<main class="main">
+
+  <div class="breadcrumb"><a href="index.html">Home</a> / Mortgage Calculator</div>
+
+  <section style="margin-top:20px">
+    <div class="sec-title">&#x1F3E0; Mortgage Calculator</div>
+    <p class="sec-desc">Enter your loan details below. See your monthly payment, total interest, and full amortization breakdown.</p>
+
+    <div class="card" style="max-width:640px">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Home Price ($)</label>
+          <input type="number" id="homePrice" value="400000" min="1" step="1000">
+        </div>
+        <div class="form-group">
+          <label>Down Payment ($)</label>
+          <input type="number" id="downPayment" value="80000" min="0" step="1000">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Interest Rate (%)</label>
+          <input type="number" id="rate" value="6.5" min="0.1" max="30" step="0.1">
+        </div>
+        <div class="form-group">
+          <label>Loan Term (years)</label>
+          <select id="term">
+            <option value="30" selected>30 years</option>
+            <option value="20">20 years</option>
+            <option value="15">15 years</option>
+            <option value="10">10 years</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Extra Monthly Payment ($) <span style="font-weight:400;color:var(--muted)">optional</span></label>
+          <input type="number" id="extra" value="0" min="0" step="50">
+        </div>
+        <div class="form-group" style="justify-content:flex-end">
+          <button class="btn btn-block" onclick="calcMortgage()" style="margin-top:auto">&#x1F4CA; Calculate</button>
+        </div>
+      </div>
+
+      <!-- ad slot -->
+      <div style="background:var(--border);border-radius:8px;height:90px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;margin-top:16px">Ad Slot &mdash; Google AdSense</div>
+
+      <div class="result" id="result">
+        <div class="result-num" id="monthly">--</div>
+        <div class="result-label">Estimated Monthly Payment</div>
+        <div class="result-grid">
+          <div class="result-item"><div class="ri-val" id="loanAmt">--</div><div class="ri-label">Loan Amount</div></div>
+          <div class="result-item"><div class="ri-val" id="totalInt">--</div><div class="ri-label">Total Interest</div></div>
+          <div class="result-item"><div class="ri-val" id="payoff">--</div><div class="ri-label">Payoff Date</div></div>
+        </div>
+        <div class="highlight-box" id="savingsBox" style="display:none">
+          <h4>&#x1F389; Extra Payment Savings</h4>
+          <p id="savingsText"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amortization Table -->
+  <section id="schedule" style="display:none">
+    <div class="sec-title">&#x1F4C4; Amortization Schedule</div>
+    <p class="sec-desc">Year-by-year breakdown of principal vs. interest. <span style="color:var(--muted);font-size:12px">Showing first 5 years; scroll for full schedule.</span></p>
+    <div class="card" style="overflow-x:auto;padding:8px 0 0 0">
+      <div id="scheduleTable" style="max-height:400px;overflow-y:auto"></div>
+    </div>
+  </section>
+
+  <!-- Guide -->
+  <section class="article-body">
+    <h2>How to Use This Mortgage Calculator</h2>
+    <p>Our mortgage calculator helps you understand exactly what your monthly payment will be &mdash; and more importantly, how much of that payment goes toward interest over the life of the loan.</p>
+
+    <h3>What Each Input Means</h3>
+    <ul>
+      <li><strong>Home Price</strong> &mdash; The total purchase price of the property.</li>
+      <li><strong>Down Payment</strong> &mdash; Your upfront cash payment. A 20% down payment ($80,000 on a $400,000 home) lets you avoid PMI (private mortgage insurance).</li>
+      <li><strong>Interest Rate</strong> &mdash; The annual rate on your loan. A 1% difference can mean tens of thousands in extra interest over 30 years.</li>
+      <li><strong>Extra Payment</strong> &mdash; Adding even $100/month extra can shave years off your loan and save thousands in interest.</li>
+    </ul>
+
+    <h3>Example: $400,000 Home with 20% Down</h3>
+    <p>With a 30-year fixed mortgage at 6.5%, your monthly principal and interest payment is approximately <strong>$2,022</strong>. Over 30 years, you will pay about <strong>$408,000 in interest</strong> &mdash; more than the original loan amount.</p>
+    <p>But add just <strong>$200/month extra</strong>, and you will pay off the loan <strong>6 years early</strong> and save over <strong>$100,000 in interest</strong>.</p>
+
+    <h3>Should You Pay Extra on Your Mortgage?</h3>
+    <p>This depends on your interest rate. If your mortgage rate is higher than what you could earn by investing (say, in an index fund averaging 7-10% annually), paying extra on the mortgage makes mathematical sense. If your rate is low (under 4%), you may be better off investing the extra cash instead.</p>
+    <p>Our calculator lets you model both scenarios &mdash; try different extra payment amounts and see the impact for yourself.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Tools</a>
+    <a href="index.html#guides">Guides</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+  </div>
+  <p>&copy; 2025 Calcify. Not financial advice. For educational purposes only.</p>
+</footer>
+
+<script>
+function calcMortgage(){
+  var price = parseFloat(document.getElementById('homePrice').value) || 400000;
+  var down = parseFloat(document.getElementById('downPayment').value) || 80000;
+  var rate = parseFloat(document.getElementById('rate').value) || 6.5;
+  var termYrs = parseInt(document.getElementById('term').value) || 30;
+  var extra = parseFloat(document.getElementById('extra').value) || 0;
+
+  var loan = price - down;
+  if(loan <= 0){ document.getElementById('result').classList.add('show'); document.getElementById('monthly').textContent = '$0'; return; }
+
+  var monthlyRate = rate / 100 / 12;
+  var n = termYrs * 12;
+  var monthly = loan * (monthlyRate * Math.pow(1+monthlyRate,n)) / (Math.pow(1+monthlyRate,n)-1);
+  var totalPayment = monthly * n;
+  var totalInterest = totalPayment - loan;
+
+  document.getElementById('monthly').textContent = '$' + monthly.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  document.getElementById('loanAmt').textContent = '$' + loan.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  document.getElementById('totalInt').textContent = '$' + totalInterest.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  // payoff date
+  var now = new Date();
+  var payoffDate = new Date(now.getFullYear() + termYrs, now.getMonth(), 1);
+  var payoffStr = payoffDate.toLocaleString('en-US',{month:'short',year:'numeric'});
+
+  // extra payment calc
+  var savingsBox = document.getElementById('savingsBox');
+  var savingsText = document.getElementById('savingsText');
+  if(extra > 0){
+    var bal = loan, m = 0, totalPaid = 0;
+    while(bal > 0 && m < n * 2){
+      var interestPart = bal * monthlyRate;
+      var principalPart = (monthly + extra) - interestPart;
+      if(principalPart > bal) principalPart = bal;
+      bal -= principalPart;
+      totalPaid += (monthly + extra);
+      m++;
+      if(bal < 0) bal = 0;
+    }
+    var saved = totalPayment - totalPaid;
+    var yearsSaved = (n - m) / 12;
+    savingsText.textContent = 'By paying $' + extra + ' extra each month, you will: Pay off ' + yearsSaved.toFixed(1) + ' years sooner and save approximately $' + saved.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' in interest.';
+    savingsBox.style.display = 'block';
+    payoffStr = new Date(now.getFullYear() + Math.floor(m/12), now.getMonth() + (m%12), 1).toLocaleString('en-US',{month:'short',year:'numeric'});
+  } else {
+    savingsBox.style.display = 'none';
+  }
+
+  document.getElementById('payoff').textContent = payoffStr;
+  document.getElementById('result').classList.add('show');
+
+  // amortization schedule
+  buildSchedule(loan, monthlyRate, monthly + extra, n, monthly, termYrs);
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function buildSchedule(loan, monthlyRate, totalMonthly, n, baseMonthly, termYrs){
+  var bal = loan, table = '', yearlyPrincipal = 0, yearlyInterest = 0, yearCount = 1;
+  var yearData = [];
+  for(var m = 1; m <= n && bal > 0; m++){
+    var intPart = bal * monthlyRate;
+    var prinPart = totalMonthly - intPart;
+    if(prinPart > bal){ prinPart = bal; intPart = 0; }
+    yearlyPrincipal += prinPart;
+    yearlyInterest += intPart;
+    bal -= prinPart;
+    if(bal < 0) bal = 0;
+    if(m % 12 === 0 || bal === 0 || m === n){
+      yearData.push({yr:yearCount, principal:yearlyPrincipal, interest:yearlyInterest, balance: bal > 0 ? bal : 0});
+      yearlyPrincipal = 0; yearlyInterest = 0; yearCount++;
+      if(bal === 0) break;
+    }
+  }
+
+  table = '<table class="data-table"><thead><tr><th>Year</th><th>Principal Paid</th><th>Interest Paid</th><th>Remaining Balance</th></tr></thead><tbody>';
+  var fmt = function(v){return '$'+v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
+  yearData.forEach(function(y){
+    table += '<tr><td>'+y.yr+'</td><td>'+fmt(y.principal)+'</td><td>'+fmt(y.interest)+'</td><td>'+fmt(y.balance)+'</td></tr>';
+  });
+  table += '</tbody></table>';
+  document.getElementById('scheduleTable').innerHTML = table;
+  document.getElementById('schedule').style.display = 'block';
+}
+
+// init
+document.addEventListener('DOMContentLoaded', function(){ calcMortgage(); });
+</script>
+
+</body>
+</html>
