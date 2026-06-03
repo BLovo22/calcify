@@ -26,7 +26,7 @@
     var next = cur==='dark'?'light':'dark';
     document.documentElement.setAttribute('data-theme',next);
     localStorage.setItem('theme',next);
-    document.getElementById('themeIcon').textContent = next==='dark'?'&#x2600;':'&#x1F319;';
+    document.getElementById('themeIcon').innerHTML = next==='dark'?'\u2600\uFE0F':'\uD83C\uDF19';
   };
 })();
 </script>
@@ -254,9 +254,9 @@ document.addEventListener('DOMContentLoaded', function(){ calcMortgage(); });
 function copyPageLink(){
   navigator.clipboard.writeText(location.href).then(function(){
     var btn = document.getElementById('shareBtn');
-    btn.textContent = '\u2714 Copied!';
+    btn.innerHTML = 'u2714 Copied!';
     btn.classList.add('copied');
-    setTimeout(function(){btn.textContent='\uD83D\uDD17 Copy Link';btn.classList.remove('copied');},2000);
+    setTimeout(function(){btn.innerHTML='uD83DuDD17 Copy Link';btn.classList.remove('copied');},2000);
   });
 }
 </script>
