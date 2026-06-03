@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Credit Card Payoff Calculator — How Long to Pay Off Your Debt | Numbrly">
+<meta property="og:description" content="See how long it takes to pay off your credit card. Compare minimum payments vs. fixed payments — and how much interest you save.">
+<meta property="og:url" content="https://numbrly.cc/credit-card-payoff-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Credit Card Payoff Calculator | Numbrly">
+<meta name="twitter:description" content="Calculate how long to pay off credit card debt. Free, private.">
+<link rel="canonical" href="https://numbrly.cc/credit-card-payoff-calculator.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credit Card Payoff Calculator — How Long to Pay Off Your Debt | Numbrly</title>
+<meta name="description" content="Calculate how long it takes to pay off your credit card. See interest costs, compare payment strategies, and find the fastest path to debt freedom.">
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Credit Card Payoff Calculator","url":"https://numbrly.cc/credit-card-payoff-calculator.html","description":"Calculate how long to pay off credit card debt with different payment strategies.","applicationCategory":"FinanceApplication","operatingSystem":"All"}
+</script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><a href="index.html" class="logo">Num<span>brly</span></a><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
+<script>(function(){var s=localStorage.getItem('theme');if(s)document.documentElement.setAttribute('data-theme',s);else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');window.toggleTheme=function(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);document.getElementById('themeIcon').innerHTML=n==='dark'?'☀️':'🌙';};var icon=document.getElementById('themeIcon');if(icon)icon.innerHTML=(s||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':''))==='dark'?'☀️':'🌙';})();</script>
+
+<main class="main">
+<div class="breadcrumb"><a href="index.html">Home</a> / Credit Card Payoff Calculator</div>
+
+<section style="margin-top:20px">
+<div class="sec-title">&#x1F4B3; Credit Card Payoff Calculator</div>
+<p class="sec-desc">See exactly how long it takes to pay off your credit card — and how much interest you are really paying.</p>
+
+<div class="card" style="max-width:640px">
+<div class="form-row">
+  <div class="form-group"><label>Credit Card Balance ($)</label><input type="number" id="balance" value="5000" min="1" step="100"></div>
+  <div class="form-group"><label>APR (%)</label><input type="number" id="apr" value="24" min="0.1" max="50" step="0.1"></div>
+</div>
+<div class="form-row">
+  <div class="form-group"><label>Monthly Payment ($)</label><input type="number" id="payment" value="200" min="1" step="25"></div>
+  <div class="form-group"><label>Or Use Minimum Payment</label><select id="minPay" onchange="setMinPayment()"><option value="">Custom amount</option><option value="2">2% of balance</option><option value="3">3% of balance</option><option value="4">4% of balance</option></select></div>
+</div>
+<button class="btn btn-block" onclick="calcPayoff()">&#x1F4CA; Calculate</button>
+
+<ins class="adsbygoogle" style="display:block;text-align:center;margin:20px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+
+<div class="result" id="result">
+  <div class="result-num" id="months">--</div>
+  <div class="result-label">Time to Pay Off</div>
+  <div class="result-grid">
+    <div class="result-item"><div class="ri-val" id="totalPay">--</div><div class="ri-label">Total Paid</div></div>
+    <div class="result-item"><div class="ri-val" id="totalInt">--</div><div class="ri-label">Total Interest</div></div>
+    <div class="result-item"><div class="ri-val" id="intPct">--</div><div class="ri-label">Interest as % of Balance</div></div>
+  </div>
+  <div class="highlight-box" id="compareBox" style="display:none"><h4>&#x1F4A1; Try a Higher Payment</h4><p id="compareText"></p></div>
+</div>
+</div>
+</section>
+
+<section class="article-body">
+<h2>How Credit Card Interest Works</h2>
+<p>Credit cards charge daily compound interest. Most cards calculate your daily rate as APR / 365, then apply it to your average daily balance. This means every day you carry a balance, you accrue more interest. It is the most expensive form of consumer debt.</p>
+
+<h2>Minimum Payment Trap</h2>
+<p>If your card requires a minimum payment of 2% of the balance, paying only the minimum on a $5,000 balance at 24% APR will take <strong>over 30 years</strong> to pay off and cost more than $10,000 in interest. The minimum payment is designed to keep you in debt.</p>
+
+<h2>Fastest Way Out</h2>
+<ol style="margin:10px 0 16px 20px;color:var(--muted);font-size:14px;line-height:1.8">
+  <li>Stop using the card immediately</li>
+  <li>Pay as much as you can above the minimum — even $50 extra cuts months off your payoff</li>
+  <li>Consider a 0% balance transfer card if you have good credit</li>
+  <li>Use the avalanche method: pay minimums on all cards, throw every extra dollar at the highest APR card first</li>
+</ol>
+</section>
+</main>
+
+<footer><div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. Not financial advice.</p></footer>
+
+<script>
+(function(){var p='credit-card-payoff',inps=document.querySelectorAll('input[id],select[id]');try{var sv=JSON.parse(localStorage.getItem('numbrly_'+p)||'{}');inps.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(e){}inps.forEach(function(e){e.addEventListener('input',function(){try{var a={};inps.forEach(function(x){a[x.id]=x.value;});localStorage.setItem('numbrly_'+p,JSON.stringify(a));}catch(e){}});});})();
+
+function setMinPayment(){
+ var pct=parseFloat(document.getElementById('minPay').value);
+ if(!pct)return;
+ var bal=parseFloat(document.getElementById('balance').value)||5000;
+ document.getElementById('payment').value=Math.max(25,Math.round(bal*pct/100));
+}
+
+function calcPayoff(){
+ var bal=parseFloat(document.getElementById('balance').value)||5000;
+ var apr=parseFloat(document.getElementById('apr').value)||24;
+ var pmt=parseFloat(document.getElementById('payment').value)||200;
+ var fmt=function(v){return'$'+v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
+ var dr=apr/100/365;
+ if(pmt<=bal*dr/30){document.getElementById('months').textContent='Never — payment too low';document.getElementById('result').classList.add('show');return;}
+ var m=0,total=0,startBal=bal;
+ while(bal>0&&m<1200){
+  var dailyInt=0;
+  for(var d=0;d<30&&bal>0;d++){bal+=bal*dr;}
+  var actualPmt=Math.min(pmt,bal);
+  bal-=actualPmt;total+=actualPmt;m++;
+  if(bal<0.01)bal=0;
+ }
+ var yrs=Math.floor(m/12),mos=m%12,timeStr='';
+ if(yrs>0)timeStr+=yrs+' yr'+ (yrs>1?'s ':' ');
+ if(mos>0||yrs===0)timeStr+=mos+' mo';
+ var interest=total-startBal;
+ document.getElementById('months').textContent=timeStr;
+ document.getElementById('totalPay').textContent=fmt(total);
+ document.getElementById('totalInt').textContent=fmt(interest);
+ document.getElementById('intPct').textContent=(interest/startBal*100).toFixed(0)+'%';
+ document.getElementById('result').classList.add('show');
+
+ // Compare with higher payment
+ var cmpBox=document.getElementById('compareBox');
+ var cmpText=document.getElementById('compareText');
+ if(pmt<startBal*0.1){
+  var higherPmt=Math.round(pmt*1.25);
+  var bal2=startBal,total2=0,m2=0;
+  while(bal2>0&&m2<1200){for(var d2=0;d2<30&&bal2>0;d2++)bal2+=bal2*dr;var ap=Math.min(higherPmt,bal2);bal2-=ap;total2+=ap;m2++;if(bal2<0.01)bal2=0;}
+  var saved=total-total2;
+  cmpText.textContent='Just $'+(higherPmt-pmt)+' more per month ($'+higherPmt+' total) saves you '+fmt(saved)+' in interest and pays off '+(m-m2)+' months faster.';
+  cmpBox.style.display='block';
+ }else{cmpBox.style.display='none';}
+
+ document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+document.addEventListener('DOMContentLoaded',calcPayoff);
+</script>
+</body>
+</html>

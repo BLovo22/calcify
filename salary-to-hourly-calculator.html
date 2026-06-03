@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Salary to Hourly Calculator | Numbrly">
+<meta property="og:description" content="Convert salary to hourly rate instantly. See what you really make per hour, day, week, and year.">
+<meta property="og:url" content="https://numbrly.cc/salary-to-hourly-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Salary to Hourly Calculator | Numbrly">
+<meta name="twitter:description" content="Convert salary to hourly rate instantly.">
+<link rel="canonical" href="https://numbrly.cc/salary-to-hourly-calculator.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salary to Hourly Calculator — Convert Annual Pay to Hourly Rate | Numbrly</title>
+<meta name="description" content="Convert your annual salary to hourly rate. See what you make per hour, day, week, and month — with overtime and unpaid time off factored in.">
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Salary to Hourly Calculator","url":"https://numbrly.cc/salary-to-hourly-calculator.html","description":"Convert annual salary to hourly wage.","applicationCategory":"FinanceApplication","operatingSystem":"All"}
+</script>
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><a href="index.html" class="logo">Num<span>brly</span></a><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
+<script>(function(){var s=localStorage.getItem('theme');if(s)document.documentElement.setAttribute('data-theme',s);else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');window.toggleTheme=function(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);document.getElementById('themeIcon').innerHTML=n==='dark'?'☀️':'🌙';};var icon=document.getElementById('themeIcon');if(icon)icon.innerHTML=(s||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':''))==='dark'?'☀️':'🌙';})();</script>
+
+<main class="main">
+<div class="breadcrumb"><a href="index.html">Home</a> / Salary to Hourly Calculator</div>
+
+<section style="margin-top:20px">
+<div class="sec-title">&#x1F4B5; Salary to Hourly Calculator</div>
+<p class="sec-desc">See what your salary breaks down to per hour, day, week, and month.</p>
+
+<div class="card" style="max-width:640px">
+<div class="form-row">
+  <div class="form-group"><label>Annual Salary ($)</label><input type="number" id="salary" value="60000" min="1" step="1000"></div>
+  <div class="form-group"><label>Hours Per Week</label><input type="number" id="hours" value="40" min="1" max="100" step="1"></div>
+</div>
+<div class="form-row">
+  <div class="form-group"><label>Weeks Per Year</label><select id="weeks"><option value="52" selected>52 (no unpaid time off)</option><option value="50">50 (2 weeks off)</option><option value="48">48 (4 weeks off)</option><option value="46">46 (6 weeks off)</option></select></div>
+  <div class="form-group" style="justify-content:flex-end"><button class="btn btn-block" onclick="calcSalary()" style="margin-top:auto">&#x1F4CA; Calculate</button></div>
+</div>
+
+<ins class="adsbygoogle" style="display:block;text-align:center;margin:20px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+
+<div class="result" id="result">
+  <div class="result-num" id="hourly">--</div>
+  <div class="result-label">Per Hour</div>
+  <div class="result-grid">
+    <div class="result-item"><div class="ri-val" id="daily">--</div><div class="ri-label">Per Day</div></div>
+    <div class="result-item"><div class="ri-val" id="weekly">--</div><div class="ri-label">Per Week</div></div>
+    <div class="result-item"><div class="ri-val" id="biweekly">--</div><div class="ri-label">Bi-Weekly</div></div>
+    <div class="result-item"><div class="ri-val" id="monthly">--</div><div class="ri-label">Per Month</div></div>
+    <div class="result-item"><div class="ri-val" id="annually">--</div><div class="ri-label">Per Year</div></div>
+    <div class="result-item"><div class="ri-val" id="ot">--</div><div class="ri-label">Overtime (1.5x)</div></div>
+  </div>
+</div>
+</div>
+</section>
+
+<section class="article-body">
+<h2>How to Calculate Your Hourly Rate</h2>
+<p>The formula is simple: <strong>Hourly Rate = Annual Salary / (Hours per Week x Weeks per Year)</strong>. For a $60,000 salary working 40 hours/week for 52 weeks: $60,000 / (40 x 52) = $28.85/hour.</p>
+<p>If you have 2 weeks of unpaid vacation, use 50 weeks instead: $60,000 / (40 x 50) = $30.00/hour.</p>
+
+<h2>Overtime Rate</h2>
+<p>In the US, overtime is typically paid at 1.5x your regular hourly rate for hours over 40 per week. If your hourly rate is $28.85, overtime pays $43.27/hour.</p>
+
+<h2>Quick Reference</h2>
+<table class="data-table" style="margin:16px 0">
+  <thead><tr><th>Annual Salary</th><th>Hourly (40 hrs, 52 wks)</th></tr></thead>
+  <tbody>
+    <tr><td>$30,000</td><td>$14.42</td></tr>
+    <tr><td>$50,000</td><td>$24.04</td></tr>
+    <tr><td>$75,000</td><td>$36.06</td></tr>
+    <tr><td>$100,000</td><td>$48.08</td></tr>
+    <tr><td>$150,000</td><td>$72.12</td></tr>
+    <tr><td>$200,000</td><td>$96.15</td></tr>
+  </tbody>
+</table>
+</section>
+</main>
+
+<footer><div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. Not financial advice.</p></footer>
+
+<script>
+(function(){
+ var p='salary-to-hourly',inps=document.querySelectorAll('input[id],select[id]');
+ try{var sv=JSON.parse(localStorage.getItem('numbrly_'+p)||'{}');inps.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(e){}
+ inps.forEach(function(e){e.addEventListener('input',function(){try{var a={};inps.forEach(function(x){a[x.id]=x.value;});localStorage.setItem('numbrly_'+p,JSON.stringify(a));}catch(e){}});});
+})();
+
+function calcSalary(){
+ var salary=parseFloat(document.getElementById('salary').value)||60000;
+ var hours=parseFloat(document.getElementById('hours').value)||40;
+ var weeks=parseInt(document.getElementById('weeks').value)||52;
+ var fmt=function(v){return'$'+v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
+ var hourly=salary/(hours*weeks);
+ document.getElementById('hourly').textContent=fmt(hourly);
+ document.getElementById('daily').textContent=fmt(hourly*8);
+ document.getElementById('weekly').textContent=fmt(hourly*hours);
+ document.getElementById('biweekly').textContent=fmt(hourly*hours*2);
+ document.getElementById('monthly').textContent=fmt(salary/12);
+ document.getElementById('annually').textContent=fmt(salary);
+ document.getElementById('ot').textContent=fmt(hourly*1.5);
+ document.getElementById('result').classList.add('show');
+}
+document.addEventListener('DOMContentLoaded',calcSalary);
+</script>
+</body>
+</html>
