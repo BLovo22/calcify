@@ -25,7 +25,7 @@
     var next = cur==='dark'?'light':'dark';
     document.documentElement.setAttribute('data-theme',next);
     localStorage.setItem('theme',next);
-    document.getElementById('themeIcon').innerHTML = next==='dark'?'\u2600\uFE0F':'\uD83C\uDF19';
+    document.getElementById('themeIcon').innerHTML = next==='dark' ? '☀️' : '🌙';
   };
 })();
 </script>
