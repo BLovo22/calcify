@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta property="og:title" content="Loan Calculator — Monthly Payment & Payoff Planner | Calcify">
+<meta property="og:description" content="Calculate monthly payments for any loan. See total interest, payoff timeline, and savings from extra payments.">
+<meta property="og:url" content="https://blovo22.github.io/calcify/loan-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Loan Calculator — Monthly Payment & Payoff Planner | Calcify">
+<meta name="twitter:description" content="Calculate monthly payments for any loan. See total interest, payoff timeline, and savings from extra payments.">
+<link rel="canonical" href="https://blovo22.github.io/calcify/loan-calculator.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loan Calculator — Monthly Payment & Payoff Planner | Calcify</title>
 <meta name="description" content="Calculate monthly payments for any loan: personal, auto, student. See total interest, payoff timeline, and how extra payments save you money.">
@@ -9,7 +17,6 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
 </head>
 <body>
-
 <nav class="nav">
   <div class="nav-in">
     <a href="index.html" class="logo">Calc<span>ify</span></a>
@@ -18,15 +25,11 @@
     <a href="privacy-policy.html">Privacy</a>
   </div>
 </nav>
-
 <main class="main">
-
   <div class="breadcrumb"><a href="index.html">Home</a> / Loan Calculator</div>
-
   <section style="margin-top:20px">
     <div class="sec-title">&#x1F4B3; Loan Calculator</div>
     <p class="sec-desc">Calculate payments for any loan — personal, auto, student, or business. See how extra payments save you money.</p>
-
     <div class="card" style="max-width:640px">
       <div class="form-row">
         <div class="form-group">
@@ -54,10 +57,8 @@
         </div>
       </div>
       <button class="btn btn-block" onclick="calcLoan()">&#x1F4CA; Calculate</button>
-
       <ins class="adsbygoogle" style="display:block;text-align:center;margin:20px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
       <div class="result" id="result">
         <div class="result-num" id="monthly">--</div>
         <div class="result-label">Monthly Payment</div>
@@ -70,7 +71,6 @@
       </div>
     </div>
   </section>
-
   <!-- Amortization -->
   <section id="schedule" style="display:none">
     <div class="sec-title">&#x1F4C4; Payment Schedule</div>
@@ -79,26 +79,21 @@
       <div id="scheduleTable" style="max-height:400px;overflow-y:auto"></div>
     </div>
   </section>
-
   <!-- Guide -->
   <section class="article-body">
     <h2>How to Use This Loan Calculator</h2>
     <p>Whether you are financing a car, consolidating debt, or taking out a personal loan, understanding your monthly payment is the first step. This calculator shows you the full picture: monthly cost, total interest, and how long it takes to pay off.</p>
-
     <h3>Understanding Your Results</h3>
     <ul>
       <li><strong>Monthly Payment</strong> — What you will pay each month. This is fixed for the entire term.</li>
       <li><strong>Total Interest</strong> — The total cost of borrowing. On a $25,000 loan at 7.5% for 5 years, you pay over $5,000 in interest alone.</li>
       <li><strong>Total Cost</strong> — Principal + Interest. The true price of the loan.</li>
     </ul>
-
     <h3>The Power of Extra Payments</h3>
     <p>Adding even a small amount to your monthly payment can save hundreds or thousands in interest. For example, adding $50/month extra on a $25,000 loan at 7.5% for 5 years saves roughly $400 in interest and pays off the loan 6 months early.</p>
     <p>Try different extra payment amounts in the calculator above and watch how the payoff time shrinks.</p>
-
     <h3>Fixed Rate vs. Variable Rate Loans</h3>
     <p>This calculator assumes a <strong>fixed interest rate</strong>. With a fixed rate, your payment never changes. Variable-rate loans may start lower but can increase over time — they are riskier but sometimes cheaper if rates fall. For most personal loans and auto loans, fixed rates are the standard.</p>
-
     <h3>What Interest Rate Should You Expect?</h3>
     <ul>
       <li><strong>Excellent credit (720+):</strong> 5-8% for personal loans, 3-5% for auto loans</li>
@@ -107,32 +102,26 @@
       <li><strong>Poor credit (below 640):</strong> 20-36% — consider improving your credit first</li>
     </ul>
   </section>
-
 </main>
-
 <footer>
   <div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div>
   <p>&copy; 2025 Calcify. Not financial advice. For educational purposes only.</p>
 </footer>
-
 <script>
 function calcLoan(){
   var loan = parseFloat(document.getElementById('loanAmt').value)||25000;
   var rate = parseFloat(document.getElementById('rate').value)||7.5;
   var termYrs = parseInt(document.getElementById('term').value)||5;
   var extra = parseFloat(document.getElementById('extra').value)||0;
-
   var monthlyRate = rate/100/12;
   var n = termYrs*12;
   var monthly = loan*(monthlyRate*Math.pow(1+monthlyRate,n))/(Math.pow(1+monthlyRate,n)-1);
   var totalPayment = monthly*n;
   var totalInterest = totalPayment-loan;
   var fmt=function(v){return'$'+v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
-
   document.getElementById('monthly').textContent=fmt(monthly);
   document.getElementById('totalInt').textContent=fmt(totalInterest);
   document.getElementById('totalCost').textContent=fmt(totalPayment);
-
   var moDisplay=termYrs*12;
   var savingsBox=document.getElementById('savingsBox');
   if(extra>0){
@@ -150,10 +139,8 @@ function calcLoan(){
     savingsBox.style.display='block';
     moDisplay=m;
   }else{savingsBox.style.display='none';}
-
   document.getElementById('payoffMonths').textContent=Math.ceil(moDisplay/12)+' yr '+Math.round(moDisplay%12)+' mo';
   document.getElementById('result').classList.add('show');
-
   // schedule — year by year
   var bal2=loan,totalM=monthly+extra,mpy=12;
   var tbl='<table class="data-table"><thead><tr><th>Year</th><th>Principal Paid</th><th>Interest Paid</th><th>Balance</th></tr></thead><tbody>';

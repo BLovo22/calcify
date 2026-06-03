@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta property="og:title" content="Compound Interest Calculator — See Your Money Grow | Calcify">
+<meta property="og:description" content="Calculate how your investments grow with compound interest. Year-by-year breakdown, 25 vs 35 comparison, free and private.">
+<meta property="og:url" content="https://blovo22.github.io/calcify/compound-interest-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compound Interest Calculator — See Your Money Grow | Calcify">
+<meta name="twitter:description" content="Calculate how your investments grow with compound interest. Year-by-year breakdown, 25 vs 35 comparison, free and private.">
+<link rel="canonical" href="https://blovo22.github.io/calcify/compound-interest-calculator.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Compound Interest Calculator — See Your Money Grow | Calcify</title>
 <meta name="description" content="Calculate how your investments grow with compound interest. Compare starting early vs. late, see year-by-year growth, and plan your financial future.">
@@ -9,7 +17,6 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
 </head>
 <body>
-
 <nav class="nav">
   <div class="nav-in">
     <a href="index.html" class="logo">Calc<span>ify</span></a>
@@ -18,15 +25,11 @@
     <a href="privacy-policy.html">Privacy</a>
   </div>
 </nav>
-
 <main class="main">
-
   <div class="breadcrumb"><a href="index.html">Home</a> / Compound Interest Calculator</div>
-
   <section style="margin-top:20px">
     <div class="sec-title">&#x1F4C8; Compound Interest Calculator</div>
     <p class="sec-desc">See the magic of compound interest. Enter your starting amount, monthly contribution, and time horizon.</p>
-
     <div class="card" style="max-width:640px">
       <div class="form-row">
         <div class="form-group">
@@ -61,14 +64,12 @@
           <button class="btn btn-block" onclick="calcCompound()" style="margin-top:auto">&#x1F4CA; Calculate</button>
         </div>
       </div>
-
       <ins class="adsbygoogle"
      style="display:block;text-align:center;margin:20px 0"
      data-ad-client="ca-pub-4970468814214538"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
       <div class="result" id="result">
         <div class="result-num" id="finalAmt">--</div>
         <div class="result-label">Final Balance</div>
@@ -80,7 +81,6 @@
       </div>
     </div>
   </section>
-
   <!-- Comparison: Start at 25 vs 35 -->
   <section>
     <div class="sec-title">&#x1F440; Start at 25 vs. Start at 35</div>
@@ -89,7 +89,6 @@
       <div id="comparisonTable"></div>
     </div>
   </section>
-
   <!-- Year by year -->
   <section>
     <div class="sec-title">&#x1F4C5; Year-by-Year Growth</div>
@@ -98,12 +97,10 @@
       <div id="yearTable" style="max-height:400px;overflow-y:auto"></div>
     </div>
   </section>
-
   <!-- Guide -->
   <section class="article-body">
     <h2>Why Compound Interest Is the 8th Wonder of the World</h2>
     <p>Albert Einstein reportedly called compound interest "the eighth wonder of the world." Whether he actually said it or not, the math doesn't lie: compounding transforms modest savings into life-changing wealth over time.</p>
-
     <h3>The Start Early vs. Start Late Dilemma</h3>
     <p>Meet two investors:</p>
     <ul>
@@ -111,16 +108,12 @@
       <li><strong>Jordan</strong> starts at age 35 and invests $500/month all the way to age 65 &mdash; investing for 30 years. Total contributions: $180,000.</li>
     </ul>
     <p>At 8% annual return, by age 65: <strong>Alex has ~$1,000,000</strong> while <strong>Jordan has ~$750,000</strong>. Alex contributed one-third as much but ended up with more. That is the power of starting early.</p>
-
     <h3>How to Use This Calculator</h3>
     <p>Start with your current savings as "Initial Investment." Add what you can afford monthly. The default 8% reflects historical S&P 500 average returns (before inflation). Be realistic &mdash; don't assume 15% returns. A conservative 6-7% after inflation is a better planning number.</p>
-
     <h3>The Rule of 72</h3>
     <p>Want a quick estimate? Divide 72 by your annual return rate. At 8%, your money doubles every 9 years (72 / 8 = 9). At 10%, every 7.2 years. This mental shortcut helps you think in decades, not days.</p>
   </section>
-
 </main>
-
 <footer>
   <div class="footer-links">
     <a href="index.html">Tools</a>
@@ -129,7 +122,6 @@
   </div>
   <p>&copy; 2025 Calcify. Not financial advice. Past performance does not guarantee future results.</p>
 </footer>
-
 <script>
 function calcCompound(){
   var initial = parseFloat(document.getElementById('initial').value) || 10000;
@@ -137,11 +129,9 @@ function calcCompound(){
   var rate = parseFloat(document.getElementById('returnRate').value) || 8;
   var years = parseInt(document.getElementById('years').value) || 30;
   var freq = parseInt(document.getElementById('frequency').value) || 12;
-
   var periods = years * freq;
   var periodRate = rate / 100 / freq;
   var monthlyPerPeriod = monthly * (12 / freq);
-
   // Future value with regular contributions
   var fv = initial * Math.pow(1 + periodRate, periods);
   if(periodRate > 0){
@@ -149,18 +139,14 @@ function calcCompound(){
   } else {
     fv += monthlyPerPeriod * periods;
   }
-
   var totalContrib = initial + monthly * 12 * years;
   var earnings = fv - totalContrib;
-
   var fmt = function(v){return '$'+v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
-
   document.getElementById('finalAmt').textContent = fmt(fv);
   document.getElementById('totalContrib').textContent = fmt(totalContrib);
   document.getElementById('totalEarnings').textContent = fmt(earnings);
   document.getElementById('multiplier').textContent = (fv / totalContrib).toFixed(1) + 'x';
   document.getElementById('result').classList.add('show');
-
   // Comparison: 25 vs 35
   var age25 = calcFVAtAge(25, 65, 500, 8);
   var age35 = calcFVAtAge(35, 65, 500, 8);
@@ -170,7 +156,6 @@ function calcCompound(){
     '<tr><td>Jordan</td><td>Age 35</td><td>$500</td><td>30</td><td>'+fmt(500*12*30)+'</td><td>'+fmt(age35)+'</td></tr>'+
     '<tr style="background:var(--green-light);font-weight:700"><td>Difference</td><td colspan="3">Starting 10 years earlier</td><td></td><td style="color:var(--green)">+'+fmt(age25-age35)+'</td></tr>'+
     '</tbody></table>';
-
   // Year by year
   var yrTable = '<table class="data-table"><thead><tr><th>Year</th><th>Balance</th><th>Contributions</th><th>Earnings</th></tr></thead><tbody>';
   var bal = initial, totalC = initial;
@@ -184,10 +169,8 @@ function calcCompound(){
   }
   yrTable += '</tbody></table>';
   document.getElementById('yearTable').innerHTML = yrTable;
-
   document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-
 function calcFVAtAge(startAge, endAge, monthly, annualRate){
   var yrs = endAge - startAge;
   var r = annualRate/100/12;
@@ -195,9 +178,7 @@ function calcFVAtAge(startAge, endAge, monthly, annualRate){
   if(r === 0) return monthly * n;
   return monthly * ((Math.pow(1+r,n)-1)/r) * (1+r);
 }
-
 document.addEventListener('DOMContentLoaded',function(){calcCompound();});
 </script>
-
 </body>
 </html>

@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta property="og:title" content="Mortgage Payment Calculator — Free Amortization Tool | Calcify">
+<meta property="og:description" content="Calculate monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up.">
+<meta property="og:url" content="https://blovo22.github.io/calcify/mortgage-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mortgage Payment Calculator — Free Amortization Tool | Calcify">
+<meta name="twitter:description" content="Calculate monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up.">
+<link rel="canonical" href="https://blovo22.github.io/calcify/mortgage-calculator.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mortgage Calculator — Free Payment & Amortization Tool | Calcify</title>
 <meta name="description" content="Calculate your monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up required.">
@@ -10,7 +18,6 @@
 <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
 </head>
 <body>
-
 <nav class="nav">
   <div class="nav-in">
     <a href="index.html" class="logo">Calc<span>ify</span></a>
@@ -19,15 +26,11 @@
     <a href="privacy-policy.html">Privacy</a>
   </div>
 </nav>
-
 <main class="main">
-
   <div class="breadcrumb"><a href="index.html">Home</a> / Mortgage Calculator</div>
-
   <section style="margin-top:20px">
     <div class="sec-title">&#x1F3E0; Mortgage Calculator</div>
     <p class="sec-desc">Enter your loan details below. See your monthly payment, total interest, and full amortization breakdown.</p>
-
     <div class="card" style="max-width:640px">
       <div class="form-row">
         <div class="form-group">
@@ -63,7 +66,6 @@
           <button class="btn btn-block" onclick="calcMortgage()" style="margin-top:auto">&#x1F4CA; Calculate</button>
         </div>
       </div>
-
       <!-- ad slot -->
       <ins class="adsbygoogle"
      style="display:block;text-align:center;margin:20px 0"
@@ -71,7 +73,6 @@
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-
       <div class="result" id="result">
         <div class="result-num" id="monthly">--</div>
         <div class="result-label">Estimated Monthly Payment</div>
@@ -87,7 +88,6 @@
       </div>
     </div>
   </section>
-
   <!-- Amortization Table -->
   <section id="schedule" style="display:none">
     <div class="sec-title">&#x1F4C4; Amortization Schedule</div>
@@ -96,12 +96,10 @@
       <div id="scheduleTable" style="max-height:400px;overflow-y:auto"></div>
     </div>
   </section>
-
   <!-- Guide -->
   <section class="article-body">
     <h2>How to Use This Mortgage Calculator</h2>
     <p>Our mortgage calculator helps you understand exactly what your monthly payment will be &mdash; and more importantly, how much of that payment goes toward interest over the life of the loan.</p>
-
     <h3>What Each Input Means</h3>
     <ul>
       <li><strong>Home Price</strong> &mdash; The total purchase price of the property.</li>
@@ -109,18 +107,14 @@
       <li><strong>Interest Rate</strong> &mdash; The annual rate on your loan. A 1% difference can mean tens of thousands in extra interest over 30 years.</li>
       <li><strong>Extra Payment</strong> &mdash; Adding even $100/month extra can shave years off your loan and save thousands in interest.</li>
     </ul>
-
     <h3>Example: $400,000 Home with 20% Down</h3>
     <p>With a 30-year fixed mortgage at 6.5%, your monthly principal and interest payment is approximately <strong>$2,022</strong>. Over 30 years, you will pay about <strong>$408,000 in interest</strong> &mdash; more than the original loan amount.</p>
     <p>But add just <strong>$200/month extra</strong>, and you will pay off the loan <strong>6 years early</strong> and save over <strong>$100,000 in interest</strong>.</p>
-
     <h3>Should You Pay Extra on Your Mortgage?</h3>
     <p>This depends on your interest rate. If your mortgage rate is higher than what you could earn by investing (say, in an index fund averaging 7-10% annually), paying extra on the mortgage makes mathematical sense. If your rate is low (under 4%), you may be better off investing the extra cash instead.</p>
     <p>Our calculator lets you model both scenarios &mdash; try different extra payment amounts and see the impact for yourself.</p>
   </section>
-
 </main>
-
 <footer>
   <div class="footer-links">
     <a href="index.html">Tools</a>
@@ -129,7 +123,6 @@
   </div>
   <p>&copy; 2025 Calcify. Not financial advice. For educational purposes only.</p>
 </footer>
-
 <script>
 function calcMortgage(){
   var price = parseFloat(document.getElementById('homePrice').value) || 400000;
@@ -137,25 +130,20 @@ function calcMortgage(){
   var rate = parseFloat(document.getElementById('rate').value) || 6.5;
   var termYrs = parseInt(document.getElementById('term').value) || 30;
   var extra = parseFloat(document.getElementById('extra').value) || 0;
-
   var loan = price - down;
   if(loan <= 0){ document.getElementById('result').classList.add('show'); document.getElementById('monthly').textContent = '$0'; return; }
-
   var monthlyRate = rate / 100 / 12;
   var n = termYrs * 12;
   var monthly = loan * (monthlyRate * Math.pow(1+monthlyRate,n)) / (Math.pow(1+monthlyRate,n)-1);
   var totalPayment = monthly * n;
   var totalInterest = totalPayment - loan;
-
   document.getElementById('monthly').textContent = '$' + monthly.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   document.getElementById('loanAmt').textContent = '$' + loan.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   document.getElementById('totalInt').textContent = '$' + totalInterest.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
   // payoff date
   var now = new Date();
   var payoffDate = new Date(now.getFullYear() + termYrs, now.getMonth(), 1);
   var payoffStr = payoffDate.toLocaleString('en-US',{month:'short',year:'numeric'});
-
   // extra payment calc
   var savingsBox = document.getElementById('savingsBox');
   var savingsText = document.getElementById('savingsText');
@@ -178,15 +166,12 @@ function calcMortgage(){
   } else {
     savingsBox.style.display = 'none';
   }
-
   document.getElementById('payoff').textContent = payoffStr;
   document.getElementById('result').classList.add('show');
-
   // amortization schedule
   buildSchedule(loan, monthlyRate, monthly + extra, n, monthly, termYrs);
   document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
-
 function buildSchedule(loan, monthlyRate, totalMonthly, n, baseMonthly, termYrs){
   var bal = loan, table = '', yearlyPrincipal = 0, yearlyInterest = 0, yearCount = 1;
   var yearData = [];
@@ -204,7 +189,6 @@ function buildSchedule(loan, monthlyRate, totalMonthly, n, baseMonthly, termYrs)
       if(bal === 0) break;
     }
   }
-
   table = '<table class="data-table"><thead><tr><th>Year</th><th>Principal Paid</th><th>Interest Paid</th><th>Remaining Balance</th></tr></thead><tbody>';
   var fmt = function(v){return '$'+v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
   yearData.forEach(function(y){
@@ -214,10 +198,8 @@ function buildSchedule(loan, monthlyRate, totalMonthly, n, baseMonthly, termYrs)
   document.getElementById('scheduleTable').innerHTML = table;
   document.getElementById('schedule').style.display = 'block';
 }
-
 // init
 document.addEventListener('DOMContentLoaded', function(){ calcMortgage(); });
 </script>
-
 </body>
 </html>
