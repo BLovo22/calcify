@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Numbrly Reply Kit</title>
+<style>
+  :root{--bg:#0f1117;--card:#1a1d27;--text:#e2e4e9;--muted:#8b8fa3;--border:#2a2d3a;--pri:#2563eb;--pri-light:rgba(37,99,235,.12);--radius:12px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:14px;padding:20px}
+  .container{max-width:800px;margin:0 auto}
+  h1{font-size:22px;margin-bottom:4px}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:20px}
+  .search{width:100%;padding:12px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;margin-bottom:20px;font-family:inherit}
+  .search:focus{outline:none;border-color:var(--pri)}
+  .tags{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+  .tags button{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-family:inherit}
+  .tags button:hover,.tags button.active{background:var(--pri);color:#fff;border-color:var(--pri)}
+  .template{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;transition:border-color .15s}
+  .template:hover{border-color:var(--pri)}
+  .template .t-title{font-weight:700;margin-bottom:2px}
+  .template .t-cat{font-size:11px;color:var(--pri);margin-bottom:8px}
+  .template .t-body{color:var(--muted);font-size:13px;line-height:1.7;white-space:pre-wrap;margin-bottom:12px;max-height:120px;overflow-y:hidden;position:relative}
+  .template .t-body.expanded{max-height:none}
+  .template .t-body::after{content:'';position:absolute;bottom:0;left:0;right:0;height:30px;background:linear-gradient(transparent,var(--card))}
+  .template .t-body.expanded::after{display:none}
+  .btn-row{display:flex;gap:8px}
+  .btn{padding:7px 16px;border-radius:6px;border:none;cursor:pointer;font-size:12px;font-family:inherit;font-weight:600}
+  .btn-copy{background:var(--pri);color:#fff}
+  .btn-copy:hover{background:#1d4ed8}
+  .btn-expand{background:var(--border);color:var(--text)}
+  .btn-expand:hover{background:#3a3d4a}
+  .btn-link{background:var(--pri-light);color:var(--pri);text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600}
+  .copied{color:var(--pri);font-size:12px;display:none;align-items:center;gap:4px}
+  .hidden{display:none}
+  .stats{color:var(--muted);font-size:12px;margin-top:20px;text-align:center}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>⚡ Numbrly Reply Kit</h1>
+<p class="sub">Search a keyword → Expand → Copy → Paste to Reddit. Tweak the first sentence to match the question.</p>
+
+<input class="search" id="search" placeholder="Search: mortgage, compound, rent vs buy, emergency fund..." oninput="filter()">
+
+<div class="tags" id="tags">
+  <button class="active" onclick="filterTag('all',this)">All</button>
+  <button onclick="filterTag('mortgage',this)">🏠 Mortgage</button>
+  <button onclick="filterTag('invest',this)">📈 Investing</button>
+  <button onclick="filterTag('save',this)">💰 Saving</button>
+  <button onclick="filterTag('retire',this)">👴 Retirement</button>
+</div>
+
+<div id="list"></div>
+<div class="stats" id="stats"></div>
+</div>
+
+<script>
+var templates = [
+  {cat:'mortgage',kw:'mortgage calculator monthly payment',title:'How much will my mortgage payment be?',body:`The standard formula is M = P[r(1+r)^n]/[(1+r)^n-1] where M is monthly payment, P is loan amount, r is monthly rate, and n is total payments. But honestly? Just plug your numbers into a calculator.\n\nI built a free one at numbrly.cc that shows the full amortization schedule and lets you model extra payments — way more useful than doing the math by hand.\n\nFor a quick estimate: every $100,000 borrowed at 6.5% over 30 years = roughly $632/month (principal + interest only, not including taxes and insurance).`},
+  {cat:'mortgage',kw:'pay off mortgage early extra payment',title:'Should I pay extra on my mortgage?',body:`It really comes down to your interest rate.\n\nAbove 5%: paying extra is a guaranteed return equal to your rate. Hard to beat that risk-free.\n\nBelow 4%: you're probably better off investing the difference in an index fund. The math favors investing, and you keep liquidity.\n\nBetween 4-5%: personal preference. Do what helps you sleep better.\n\nI built a free calculator at numbrly.cc where you punch in your loan details and an extra payment amount — it shows exactly how many years you cut off and how much interest you save. Try $100 extra first, then $200, and see if the difference is worth it to you.\n\nOne thing people overlook: liquidity matters. Money paid into a mortgage is hard to get back out. Make sure your emergency fund is solid before accelerating payments.`},
+  {cat:'mortgage',kw:'15 vs 30 year mortgage',title:'15 year or 30 year mortgage?',body:`The short version:\n\n15-year: higher monthly payment, massive interest savings. On a $320K loan at 5.75% vs 6.5%, you save about $250,000 in interest over the life of the loan.\n\n30-year: lower monthly payment, more cash flow, and you can always pay extra to effectively turn it into a 15-year. But you can't pay LESS on a 15-year if money gets tight.\n\nMy take: take the 30-year and INVEST the difference between the two payments in an index fund. After 30 years, you'll likely come out ahead. But ONLY if you actually invest the difference — most people just spend it.\n\nI put a mortgage calculator at numbrly.cc that lets you compare. Plug in your numbers and try both terms side by side.`},
+  {cat:'mortgage',kw:'rent or buy rent vs buy',title:'Should I rent or buy?',body:`The break-even point is usually 3-7 years, depending on your local market.\n\nIf you're staying less than 3 years: almost always rent. Transaction costs (closing, realtor fees) eat any appreciation.\n\nIf you're staying 5+ years: buying usually wins because you build equity and home prices tend to rise over time.\n\nQuick gut check: multiply the home price by 5%, divide by 12. If your rent is below that number, renting is cheaper month-to-month. Example: $400K home × 5% = $20K/year = $1,667/month. If your rent is $2,000, buying may save money.\n\nI built a Rent vs Buy calculator at numbrly.cc that shows the year-by-year comparison with your actual numbers — mortgage rate, property tax, rent increases, everything.`},
+  {cat:'invest',kw:'compound interest calculator start early',title:'How does compound interest work?',body:`The simplest way to understand compound interest: it's earning returns on your returns.\n\nSimple interest pays only on your original investment. Compound interest pays on your original money PLUS everything you've already earned. Over 30 years, the difference is staggering.\n\nReal example: $10,000 invested at 8%:\n- Simple interest for 30 years = $34,000 total (gain: $24,000)\n- Compound interest for 30 years = $100,627 total (gain: $90,627)\n\nI built a free calculator at numbrly.cc that visualizes this — you can see year-by-year how the curve bends upward. There's also a side-by-side comparison of starting at 25 vs 35 that's pretty eye-opening.\n\nKey takeaway: start as early as you can, even with small amounts. Time in the market beats timing the market.`},
+  {cat:'invest',kw:'average stock market return history s&p',title:'What is the average stock market return?',body:`The S&P 500 has returned about 10% per year on average since 1926 — but that's nominal, before inflation. After inflation, it's closer to 7%.\n\nBut here's what matters: averages are misleading. Over the last 10 years, returns were ~13%. Over 2000-2010 (the "lost decade"), they were roughly -1% per year.\n\nFor planning purposes, I'd use a conservative 6-7% nominal return. If you get more, great. If you get less, your plan still works.\n\nI put together a compound interest calculator at numbrly.cc where you can try different return rates and see the real impact. Try 7% vs 10% over 30 years — the difference is hundreds of thousands of dollars.`},
+  {cat:'invest',kw:'invest or pay debt',title:'Should I invest or pay off debt?',body:`Depends entirely on the interest rate of the debt.\n\nDebt above 6-7% (credit cards, some personal loans): pay it off first. That's a guaranteed high return.\n\nDebt between 4-6% (some mortgages, student loans): grey zone. Investing historically wins on paper, but paying it off is risk-free.\n\nDebt below 4% (low-rate mortgages): invest the extra money. You'll almost certainly come out ahead over 10+ years.\n\nI have a free calculator at numbrly.cc that helps visualize both scenarios. Run your debt payoff numbers in the loan calculator, then run the same monthly amount through the compound interest calculator. Compare the two — the answer is usually clear once you see the numbers.\n\nOne thing: make sure you have an emergency fund before doing either. Liquidity is your first priority.`},
+  {cat:'save',kw:'emergency fund how much',title:'How much should I save for emergencies?',body:`3-6 months of essential expenses is the standard rule. Essential = rent/mortgage, food, utilities, transportation, insurance, minimum debt payments. Not dining out or Netflix.\n\nBut adjust based on your situation:\n- Single income household: 6-12 months\n- Freelancer/gig worker: 9-12 months\n- Homeowner: add $5-10K for repairs\n- Stable government job with good severance: 3 months is probably fine\n\nWhere to keep it: high-yield savings account (4-5% APY right now). Do NOT invest it — you don't want to sell during a crash when you need the money.\n\nI built a savings goal calculator at numbrly.cc that shows exactly how long it takes to reach your target based on what you can save each month.`},
+  {cat:'save',kw:'savings goal how long',title:'How long to reach my savings goal?',body:`Take your goal amount, subtract what you already have, divide by your monthly savings. That's the simple version.\n\nBut with interest, it's faster. I built a free savings goal calculator at numbrly.cc that factors in interest rates and shows you a month-by-month timeline. You can also pick presets (emergency fund, down payment, vacation, etc.).\n\nSmall tip: increase your automatic transfer by just 10%. You'll barely notice the difference, but you'll hit your goal months earlier.`},
+  {cat:'retire',kw:'retirement 4% rule how much to retire',title:'How much do I need to retire?',body:`The 4% rule is the simplest framework: multiply your annual spending by 25. If you need $50,000/year, you need $1.25 million invested.\n\nBut the 4% rule assumes a 30-year retirement. If you're retiring early (say at 50), use 3.5% — multiply by 28 instead of 25.\n\nAlso: subtract Social Security or any pension from your spending needs first. If SS covers $20K/year and you need $50K total, your portfolio only needs to cover $30K — or $750,000 at 4%.\n\nI have a compound interest calculator at numbrly.cc where you can plug in your current savings and monthly contribution to see if you're on track. Try different return assumptions (5% conservative, 7% base case, 9% optimistic).\n\nIf the numbers look scary, don't panic. Even small increases in your savings rate make a huge difference over 20-30 years.`},
+  {cat:'retire',kw:'inflation calculator purchasing power',title:'How does inflation affect my savings?',body:`Inflation is the silent killer of purchasing power. At 3% inflation, your money loses half its value every 24 years. A $1 million retirement nest egg today will only buy what $500,000 buys today by age 89.\n\nThis is why you can't just save cash — you have to invest in assets that outpace inflation (stocks, real estate).\n\nI built a free inflation calculator at numbrly.cc that shows exactly what any amount today will be worth in 10, 20, or 30 years. Try plugging in your retirement number and 3% inflation — the result might surprise you.\n\nThe Rule of 72 works for inflation too: 72 / inflation rate = years until purchasing power halves. At 3%, that's every 24 years.`},
+  {cat:'invest',kw:'ROI calculator return on investment',title:'How do I calculate ROI?',body:`Basic formula: (Final Value - Initial Investment) / Initial Investment × 100\n\nExample: you put in $10,000 and it grows to $15,000. ROI = ($15,000 - $10,000) / $10,000 × 100 = 50%.\n\nBut always annualize it — 50% over one year is incredible. 50% over 10 years is only about 4.1% per year, which is below average stock market returns.\n\nI built a free ROI calculator at numbrly.cc that does both simple and annualized ROI. There's also a comparison mode where you can pit two investments against each other.`}
+];
+
+var activeTag = 'all';
+
+function render(list){
+  var html = '';
+  list.forEach(function(t,i){
+    html += '<div class="template"><div class="t-title">'+t.title+'</div><div class="t-cat">'+t.cat+'</div><div class="t-body" id="body'+i+'">'+t.body+'</div><div class="btn-row"><button class="btn btn-expand" onclick="toggleBody('+i+')">&#x25BC; Expand</button><button class="btn btn-copy" onclick="copyBody('+i+')">&#x1F4CB; Copy</button><span class="copied" id="copied'+i+'">&#x2714; Copied!</span><a href="https://numbrly.cc" target="_blank" class="btn-link">&#x1F517; numbrly.cc</a></div></div>';
+  });
+  document.getElementById('list').innerHTML = html;
+  document.getElementById('stats').textContent = list.length + ' templates';
+}
+
+function filter(){
+  var kw = document.getElementById('search').value.toLowerCase();
+  var filtered = templates.filter(function(t){
+    if(activeTag!=='all' && t.cat!==activeTag) return false;
+    if(!kw) return true;
+    return t.kw.indexOf(kw) > -1 || t.title.toLowerCase().indexOf(kw) > -1 || t.body.toLowerCase().indexOf(kw) > -1;
+  });
+  render(filtered);
+}
+
+function filterTag(tag,btn){
+  activeTag = tag;
+  document.querySelectorAll('#tags button').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  filter();
+}
+
+function toggleBody(i){
+  var body = document.getElementById('body'+i);
+  body.classList.toggle('expanded');
+}
+
+function copyBody(i){
+  var text = templates.filter(function(t,idx){return idx===i;})[0].body;
+  if(!text) return;
+  navigator.clipboard.writeText(text).then(function(){
+    var el = document.getElementById('copied'+i);
+    el.style.display = 'inline-flex';
+    setTimeout(function(){el.style.display='none'},1500);
+  });
+}
+
+render(templates);
+</script>
+</body>
+</html>
