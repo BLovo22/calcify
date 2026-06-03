@@ -15,6 +15,20 @@
 <meta name="description" content="Free online financial calculators: mortgage, compound interest, loan amortization, ROI. Make smarter money decisions with easy-to-use tools and expert guides.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script>
+(function(){
+  var stored = localStorage.getItem('theme');
+  if(stored) document.documentElement.setAttribute('data-theme',stored);
+  else if(window.matchMedia('(prefers-color-scheme:dark)').matches) document.documentElement.setAttribute('data-theme','dark');
+  window.toggleTheme = function(){
+    var cur = document.documentElement.getAttribute('data-theme');
+    var next = cur==='dark'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',next);
+    localStorage.setItem('theme',next);
+    document.getElementById('themeIcon').textContent = next==='dark'?'&#x2600;':'&#x1F319;';
+  };
+})();
+</script>
 </head>
 <body>
 <nav class="nav">
@@ -22,9 +36,7 @@
     <a href="index.html" class="logo">Calc<span>ify</span></a>
     <a href="index.html" class="active">Tools</a>
     <a href="index.html#guides">Guides</a>
-    <a href="privacy-policy.html">Privacy</a>
-  </div>
-</nav>
+    <a href="privacy-policy.html">Privacy</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
 <main class="main">
   <!-- Hero -->
   <section class="hero">
@@ -50,6 +62,8 @@
       <a href="loan-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4B3;</div><h3>Loan Calculator</h3><p>Personal, auto, student loans &mdash; monthly payments, total interest, and extra payment savings.</p></a>
       <a href="roi-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4C8;</div><h3>ROI Calculator</h3><p>Calculate return on investment instantly. Compare two investments to find the winner.</p></a>
       <a href="savings-goal-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3AF;</div><h3>Savings Goal Calculator</h3><p>Set a target, enter your monthly contribution, and see exactly when you will reach your goal.</p></a>
+      <a href="rent-vs-buy-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3E0;</div><h3>Rent vs. Buy Calculator</h3><p>Compare the full cost of renting versus buying. See your break-even point and which path saves more.</p></a>
+      <a href="inflation-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4C9;</div><h3>Inflation Calculator</h3><p>See how inflation erodes your purchasing power over time. A dollar today is worth more than a dollar tomorrow.</p></a>
     </div>
   </section>
   <!-- Guides -->

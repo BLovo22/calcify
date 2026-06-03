@@ -15,6 +15,20 @@
 <meta name="description" content="Calculate your return on investment instantly. Simple ROI, annualized ROI, and investment comparison — free, private, no sign-up.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script>
+(function(){
+  var stored = localStorage.getItem('theme');
+  if(stored) document.documentElement.setAttribute('data-theme',stored);
+  else if(window.matchMedia('(prefers-color-scheme:dark)').matches) document.documentElement.setAttribute('data-theme','dark');
+  window.toggleTheme = function(){
+    var cur = document.documentElement.getAttribute('data-theme');
+    var next = cur==='dark'?'light':'dark';
+    document.documentElement.setAttribute('data-theme',next);
+    localStorage.setItem('theme',next);
+    document.getElementById('themeIcon').textContent = next==='dark'?'&#x2600;':'&#x1F319;';
+  };
+})();
+</script>
 </head>
 <body>
 <nav class="nav">
@@ -22,9 +36,7 @@
     <a href="index.html" class="logo">Calc<span>ify</span></a>
     <a href="index.html">Tools</a>
     <a href="index.html#guides">Guides</a>
-    <a href="privacy-policy.html">Privacy</a>
-  </div>
-</nav>
+    <a href="privacy-policy.html">Privacy</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
 <main class="main">
   <div class="breadcrumb"><a href="index.html">Home</a> / ROI Calculator</div>
   <section style="margin-top:20px">
@@ -176,6 +188,40 @@ function calcCompareROI(){
   document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 calcSimpleROI();
+</script>
+<script>
+// Auto-save inputs
+(function(){
+  var page = location.pathname.split('/').pop()||'index';
+  var inputs = document.querySelectorAll('input[id], select[id]');
+  // Restore saved values
+  try{
+    var saved = JSON.parse(localStorage.getItem('calcify_'+page)||'{}');
+    inputs.forEach(function(el){
+      if(saved[el.id]!==undefined) el.value = saved[el.id];
+    });
+  }catch(e){}
+  // Save on change
+  inputs.forEach(function(el){
+    el.addEventListener('input',function(){
+      try{
+        var all={};
+        inputs.forEach(function(e){all[e.id]=e.value;});
+        localStorage.setItem('calcify_'+page,JSON.stringify(all));
+      }catch(e){}
+    });
+  });
+})();
+
+// Copy link
+function copyPageLink(){
+  navigator.clipboard.writeText(location.href).then(function(){
+    var btn = document.getElementById('shareBtn');
+    btn.textContent = '\u2714 Copied!';
+    btn.classList.add('copied');
+    setTimeout(function(){btn.textContent='\uD83D\uDD17 Copy Link';btn.classList.remove('copied');},2000);
+  });
+}
 </script>
 </body>
 </html>
