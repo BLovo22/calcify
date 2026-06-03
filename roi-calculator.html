@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROI Calculator — Return on Investment Made Simple | Calcify</title>
+<meta name="description" content="Calculate your return on investment instantly. Simple ROI, annualized ROI, and investment comparison — free, private, no sign-up.">
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html" class="logo">Calc<span>ify</span></a>
+    <a href="index.html">Tools</a>
+    <a href="index.html#guides">Guides</a>
+    <a href="privacy-policy.html">Privacy</a>
+  </div>
+</nav>
+
+<main class="main">
+
+  <div class="breadcrumb"><a href="index.html">Home</a> / ROI Calculator</div>
+
+  <section style="margin-top:20px">
+    <div class="sec-title">&#x1F4C8; ROI Calculator</div>
+    <p class="sec-desc">Calculate your return on investment. Compare two investments side by side to see which performed better.</p>
+
+    <div class="card" style="max-width:680px">
+      <div style="display:flex;gap:8px;margin-bottom:18px">
+        <button class="btn" id="tabSimple" onclick="switchTab('simple')" style="background:var(--pri);color:#fff;flex:1;font-size:13px;padding:10px">Simple ROI</button>
+        <button class="btn" id="tabCompare" onclick="switchTab('compare')" style="background:var(--bg);color:var(--text);border:1px solid var(--border);flex:1;font-size:13px;padding:10px">Compare Two Investments</button>
+      </div>
+
+      <!-- Simple ROI -->
+      <div id="panelSimple">
+        <div class="form-row">
+          <div class="form-group"><label>Initial Investment ($)</label><input type="number" id="simpleInitial" value="10000" min="1" step="500"></div>
+          <div class="form-group"><label>Final Value ($)</label><input type="number" id="simpleFinal" value="15000" min="1" step="500"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Investment Period (years)</label><input type="number" id="simpleYears" value="3" min="0.1" step="0.5"></div>
+          <div class="form-group" style="justify-content:flex-end">
+            <button class="btn btn-block" onclick="calcSimpleROI()" style="margin-top:auto">&#x1F4CA; Calculate ROI</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compare -->
+      <div id="panelCompare" style="display:none">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px;font-weight:600">Investment A</p>
+        <div class="form-row">
+          <div class="form-group"><label>Amount Invested ($)</label><input type="number" id="cmpAInvest" value="10000" min="1" step="500"></div>
+          <div class="form-group"><label>Current Value ($)</label><input type="number" id="cmpAValue" value="15000" min="1" step="500"></div>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:14px;font-weight:600">Investment B</p>
+        <div class="form-row">
+          <div class="form-group"><label>Amount Invested ($)</label><input type="number" id="cmpBInvest" value="10000" min="1" step="500"></div>
+          <div class="form-group"><label>Current Value ($)</label><input type="number" id="cmpBValue" value="12000" min="1" step="500"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Time Period (years)</label><input type="number" id="cmpYears" value="3" min="0.1" step="0.5"></div>
+          <div class="form-group" style="justify-content:flex-end">
+            <button class="btn btn-block" onclick="calcCompareROI()" style="margin-top:auto">&#x1F4CA; Compare</button>
+          </div>
+        </div>
+      </div>
+
+      <ins class="adsbygoogle" style="display:block;text-align:center;margin:20px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+
+      <div class="result" id="result">
+        <div class="result-num" id="roiVal">--</div>
+        <div class="result-label" id="roiLabel">Total ROI</div>
+        <div class="result-grid" id="roiGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guide -->
+  <section class="article-body">
+    <h2>What Is ROI and Why Does It Matter?</h2>
+    <p>ROI (Return on Investment) is the simplest way to measure how well an investment performed. It answers one question: <strong>how much did I make relative to what I put in?</strong></p>
+
+    <h3>The ROI Formula</h3>
+    <div class="highlight-box"><h4>ROI = (Final Value - Initial Investment) / Initial Investment × 100</h4></div>
+    <p>For example: you invest $10,000 and it grows to $15,000. ROI = ($15,000 - $10,000) / $10,000 × 100 = <strong>50%</strong>.</p>
+
+    <h3>Simple ROI vs. Annualized ROI</h3>
+    <p>A 50% return sounds great — but over what time frame? 50% in 1 year is incredible. 50% over 20 years is only about 2% per year, which is below inflation. Always annualize when comparing investments held for different periods.</p>
+    <p>The annualized formula: <strong>Annualized ROI = (Final / Initial)^(1/years) - 1</strong></p>
+
+    <h3>What Is a "Good" ROI?</h3>
+    <ul>
+      <li><strong>Stocks (S&P 500):</strong> ~8-10% annualized over the long term</li>
+      <li><strong>Real estate:</strong> ~8-12% annualized (with leverage)</li>
+      <li><strong>Bonds:</strong> ~2-4% annualized</li>
+      <li><strong>High-yield savings:</strong> ~4-5% (as of 2025)</li>
+      <li><strong>Gold:</strong> ~6% annualized over 50 years, but volatile</li>
+    </ul>
+    <p>Anything above 7% annualized is a solid return. Anything above 15% is exceptional — and likely unsustainable.</p>
+
+    <h3>ROI Limitations</h3>
+    <p>ROI doesn't account for risk, time value of money, or taxes. Two investments with the same ROI can have vastly different risk profiles. Use ROI as a starting point, not the final word.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div>
+  <p>&copy; 2025 Calcify. Not financial advice. For educational purposes only.</p>
+</footer>
+
+<script>
+var currentTab = 'simple';
+
+function switchTab(tab){
+  currentTab = tab;
+  document.getElementById('tabSimple').style.background = tab==='simple'?'var(--pri)':'var(--bg)';
+  document.getElementById('tabSimple').style.color = tab==='simple'?'#fff':'var(--text)';
+  document.getElementById('tabSimple').style.border = tab==='simple'?'none':'1px solid var(--border)';
+  document.getElementById('tabCompare').style.background = tab==='compare'?'var(--pri)':'var(--bg)';
+  document.getElementById('tabCompare').style.color = tab==='compare'?'#fff':'var(--text)';
+  document.getElementById('tabCompare').style.border = tab==='compare'?'none':'1px solid var(--border)';
+  document.getElementById('panelSimple').style.display = tab==='simple'?'block':'none';
+  document.getElementById('panelCompare').style.display = tab==='compare'?'block':'none';
+  document.getElementById('result').classList.remove('show');
+}
+
+function fmt(v){return '$'+v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');}
+function pct(v){return v.toFixed(2)+'%';}
+
+function calcSimpleROI(){
+  var initial = parseFloat(document.getElementById('simpleInitial').value)||10000;
+  var final = parseFloat(document.getElementById('simpleFinal').value)||15000;
+  var years = parseFloat(document.getElementById('simpleYears').value)||3;
+  if(initial<=0||years<=0)return;
+
+  var gain = final - initial;
+  var roi = (gain/initial)*100;
+  var annualized = (Math.pow(final/initial, 1/years)-1)*100;
+
+  document.getElementById('roiVal').textContent = pct(roi);
+  document.getElementById('roiLabel').textContent = 'Total ROI (over '+years+' year'+(years!==1?'s':'')+')';
+  document.getElementById('roiGrid').innerHTML =
+    '<div class="result-item"><div class="ri-val">'+fmt(initial)+'</div><div class="ri-label">Invested</div></div>'+
+    '<div class="result-item"><div class="ri-val">'+fmt(final)+'</div><div class="ri-label">Final Value</div></div>'+
+    '<div class="result-item"><div class="ri-val">'+fmt(gain)+'</div><div class="ri-label">Total Gain</div></div>'+
+    '<div class="result-item"><div class="ri-val">'+pct(roi)+'</div><div class="ri-label">Simple ROI</div></div>'+
+    '<div class="result-item"><div class="ri-val">'+pct(annualized)+'</div><div class="ri-label">Annualized ROI</div></div>'+
+    '<div class="result-item"><div class="ri-val">'+(gain>0?'&#x1F4B0; Gain':'&#x1F4C9; Loss')+'</div><div class="ri-label">Result</div></div>';
+  document.getElementById('result').classList.add('show');
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function calcCompareROI(){
+  var aInv = parseFloat(document.getElementById('cmpAInvest').value)||10000;
+  var aVal = parseFloat(document.getElementById('cmpAValue').value)||15000;
+  var bInv = parseFloat(document.getElementById('cmpBInvest').value)||10000;
+  var bVal = parseFloat(document.getElementById('cmpBValue').value)||12000;
+  var years = parseFloat(document.getElementById('cmpYears').value)||3;
+
+  var aRoi = (aVal-aInv)/aInv*100;
+  var bRoi = (bVal-bInv)/bInv*100;
+  var aAnn = (Math.pow(aVal/aInv,1/years)-1)*100;
+  var bAnn = (Math.pow(bVal/bInv,1/years)-1)*100;
+  var winner = aRoi>bRoi?'A':(bRoi>aRoi?'B':'Tie');
+
+  document.getElementById('roiVal').textContent = 'Investment ' + winner + (winner==='Tie'?' — Tie':' Wins');
+  document.getElementById('roiLabel').textContent = 'Better Performer';
+  document.getElementById('roiGrid').innerHTML =
+    '<div class="result-item"><div class="ri-val">'+pct(aRoi)+'</div><div class="ri-label">A: Total ROI</div></div>'+
+    '<div class="result-item"><div class="ri-val">'+pct(bRoi)+'</div><div class="ri-label">B: Total ROI</div></div>'+
+    '<div class="result-item"><div class="ri-val">'+pct(Math.abs(aRoi-bRoi))+'</div><div class="ri-label">Difference</div></div>'+
+    '<div class="result-item"><div class="ri-val">'+pct(aAnn)+'</div><div class="ri-label">A: Annualized</div></div>'+
+    '<div class="result-item"><div class="ri-val">'+pct(bAnn)+'</div><div class="ri-label">B: Annualized</div></div>'+
+    '<div class="result-item"><div class="ri-val" style="color:var(--green)">'+fmt((aVal-aInv)-(bVal-bInv))+'</div><div class="ri-label">Gain Difference</div></div>';
+  document.getElementById('result').classList.add('show');
+  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+calcSimpleROI();
+</script>
+</body>
+</html>
