@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta property="og:title" content="Compound Interest Calculator — See Your Money Grow | Calcify">
+<meta property="og:title" content="Compound Interest Calculator — See Your Money Grow | Numbrly">
 <meta property="og:description" content="Calculate how your investments grow with compound interest. Year-by-year breakdown, 25 vs 35 comparison, free and private.">
-<meta property="og:url" content="https://blovo22.github.io/calcify/compound-interest-calculator.html">
+<meta property="og:url" content="https://blovo22.github.io/Numbrly/compound-interest-calculator.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Compound Interest Calculator — See Your Money Grow | Calcify">
+<meta name="twitter:title" content="Compound Interest Calculator — See Your Money Grow | Numbrly">
 <meta name="twitter:description" content="Calculate how your investments grow with compound interest. Year-by-year breakdown, 25 vs 35 comparison, free and private.">
-<link rel="canonical" href="https://blovo22.github.io/calcify/compound-interest-calculator.html">
+<link rel="canonical" href="https://blovo22.github.io/Numbrly/compound-interest-calculator.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Compound Interest Calculator — See Your Money Grow | Calcify</title>
+<title>Compound Interest Calculator — See Your Money Grow | Numbrly</title>
 <meta name="description" content="Calculate how your investments grow with compound interest. Compare starting early vs. late, see year-by-year growth, and plan your financial future.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
@@ -146,7 +146,7 @@
     <a href="index.html#guides">Guides</a>
     <a href="privacy-policy.html">Privacy Policy</a>
   </div>
-  <p>&copy; 2025 Calcify. Not financial advice. Past performance does not guarantee future results.</p>
+  <p>&copy; 2025 Numbrly. Not financial advice. Past performance does not guarantee future results.</p>
 </footer>
 <script>
 function calcCompound(){
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded',function(){calcCompound();});
   var inputs = document.querySelectorAll('input[id], select[id]');
   // Restore saved values
   try{
-    var saved = JSON.parse(localStorage.getItem('calcify_'+page)||'{}');
+    var saved = JSON.parse(localStorage.getItem('Numbrly_'+page)||'{}');
     inputs.forEach(function(el){
       if(saved[el.id]!==undefined) el.value = saved[el.id];
     });
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded',function(){calcCompound();});
       try{
         var all={};
         inputs.forEach(function(e){all[e.id]=e.value;});
-        localStorage.setItem('calcify_'+page,JSON.stringify(all));
+        localStorage.setItem('Numbrly_'+page,JSON.stringify(all));
       }catch(e){}
     });
   });

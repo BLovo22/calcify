@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta property="og:title" content="Mortgage Payment Calculator — Free Amortization Tool | Calcify">
+<meta property="og:title" content="Mortgage Payment Calculator — Free Amortization Tool | Numbrly">
 <meta property="og:description" content="Calculate monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up.">
-<meta property="og:url" content="https://blovo22.github.io/calcify/mortgage-calculator.html">
+<meta property="og:url" content="https://blovo22.github.io/Numbrly/mortgage-calculator.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mortgage Payment Calculator — Free Amortization Tool | Calcify">
+<meta name="twitter:title" content="Mortgage Payment Calculator — Free Amortization Tool | Numbrly">
 <meta name="twitter:description" content="Calculate monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up.">
-<link rel="canonical" href="https://blovo22.github.io/calcify/mortgage-calculator.html">
+<link rel="canonical" href="https://blovo22.github.io/Numbrly/mortgage-calculator.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mortgage Calculator — Free Payment & Amortization Tool | Calcify</title>
+<title>Mortgage Calculator — Free Payment & Amortization Tool | Numbrly</title>
 <meta name="description" content="Calculate your monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up required.">
 <link rel="stylesheet" href="style.css">
 <!-- AdSense placeholder -->
@@ -146,7 +146,7 @@
     <a href="index.html#guides">Guides</a>
     <a href="privacy-policy.html">Privacy Policy</a>
   </div>
-  <p>&copy; 2025 Calcify. Not financial advice. For educational purposes only.</p>
+  <p>&copy; 2025 Numbrly. Not financial advice. For educational purposes only.</p>
 </footer>
 <script>
 function calcMortgage(){
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function(){ calcMortgage(); });
   var inputs = document.querySelectorAll('input[id], select[id]');
   // Restore saved values
   try{
-    var saved = JSON.parse(localStorage.getItem('calcify_'+page)||'{}');
+    var saved = JSON.parse(localStorage.getItem('Numbrly_'+page)||'{}');
     inputs.forEach(function(el){
       if(saved[el.id]!==undefined) el.value = saved[el.id];
     });
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function(){ calcMortgage(); });
       try{
         var all={};
         inputs.forEach(function(e){all[e.id]=e.value;});
-        localStorage.setItem('calcify_'+page,JSON.stringify(all));
+        localStorage.setItem('Numbrly_'+page,JSON.stringify(all));
       }catch(e){}
     });
   });

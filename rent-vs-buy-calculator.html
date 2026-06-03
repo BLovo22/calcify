@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta property="og:title" content="Rent vs Buy Calculator — Should You Rent or Buy a Home? | Calcify">
+<meta property="og:title" content="Rent vs Buy Calculator — Should You Rent or Buy a Home? | Numbrly">
 <meta property="og:description" content="Compare the true cost of renting vs buying a home. See the break-even point and which option saves you more over time.">
-<meta property="og:url" content="https://blovo22.github.io/calcify/rent-vs-buy-calculator.html">
+<meta property="og:url" content="https://blovo22.github.io/Numbrly/rent-vs-buy-calculator.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Rent vs Buy Calculator — Should You Rent or Buy? | Calcify">
+<meta name="twitter:title" content="Rent vs Buy Calculator — Should You Rent or Buy? | Numbrly">
 <meta name="twitter:description" content="Compare renting vs buying side by side. See break-even point, net cost, and which option wins for your situation.">
-<link rel="canonical" href="https://blovo22.github.io/calcify/rent-vs-buy-calculator.html">
+<link rel="canonical" href="https://blovo22.github.io/Numbrly/rent-vs-buy-calculator.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rent vs Buy Calculator — Should You Rent or Buy? | Calcify</title>
+<title>Rent vs Buy Calculator — Should You Rent or Buy? | Numbrly</title>
 <meta name="description" content="Compare the true cost of renting vs buying a home. See your break-even point and decide which path saves you more money.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Rent vs Buy Calculator","url":"https://blovo22.github.io/calcify/rent-vs-buy-calculator.html","description":"Compare the cost of renting versus buying a home with break-even analysis.","applicationCategory":"FinanceApplication","operatingSystem":"All"}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Rent vs Buy Calculator","url":"https://blovo22.github.io/Numbrly/rent-vs-buy-calculator.html","description":"Compare the cost of renting versus buying a home with break-even analysis.","applicationCategory":"FinanceApplication","operatingSystem":"All"}
 </script>
 <script>
 (function(){
@@ -129,7 +129,7 @@
 
 <footer>
   <div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div>
-  <p>&copy; 2025 Calcify. Not financial advice. For educational purposes only.</p>
+  <p>&copy; 2025 Numbrly. Not financial advice. For educational purposes only.</p>
 </footer>
 
 <script>
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded',calcRentBuy);
   var inputs = document.querySelectorAll('input[id], select[id]');
   // Restore saved values
   try{
-    var saved = JSON.parse(localStorage.getItem('calcify_'+page)||'{}');
+    var saved = JSON.parse(localStorage.getItem('Numbrly_'+page)||'{}');
     inputs.forEach(function(el){
       if(saved[el.id]!==undefined) el.value = saved[el.id];
     });
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded',calcRentBuy);
       try{
         var all={};
         inputs.forEach(function(e){all[e.id]=e.value;});
-        localStorage.setItem('calcify_'+page,JSON.stringify(all));
+        localStorage.setItem('Numbrly_'+page,JSON.stringify(all));
       }catch(e){}
     });
   });

@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta property="og:title" content="ROI Calculator — Return on Investment Made Simple | Calcify">
+<meta property="og:title" content="ROI Calculator — Return on Investment Made Simple | Numbrly">
 <meta property="og:description" content="Calculate ROI instantly. Compare two investments side by side. Free, no sign-up, works on any device.">
-<meta property="og:url" content="https://blovo22.github.io/calcify/roi-calculator.html">
+<meta property="og:url" content="https://blovo22.github.io/Numbrly/roi-calculator.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ROI Calculator — Return on Investment Made Simple | Calcify">
+<meta name="twitter:title" content="ROI Calculator — Return on Investment Made Simple | Numbrly">
 <meta name="twitter:description" content="Calculate ROI instantly. Compare two investments side by side. Free, no sign-up, works on any device.">
-<link rel="canonical" href="https://blovo22.github.io/calcify/roi-calculator.html">
+<link rel="canonical" href="https://blovo22.github.io/Numbrly/roi-calculator.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROI Calculator — Return on Investment Made Simple | Calcify</title>
+<title>ROI Calculator — Return on Investment Made Simple | Numbrly</title>
 <meta name="description" content="Calculate your return on investment instantly. Simple ROI, annualized ROI, and investment comparison — free, private, no sign-up.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
@@ -127,7 +127,7 @@
 </main>
 <footer>
   <div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div>
-  <p>&copy; 2025 Calcify. Not financial advice. For educational purposes only.</p>
+  <p>&copy; 2025 Numbrly. Not financial advice. For educational purposes only.</p>
 </footer>
 <script>
 var currentTab = 'simple';
@@ -197,7 +197,7 @@ calcSimpleROI();
   var inputs = document.querySelectorAll('input[id], select[id]');
   // Restore saved values
   try{
-    var saved = JSON.parse(localStorage.getItem('calcify_'+page)||'{}');
+    var saved = JSON.parse(localStorage.getItem('Numbrly_'+page)||'{}');
     inputs.forEach(function(el){
       if(saved[el.id]!==undefined) el.value = saved[el.id];
     });
@@ -208,7 +208,7 @@ calcSimpleROI();
       try{
         var all={};
         inputs.forEach(function(e){all[e.id]=e.value;});
-        localStorage.setItem('calcify_'+page,JSON.stringify(all));
+        localStorage.setItem('Numbrly_'+page,JSON.stringify(all));
       }catch(e){}
     });
   });

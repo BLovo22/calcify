@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta property="og:title" content="Inflation Calculator — See Your Money's Future Value | Calcify">
+<meta property="og:title" content="Inflation Calculator — See Your Money's Future Value | Numbrly">
 <meta property="og:description" content="Calculate how inflation erodes your purchasing power over time. See what today''s money will be worth in the future.">
-<meta property="og:url" content="https://blovo22.github.io/calcify/inflation-calculator.html">
+<meta property="og:url" content="https://blovo22.github.io/Numbrly/inflation-calculator.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Inflation Calculator — Future Purchasing Power | Calcify">
+<meta name="twitter:title" content="Inflation Calculator — Future Purchasing Power | Numbrly">
 <meta name="twitter:description" content="See how much today''s money will be worth after inflation. Free, private, no sign-up.">
-<link rel="canonical" href="https://blovo22.github.io/calcify/inflation-calculator.html">
+<link rel="canonical" href="https://blovo22.github.io/Numbrly/inflation-calculator.html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inflation Calculator — Future Value of Money | Calcify</title>
+<title>Inflation Calculator — Future Value of Money | Numbrly</title>
 <meta name="description" content="Calculate the impact of inflation on your savings. See what $1,000 today will be worth in 10, 20, or 30 years.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Inflation Calculator","url":"https://blovo22.github.io/calcify/inflation-calculator.html","description":"Calculate how inflation affects the future value of your money.","applicationCategory":"FinanceApplication","operatingSystem":"All"}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Inflation Calculator","url":"https://blovo22.github.io/Numbrly/inflation-calculator.html","description":"Calculate how inflation affects the future value of your money.","applicationCategory":"FinanceApplication","operatingSystem":"All"}
 </script>
 </head>
 <body>
@@ -98,7 +98,7 @@
 
 <footer>
   <div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div>
-  <p>&copy; 2025 Calcify. Not financial advice. For educational purposes only.</p>
+  <p>&copy; 2025 Numbrly. Not financial advice. For educational purposes only.</p>
 </footer>
 
 <script>
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded',calcInflate);
   var inputs = document.querySelectorAll('input[id], select[id]');
   // Restore saved values
   try{
-    var saved = JSON.parse(localStorage.getItem('calcify_'+page)||'{}');
+    var saved = JSON.parse(localStorage.getItem('Numbrly_'+page)||'{}');
     inputs.forEach(function(el){
       if(saved[el.id]!==undefined) el.value = saved[el.id];
     });
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded',calcInflate);
       try{
         var all={};
         inputs.forEach(function(e){all[e.id]=e.value;});
-        localStorage.setItem('calcify_'+page,JSON.stringify(all));
+        localStorage.setItem('Numbrly_'+page,JSON.stringify(all));
       }catch(e){}
     });
   });
