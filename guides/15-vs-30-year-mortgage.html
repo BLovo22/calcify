@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -54,12 +54,7 @@ gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
     <a href="../index.html" class="logo">Num<span>brly</span></a>
     <a href="../index.html">Tools</a>
     <a href="../index.html#guides">Guides</a>
-    <a href="../privacy-policy.html">Privacy</a><div class="nav-search">
-<span class="search-icon">&#x1F50D;</span>
-<input type="text" id="siteSearch" placeholder="Search..." oninput="doSearch()" onfocus="doSearch()" onblur="setTimeout(function(){document.getElementById('searchResults').classList.remove('show')},200)">
-<div class="search-results" id="searchResults"></div>
-</div>
-<button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
+    <a href="../privacy-policy.html">Privacy</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
 <main class="main">
   <div class="breadcrumb"><a href="../index.html">Home</a> / <a href="../index.html#guides">Guides</a> / 15-Year vs. 30-Year Mortgage</div>
   <article class="article-body">
@@ -157,23 +152,6 @@ gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
   <p>&copy; 2026 Numbrly. Not financial advice. For educational purposes only.</p>
 </footer>
 
-<script>
-function doSearch(){
- var q = (document.getElementById('siteSearch').value||'').toLowerCase().trim();
- var box = document.getElementById('searchResults');
- if(q.length < 2){ box.classList.remove('show'); box.innerHTML=''; return; }
- var results = searchIndex.filter(function(item){
-  return item.title.toLowerCase().indexOf(q) > -1 || item.kw.indexOf(q) > -1;
- }).slice(0,8);
- if(results.length === 0){
-  box.innerHTML = '<div class="sr-none">No results for "'+q+'"</div>';
- } else {
-  box.innerHTML = results.map(function(r){
-   return '<a href="/'+r.url+'"><div class="sr-title">'+r.title+'</div></a>';
-  }).join('');
- }
- box.classList.add('show');
-}
-</script>
+
 </body>
 </html>

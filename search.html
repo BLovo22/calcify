@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -35,22 +35,6 @@
 <footer><div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly.</p></footer>
 
 <script src="search-data.js"></script>
-<script>
-function doSearch(){
- var q=(document.getElementById('bigSearch').value||'').toLowerCase().trim();
- var box=document.getElementById('results');
- if(q.length<2){box.innerHTML='';return;}
- var results=searchIndex.filter(function(i){
-  return i.title.toLowerCase().indexOf(q)>-1||i.kw.indexOf(q)>-1;
- });
- if(results.length===0){
-  box.innerHTML='<div class="no-results">No results for &ldquo;'+q+'&rdquo;</div>';
- }else{
-  box.innerHTML=results.map(function(r){
-   return '<a href="'+r.url+'"><div class="r-title">'+r.title+'</div><div class="r-url">numbrly.cc/'+r.url+'</div></a>';
-  }).join('');
- }
-}
-</script>
+
 </body>
 </html>

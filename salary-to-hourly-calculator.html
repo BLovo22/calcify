@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -27,12 +27,7 @@ gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
 </script>
 </head>
 <body>
-<nav class="nav"><div class="nav-in"><a href="index.html" class="logo">Num<span>brly</span></a><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy</a><div class="nav-search">
-<span class="search-icon">&#x1F50D;</span>
-<input type="text" id="siteSearch" placeholder="Search..." oninput="doSearch()" onfocus="doSearch()" onblur="setTimeout(function(){document.getElementById('searchResults').classList.remove('show')},200)">
-<div class="search-results" id="searchResults"></div>
-</div>
-<button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
+<nav class="nav"><div class="nav-in"><a href="index.html" class="logo">Num<span>brly</span></a><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
 <script>(function(){var s=localStorage.getItem('theme');if(s)document.documentElement.setAttribute('data-theme',s);else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');window.toggleTheme=function(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);document.getElementById('themeIcon').innerHTML=n==='dark'?'☀️':'🌙';};var icon=document.getElementById('themeIcon');if(icon)icon.innerHTML=(s||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':''))==='dark'?'☀️':'🌙';})();</script>
 
 <main class="main">
@@ -136,23 +131,6 @@ function calcSalary(){
 document.addEventListener('DOMContentLoaded',calcSalary);
 </script>
 
-<script>
-function doSearch(){
- var q = (document.getElementById('siteSearch').value||'').toLowerCase().trim();
- var box = document.getElementById('searchResults');
- if(q.length < 2){ box.classList.remove('show'); box.innerHTML=''; return; }
- var results = searchIndex.filter(function(item){
-  return item.title.toLowerCase().indexOf(q) > -1 || item.kw.indexOf(q) > -1;
- }).slice(0,8);
- if(results.length === 0){
-  box.innerHTML = '<div class="sr-none">No results for "'+q+'"</div>';
- } else {
-  box.innerHTML = results.map(function(r){
-   return '<a href="/'+r.url+'"><div class="sr-title">'+r.title+'</div></a>';
-  }).join('');
- }
- box.classList.add('show');
-}
-</script>
+
 </body>
 </html>
