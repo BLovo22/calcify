@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -19,6 +19,12 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Inflation Calculator","url":"https://blovo22.github.io/Numbrly/inflation-calculator.html","description":"Calculate how inflation affects the future value of your money.","applicationCategory":"FinanceApplication","operatingSystem":"All"}
 </script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-XXXXXXXXXX');
+</script>
 </head>
 <body>
 
@@ -28,7 +34,12 @@
     <a href="index.html">Tools</a>
     <a href="index.html#guides">Guides</a>
     <a href="privacy-policy.html">Privacy</a>
-    <button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button>
+    <div class="nav-search">
+<span class="search-icon">&#x1F50D;</span>
+<input type="text" id="siteSearch" placeholder="Search..." oninput="doSearch()" onfocus="doSearch()" onblur="setTimeout(function(){document.getElementById('searchResults').classList.remove('show')},200)">
+<div class="search-results" id="searchResults"></div>
+</div>
+<button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button>
   </div>
 </nav>
 <script>
@@ -174,6 +185,25 @@ function copyPageLink(){
     btn.classList.add('copied');
     setTimeout(function(){btn.innerHTML = '🔗 Copy Link';btn.classList.remove('copied');},2000);
   });
+}
+</script>
+<script src="/search-data.js"></script>
+<script>
+function doSearch(){
+ var q = (document.getElementById('siteSearch').value||'').toLowerCase().trim();
+ var box = document.getElementById('searchResults');
+ if(q.length < 2){ box.classList.remove('show'); box.innerHTML=''; return; }
+ var results = searchIndex.filter(function(item){
+  return item.title.toLowerCase().indexOf(q) > -1 || item.kw.indexOf(q) > -1;
+ }).slice(0,8);
+ if(results.length === 0){
+  box.innerHTML = '<div class="sr-none">No results for "'+q+'"</div>';
+ } else {
+  box.innerHTML = results.map(function(r){
+   return '<a href="/'+r.url+'"><div class="sr-title">'+r.title+'</div></a>';
+  }).join('');
+ }
+ box.classList.add('show');
 }
 </script>
 </body>
