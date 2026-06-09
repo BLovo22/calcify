@@ -24,6 +24,10 @@ function loadHeader() {
   return fs.readFileSync(path.join(TPL_DIR, "header.html"), "utf8").trim();
 }
 
+function loadFooter() {
+  return fs.readFileSync(path.join(TPL_DIR, "footer.html"), "utf8").trim();
+}
+
 function escapeHTML(value) {
   return String(value == null ? "" : value)
     .replace(/&/g, "&amp;")
@@ -66,16 +70,36 @@ const OLD_THEME_RE1 = /\(function\(\)\{\s*var\s+stored\s*=\s*localStorage\.getIt
 
 const OLD_THEME_RE2 = /\(function\(\)\{var\s+\w+=localStorage\.getItem\(['"]theme['"]\);if\(\w+\)\s*document\.documentElement\.setAttribute\(['"]data-theme['"],\s*\w+\);else\s+if\(window\.matchMedia\(['"]\(prefers-color-scheme:\s*dark\)['"]\)\.matches\)\s*document\.documentElement\.setAttribute\(['"]data-theme['"],\s*['"]dark['"]\);window\.toggleTheme\s*=\s*function\(\)\{var\s+\w+=document\.documentElement\.getAttribute\(['"]data-theme['"]\);var\s+\w+=\w+===['"]dark['"]\?['"]light['"]:['"]dark['"];document\.documentElement\.setAttribute\(['"]data-theme['"],\s*\w+\);localStorage\.setItem\(['"]theme['"],\s*\w+\);document\.getElementById\(['"]themeIcon['"]\)\.innerHTML\s*=\s*\w+===['"]dark['"]\?['"][^'"]*['"]:['"][^'"]*['"];(?:\s*\};)?\s*\}\)\(\);/;
 
+function normalizeThemeScripts(html) {
+  let foundThemeScript = false;
+  html = html.replace(/<script>[\s\S]*?<\/script>/g, function(block) {
+    if (!block.includes("toggleTheme")) return block;
+    if (!block.includes("themeIcon") && !block.includes("themeBtn") && !block.includes("data-theme")) return block;
+    if (foundThemeScript) return "";
+    foundThemeScript = true;
+    return "<script>" + NEW_THEME_SCRIPT + "</script>";
+  });
+
+  if (!foundThemeScript) {
+    html = html.replace("</head>", "<script>" + NEW_THEME_SCRIPT + "</script>\n</head>");
+  }
+
+  return html;
+}
+
 // ─── INJECT SHARED HEADER INTO ONE FILE ───────────────
 function injectHeaderIntoFile(filePath, headerHTML) {
   let html = fs.readFileSync(filePath, "utf8");
 
   // Replace old <nav class="nav">...</nav> block with shared header
   const navRegex = /<nav class="nav">[\s\S]*?<\/nav>/;
+  const headerRegex = /(?:<!-- Header -->\s*)?(?:<!-- SHARED HEADER -->\s*)*<header class="sticky[^"]*">[\s\S]*?<\/header>/;
   if (navRegex.test(html)) {
     html = html.replace(navRegex, headerHTML);
   } else if (html.includes("{{HEADER}}")) {
     html = html.replace("{{HEADER}}", headerHTML);
+  } else if (headerRegex.test(html)) {
+    html = html.replace(headerRegex, headerHTML);
   }
 
   // Ensure Tailwind CDN is present
@@ -96,39 +120,54 @@ function injectHeaderIntoFile(filePath, headerHTML) {
   // Fix remaining themeIcon → themeBtn
   html = html.replace(/getElementById\("themeIcon"\)/g, 'getElementById("themeBtn")');
   html = html.replace(/id="themeIcon"/g, 'id="themeBtn"');
+  html = normalizeThemeScripts(html);
 
   fs.writeFileSync(filePath, html, "utf8");
 }
 
 // ─── INJECT HEADER INTO ALL SUB-PAGES ─────────────────
-function injectHeaderAll(headerHTML) {
-  // Calculator pages (root .html, excluding index/search/privacy/404)
-  const excludes = ["index.html","search.html","404.html","googlea340ba91ef6edf90.html"];
-  const rootFiles = fs.readdirSync(ROOT).filter(f => f.endsWith(".html") && !excludes.includes(f));
-  rootFiles.forEach(f => {
-    injectHeaderIntoFile(path.join(ROOT, f), headerHTML);
-    console.log("  \u2713 header: " + f);
-  });
+function injectFooterIntoFile(filePath, footerHTML) {
+  let html = fs.readFileSync(filePath, "utf8");
 
-  // Guide pages
-  if (fs.existsSync(GUIDES_DIR)) {
-    const guideFiles = fs.readdirSync(GUIDES_DIR).filter(f => f.endsWith(".html") && f !== "index.html");
-    guideFiles.forEach(f => {
-      injectHeaderIntoFile(path.join(GUIDES_DIR, f), headerHTML);
-      console.log("  \u2713 header: guides/" + f);
-    });
+  if (html.includes("{{FOOTER}}")) {
+    html = html.replace("{{FOOTER}}", footerHTML);
+  } else {
+    const footerRegex = /(?:<!-- SHARED FOOTER -->\s*)?<footer\b[\s\S]*?<\/footer>/;
+    if (footerRegex.test(html)) {
+      html = html.replace(footerRegex, footerHTML);
+    }
   }
 
-  // Search page
-  const searchPath = path.join(ROOT, "search.html");
-  if (fs.existsSync(searchPath)) {
-    injectHeaderIntoFile(searchPath, headerHTML);
-    console.log("  \u2713 header: search.html");
+  fs.writeFileSync(filePath, html, "utf8");
+}
+
+function eachContentPage(callback) {
+  const excludes = ["index.html","404.html","googlea340ba91ef6edf90.html"];
+  const rootFiles = fs.readdirSync(ROOT).filter(f => f.endsWith(".html") && !excludes.includes(f));
+  rootFiles.forEach(f => callback(path.join(ROOT, f), f));
+
+  if (fs.existsSync(GUIDES_DIR)) {
+    const guideFiles = fs.readdirSync(GUIDES_DIR).filter(f => f.endsWith(".html"));
+    guideFiles.forEach(f => callback(path.join(GUIDES_DIR, f), "guides/" + f));
   }
 }
 
+function injectHeaderAll(headerHTML) {
+  eachContentPage(function(filePath, label) {
+    injectHeaderIntoFile(filePath, headerHTML);
+    console.log("  \u2713 header: " + label);
+  });
+}
+
+function injectFooterAll(footerHTML) {
+  eachContentPage(function(filePath, label) {
+    injectFooterIntoFile(filePath, footerHTML);
+    console.log("  \u2713 footer: " + label);
+  });
+}
+
 // ─── BUILD HOMEPAGE ───────────────────────────────────
-function buildHomepage(guides, headerHTML) {
+function buildHomepage(guides, headerHTML, footerHTML) {
   let html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
 
   // Inject shared header
@@ -163,13 +202,14 @@ function buildHomepage(guides, headerHTML) {
     }
   }
   html = html.replace(/View all \d+ guides/, "View all " + guides.length + " guides");
+  html = html.replace(/(?:<!-- SHARED FOOTER -->\s*)?<footer\b[\s\S]*?<\/footer>/, footerHTML);
 
   fs.writeFileSync(path.join(ROOT, "index.html"), html, "utf8");
   console.log("  \uD83C\uDFE0 Homepage \u2014 " + guides.length + " guides, " + featured.length + " featured");
 }
 
 // 鈹€鈹€鈹€ BUILD GUIDES INDEX 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
-function buildGuidesIndex(guides, headerHTML) {
+function buildGuidesIndex(guides, headerHTML, footerHTML) {
   const sorted = sortGuidesNewestFirst(guides);
   const guideCards = sorted.map(buildGuideIndexCard).join("\n");
   const html = '<!DOCTYPE html>\n' +
@@ -204,7 +244,7 @@ function buildGuidesIndex(guides, headerHTML) {
     guideCards + '\n' +
     '</section>\n' +
     '</main>\n\n' +
-    '<footer><div class="footer-links"><a href="/">Tools</a><a href="/guides/">Guides</a><a href="/privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. Not financial advice.</p></footer>\n' +
+    footerHTML + '\n' +
     '</body>\n' +
     '</html>\n';
 
@@ -276,14 +316,17 @@ function main() {
   const calculators = calcData.calculators || [];
   const guides = guideData.guides || [];
   const headerHTML = loadHeader();
+  const footerHTML = loadFooter();
 
   if (!guides.length) { console.error("\u274C No guides found in guides.json \u2014 aborting."); process.exit(1); }
 
   console.log("  \uD83D\uDD04 Injecting shared header...");
   injectHeaderAll(headerHTML);
+  console.log("  \uD83D\uDD04 Injecting shared footer...");
+  injectFooterAll(footerHTML);
 
-  buildHomepage(guides, headerHTML);
-  buildGuidesIndex(guides, headerHTML);
+  buildHomepage(guides, headerHTML, footerHTML);
+  buildGuidesIndex(guides, headerHTML, footerHTML);
   buildSitemap(guides, calculators);
   verifyRobots();
   buildSearchData(guides, calculators);

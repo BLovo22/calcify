@@ -18,7 +18,7 @@
 <meta name="description" content="Set a savings target, enter your monthly contribution, and see exactly how long it will take to reach your goal. Free, private, no sign-up.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")};else if(window.matchMedia("(prefers-color-scheme:dark)").matches)document.documentElement.setAttribute("data-theme","dark");window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numbrly","item":"https://numbrly.cc/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://numbrly.cc/#calculators"},{"@type":"ListItem","position":3,"name":"Savings Goal Calculator","item":"https://numbrly.cc/savings-goal-calculator.html"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Savings Goal Calculator","url":"https://numbrly.cc/savings-goal-calculator.html","description":"Set a savings target and see exactly when you will reach it.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much should I save each month?","acceptedAnswer":{"@type":"Answer","text":"The 50/30/20 rule suggests saving 20% of after-tax income. Start with 5-10% and increase over time."}},{"@type":"Question","name":"Where should I keep my savings?","acceptedAnswer":{"@type":"Answer","text":"Short-term goals under 5 years: high-yield savings account. Longer goals: brokerage with low-cost index funds."}},{"@type":"Question","name":"What savings goal should I start with?","acceptedAnswer":{"@type":"Answer","text":"Start with a 1,000 dollar emergency fund, then 3-6 months expenses. Then specific goals like down payment."}}]}</script>
@@ -69,7 +69,40 @@
 
 <section style="margin-top:40px"><h2>Related Guides</h2><a href="guides/how-much-emergency-fund.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>How Much Emergency Fund Do You Need?</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a><a href="guides/power-of-compound-interest.html" class="article-card"><div class="art-cat">Investing</div><h4>The Power of Compound Interest</h4><div class="art-date">Updated June 2026 &middot; 6 min read</div></a></section>
 </main>
-<footer><div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. All calculators are for educational purposes only. Not financial advice.</p></footer>
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
+          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
 <script>function calcSavingsGoal(){var target=parseFloat(document.getElementById("sgTarget").value)||50000;var current=parseFloat(document.getElementById("sgCurrent").value)||5000;var monthly=parseFloat(document.getElementById("sgMonthly").value)||500;var rate=parseFloat(document.getElementById("sgRate").value)||5;var mr=rate/100/12;var bal=current;var months=0;while(bal<target&&months<1200){bal+=monthly;bal*=1+mr;months++;}document.getElementById("sgMonths").textContent=months;document.getElementById("sgYears").textContent=(months/12).toFixed(1);document.getElementById("sgFinal").textContent="\$"+bal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("sgTotal").textContent="\$"+(current+monthly*months).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("result").classList.add("show");}</script>
 <script>(function(){var pg=location.pathname.split('/').pop()||'savings-goal';var ins=document.querySelectorAll('input[id],select[id]');try{var sv=JSON.parse(localStorage.getItem('Numbrly_'+pg)||'{}');ins.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(x){}ins.forEach(function(e){e.addEventListener('input',function(){try{var a={};ins.forEach(function(x){a[x.id]=x.value;});localStorage.setItem('Numbrly_'+pg,JSON.stringify(a));}catch(y){}});});})();document.addEventListener('DOMContentLoaded',function(){calcSavingsGoal();});</script>
 </body>

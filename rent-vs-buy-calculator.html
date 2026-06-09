@@ -11,7 +11,7 @@
 <meta name="description" content="Compare renting vs buying a home. See break-even point and total costs. Free, private, no sign-up.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")};else if(window.matchMedia("(prefers-color-scheme:dark)").matches)document.documentElement.setAttribute("data-theme","dark");window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"\u2600\uFE0F":"\uD83C\uDF19";};})();</script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numbrly","item":"https://numbrly.cc/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://numbrly.cc/#calculators"},{"@type":"ListItem","position":3,"name":"Rent vs. Buy Calculator","item":"https://numbrly.cc/rent-vs-buy-calculator.html"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Rent vs. Buy Calculator","url":"https://numbrly.cc/rent-vs-buy-calculator.html","description":"Compare the full cost of renting vs buying. Find your break-even point.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it better to rent or buy?","acceptedAnswer":{"@type":"Answer","text":"If you plan to stay 5+ years, buying is usually better. Under 3-5 years, renting is typically cheaper after closing costs."}},{"@type":"Question","name":"How long until buying is cheaper than renting?","acceptedAnswer":{"@type":"Answer","text":"In most U.S. cities, buying becomes cheaper than renting after 3-7 years when accounting for closing costs and equity buildup."}}]}</script>
@@ -61,7 +61,40 @@
 
 <section style="margin-top:40px"><h2>Related Guides</h2><a href="guides/rent-or-buy-analysis.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>Rent or Buy? A Complete Financial Analysis</h4><div class="art-date">Updated June 2026 &middot; 6 min read</div></a><a href="guides/15-vs-30-year-mortgage.html" class="article-card"><div class="art-cat">Loans</div><h4>15 vs 30 Year Mortgage: Which Term Saves More?</h4><div class="art-date">Updated June 2026 &middot; 7 min read</div></a></section>
 </main>
-<footer><div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. All calculators are for educational purposes only. Not financial advice.</p></footer>
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
+          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
 <script>function calcRentVsBuy(){var homePrice=parseFloat(document.getElementById("rvbPrice").value)||400000;var down=parseFloat(document.getElementById("rvbDown").value)||80000;var rate=parseFloat(document.getElementById("rvbRate").value)||6.5;var yrs=parseInt(document.getElementById("rvbYears").value)||10;var rent=parseFloat(document.getElementById("rvbRent").value)||2000;var loan=homePrice-down;var mr=rate/100/12;var n=yrs*12;var mo=loan>0?loan*(mr*Math.pow(1+mr,n))/(Math.pow(1+mr,n)-1):0;var buyTotal=mo*n+down;var rentTotal=rent*n;var diff=rentTotal-buyTotal;document.getElementById("rvbBuy").textContent="\$"+buyTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("rvbRentOut").textContent="\$"+rentTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("rvbDiff").textContent=(diff>0?"Save \$":"Lose \$")+Math.abs(diff).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("rvbMo").textContent="\$"+mo.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("result").classList.add("show");}</script>
 <script>(function(){var pg=location.pathname.split("/").pop()||"rent-vs-buy";var ins=document.querySelectorAll("input[id],select[id]");try{var sv=JSON.parse(localStorage.getItem("Numbrly_"+pg)||"{}");ins.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(x){}ins.forEach(function(e){e.addEventListener("input",function(){try{var a={};ins.forEach(function(x){a[x.id]=x.value;});localStorage.setItem("Numbrly_"+pg,JSON.stringify(a));}catch(y){}});});})();document.addEventListener("DOMContentLoaded",function(){calcRentVsBuy();});</script>
 </body></html>
