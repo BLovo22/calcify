@@ -72,36 +72,30 @@ tailwind.config = {
 <body class="bg-gray-50 text-gray-900 font-sans antialiased">
 
 <!-- Header -->
+<!-- SHARED HEADER -->
+<!-- SHARED HEADER -->
+<!-- SHARED HEADER -->
 <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900">brly</span></a>
-    
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
     <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" placeholder="Search calculators & guides..."
-        class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <input type="text" name="q" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
     </form>
-    
     <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
       <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 hover:text-pri hover:bg-pri-light transition">About</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
     </nav>
-    
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode"
-      class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:border-pri hover:text-pri transition text-lg">
-      &#x1F319;
-    </button>
-    
-    <!-- Mobile menu -->
-    <button id="menuBtn" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-gray-600" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 px-4 py-3 space-y-2">
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
     <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 font-medium text-sm">About</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
   </div>
 </header>
 
@@ -333,13 +327,16 @@ tailwind.config = {
   var stored = localStorage.getItem('theme');
   if (stored === 'dark') {
     document.documentElement.classList.add('dark');
+    document.documentElement.setAttribute('data-theme', 'dark');
     document.getElementById('themeBtn').innerHTML = '&#x2600;&#xFE0F;';
   } else {
     document.getElementById('themeBtn').innerHTML = '&#x1F319;';
   }
   window.toggleTheme = function(){
     var isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    var theme = isDark ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
     document.getElementById('themeBtn').innerHTML = isDark ? '&#x2600;&#xFE0F;' : '&#x1F319;';
   };
 })();

@@ -13,22 +13,13 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mortgage Payment Calculator — Free Amortization Schedule Tool | Numbrly</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:"class"}</script>
 <meta name="description" content="Calculate your monthly mortgage payment, view a full amortization schedule, and see how extra payments can save you thousands in interest. Free, private, no sign-up required.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
 <script>
-(function(){
-  var stored = localStorage.getItem('theme');
-  if(stored) document.documentElement.setAttribute('data-theme',stored);
-  else if(window.matchMedia('(prefers-color-scheme:dark)').matches) document.documentElement.setAttribute('data-theme','dark');
-  window.toggleTheme = function(){
-    var cur = document.documentElement.getAttribute('data-theme');
-    var next = cur==='dark'?'light':'dark';
-    document.documentElement.setAttribute('data-theme',next);
-    localStorage.setItem('theme',next);
-    document.getElementById('themeIcon').innerHTML = next==='dark' ? '☀️' : '🌙';
-  };
-})();
+(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();
 </script>
 <script type="application/ld+json">
 {
@@ -69,16 +60,30 @@
 </script>
 </head>
 <body>
-<nav class="nav">
-  <div class="nav-in">
-    <a href="index.html" class="logo">Num<span>brly</span></a>
-    <a href="index.html">Tools</a>
-    <a href="index.html#guides">Guides</a>
-    <a href="privacy-policy.html">Privacy</a>
-    <a href="search.html" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a>
-    <button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
   </div>
-</nav>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
 
 <main class="main">
   <!-- Breadcrumb -->
