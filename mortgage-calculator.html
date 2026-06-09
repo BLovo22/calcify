@@ -2,21 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta property="og:title" content="Mortgage Payment Calculator — Free Amortization Tool | Numbrly">
-<meta property="og:description" content="Calculate monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up.">
+<meta property="og:title" content="Mortgage Payment Calculator — Free Amortization Schedule Tool | Numbrly">
+<meta property="og:description" content="Calculate your monthly mortgage payment, view a full amortization schedule, and see how extra payments can save you thousands in interest. Free, private, no sign-up.">
 <meta property="og:url" content="https://numbrly.cc/mortgage-calculator.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mortgage Payment Calculator — Free Amortization Tool | Numbrly">
-<meta name="twitter:description" content="Calculate monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up.">
+<meta name="twitter:title" content="Mortgage Payment Calculator — Free Amortization Schedule Tool | Numbrly">
+<meta name="twitter:description" content="Calculate your monthly mortgage payment, view a full amortization schedule, and see how extra payments can save you thousands in interest. Free, private, no sign-up.">
 <link rel="canonical" href="https://numbrly.cc/mortgage-calculator.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mortgage Calculator — Free Payment & Amortization Tool | Numbrly</title>
-<meta name="description" content="Calculate your monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest. Free, private, no sign-up required.">
+<title>Mortgage Payment Calculator — Free Amortization Schedule Tool | Numbrly</title>
+<meta name="description" content="Calculate your monthly mortgage payment, view a full amortization schedule, and see how extra payments can save you thousands in interest. Free, private, no sign-up required.">
 <link rel="stylesheet" href="style.css">
-<!-- AdSense placeholder -->
-<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXX" crossorigin="anonymous"></script> -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
 <script>
 (function(){
   var stored = localStorage.getItem('theme');
@@ -31,7 +30,6 @@
   };
 })();
 </script>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,7 +37,8 @@
   "itemListElement": [
     {"@type": "ListItem", "position": 1, "name": "Numbrly", "item": "https://numbrly.cc/"},
     {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://numbrly.cc/#calculators"},
-    {"@type": "ListItem", "position": 3, "name": "Mortgage Calculator", "item": "https://numbrly.cc/mortgage-calculator.html"}
+    {"@type": "ListItem", "position": 3, "name": "Mortgage", "item": "https://numbrly.cc/mortgage-calculator.html"},
+    {"@type": "ListItem", "position": 4, "name": "Mortgage Payment Calculator", "item": "https://numbrly.cc/mortgage-calculator.html"}
   ]
 }
 </script>
@@ -47,12 +46,25 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Mortgage Calculator",
+  "name": "Mortgage Payment Calculator",
   "url": "https://numbrly.cc/mortgage-calculator.html",
-  "description": "Calculate monthly mortgage payments, view full amortization schedule, and see how extra payments reduce interest.",
+  "description": "Calculate your monthly mortgage payment, view a full amortization schedule, and see how extra payments can save you thousands in interest.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How do I calculate my monthly mortgage payment?", "acceptedAnswer": {"@type": "Answer", "text": "Your monthly payment depends on the loan amount, interest rate, and loan term. Use the formula M = P [ r(1+r)^n ] / [ (1+r)^n − 1 ] where P is the principal, r is the monthly interest rate, and n is the total number of payments. Or simply enter your numbers above and the calculator does the math instantly."}},
+    {"@type": "Question", "name": "What is an amortization schedule?", "acceptedAnswer": {"@type": "Answer", "text": "An amortization schedule is a year-by-year breakdown of every payment on your mortgage. It shows how much goes to principal versus interest, and how your loan balance decreases over time. Early payments are mostly interest; later payments are mostly principal."}},
+    {"@type": "Question", "name": "How much can I save by making extra payments on my mortgage?", "acceptedAnswer": {"@type": "Answer", "text": "On a $320,000 mortgage at 6.5% over 30 years, adding just $200 extra per month saves approximately $100,000 in interest and pays off the loan about 6 years early. The exact savings depend on your loan amount, rate, and how much extra you pay."}},
+    {"@type": "Question", "name": "Should I choose a 15-year or 30-year mortgage?", "acceptedAnswer": {"@type": "Answer", "text": "A 15-year mortgage has higher monthly payments but much lower total interest, and typically offers a slightly lower interest rate. A 30-year mortgage has lower monthly payments, giving you more cash flow flexibility. If you can afford the higher payment, a 15-year term saves tens of thousands in interest."}},
+    {"@type": "Question", "name": "What costs are included in a monthly mortgage payment?", "acceptedAnswer": {"@type": "Answer", "text": "A monthly mortgage payment typically includes four components known as PITI: Principal (loan repayment), Interest (cost of borrowing), Taxes (property taxes), and Insurance (homeowners insurance). If your down payment is less than 20%, you may also pay PMI (Private Mortgage Insurance). This calculator focuses on principal and interest, which is the core mortgage payment."}}
+  ]
 }
 </script>
 </head>
@@ -62,12 +74,28 @@
     <a href="index.html" class="logo">Num<span>brly</span></a>
     <a href="index.html">Tools</a>
     <a href="index.html#guides">Guides</a>
-    <a href="privacy-policy.html">Privacy</a><a href="search.html" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="search.html" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a>
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button>
+  </div>
+</nav>
+
 <main class="main">
-  <div class="breadcrumb"><a href="index.html">Home</a> / Mortgage Calculator</div>
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="index.html">Numbrly</a> / <a href="index.html#calculators">Calculators</a> / Mortgage Payment Calculator
+  </div>
+
+  <!-- ① H1 + Introduction -->
   <section style="margin-top:20px">
-    <div class="sec-title">&#x1F3E0; Mortgage Calculator</div>
-    <p class="sec-desc">Enter your loan details below. See your monthly payment, total interest, and full amortization breakdown.</p>
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F3E0; Mortgage Payment Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:700px">
+      Calculate your monthly mortgage payment instantly. See a full year-by-year amortization schedule, compare 15 vs 30 year terms, and discover how extra payments can save you thousands in interest — all in your browser, with no sign-up required.
+    </p>
+  </section>
+
+  <!-- ② Calculator Form -->
+  <section>
     <div class="card" style="max-width:640px">
       <div class="form-row">
         <div class="form-group">
@@ -96,84 +124,218 @@
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Extra Monthly Payment ($) <span style="font-weight:400;color:var(--muted)">optional</span></label>
-          <input type="number" id="extra" value="0" min="0" step="50">
-        </div>
-        <div class="form-group" style="justify-content:flex-end">
-          <button class="btn btn-block" onclick="calcMortgage()" style="margin-top:auto">&#x1F4CA; Calculate</button>
+          <label>Extra Monthly Payment ($) <span style="font-weight:400;color:var(--muted)">— optional</span></label>
+          <input type="number" id="extra" value="0" min="0" step="10">
         </div>
       </div>
-      <!-- ad slot -->
-      <ins class="adsbygoogle"
-     style="display:block;text-align:center;margin:20px 0"
-     data-ad-client="ca-pub-4970468814214538"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      <div class="result" id="result">
-        <div class="result-num" id="monthly">--</div>
-        <div class="result-label">Estimated Monthly Payment</div>
-        <div class="result-grid">
-          <div class="result-item"><div class="ri-val" id="loanAmt">--</div><div class="ri-label">Loan Amount</div></div>
-          <div class="result-item"><div class="ri-val" id="totalInt">--</div><div class="ri-label">Total Interest</div></div>
-          <div class="result-item"><div class="ri-val" id="payoff">--</div><div class="ri-label">Payoff Date</div></div>
-        </div>
-        <div class="highlight-box" id="savingsBox" style="display:none">
-          <h4>&#x1F389; Extra Payment Savings</h4>
-          <p id="savingsText"></p>
-        </div>
-      </div>
+      <button class="btn btn-block" onclick="calcMortgage()" style="margin-top:8px">Calculate Payment</button>
     </div>
-  </section>
-  <!-- Amortization Table -->
-  <section id="schedule" style="display:none">
-    <div class="sec-title">&#x1F4C4; Amortization Schedule</div>
-    <p class="sec-desc">Year-by-year breakdown of principal vs. interest. <span style="color:var(--muted);font-size:12px">Showing first 5 years; scroll for full schedule.</span></p>
-    <div class="card" style="overflow-x:auto;padding:8px 0 0 0">
-      <div id="scheduleTable" style="max-height:400px;overflow-y:auto"></div>
-    </div>
-  </section>
-  <!-- Guide -->
-  <section class="article-body">
-    <h2>How to Use This Mortgage Calculator</h2>
-    <p>Our mortgage calculator helps you understand exactly what your monthly payment will be &mdash; and more importantly, how much of that payment goes toward interest over the life of the loan.</p>
-    <h3>What Each Input Means</h3>
-    <ul>
-      <li><strong>Home Price</strong> &mdash; The total purchase price of the property.</li>
-      <li><strong>Down Payment</strong> &mdash; Your upfront cash payment. A 20% down payment ($80,000 on a $400,000 home) lets you avoid PMI (private mortgage insurance).</li>
-      <li><strong>Interest Rate</strong> &mdash; The annual rate on your loan. A 1% difference can mean tens of thousands in extra interest over 30 years.</li>
-      <li><strong>Extra Payment</strong> &mdash; Adding even $100/month extra can shave years off your loan and save thousands in interest.</li>
-    </ul>
-    <h3>Example: $400,000 Home with 20% Down</h3>
-    <p>With a 30-year fixed mortgage at 6.5%, your monthly principal and interest payment is approximately <strong>$2,022</strong>. Over 30 years, you will pay about <strong>$408,000 in interest</strong> &mdash; more than the original loan amount.</p>
-    <p>But add just <strong>$200/month extra</strong>, and you will pay off the loan <strong>6 years early</strong> and save over <strong>$100,000 in interest</strong>.</p>
-    <h3>Should You Pay Extra on Your Mortgage?</h3>
-    <p>This depends on your interest rate. If your mortgage rate is higher than what you could earn by investing (say, in an index fund averaging 7-10% annually), paying extra on the mortgage makes mathematical sense. If your rate is low (under 4%), you may be better off investing the extra cash instead.</p>
-    <p>Our calculator lets you model both scenarios &mdash; try different extra payment amounts and see the impact for yourself.</p>
-  <div style="margin-top:40px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius)">
-<h3 style="font-size:16px;margin-bottom:14px">&#x1F50D; Related Calculators &amp; Guides</h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px">
-  <a href="mortgage-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F3E0; Mortgage Calculator</a>
-  <a href="compound-interest-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4C8; Compound Interest Calculator</a>
-  <a href="roi-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4C8; ROI Calculator</a>
-  <a href="loan-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4B3; Loan Calculator</a>
-  <a href="savings-goal-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F3AF; Savings Goal Calculator</a>
-  <a href="guides/pay-off-mortgage-early.html" style="color:var(--pri);text-decoration:none">&#x1F4D6; Pay Off Mortgage Early?</a>
-  <a href="guides/power-of-compound-interest.html" style="color:var(--pri);text-decoration:none">&#x1F4D6; Power of Compound Interest</a>
-  <a href="guides/15-vs-30-year-mortgage.html" style="color:var(--pri);text-decoration:none">&#x1F4D6; 15 vs 30 Year Mortgage</a>
-  <a href="guides/how-much-to-retire.html" style="color:var(--pri);text-decoration:none">&#x1F4D6; How Much to Retire?</a>
-</div></div>
-</section>
 
+    <!-- Result -->
+    <div class="result" id="result" style="max-width:640px">
+      <div class="result-num" id="monthly">$2,022</div>
+      <div class="result-label">per month (principal + interest)</div>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="ri-val" id="loanAmt">$320,000</div>
+          <div class="ri-label">Loan Amount</div>
+        </div>
+        <div class="result-item">
+          <div class="ri-val" id="totalInt">$407,216</div>
+          <div class="ri-label">Total Interest</div>
+        </div>
+        <div class="result-item">
+          <div class="ri-val" id="payoff">Jun 2056</div>
+          <div class="ri-label">Payoff Date</div>
+        </div>
+      </div>
+      <div id="savingsBox" style="margin-top:16px;padding:14px 18px;background:var(--green-light);border:1px solid #bbf7d0;border-radius:8px;display:none">
+        <div style="font-size:14px;color:var(--green);font-weight:600">&#x1F4AA; Extra Payment Savings</div>
+        <div style="font-size:13px;color:var(--muted);margin-top:4px" id="savingsText"></div>
+      </div>
+    </div>
+
+    <!-- Amortization Schedule -->
+    <div id="schedule" style="max-width:640px;margin-top:24px;display:none">
+      <div style="font-size:16px;font-weight:700;margin-bottom:12px">&#x1F4C5; Amortization Schedule (Year by Year)</div>
+      <div id="scheduleTable"></div>
+    </div>
+  </section>
+
+  <!-- ③ How To Use -->
+  <section style="margin-top:40px">
+    <h2>How to Use the Mortgage Payment Calculator</h2>
+    <ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px">
+      <li><strong style="color:var(--text)">Enter the Home Price</strong> — the total purchase price of the property you are considering.</li>
+      <li><strong style="color:var(--text)">Enter your Down Payment</strong> — the amount you plan to pay upfront. A 20% down payment ($80,000 on a $400,000 home) avoids PMI.</li>
+      <li><strong style="color:var(--text)">Set the Interest Rate</strong> — use your pre-approved rate or the current market average. As of 2026, rates typically range from 5.5% to 7%.</li>
+      <li><strong style="color:var(--text)">Choose the Loan Term</strong> — 30 years is most common. 15 years has higher payments but saves significantly on total interest.</li>
+      <li><strong style="color:var(--text)">Add Extra Payments (optional)</strong> — even $100 extra per month can shave years off your loan and save thousands in interest.</li>
+      <li><strong style="color:var(--text)">Click Calculate</strong> — view your monthly payment, total interest, payoff date, and a full year-by-year amortization table.</li>
+    </ol>
+  </section>
+
+  <!-- ④ Example -->
+  <section style="margin-top:40px">
+    <h2>Example: Buying a $400,000 Home</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">
+      Sarah and Mike are first-time homebuyers looking at a <strong style="color:var(--text)">$400,000 home</strong>. They have saved <strong style="color:var(--text)">$80,000 for a down payment</strong> (20%). Their lender offers a <strong style="color:var(--text)">6.5% interest rate</strong> on a <strong style="color:var(--text)">30-year fixed-rate mortgage</strong>.
+    </p>
+    <div class="highlight-box" style="margin-top:16px">
+      <h4>&#x1F4CA; Their Numbers</h4>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.8">
+        <li>Loan amount: <strong style="color:var(--text)">$320,000</strong></li>
+        <li>Monthly payment (principal + interest): <strong style="color:var(--text)">$2,022/month</strong></li>
+        <li>Total interest over 30 years: <strong style="color:var(--text)">$408,016</strong></li>
+        <li>If they add <strong style="color:var(--text)">$200 extra each month</strong>, they save ~$100,000 in interest and pay off the loan <strong style="color:var(--text)">6 years early</strong>.</li>
+        <li>Total home cost (price + interest): <strong style="color:var(--text)">$728,016</strong> over 30 years.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ⑤ Benefits -->
+  <section style="margin-top:40px">
+    <h2>Why Use This Calculator?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+      <div class="card" style="padding:20px">
+        <div class="tag">&#x26A1; Instant Results</div>
+        <p style="font-size:13px;line-height:1.7">No waiting, no loading screens. Change any number and see results update in real time.</p>
+      </div>
+      <div class="card" style="padding:20px">
+        <div class="tag">&#x1F4C5; Full Amortization</div>
+        <p style="font-size:13px;line-height:1.7">Year-by-year breakdown showing exactly how much goes to principal vs. interest.</p>
+      </div>
+      <div class="card" style="padding:20px">
+        <div class="tag">&#x1F4AA; Extra Payment Impact</div>
+        <p style="font-size:13px;line-height:1.7">See how even small extra payments dramatically reduce your total interest and shorten your loan.</p>
+      </div>
+      <div class="card" style="padding:20px">
+        <div class="tag">&#x1F510; 100% Private</div>
+        <p style="font-size:13px;line-height:1.7">All calculations run in your browser. No data is ever sent to a server or shared with anyone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ Common Mistakes -->
+  <section style="margin-top:40px">
+    <h2>Common Mistakes When Calculating Mortgage Payments</h2>
+    <div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px">
+      <p><strong style="color:var(--text)">&#x274C; Forgetting property taxes and insurance.</strong> This calculator shows principal + interest only. Your actual monthly payment will include property taxes, homeowners insurance, and possibly PMI — which can add $300–$600/month.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Underestimating the down payment.</strong> Putting down less than 20% triggers PMI, which costs 0.5%–1% of the loan amount per year. On a $320,000 loan, that is $133–$267/month extra.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Ignoring closing costs.</strong> Closing costs typically run 2%–5% of the home price. On a $400,000 home, budget $8,000–$20,000 for closing.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Only looking at the monthly payment.</strong> A lower monthly payment on a 30-year term means you pay far more in total interest. Always check the total cost, not just the monthly number.</p>
+    </div>
+  </section>
+
+  <!-- ⑦ FAQ -->
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      <details class="card" style="cursor:pointer;padding:0">
+        <summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">
+          How do I calculate my monthly mortgage payment?
+          <span style="color:var(--muted);font-size:12px">&#x25BC;</span>
+        </summary>
+        <div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">
+          Your monthly payment depends on three factors: loan amount, interest rate, and loan term. The mathematical formula is M = P [ r(1+r)^n ] / [ (1+r)^n − 1 ], where P is the principal, r is the monthly interest rate (annual rate ÷ 12), and n is the total number of payments (years × 12). Enter your numbers in the calculator above and it does the math for you instantly.
+        </div>
+      </details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px">
+        <summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">
+          What is an amortization schedule?
+          <span style="color:var(--muted);font-size:12px">&#x25BC;</span>
+        </summary>
+        <div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">
+          An amortization schedule is a year-by-year table showing every payment on your mortgage. It breaks down how much of each payment goes to principal versus interest, and shows your remaining loan balance after each year. In the early years, most of your payment goes to interest. Over time, more goes to principal. Our calculator generates this schedule automatically.
+        </div>
+      </details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px">
+        <summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">
+          How much can I save with extra payments?
+          <span style="color:var(--muted);font-size:12px">&#x25BC;</span>
+        </summary>
+        <div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">
+          Even small extra payments make a big difference. On a $320,000 mortgage at 6.5% over 30 years, adding just $100/month saves roughly $57,000 in interest and pays off the loan 3.5 years early. Adding $200/month saves about $100,000 and cuts 6 years off the term. The higher your interest rate, the bigger the impact of extra payments.
+        </div>
+      </details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px">
+        <summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">
+          Should I choose a 15-year or 30-year mortgage?
+          <span style="color:var(--muted);font-size:12px">&#x25BC;</span>
+        </summary>
+        <div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">
+          A 15-year mortgage has higher monthly payments (about 30-40% more) but you pay far less total interest and typically get a slightly lower rate (0.25%-0.5% less). A 30-year mortgage gives you lower monthly payments and more flexibility. If you can comfortably afford the higher payment, a 15-year term is the better financial choice. Use our calculator to compare both terms side by side.
+        </div>
+      </details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px">
+        <summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">
+          What is included in a mortgage payment?
+          <span style="color:var(--muted);font-size:12px">&#x25BC;</span>
+        </summary>
+        <div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">
+          A full mortgage payment typically includes PITI: Principal (the loan amount you repay), Interest (the cost of borrowing), Taxes (property taxes), and Insurance (homeowners insurance). If your down payment is under 20%, you also pay PMI (Private Mortgage Insurance). This calculator focuses on principal and interest — the core mortgage payment. Expect to add $200-$600/month for taxes, insurance, and possible PMI depending on your location and down payment.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ⑧ Related Calculators -->
+  <section style="margin-top:40px">
+    <h2>Related Calculators</h2>
+    <div class="tool-grid" style="margin-top:16px">
+      <a href="rent-vs-buy-calculator.html" class="tool-card">
+        <div class="tool-icon">&#x1F3D8;</div>
+        <h3>Rent vs. Buy Calculator</h3>
+        <p>Not sure if buying is right for you? Compare the full cost of renting vs. buying over any time period.</p>
+      </a>
+      <a href="loan-calculator.html" class="tool-card">
+        <div class="tool-icon">&#x1F4B3;</div>
+        <h3>Loan Calculator</h3>
+        <p>Calculate monthly payments for any loan — personal, auto, or student — with full amortization.</p>
+      </a>
+      <a href="compound-interest-calculator.html" class="tool-card">
+        <div class="tool-icon">&#x1F4C8;</div>
+        <h3>Compound Interest Calculator</h3>
+        <p>See how investing the money you save on mortgage interest could grow over time.</p>
+      </a>
+      <a href="inflation-calculator.html" class="tool-card">
+        <div class="tool-icon">&#x1F4C9;</div>
+        <h3>Inflation Calculator</h3>
+        <p>Understand how inflation affects the real value of your mortgage payments over 30 years.</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ⑨ Related Guides -->
+  <section style="margin-top:40px">
+    <h2>Related Guides</h2>
+    <a href="guides/pay-off-mortgage-early.html" class="article-card">
+      <div class="art-cat">Mortgage</div>
+      <h4>Should You Pay Off Your Mortgage Early? A Complete Analysis</h4>
+      <div class="art-date">Updated June 2026 &middot; 8 min read</div>
+    </a>
+    <a href="guides/15-vs-30-year-mortgage.html" class="article-card">
+      <div class="art-cat">Loans</div>
+      <h4>15 vs 30 Year Mortgage: Which Term Saves More?</h4>
+      <div class="art-date">Updated June 2026 &middot; 7 min read</div>
+    </a>
+    <a href="guides/how-to-calculate-mortgage-payment.html" class="article-card">
+      <div class="art-cat">Mortgage</div>
+      <h4>How to Calculate Your Mortgage Payment — Step by Step</h4>
+      <div class="art-date">Updated June 2026 &middot; 5 min read</div>
+    </a>
+  </section>
 </main>
+
 <footer>
   <div class="footer-links">
     <a href="index.html">Tools</a>
     <a href="index.html#guides">Guides</a>
     <a href="privacy-policy.html">Privacy Policy</a>
   </div>
-  <p>&copy; 2026 Numbrly. Not financial advice. For educational purposes only.</p>
+  <p>&copy; 2026 Numbrly. All calculators are for educational purposes only. Not financial advice.</p>
 </footer>
+
 <script>
 function calcMortgage(){
   var price = parseFloat(document.getElementById('homePrice').value) || 400000;
@@ -182,20 +344,29 @@ function calcMortgage(){
   var termYrs = parseInt(document.getElementById('term').value) || 30;
   var extra = parseFloat(document.getElementById('extra').value) || 0;
   var loan = price - down;
-  if(loan <= 0){ document.getElementById('result').classList.add('show'); document.getElementById('monthly').textContent = '$0'; return; }
+  if(loan <= 0){
+    document.getElementById('monthly').textContent = '$0';
+    document.getElementById('loanAmt').textContent = '$0';
+    document.getElementById('totalInt').textContent = '$0';
+    document.getElementById('payoff').textContent = '—';
+    document.getElementById('savingsBox').style.display = 'none';
+    document.getElementById('schedule').style.display = 'none';
+    document.getElementById('result').classList.add('show');
+    return;
+  }
   var monthlyRate = rate / 100 / 12;
   var n = termYrs * 12;
   var monthly = loan * (monthlyRate * Math.pow(1+monthlyRate,n)) / (Math.pow(1+monthlyRate,n)-1);
   var totalPayment = monthly * n;
   var totalInterest = totalPayment - loan;
+
   document.getElementById('monthly').textContent = '$' + monthly.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   document.getElementById('loanAmt').textContent = '$' + loan.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   document.getElementById('totalInt').textContent = '$' + totalInterest.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  // payoff date
+
   var now = new Date();
-  var payoffDate = new Date(now.getFullYear() + termYrs, now.getMonth(), 1);
-  var payoffStr = payoffDate.toLocaleString('en-US',{month:'short',year:'numeric'});
-  // extra payment calc
+  var payoffStr = new Date(now.getFullYear() + termYrs, now.getMonth(), 1).toLocaleString('en-US',{month:'short',year:'numeric'});
+
   var savingsBox = document.getElementById('savingsBox');
   var savingsText = document.getElementById('savingsText');
   if(extra > 0){
@@ -219,10 +390,10 @@ function calcMortgage(){
   }
   document.getElementById('payoff').textContent = payoffStr;
   document.getElementById('result').classList.add('show');
-  // amortization schedule
   buildSchedule(loan, monthlyRate, monthly + extra, n, monthly, termYrs);
   document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
+
 function buildSchedule(loan, monthlyRate, totalMonthly, n, baseMonthly, termYrs){
   var bal = loan, table = '', yearlyPrincipal = 0, yearlyInterest = 0, yearCount = 1;
   var yearData = [];
@@ -249,22 +420,17 @@ function buildSchedule(loan, monthlyRate, totalMonthly, n, baseMonthly, termYrs)
   document.getElementById('scheduleTable').innerHTML = table;
   document.getElementById('schedule').style.display = 'block';
 }
-// init
-document.addEventListener('DOMContentLoaded', function(){ calcMortgage(); });
-</script>
-<script>
-// Auto-save inputs
+
+// Auto-save inputs to localStorage
 (function(){
-  var page = location.pathname.split('/').pop()||'index';
+  var page = location.pathname.split('/').pop()||'mortgage';
   var inputs = document.querySelectorAll('input[id], select[id]');
-  // Restore saved values
   try{
     var saved = JSON.parse(localStorage.getItem('Numbrly_'+page)||'{}');
     inputs.forEach(function(el){
       if(saved[el.id]!==undefined) el.value = saved[el.id];
     });
   }catch(e){}
-  // Save on change
   inputs.forEach(function(el){
     el.addEventListener('input',function(){
       try{
@@ -276,17 +442,8 @@ document.addEventListener('DOMContentLoaded', function(){ calcMortgage(); });
   });
 })();
 
-// Copy link
-function copyPageLink(){
-  navigator.clipboard.writeText(location.href).then(function(){
-    var btn = document.getElementById('shareBtn');
-    btn.innerHTML = 'u2714 Copied!';
-    btn.classList.add('copied');
-    setTimeout(function(){btn.innerHTML = '🔗 Copy Link';btn.classList.remove('copied');},2000);
-  });
-}
+// Init
+document.addEventListener('DOMContentLoaded', function(){ calcMortgage(); });
 </script>
-
-
 </body>
 </html>
