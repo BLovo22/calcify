@@ -1,167 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta property="og:title" content="Retirement Calculator — Are You on Track? | Numbrly">
-<meta property="og:description" content="Find out if you are on track to retire. Enter your age, savings, and monthly contribution to see your projected nest egg.">
-<meta property="og:url" content="https://numbrly.cc/retirement-calculator.html">
-<meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta property="og:title" content="Retirement Calculator — Are You on Track to Retire? | Numbrly">
+<meta property="og:description" content="Project your retirement nest egg and see if you are on track. Adjust savings rate, retirement age, and expected returns. Free retirement planner.">
+<meta property="og:url" content="https://numbrly.cc/retirement-calculator.html"><meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Retirement Calculator — Are You on Track? | Numbrly">
-<meta name="twitter:description" content="See if your savings are on track for retirement. Free retirement planning tool.">
 <link rel="canonical" href="https://numbrly.cc/retirement-calculator.html">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Retirement Calculator — Are You on Track to Retire? | Numbrly</title>
-<meta name="description" content="Project your retirement savings. See if you are on track, how much you need, and what changes get you there faster.">
+<meta name="description" content="Project your retirement nest egg. See if you are on track, adjust savings rate, and find your retirement number. Free, private retirement planner.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Retirement Calculator","url":"https://numbrly.cc/retirement-calculator.html","description":"Project retirement savings and see if you are on track.","applicationCategory":"FinanceApplication","operatingSystem":"All"}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Numbrly", "item": "https://numbrly.cc/"},
-    {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://numbrly.cc/#calculators"},
-    {"@type": "ListItem", "position": 3, "name": "Retirement Calculator", "item": "https://numbrly.cc/retirement-calculator.html"}
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Retirement Calculator",
-  "url": "https://numbrly.cc/retirement-calculator.html",
-  "description": "Project your retirement nest egg and see what changes get you to your retirement goal faster.",
-  "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Any",
-  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
-}
-</script>
+<script>(function(){var s=localStorage.getItem("theme");if(s)document.documentElement.setAttribute("data-theme",s);else if(window.matchMedia("(prefers-color-scheme:dark)").matches)document.documentElement.setAttribute("data-theme","dark");window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);localStorage.setItem("theme",n);document.getElementById("themeIcon").innerHTML=n==="dark"?"\u2600\uFE0F":"\uD83C\uDF19";};})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numbrly","item":"https://numbrly.cc/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://numbrly.cc/#calculators"},{"@type":"ListItem","position":3,"name":"Retirement Calculator","item":"https://numbrly.cc/retirement-calculator.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Retirement Calculator","url":"https://numbrly.cc/retirement-calculator.html","description":"Project your retirement nest egg. See if you are on track to retire.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much do I need to retire?","acceptedAnswer":{"@type":"Answer","text":"The 4% rule says multiply your annual expenses by 25. If you need 60,000/year in retirement, you need 1.5 million saved."}},{"@type":"Question","name":"Am I saving enough for retirement?","acceptedAnswer":{"@type":"Answer","text":"Aim to save 15-20% of gross income including employer match. Use this calculator to see if your current savings rate will hit your retirement target."}}]}</script>
 </head>
 <body>
 <nav class="nav"><div class="nav-in"><a href="index.html" class="logo">Num<span>brly</span></a><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy</a><a href="search.html" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
-<script>(function(){var s=localStorage.getItem('theme');if(s)document.documentElement.setAttribute('data-theme',s);else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');window.toggleTheme=function(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);document.getElementById('themeIcon').innerHTML=n==='dark'?'☀️':'🌙';};var icon=document.getElementById('themeIcon');if(icon)icon.innerHTML=(s||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':''))==='dark'?'☀️':'🌙';})();</script>
-
 <main class="main">
-<div class="breadcrumb"><a href="index.html">Home</a> / Retirement Calculator</div>
+<div class="breadcrumb"><a href="index.html">Numbrly</a> / <a href="index.html#calculators">Calculators</a> / Retirement Calculator</div>
+<section style="margin-top:20px"><h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F474; Retirement Calculator</h1><p class="sec-desc" style="font-size:15px;max-width:700px">Are you on track to retire? Project your nest egg, see what changes get you to your goal, and find your retirement number — all in seconds.</p></section>
+<section><div class="card" style="max-width:640px"><div class="form-row"><div class="form-group"><label>Current Age</label><input type="number" id="retAge" value="30" min="18" max="80" step="1"></div><div class="form-group"><label>Retirement Age</label><input type="number" id="retRetire" value="65" min="40" max="80" step="1"></div></div><div class="form-row"><div class="form-group"><label>Current Savings ($)</label><input type="number" id="retSavings" value="50000" min="0" step="1000"></div><div class="form-group"><label>Monthly Contribution ($)</label><input type="number" id="retMonthly" value="1000" min="0" step="50"></div></div><div class="form-row"><div class="form-group"><label>Annual Return (%)</label><input type="number" id="retReturn" value="7" min="1" max="20" step="0.1"></div><div class="form-group"><label>Desired Annual Income ($)</label><input type="number" id="retNeed" value="60000" min="10000" step="1000"></div></div><button class="btn btn-block" onclick="calcRetire()" style="margin-top:8px">Project My Retirement</button></div>
+<div class="result" id="result" style="max-width:640px"><div class="result-num" id="retNest">\</div><div class="result-label">projected nest egg at retirement</div><div class="result-grid"><div class="result-item"><div class="ri-val" id="retNeed">\,500,000</div><div class="ri-label">Target (4% rule)</div></div><div class="result-item"><div class="ri-val" id="retContrib">\,000</div><div class="ri-label">Total Contributions</div></div><div class="result-item"><div class="ri-val" id="retStatus">On Track</div><div class="ri-label">Status</div></div></div></div></section>
 
-<section style="margin-top:20px">
-<div class="sec-title">&#x1F474; Retirement Calculator</div>
-<p class="sec-desc">See if you are on track — and what you can change to get there faster.</p>
+<section style="margin-top:40px"><h2>How to Use This Calculator</h2><ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px"><li><strong style="color:var(--text)">Enter Your Current Age</strong> — the earlier you start, the more compound interest works for you.</li><li><strong style="color:var(--text)">Choose Retirement Age</strong> — 65-67 is traditional. Earlier retirement requires a bigger nest egg.</li><li><strong style="color:var(--text)">Enter Current Savings</strong> — your total across 401k, IRA, brokerage, etc.</li><li><strong style="color:var(--text)">Enter Monthly Contribution</strong> — include your contribution plus any employer match.</li><li><strong style="color:var(--text)">Set Expected Return</strong> — 6-8% is typical for a balanced portfolio over the long term.</li><li><strong style="color:var(--text)">Enter Desired Income</strong> — how much you want per year in retirement (in today dollars).</li></ol></section>
 
-<div class="card" style="max-width:640px">
-<div class="form-row">
-  <div class="form-group"><label>Current Age</label><input type="number" id="age" value="30" min="18" max="70" step="1"></div>
-  <div class="form-group"><label>Retirement Age</label><input type="number" id="retireAge" value="65" min="40" max="80" step="1"></div>
-</div>
-<div class="form-row">
-  <div class="form-group"><label>Current Savings ($)</label><input type="number" id="savings" value="50000" min="0" step="5000"></div>
-  <div class="form-group"><label>Monthly Contribution ($)</label><input type="number" id="contrib" value="1000" min="0" step="100"></div>
-</div>
-<div class="form-row">
-  <div class="form-group"><label>Expected Annual Return (%)</label><input type="number" id="returnRate" value="7" min="1" max="15" step="0.5"></div>
-  <div class="form-group"><label>Withdrawal Rate (%)</label><select id="withdrawRate"><option value="4" selected>4% (standard)</option><option value="3.5">3.5% (conservative)</option><option value="3">3% (very safe)</option></select></div>
-</div>
-<button class="btn btn-block" onclick="calcRetire()">&#x1F4CA; Calculate</button>
+<section style="margin-top:40px"><h2>Example: The 30-Year-Old Planning Ahead</h2><p style="color:var(--muted);font-size:14px;line-height:1.8">You are <strong style="color:var(--text)">30 years old</strong>, have \,000 saved, contribute \,000/month at 7% returns, and want \,000/year in retirement.</p><div class="highlight-box"><h4>&#x1F4C8; The Projection</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>At 65, projected nest egg: ~<strong style="color:var(--text)">\,800,000</strong></li><li>Target (4% rule): <strong style="color:var(--text)">\,500,000</strong> (25 × \,000)</li><li>Status: likely <strong style="color:var(--green)">on track</strong></li><li>If you start at 40 instead: only ~<strong style="color:var(--text)">\,000</strong> — far short of the \.5M target.</li></ul></div></section>
 
-<ins class="adsbygoogle" style="display:block;text-align:center;margin:20px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+<section style="margin-top:40px"><h2>Why Use This Calculator?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px"><div class="card" style="padding:20px"><div class="tag">&#x1F3AF; Find Your Number</div><p style="font-size:13px;line-height:1.7">Use the 4% rule to calculate your retirement target instantly.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4C8; See Projected Growth</div><p style="font-size:13px;line-height:1.7">Watch your nest egg grow over decades with compound returns.</p></div><div class="card" style="padding:20px"><div class="tag">&#x26A0; Gap Analysis</div><p style="font-size:13px;line-height:1.7">See if there is a gap between where you are headed and where you need to be.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F510; 100% Private</div><p style="font-size:13px;line-height:1.7">Your financial data stays in your browser.</p></div></div></section>
 
-<div class="result" id="result">
-  <div class="result-num" id="nestegg">--</div>
-  <div class="result-label">Projected Nest Egg at Retirement</div>
-  <div class="result-grid">
-    <div class="result-item"><div class="ri-val" id="monthlyIncome">--</div><div class="ri-label">Monthly Retirement Income</div></div>
-    <div class="result-item"><div class="ri-val" id="totalContrib">--</div><div class="ri-label">Total You Contribute</div></div>
-    <div class="result-item"><div class="ri-val" id="totalEarn">--</div><div class="ri-label">Investment Earnings</div></div>
-  </div>
-  <div class="highlight-box" id="gapBox" style="display:none"><h4>&#x26A0; Retirement Gap</h4><p id="gapText"></p></div>
-</div>
-</div>
-</section>
+<section style="margin-top:40px"><h2>Common Mistakes</h2><div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px"><p><strong style="color:var(--text)">&#x274C; Not accounting for inflation.</strong> If you need \,000/year today, at 3% inflation you will need ~\,000/year in 35 years when you retire. This means your nest egg target is much higher than 25 × \,000.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Overestimating returns.</strong> A 10-12% annual return is not realistic for a balanced retirement portfolio. Use 6-8% for stocks and 3-5% for bonds — a 60/40 portfolio averages about 7%.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Forgetting employer match.</strong> If your employer matches 50% up to 6%, a \,000 contribution might actually be \,300. Always include the match in your monthly amount.</p></div></section>
 
-<section class="article-body">
-<h2>How to Plan for Retirement</h2>
-<p>The retirement number everyone talks about — $1 million, $2 million — means nothing without context. What matters is your <strong>monthly income in retirement</strong>. Use this calculator to see both.</p>
+<section style="margin-top:40px"><h2>Frequently Asked Questions</h2><div style="margin-top:16px"><details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How much do I need to retire?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">The 4% rule is a good starting point: multiply your desired annual retirement income by 25. If you want \,000/year, you need roughly \,500,000 saved. This assumes you withdraw 4% annually, adjusted for inflation, and the money lasts 30+ years.</div></details><details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Am I saving enough?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Aim to save 15-20% of gross income including employer match. If you earn \,000/year, that means \,000-\,000 per year toward retirement. Use this calculator to see if your current rate gets you to your target. If not, increase your contribution or plan to work a few more years.</div></details></div></section>
 
-<h2>The 4% Rule in Practice</h2>
-<p>If you have $1,000,000 saved at retirement and withdraw 4% per year, that gives you $40,000/year or $3,333/month. Add Social Security ($1,800-$3,500/month depending on earnings history and claiming age), and you can estimate your total retirement income.</p>
+<section style="margin-top:40px"><h2>Related Calculators</h2><div class="tool-grid" style="margin-top:16px"><a href="compound-interest-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4C8;</div><h3>Compound Interest</h3><p>See exactly how your retirement contributions grow over time.</p></a><a href="inflation-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4C9;</div><h3>Inflation Calculator</h3><p>Adjust your retirement target for future inflation.</p></a><a href="roi-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4CA;</div><h3>ROI Calculator</h3><p>Check if your portfolio is delivering the returns you expect.</p></a><a href="savings-goal-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3AF;</div><h3>Savings Goal</h3><p>Set intermediate savings goals on the path to retirement.</p></a></div></section>
 
-<h2>How Much Should I Save Each Month?</h2>
-<p>Aim for <strong>15% of gross income</strong> toward retirement (including any employer match). At $80,000/year, that is $1,000/month. If your employer matches 4%, you contribute 11% and the match covers the rest.</p>
-<p>Behind on savings? Boost to 20-25%. Every extra 1% of your income saved adds up to tens of thousands over a career.</p>
-
-<h2>Key Levers You Control</h2>
-<ul>
-  <li><strong>Save more</strong> — Even 1% more makes a big difference over 30+ years</li>
-  <li><strong>Work longer</strong> — 2-3 extra working years dramatically improve your numbers</li>
-  <li><strong>Reduce fees</strong> — A 1% fee drag can cost you 28% of your returns over 30 years</li>
-  <li><strong>Delay Social Security</strong> — Waiting until 70 increases your benefit by 24% vs. claiming at 67</li>
-</ul>
-</section>
-<div style="margin-top:40px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius)">
-<h3 style="font-size:16px;margin-bottom:14px">&#x1F50D; Related Calculators &amp; Guides</h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px">
-  <a href="mortgage-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F3E0; Mortgage Calculator</a>
-  <a href="compound-interest-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4C8; Compound Interest</a>
-  <a href="roi-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4CA; ROI Calculator</a>
-  <a href="loan-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4B3; Loan Calculator</a>
-  <a href="savings-goal-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F3AF; Savings Goal</a>
-  <a href="credit-card-payoff-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F504; Credit Card Payoff</a>
-  <a href="retirement-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F474; Retirement Planner</a>
-  <a href="rent-vs-buy-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F3D8; Rent vs Buy</a>
-  <a href="inflation-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4C9; Inflation</a>
-  <a href="salary-to-hourly-calculator.html" style="color:var(--pri);text-decoration:none">&#x23F0; Salary to Hourly</a>
-  <a href="guides/" style="color:var(--pri);text-decoration:none">&#x1F4DA; All Money Guides</a>
-</div></div>
-
+<section style="margin-top:40px"><h2>Related Guides</h2><a href="guides/how-much-to-retire.html" class="article-card"><div class="art-cat">Retirement</div><h4>How Much Do You Really Need to Retire?</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a><a href="guides/power-of-compound-interest.html" class="article-card"><div class="art-cat">Investing</div><h4>The Power of Compound Interest</h4><div class="art-date">Updated June 2026 &middot; 6 min read</div></a></section>
 </main>
-
-<footer><div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. Not financial advice.</p></footer>
-
-<script>
-(function(){var p='retirement',inps=document.querySelectorAll('input[id],select[id]');try{var sv=JSON.parse(localStorage.getItem('numbrly_'+p)||'{}');inps.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(e){}inps.forEach(function(e){e.addEventListener('input',function(){try{var a={};inps.forEach(function(x){a[x.id]=x.value;});localStorage.setItem('numbrly_'+p,JSON.stringify(a));}catch(e){}});});})();
-
-function calcRetire(){
- var age=parseInt(document.getElementById('age').value)||30;
- var retireAge=parseInt(document.getElementById('retireAge').value)||65;
- var savings=parseFloat(document.getElementById('savings').value)||50000;
- var contrib=parseFloat(document.getElementById('contrib').value)||1000;
- var rate=parseFloat(document.getElementById('returnRate').value)||7;
- var wRate=parseFloat(document.getElementById('withdrawRate').value)||4;
- var fmt=function(v){return'$'+v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
- var yrs=retireAge-age;if(yrs<=0){document.getElementById('nestegg').textContent='Retirement age must be greater than current age';return;}
- var mr=rate/100/12,n=yrs*12;
- var fv=savings*Math.pow(1+mr,n);
- if(mr>0)fv+=contrib*((Math.pow(1+mr,n)-1)/mr)*(1+mr);
- var totalC=savings+contrib*n;
- var earn=fv-totalC;
- var monthlyInc=fv*(wRate/100)/12;
- document.getElementById('nestegg').textContent=fmt(fv);
- document.getElementById('monthlyIncome').textContent=fmt(monthlyInc)+'/mo';
- document.getElementById('totalContrib').textContent=fmt(totalC);
- document.getElementById('totalEarn').textContent=fmt(earn);
- document.getElementById('result').classList.add('show');
- // gap analysis: show what an extra $100/mo does
- var gapBox=document.getElementById('gapBox');
- if(contrib>0){
-  var fvExtra=savings*Math.pow(1+mr,n);
-  fvExtra+=(contrib+100)*((Math.pow(1+mr,n)-1)/mr)*(1+mr);
-  var extraMonth=(fvExtra*(wRate/100)/12)-monthlyInc;
-  document.getElementById('gapText').textContent='Adding just $100 more per month gives you '+fmt(fvExtra)+' at retirement — an extra '+fmt(extraMonth)+'/mo in income for life.';
-  gapBox.style.display='block';
- }
- document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-document.addEventListener('DOMContentLoaded',calcRetire);
-</script>
-
-
-</body>
-</html>
+<footer><div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. All calculators are for educational purposes only. Not financial advice.</p></footer>
+<script>function calcRetire(){var age=parseInt(document.getElementById("retAge").value)||30;var retire=parseInt(document.getElementById("retRetire").value)||65;var savings=parseFloat(document.getElementById("retSavings").value)||50000;var monthly=parseFloat(document.getElementById("retMonthly").value)||1000;var ret=parseFloat(document.getElementById("retReturn").value)/100||0.07;var need=parseFloat(document.getElementById("retNeed").value)||60000;var years=retire-age;var mr=ret/12;var n=years*12;var nest=savings*Math.pow(1+mr,n)+monthly*((Math.pow(1+mr,n)-1)/mr);var target=need*25;document.getElementById("retNest").textContent="\$"+nest.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("retNeed").textContent="\$"+target.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("retContrib").textContent="\$"+(savings+monthly*years*12).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("retStatus").textContent=nest>=target?"On Track":"Behind Target";document.getElementById("retStatus").style.color=nest>=target?"var(--green)":"#dc2626";document.getElementById("result").classList.add("show");}</script>
+<script>(function(){var pg=location.pathname.split("/").pop()||"retirement";var ins=document.querySelectorAll("input[id],select[id]");try{var sv=JSON.parse(localStorage.getItem("Numbrly_"+pg)||"{}");ins.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(x){}ins.forEach(function(e){e.addEventListener("input",function(){try{var a={};ins.forEach(function(x){a[x.id]=x.value;});localStorage.setItem("Numbrly_"+pg,JSON.stringify(a));}catch(y){}});});})();document.addEventListener("DOMContentLoaded",function(){calcRetire();});</script>
+</body></html>
