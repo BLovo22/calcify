@@ -1,310 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta property="og:title" content="Rent vs Buy Calculator — Should You Rent or Buy a Home? | Numbrly">
-<meta property="og:description" content="Compare the true cost of renting vs buying a home. See the break-even point and which option saves you more over time.">
-<meta property="og:url" content="https://numbrly.cc/rent-vs-buy-calculator.html">
-<meta property="og:type" content="website">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta property="og:title" content="Rent vs. Buy Calculator — See Which Saves More | Numbrly">
+<meta property="og:description" content="Compare the full cost of renting vs buying a home. Find your break-even point and see which path saves more. Free, private rent vs buy calculator.">
+<meta property="og:url" content="https://numbrly.cc/rent-vs-buy-calculator.html"><meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Rent vs Buy Calculator — Should You Rent or Buy? | Numbrly">
-<meta name="twitter:description" content="Compare renting vs buying side by side. See break-even point, net cost, and which option wins for your situation.">
 <link rel="canonical" href="https://numbrly.cc/rent-vs-buy-calculator.html">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rent vs Buy Calculator — Should You Rent or Buy? | Numbrly</title>
-<meta name="description" content="Compare the true cost of renting vs buying a home. See your break-even point and decide which path saves you more money.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rent vs. Buy Calculator — See Which Saves More | Numbrly</title>
+<meta name="description" content="Compare renting vs buying a home. See break-even point and total costs. Free, private, no sign-up.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"Rent vs Buy Calculator","url":"https://numbrly.cc/rent-vs-buy-calculator.html","description":"Compare the cost of renting versus buying a home with break-even analysis.","applicationCategory":"FinanceApplication","operatingSystem":"All"}
-</script>
-<script>
-(function(){
-  var stored = localStorage.getItem('theme');
-  if(stored) document.documentElement.setAttribute('data-theme',stored);
-  else if(window.matchMedia('(prefers-color-scheme:dark)').matches) document.documentElement.setAttribute('data-theme','dark');
-  window.toggleTheme = function(){
-    var cur = document.documentElement.getAttribute('data-theme');
-    var next = cur==='dark'?'light':'dark';
-    document.documentElement.setAttribute('data-theme',next);
-    localStorage.setItem('theme',next);
-    document.getElementById('themeIcon').innerHTML = next==='dark' ? '☀️' : '🌙';
-  };
-})();
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "Numbrly", "item": "https://numbrly.cc/"},
-    {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://numbrly.cc/#calculators"},
-    {"@type": "ListItem", "position": 3, "name": "Rent vs. Buy Calculator", "item": "https://numbrly.cc/rent-vs-buy-calculator.html"}
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Rent vs. Buy Calculator",
-  "url": "https://numbrly.cc/rent-vs-buy-calculator.html",
-  "description": "Compare the full cost of renting versus buying. Find your break-even point.",
-  "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Any",
-  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
-}
-</script>
+<script>(function(){var s=localStorage.getItem("theme");if(s)document.documentElement.setAttribute("data-theme",s);else if(window.matchMedia("(prefers-color-scheme:dark)").matches)document.documentElement.setAttribute("data-theme","dark");window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);localStorage.setItem("theme",n);document.getElementById("themeIcon").innerHTML=n==="dark"?"\u2600\uFE0F":"\uD83C\uDF19";};})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numbrly","item":"https://numbrly.cc/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://numbrly.cc/#calculators"},{"@type":"ListItem","position":3,"name":"Rent vs. Buy Calculator","item":"https://numbrly.cc/rent-vs-buy-calculator.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Rent vs. Buy Calculator","url":"https://numbrly.cc/rent-vs-buy-calculator.html","description":"Compare the full cost of renting vs buying. Find your break-even point.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is it better to rent or buy?","acceptedAnswer":{"@type":"Answer","text":"If you plan to stay 5+ years, buying is usually better. Under 3-5 years, renting is typically cheaper after closing costs."}},{"@type":"Question","name":"How long until buying is cheaper than renting?","acceptedAnswer":{"@type":"Answer","text":"In most U.S. cities, buying becomes cheaper than renting after 3-7 years when accounting for closing costs and equity buildup."}}]}</script>
 </head>
 <body>
-
-<nav class="nav">
-  <div class="nav-in">
-    <a href="index.html" class="logo">Num<span>brly</span></a>
-    <a href="index.html">Tools</a>
-    <a href="index.html#guides">Guides</a>
-    <a href="privacy-policy.html">Privacy</a><a href="search.html" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
-
+<nav class="nav"><div class="nav-in"><a href="index.html" class="logo">Num<span>brly</span></a><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy</a><a href="search.html" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
 <main class="main">
-  <div class="breadcrumb"><a href="index.html">Home</a> / Rent vs Buy Calculator</div>
+<div class="breadcrumb"><a href="index.html">Numbrly</a> / <a href="index.html#calculators">Calculators</a> / Rent vs. Buy Calculator</div>
+<section style="margin-top:20px"><h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F3D8; Rent vs. Buy Calculator</h1><p class="sec-desc" style="font-size:15px;max-width:700px">Compare the full cost of renting versus buying a home. See your break-even point, monthly costs, and which path saves you more — over any time period you choose.</p></section>
+<section><div class="card" style="max-width:640px"><div class="form-row"><div class="form-group"><label>Home Price ($)</label><input type="number" id="rvbPrice" value="400000" min="10000" step="1000"></div><div class="form-group"><label>Down Payment ($)</label><input type="number" id="rvbDown" value="80000" min="0" step="1000"></div></div><div class="form-row"><div class="form-group"><label>Mortgage Rate (%)</label><input type="number" id="rvbRate" value="6.5" min="0.1" max="20" step="0.1"></div><div class="form-group"><label>Monthly Rent ($)</label><input type="number" id="rvbRent" value="2000" min="100" step="50"></div></div><div class="form-row"><div class="form-group"><label>Years to Compare</label><select id="rvbYears"><option value="3">3 years</option><option value="5">5 years</option><option value="7">7 years</option><option value="10" selected>10 years</option><option value="15">15 years</option><option value="20">20 years</option></select></div></div><button class="btn btn-block" onclick="calcRentVsBuy()" style="margin-top:8px">Compare Costs</button></div>
+<div class="result" id="result" style="max-width:640px"><div class="result-num" id="rvbDiff">Save \</div><div class="result-label">buying vs. renting over this period</div><div class="result-grid"><div class="result-item"><div class="ri-val" id="rvbBuy">\</div><div class="ri-label">Total Cost (Buy)</div></div><div class="result-item"><div class="ri-val" id="rvbRentOut">\</div><div class="ri-label">Total Cost (Rent)</div></div><div class="result-item"><div class="ri-val" id="rvbMo">\</div><div class="ri-label">Monthly Mortgage</div></div></div></div></section>
 
-  <section style="margin-top:20px">
-    <div class="sec-title">&#x1F3E0; Rent vs. Buy Calculator</div>
-    <p class="sec-desc">The biggest financial decision you will make. See which path saves you more.</p>
+<section style="margin-top:40px"><h2>How to Use This Calculator</h2><ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px"><li><strong style="color:var(--text)">Enter the Home Price</strong> — the purchase price of the property you are considering.</li><li><strong style="color:var(--text)">Enter your Down Payment</strong> — the upfront cash you would put toward the purchase.</li><li><strong style="color:var(--text)">Set the Mortgage Rate</strong> — your expected interest rate.</li><li><strong style="color:var(--text)">Enter Monthly Rent</strong> — what you would pay if you continue renting.</li><li><strong style="color:var(--text)">Choose Years to Compare</strong> — longer periods generally favor buying.</li><li><strong style="color:var(--text)">Click Compare</strong> — see which path costs less overall.</li></ol></section>
 
-    <div class="card" style="max-width:680px">
-      <p style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:12px">&#x1F3E0; Buying a Home</p>
-      <div class="form-row">
-        <div class="form-group"><label>Home Price ($)</label><input type="number" id="homePrice" value="400000" min="1" step="5000"></div>
-        <div class="form-group"><label>Down Payment ($)</label><input type="number" id="down" value="80000" min="0" step="5000"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Mortgage Rate (%)</label><input type="number" id="mortRate" value="6.5" min="0.1" max="20" step="0.1"></div>
-        <div class="form-group"><label>Loan Term (years)</label><select id="term"><option value="30" selected>30</option><option value="15">15</option></select></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Property Tax Rate (%/year)</label><input type="number" id="propTax" value="1.2" min="0" max="5" step="0.1"></div>
-        <div class="form-group"><label>Home Insurance ($/year)</label><input type="number" id="insurance" value="1200" min="0" step="100"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Home Appreciation (%/year)</label><input type="number" id="appreciation" value="3" min="-5" max="15" step="0.5"></div>
-        <div class="form-group"><label>Maintenance (% of value/year)</label><input type="number" id="maintenance" value="1" min="0" max="5" step="0.1"></div>
-      </div>
+<section style="margin-top:40px"><h2>Example: 10 Years in a \,000 Home vs. \,000/Month Rent</h2><p style="color:var(--muted);font-size:14px;line-height:1.8">You are deciding between buying a <strong style="color:var(--text)">\,000 home with 20% down at 6.5%</strong> or continuing to rent at <strong style="color:var(--text)">\,000/month</strong>.</p><div class="highlight-box"><h4>&#x1F3E0; 10-Year Comparison</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>Monthly mortgage (P&amp;I): ~<strong style="color:var(--text)">\,022</strong></li><li>Total rent over 10 years: <strong style="color:var(--text)">\,000</strong></li><li>Key difference: buying builds <strong style="color:var(--green)">equity</strong>. Renting builds your landlord equity.</li></ul></div></section>
 
-      <p style="font-size:13px;font-weight:600;color:var(--muted);margin:18px 0 12px">&#x1F3E2; Renting</p>
-      <div class="form-row">
-        <div class="form-group"><label>Monthly Rent ($)</label><input type="number" id="rent" value="2000" min="1" step="100"></div>
-        <div class="form-group"><label>Annual Rent Increase (%)</label><input type="number" id="rentIncrease" value="3" min="0" max="15" step="0.5"></div>
-      </div>
+<section style="margin-top:40px"><h2>Why Use This Calculator?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px"><div class="card" style="padding:20px"><div class="tag">&#x2696; Unbiased Comparison</div><p style="font-size:13px;line-height:1.7">Hard numbers — no real estate agent spin or landlord bias.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4C5; Any Timeframe</div><p style="font-size:13px;line-height:1.7">Compare 3, 5, 7, 10, 15, or 20 years. Short timeframes often favor renting.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4B0; Clear Break-Even</div><p style="font-size:13px;line-height:1.7">See exactly when buying becomes cheaper than renting.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F510; 100% Private</div><p style="font-size:13px;line-height:1.7">All calculations run locally.</p></div></div></section>
 
-      <p style="font-size:13px;font-weight:600;color:var(--muted);margin:18px 0 12px">&#x23F3; Timeline</p>
-      <div class="form-row">
-        <div class="form-group"><label>How Long Will You Stay? (years)</label><input type="number" id="years" value="7" min="1" max="40" step="1"></div>
-        <div class="form-group" style="justify-content:flex-end"><button class="btn btn-block" onclick="calcRentBuy()" style="margin-top:auto">&#x1F4CA; Compare</button>
-      </div>
+<section style="margin-top:40px"><h2>Common Mistakes</h2><div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px"><p><strong style="color:var(--text)">&#x274C; Comparing mortgage to rent 1:1.</strong> Add property taxes, insurance, and maintenance. The real cost of owning is 30-50% higher than the mortgage alone.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Assuming rents stay flat.</strong> Rents typically increase 2-4% per year. Over 10 years, \,000 rent could become \,600+.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Ignoring transaction costs.</strong> Closing costs (2-5%) and agent commissions (5-6%) add up. If you might move within 3-5 years, renting wins.</p></div></section>
 
-      <ins class="adsbygoogle" style="display:block;text-align:center;margin:20px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+<section style="margin-top:40px"><h2>Frequently Asked Questions</h2><div style="margin-top:16px"><details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Is it better to rent or buy?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">If you plan to stay 5+ years, buying is usually better because you build equity and lock in housing costs. Under 3-5 years, renting is typically cheaper after accounting for closing costs and agent commissions.</div></details><details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How long until buying is cheaper?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">In most U.S. cities, buying becomes cheaper than renting after 3-7 years once you account for closing costs and equity buildup. Use different time periods in the calculator to find your specific break-even point.</div></details></div></section>
 
-      <div class="result" id="result">
-        <div class="result-num" id="winner">--</div>
-        <div class="result-label" id="winnerSub"></div>
-        <div class="result-grid" id="resultGrid"></div>
-        <div class="highlight-box" id="breakEvenBox" style="display:none"><h4>&#x1F4C5; Break-Even Point</h4><p id="breakEvenText"></p></div>
-      </div>
-    </div>
-  </section>
+<section style="margin-top:40px"><h2>Related Calculators</h2><div class="tool-grid" style="margin-top:16px"><a href="mortgage-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3E0;</div><h3>Mortgage Calculator</h3><p>See monthly payments, amortization, and extra payment savings.</p></a><a href="loan-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4B3;</div><h3>Loan Calculator</h3><p>Calculate payments for any type of loan.</p></a><a href="inflation-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4C9;</div><h3>Inflation Calculator</h3><p>See how inflation affects housing costs over decades.</p></a><a href="compound-interest-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4C8;</div><h3>Compound Interest</h3><p>Invest the money saved by renting — see it grow.</p></a></div></section>
 
-  <!-- Year by Year -->
-  <section id="schedule">
-    <div class="sec-title">&#x1F4CA; Year-by-Year Comparison</div>
-    <div class="card" style="overflow-x:auto;padding:8px 0 0 0">
-      <div id="scheduleTable" style="max-height:400px;overflow-y:auto"></div>
-    </div>
-  </section>
-
-  <section class="article-body">
-    <h2>Rent vs. Buy: How to Decide</h2>
-    <p>The rent vs. buy decision is about more than just the monthly payment. Buying builds equity, but comes with hidden costs. Renting offers flexibility, but you build zero wealth. Our calculator shows the full financial picture.</p>
-
-    <h3>When Buying Wins</h3>
-    <ul>
-      <li>You plan to stay <strong>5+ years</strong> in the same place</li>
-      <li>Home prices and rents are rising in your area</li>
-      <li>You can afford a 20% down payment (avoids PMI)</li>
-      <li>You value stability and the ability to customize your space</li>
-    </ul>
-
-    <h3>When Renting Wins</h3>
-    <ul>
-      <li>You might move within <strong>3 years</strong></li>
-      <li>You cannot comfortably afford a down payment + closing costs</li>
-      <li>You want flexibility — changing jobs, cities, or lifestyles</li>
-      <li>The rent-to-price ratio in your city favors renting</li>
-    </ul>
-
-    <h3>The 5% Rule</h3>
-    <p>A quick mental shortcut: multiply the home price by 5%, divide by 12. If monthly rent is lower than that number, renting is cheaper month-to-month. For a $400,000 home: 5% = $20,000/year = $1,667/month. If rent is below $1,667, you are likely better off renting in the short term.</p>
-  </section>
-
-
+<section style="margin-top:40px"><h2>Related Guides</h2><a href="guides/rent-or-buy-analysis.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>Rent or Buy? A Complete Financial Analysis</h4><div class="art-date">Updated June 2026 &middot; 6 min read</div></a><a href="guides/15-vs-30-year-mortgage.html" class="article-card"><div class="art-cat">Loans</div><h4>15 vs 30 Year Mortgage: Which Term Saves More?</h4><div class="art-date">Updated June 2026 &middot; 7 min read</div></a></section>
 </main>
-
-<footer>
-  <div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div>
-  <p>&copy; 2026 Numbrly. Not financial advice. For educational purposes only.</p>
-</footer>
-
-<script>
-function calcRentBuy(){
-  var price=parseFloat(document.getElementById('homePrice').value)||400000;
-  var down=parseFloat(document.getElementById('down').value)||80000;
-  var mortRate=parseFloat(document.getElementById('mortRate').value)||6.5;
-  var termYrs=parseInt(document.getElementById('term').value)||30;
-  var propTax=parseFloat(document.getElementById('propTax').value)||1.2;
-  var insurance=parseFloat(document.getElementById('insurance').value)||1200;
-  var appreciation=parseFloat(document.getElementById('appreciation').value)||3;
-  var maint=parseFloat(document.getElementById('maintenance').value)||1;
-  var rent=parseFloat(document.getElementById('rent').value)||2000;
-  var rentInc=parseFloat(document.getElementById('rentIncrease').value)||3;
-  var years=parseInt(document.getElementById('years').value)||7;
-
-  var loan=price-down;
-  var mr=mortRate/100/12;
-  var n=termYrs*12;
-  var monthlyMort=0;
-  if(loan>0&&mr>0) monthlyMort=loan*(mr*Math.pow(1+mr,n))/(Math.pow(1+mr,n)-1);
-
-  var totalBuy=down; // down payment is upfront
-  var totalRent=0;
-  var homeValue=price;
-  var loanBal=loan;
-  var breakEven=-1;
-  var fmt=function(v){return'$'+Math.round(v).toLocaleString();};
-
-  for(var y=1;y<=years;y++){
-    // Rent costs this year
-    totalRent+=rent*12;
-    rent*=(1+rentInc/100);
-
-    // Buy costs this year
-    var yrMort=monthlyMort*12;
-    var yrTax=homeValue*(propTax/100);
-    var yrInsurance=insurance;
-    var yrMaint=homeValue*(maint/100);
-    totalBuy+=yrMort+yrTax+yrInsurance+yrMaint;
-
-    // Update home value
-    homeValue*=(1+appreciation/100);
-
-    // Update loan balance (approximate)
-    for(var mm=0;mm<12;mm++){
-      var ip=loanBal*mr;
-      var pp=monthlyMort-ip;
-      if(pp>loanBal)pp=loanBal;
-      loanBal-=pp;
-      if(loanBal<0)loanBal=0;
-    }
-
-    // Check break-even: buying net worth > renting
-    var buyEquity=homeValue-loanBal;
-    var buyNetCost=totalBuy-buyEquity;
-    if(breakEven<0 && buyNetCost<totalRent) breakEven=y;
-  }
-
-  var buyEquity=homeValue-loanBal;
-  var buyNet=totalBuy-buyEquity;
-  var winner=buyNet<totalRent?'Buying':'Renting';
-  var diff=Math.abs(buyNet-totalRent);
-
-  document.getElementById('winner').textContent=winner+' Wins';
-  document.getElementById('winnerSub').textContent=winner==='Buying'?'Over '+years+' years, buying saves you '+fmt(diff):'Over '+years+' years, renting saves you '+fmt(diff);
-  document.getElementById('resultGrid').innerHTML=
-    '<div class="result-item"><div class="ri-val">'+fmt(totalBuy)+'</div><div class="ri-label">Buy: Total Cost</div></div>'+
-    '<div class="result-item"><div class="ri-val">'+fmt(buyEquity)+'</div><div class="ri-label">Buy: Home Equity</div></div>'+
-    '<div class="result-item"><div class="ri-val" style="color:var(--green)">'+fmt(buyNet)+'</div><div class="ri-label">Buy: Net Cost</div></div>'+
-    '<div class="result-item"><div class="ri-val">'+fmt(totalRent)+'</div><div class="ri-label">Rent: Total Paid</div></div>'+
-    '<div class="result-item"><div class="ri-val">$0</div><div class="ri-label">Rent: Equity Built</div></div>'+
-    '<div class="result-item"><div class="ri-val">'+fmt(diff)+'</div><div class="ri-label">Difference</div></div>';
-
-  var beBox=document.getElementById('breakEvenBox');
-  if(breakEven>0&&breakEven<=years){
-    beBox.style.display='block';
-    document.getElementById('breakEvenText').textContent='Buying becomes cheaper than renting after approximately '+breakEven+' years. After this point, every additional year of ownership widens the gap in favor of buying.';
-  }else if(breakEven<0){
-    beBox.style.display='block';
-    document.getElementById('breakEvenText').textContent='Buying does not break even within '+years+' years. If you plan to move sooner, renting is the smarter financial choice.';
-  }
-
-  document.getElementById('result').classList.add('show');
-
-  // year by year table
-  var tbl='<table class="data-table"><thead><tr><th>Year</th><th>Rent Paid</th><th>Buy: Cost</th><th>Buy: Equity</th><th>Home Value</th><th>Winner</th></tr></thead><tbody>';
-  var hv=price,lb=loan,r2=rent,tr=0,tb=down;
-  for(var y=1;y<=years;y++){
-    tr+=r2*12;r2*=(1+rentInc/100);
-    var ym=monthlyMort*12,yt=hv*(propTax/100),yi=insurance,ymt=hv*(maint/100);
-    tb+=ym+yt+yi+ymt;
-    hv*=(1+appreciation/100);
-    for(var mm=0;mm<12;mm++){var ip2=lb*mr;var pp2=monthlyMort-ip2;if(pp2>lb)pp2=lb;lb-=pp2;if(lb<0)lb=0;}
-    var eq=hv-lb,bn=tb-eq;
-    var w=bn<tr?'&#x1F3E0; Buy':'&#x1F3E2; Rent';
-    tbl+='<tr><td>'+y+'</td><td>'+fmt(tr)+'</td><td>'+fmt(tb)+'</td><td>'+fmt(eq)+'</td><td>'+fmt(hv)+'</td><td>'+w+'</td></tr>';
-  }
-  tbl+='</tbody></table>';
-  document.getElementById('scheduleTable').innerHTML=tbl;
-  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
-}
-document.addEventListener('DOMContentLoaded',calcRentBuy);
-</script>
-
-<div style="margin-top:40px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius)">
-<h3 style="font-size:16px;margin-bottom:14px">&#x1F50D; Related Calculators &amp; Guides</h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px">
-  <a href="mortgage-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F3E0; Mortgage Calculator</a>
-  <a href="compound-interest-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4C8; Compound Interest</a>
-  <a href="roi-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4C8; ROI Calculator</a>
-  <a href="loan-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4B3; Loan Calculator</a>
-  <a href="savings-goal-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F3AF; Savings Goal</a>
-  <a href="guides/15-vs-30-year-mortgage.html" style="color:var(--pri);text-decoration:none">&#x1F4D6; 15 vs 30 Year Mortgage</a>
-</div></div>
-<script>
-// Auto-save inputs
-(function(){
-  var page = location.pathname.split('/').pop()||'index';
-  var inputs = document.querySelectorAll('input[id], select[id]');
-  // Restore saved values
-  try{
-    var saved = JSON.parse(localStorage.getItem('Numbrly_'+page)||'{}');
-    inputs.forEach(function(el){
-      if(saved[el.id]!==undefined) el.value = saved[el.id];
-    });
-  }catch(e){}
-  // Save on change
-  inputs.forEach(function(el){
-    el.addEventListener('input',function(){
-      try{
-        var all={};
-        inputs.forEach(function(e){all[e.id]=e.value;});
-        localStorage.setItem('Numbrly_'+page,JSON.stringify(all));
-      }catch(e){}
-    });
-  });
-})();
-
-// Copy link
-function copyPageLink(){
-  navigator.clipboard.writeText(location.href).then(function(){
-    var btn = document.getElementById('shareBtn');
-    btn.innerHTML = 'u2714 Copied!';
-    btn.classList.add('copied');
-    setTimeout(function(){btn.innerHTML = '🔗 Copy Link';btn.classList.remove('copied');},2000);
-  });
-}
-</script>
-
-
-</body>
-</html>
+<footer><div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. All calculators are for educational purposes only. Not financial advice.</p></footer>
+<script>function calcRentVsBuy(){var homePrice=parseFloat(document.getElementById("rvbPrice").value)||400000;var down=parseFloat(document.getElementById("rvbDown").value)||80000;var rate=parseFloat(document.getElementById("rvbRate").value)||6.5;var yrs=parseInt(document.getElementById("rvbYears").value)||10;var rent=parseFloat(document.getElementById("rvbRent").value)||2000;var loan=homePrice-down;var mr=rate/100/12;var n=yrs*12;var mo=loan>0?loan*(mr*Math.pow(1+mr,n))/(Math.pow(1+mr,n)-1):0;var buyTotal=mo*n+down;var rentTotal=rent*n;var diff=rentTotal-buyTotal;document.getElementById("rvbBuy").textContent="\$"+buyTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("rvbRentOut").textContent="\$"+rentTotal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("rvbDiff").textContent=(diff>0?"Save \$":"Lose \$")+Math.abs(diff).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("rvbMo").textContent="\$"+mo.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("result").classList.add("show");}</script>
+<script>(function(){var pg=location.pathname.split("/").pop()||"rent-vs-buy";var ins=document.querySelectorAll("input[id],select[id]");try{var sv=JSON.parse(localStorage.getItem("Numbrly_"+pg)||"{}");ins.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(x){}ins.forEach(function(e){e.addEventListener("input",function(){try{var a={};ins.forEach(function(x){a[x.id]=x.value;});localStorage.setItem("Numbrly_"+pg,JSON.stringify(a));}catch(y){}});});})();document.addEventListener("DOMContentLoaded",function(){calcRentVsBuy();});</script>
+</body></html>
