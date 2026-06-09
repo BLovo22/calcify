@@ -1,0 +1,11 @@
+{
+  "name": "numbrly",
+  "version": "1.0.0",
+  "description": "Numbrly — Free Financial Calculators & Money Guides",
+  "private": true,
+  "scripts": {
+    "build": "node _build/build.js"
+  },
+  "keywords": ["financial-calculators", "mortgage", "compound-interest", "retirement"],
+  "license": "UNLICENSED"
+}
