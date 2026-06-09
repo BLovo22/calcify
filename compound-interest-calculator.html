@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta property="og:title" content="Compound Interest Calculator — See Your Money Grow | Numbrly">
-<meta property="og:description" content="Calculate how your investments grow with compound interest. Year-by-year breakdown, 25 vs 35 comparison, free and private.">
+<meta property="og:title" content="Compound Interest Calculator — See Your Money Grow Over Time | Numbrly">
+<meta property="og:description" content="Calculate how your investments grow with compound interest. See the difference between starting now vs. waiting, with monthly contributions and different compounding frequencies.">
 <meta property="og:url" content="https://numbrly.cc/compound-interest-calculator.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Compound Interest Calculator — See Your Money Grow | Numbrly">
-<meta name="twitter:description" content="Calculate how your investments grow with compound interest. Year-by-year breakdown, 25 vs 35 comparison, free and private.">
+<meta name="twitter:title" content="Compound Interest Calculator — See Your Money Grow Over Time | Numbrly">
+<meta name="twitter:description" content="Calculate how your investments grow with compound interest. See the difference between starting now vs. waiting, with monthly contributions and different compounding frequencies.">
 <link rel="canonical" href="https://numbrly.cc/compound-interest-calculator.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Compound Interest Calculator — See Your Money Grow | Numbrly</title>
-<meta name="description" content="Calculate how your investments grow with compound interest. Compare starting early vs. late, see year-by-year growth, and plan your financial future.">
+<title>Compound Interest Calculator — See Your Money Grow Over Time | Numbrly</title>
+<meta name="description" content="Calculate how your investments grow with compound interest. See the difference between starting now vs. waiting, with monthly contributions and different compounding frequencies. Free, private, no sign-up.">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
 <script>
@@ -26,11 +26,10 @@
     var next = cur==='dark'?'light':'dark';
     document.documentElement.setAttribute('data-theme',next);
     localStorage.setItem('theme',next);
-    document.getElementById('themeIcon').innerHTML = next==='dark' ? '☀️' : '🌙';
+    document.getElementById('themeIcon').innerHTML = next==='dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
   };
 })();
 </script>
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -48,10 +47,22 @@
   "@type": "WebApplication",
   "name": "Compound Interest Calculator",
   "url": "https://numbrly.cc/compound-interest-calculator.html",
-  "description": "See how your money grows over time with compound interest. Compare starting early vs. late.",
+  "description": "Calculate how your investments grow with compound interest. Compare starting early vs. late with monthly contributions and different compounding frequencies.",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Any",
   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How does compound interest work?", "acceptedAnswer": {"@type": "Answer", "text": "Compound interest means you earn interest on previously earned interest. If you invest \,000 at 8%, after year one you have \,800. In year two, you earn 8% on \,800 — not just the original \,000. Over decades, this snowball effect turns modest monthly contributions into large portfolios."}},
+    {"@type": "Question", "name": "What is the difference between simple and compound interest?", "acceptedAnswer": {"@type": "Answer", "text": "Simple interest is calculated only on the original principal. Compound interest is calculated on the principal plus all accumulated interest. \,000 at 8% simple interest for 30 years yields \,000. With compound interest, it yields \,627."}},
+    {"@type": "Question", "name": "How much should I invest each month?", "acceptedAnswer": {"@type": "Answer", "text": "Aim to invest 15-20% of your gross income, including employer matches. If that is not possible, start with whatever you can — even \/month — and increase by 1% each year. The habit of investing regularly matters more than the starting amount."}},
+    {"@type": "Question", "name": "What is better: monthly or annual compounding?", "acceptedAnswer": {"@type": "Answer", "text": "Monthly compounding yields slightly higher returns because interest is added to your balance 12 times per year instead of once. Over 30 years, monthly compounding on \/month at 8% yields about \,000 more than annual compounding."}}
+  ]
 }
 </script>
 </head>
@@ -61,117 +72,107 @@
     <a href="index.html" class="logo">Num<span>brly</span></a>
     <a href="index.html">Tools</a>
     <a href="index.html#guides">Guides</a>
-    <a href="privacy-policy.html">Privacy</a><a href="search.html" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="search.html" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a>
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button>
+  </div>
+</nav>
 <main class="main">
-  <div class="breadcrumb"><a href="index.html">Home</a> / Compound Interest Calculator</div>
+  <div class="breadcrumb"><a href="index.html">Numbrly</a> / <a href="index.html#calculators">Calculators</a> / Compound Interest Calculator</div>
+  
   <section style="margin-top:20px">
-    <div class="sec-title">&#x1F4C8; Compound Interest Calculator</div>
-    <p class="sec-desc">See the magic of compound interest. Enter your starting amount, monthly contribution, and time horizon.</p>
-    <div class="card" style="max-width:640px">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Initial Investment ($)</label>
-          <input type="number" id="initial" value="10000" min="0" step="500">
-        </div>
-        <div class="form-group">
-          <label>Monthly Contribution ($)</label>
-          <input type="number" id="monthly" value="500" min="0" step="50">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Annual Return (%)</label>
-          <input type="number" id="returnRate" value="8" min="0.1" max="50" step="0.1">
-        </div>
-        <div class="form-group">
-          <label>Years to Grow</label>
-          <input type="number" id="years" value="30" min="1" max="60" step="1">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Compound Frequency</label>
-          <select id="frequency">
-            <option value="12" selected>Monthly</option>
-            <option value="4">Quarterly</option>
-            <option value="1">Annually</option>
-          </select>
-        </div>
-        <div class="form-group" style="justify-content:flex-end">
-          <button class="btn btn-block" onclick="calcCompound()" style="margin-top:auto">&#x1F4CA; Calculate</button>
-        
-      </div>
-      <ins class="adsbygoogle"
-     style="display:block;text-align:center;margin:20px 0"
-     data-ad-client="ca-pub-4970468814214538"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      <div class="result" id="result">
-        <div class="result-num" id="finalAmt">--</div>
-        <div class="result-label">Final Balance</div>
-        <div class="result-grid">
-          <div class="result-item"><div class="ri-val" id="totalContrib">--</div><div class="ri-label">Total Contributions</div></div>
-          <div class="result-item"><div class="ri-val" id="totalEarnings">--</div><div class="ri-label">Investment Earnings</div></div>
-          <div class="result-item"><div class="ri-val" id="multiplier">--</div><div class="ri-label">Growth Multiplier</div></div>
-        </div>
-      </div>
-    </div>
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F4C8; Compound Interest Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:700px">See how your money grows over time with the power of compound interest. Compare different starting ages, monthly contributions, and compounding frequencies — instant results, completely private.</p>
   </section>
-  <!-- Comparison: Start at 25 vs 35 -->
-  <section>
-    <div class="sec-title">&#x1F440; Start at 25 vs. Start at 35</div>
-    <p class="sec-desc">Same monthly contribution, same return, different starting age. The gap is staggering.</p>
-    <div class="card" style="overflow-x:auto">
-      <div id="comparisonTable"></div>
-    </div>
-  </section>
-  <!-- Year by year -->
-  <section>
-    <div class="sec-title">&#x1F4C5; Year-by-Year Growth</div>
-    <p class="sec-desc">Watch your balance compound over time.</p>
-    <div class="card" style="overflow-x:auto;padding:8px 0 0 0">
-      <div id="yearTable" style="max-height:400px;overflow-y:auto"></div>
-    </div>
-  </section>
-  <!-- Guide -->
-  <section class="article-body">
-    <h2>Why Compound Interest Is the 8th Wonder of the World</h2>
-    <p>Albert Einstein reportedly called compound interest "the eighth wonder of the world." Whether he actually said it or not, the math doesn't lie: compounding transforms modest savings into life-changing wealth over time.</p>
-    <h3>The Start Early vs. Start Late Dilemma</h3>
-    <p>Meet two investors:</p>
-    <ul>
-      <li><strong>Alex</strong> starts investing $500/month at age 25 and stops contributing at age 35 &mdash; investing for just 10 years. Total contributions: $60,000.</li>
-      <li><strong>Jordan</strong> starts at age 35 and invests $500/month all the way to age 65 &mdash; investing for 30 years. Total contributions: $180,000.</li>
-    </ul>
-    <p>At 8% annual return, by age 65: <strong>Alex has ~$1,000,000</strong> while <strong>Jordan has ~$750,000</strong>. Alex contributed one-third as much but ended up with more. That is the power of starting early.</p>
-    <h3>How to Use This Calculator</h3>
-    <p>Start with your current savings as "Initial Investment." Add what you can afford monthly. The default 8% reflects historical S&P 500 average returns (before inflation). Be realistic &mdash; don't assume 15% returns. A conservative 6-7% after inflation is a better planning number.</p>
-    <h3>The Rule of 72</h3>
-    <p>Want a quick estimate? Divide 72 by your annual return rate. At 8%, your money doubles every 9 years (72 / 8 = 9). At 10%, every 7.2 years. This mental shortcut helps you think in decades, not days.</p>
-  <div style="margin-top:40px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius)">
-<h3 style="font-size:16px;margin-bottom:14px">&#x1F50D; Related Calculators &amp; Guides</h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px">
-  <a href="mortgage-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F3E0; Mortgage Calculator</a>
-  <a href="compound-interest-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4C8; Compound Interest Calculator</a>
-  <a href="roi-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4C8; ROI Calculator</a>
-  <a href="loan-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F4B3; Loan Calculator</a>
-  <a href="savings-goal-calculator.html" style="color:var(--pri);text-decoration:none">&#x1F3AF; Savings Goal Calculator</a>
-  <a href="guides/pay-off-mortgage-early.html" style="color:var(--pri);text-decoration:none">&#x1F4D6; Pay Off Mortgage Early?</a>
-  <a href="guides/power-of-compound-interest.html" style="color:var(--pri);text-decoration:none">&#x1F4D6; Power of Compound Interest</a>
-  <a href="guides/15-vs-30-year-mortgage.html" style="color:var(--pri);text-decoration:none">&#x1F4D6; 15 vs 30 Year Mortgage</a>
-  <a href="guides/how-much-to-retire.html" style="color:var(--pri);text-decoration:none">&#x1F4D6; How Much to Retire?</a>
-</div></div>
-</section>
 
+  <section>
+    <div class="card" style="max-width:640px">
+      <div class="form-row"><div class="form-group"><label>Initial Investment ($)</label><input type="number" id="initial" value="10000" min="0" step="500"></div><div class="form-group"><label>Monthly Contribution ($)</label><input type="number" id="monthly" value="500" min="0" step="50"></div></div>
+      <div class="form-row"><div class="form-group"><label>Annual Return (%)</label><input type="number" id="returnRate" value="8" min="0.1" max="50" step="0.1"></div><div class="form-group"><label>Years to Grow</label><input type="number" id="years" value="30" min="1" max="60" step="1"></div></div>
+      <div class="form-row"><div class="form-group"><label>Compound Frequency</label><select id="frequency"><option value="12" selected>Monthly</option><option value="4">Quarterly</option><option value="1">Annually</option></select></div></div>
+      <button class="btn btn-block" onclick="calcCompound()" style="margin-top:8px">Calculate Growth</button>
+    </div>
+    <div class="result" id="result" style="max-width:640px">
+      <div class="result-num" id="futureValue"></div>
+      <div class="result-label">total value at the end of the period</div>
+      <div class="result-grid">
+        <div class="result-item"><div class="ri-val" id="totalContrib"></div><div class="ri-label">Total Contributions</div></div>
+        <div class="result-item"><div class="ri-val" id="totalEarnings"></div><div class="ri-label">Total Earnings</div></div>
+        <div class="result-item"><div class="ri-val" id="earningsPct">0%</div><div class="ri-label">From Earnings</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>How to Use the Compound Interest Calculator</h2>
+    <ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px">
+      <li><strong style="color:var(--text)">Enter your Initial Investment</strong> — the lump sum you are starting with today.</li>
+      <li><strong style="color:var(--text)">Enter your Monthly Contribution</strong> — how much you plan to add every month going forward.</li>
+      <li><strong style="color:var(--text)">Set the Annual Return</strong> — 7-8% is typical for the stock market. Use 4-5% for conservative estimates.</li>
+      <li><strong style="color:var(--text)">Choose Years to Grow</strong> — the longer, the more dramatic the compounding effect. Try 10, 20, and 30 years.</li>
+      <li><strong style="color:var(--text)">Pick a Compound Frequency</strong> — monthly compounding gives the highest return because interest earns interest faster.</li>
+      <li><strong style="color:var(--text)">Click Calculate</strong> — see your future value, total contributions, and how much came from earnings alone.</li>
+    </ol>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Example: Starting at 25 vs. 35</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">Two investors both put away \/month at 8% return. The only difference? When they start.</p>
+    <div class="card" style="margin:16px 0;padding:20px;background:var(--bg)"><h4 style="font-size:14px;margin-bottom:8px">&#x1F31F; Emma starts at 25 (40 years to grow)</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>Total contributed: <strong style="color:var(--text)">\,000</strong></li><li>Final balance: <strong style="color:var(--text)">~\,745,000</strong></li><li>That is <strong style="color:var(--text)">\.5 million in pure earnings</strong> — 86% of the total</li></ul></div>
+    <div class="card" style="margin:16px 0;padding:20px;background:var(--bg)"><h4 style="font-size:14px;margin-bottom:8px">&#x1F464; Mike starts at 35 (30 years to grow)</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>Total contributed: <strong style="color:var(--text)">\,000</strong></li><li>Final balance: <strong style="color:var(--text)">~\,000</strong></li><li>Waiting 10 years costs him <strong style="color:var(--text)">\,000,000</strong> in lost growth</li></ul></div>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">The lesson: the single most important factor in compound interest is <strong style="color:var(--text)">time</strong>. Start as early as you possibly can.</p>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Why Use This Calculator?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+      <div class="card" style="padding:20px"><div class="tag">&#x23F0; Visualize Time</div><p style="font-size:13px;line-height:1.7">See how 10 extra years of compounding can add hundreds of thousands to your nest egg.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F4CA; Compare Scenarios</div><p style="font-size:13px;line-height:1.7">Adjust contributions, returns, and time periods to find the path that hits your goal.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F4A1; Understand Earnings</div><p style="font-size:13px;line-height:1.7">See what percentage of your final balance comes from your own contributions vs. market growth.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F510; 100% Private</div><p style="font-size:13px;line-height:1.7">All calculations run in your browser. No data is ever sent to a server.</p></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Common Mistakes When Projecting Growth</h2>
+    <div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px">
+      <p><strong style="color:var(--text)">&#x274C; Underestimating the power of starting early.</strong> Waiting just 10 years can cost you over \,000,000 in lost compounding. Even if you start with \/month, start now — you can always increase later.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Using unrealistic return expectations.</strong> 12%+ annual returns are not sustainable long-term. The S&P 500 has historically returned about 7-8% after inflation. Use conservative numbers and be pleasantly surprised.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Forgetting about fees.</strong> A 1% management fee may not sound like much, but over 30 years it can eat 25-30% of your returns. Always check expense ratios.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Ignoring inflation.</strong> \,000,000 in 30 years will not buy what \,000,000 buys today. Use our Inflation Calculator to see your purchasing power in real terms.</p>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      <details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How does compound interest work?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Compound interest means you earn interest on previously earned interest. If you invest \,000 at 8%, after year one you have \,800. In year two, you earn 8% on \,800 — not just the original \,000. Over decades, this snowball effect turns modest monthly contributions into large portfolios.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is the difference between simple and compound interest?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Simple interest is calculated only on the original principal. Compound interest is calculated on the principal plus all accumulated interest. \,000 at 8% simple interest for 30 years yields \,000. With compound interest, it yields \,627.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How much should I invest each month?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Aim to invest 15-20% of your gross income, including employer matches. If that is not possible, start with whatever you can — even \/month — and increase by 1% each year. The habit of investing regularly matters more than the starting amount.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Which is better: monthly or annual compounding?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Monthly compounding yields slightly higher returns because interest is added to your balance 12 times per year instead of once. Over 30 years, monthly compounding on \/month at 8% yields about \,000 more than annual compounding.</div></details>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Calculators</h2>
+    <div class="tool-grid" style="margin-top:16px">
+      <a href="roi-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4CA;</div><h3>ROI Calculator</h3><p>Calculate return on investment and compare different opportunities side by side.</p></a>
+      <a href="inflation-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4C9;</div><h3>Inflation Calculator</h3><p>See how inflation affects the real purchasing power of your future savings.</p></a>
+      <a href="retirement-calculator.html" class="tool-card"><div class="tool-icon">&#x1F474;</div><h3>Retirement Planner</h3><p>Project your nest egg and see if you are on track for a comfortable retirement.</p></a>
+      <a href="savings-goal-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3AF;</div><h3>Savings Goal Calculator</h3><p>Set a target and find out exactly how much to save each month to reach it.</p></a>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Guides</h2>
+    <a href="guides/power-of-compound-interest.html" class="article-card"><div class="art-cat">Investing</div><h4>The Power of Compound Interest: Starting at 25 vs. 35</h4><div class="art-date">Updated June 2026 &middot; 6 min read</div></a>
+    <a href="guides/average-stock-market-return.html" class="article-card"><div class="art-cat">Investing</div><h4>What Is the Average Stock Market Return?</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a>
+    <a href="guides/simple-vs-compound-interest.html" class="article-card"><div class="art-cat">Investing</div><h4>Simple vs Compound Interest: What is the Difference?</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a>
+  </section>
 </main>
 <footer>
-  <div class="footer-links">
-    <a href="index.html">Tools</a>
-    <a href="index.html#guides">Guides</a>
-    <a href="privacy-policy.html">Privacy Policy</a>
-  </div>
-  <p>&copy; 2026 Numbrly. Not financial advice. Past performance does not guarantee future results.</p>
+  <div class="footer-links"><a href="index.html">Tools</a><a href="index.html#guides">Guides</a><a href="privacy-policy.html">Privacy Policy</a></div>
+  <p>&copy; 2026 Numbrly. All calculators are for educational purposes only. Not financial advice.</p>
 </footer>
 <script>
 function calcCompound(){
@@ -232,40 +233,25 @@ function calcFVAtAge(startAge, endAge, monthly, annualRate){
 document.addEventListener('DOMContentLoaded',function(){calcCompound();});
 </script>
 <script>
-// Auto-save inputs
+</script>
+<script>
 (function(){
-  var page = location.pathname.split('/').pop()||'index';
+  var page = location.pathname.split('/').pop()||'compound-interest';
   var inputs = document.querySelectorAll('input[id], select[id]');
-  // Restore saved values
   try{
     var saved = JSON.parse(localStorage.getItem('Numbrly_'+page)||'{}');
-    inputs.forEach(function(el){
-      if(saved[el.id]!==undefined) el.value = saved[el.id];
-    });
+    inputs.forEach(function(el){if(saved[el.id]!==undefined) el.value = saved[el.id];});
   }catch(e){}
-  // Save on change
   inputs.forEach(function(el){
     el.addEventListener('input',function(){
       try{
-        var all={};
-        inputs.forEach(function(e){all[e.id]=e.value;});
+        var all={};inputs.forEach(function(e){all[e.id]=e.value;});
         localStorage.setItem('Numbrly_'+page,JSON.stringify(all));
       }catch(e){}
     });
   });
 })();
-
-// Copy link
-function copyPageLink(){
-  navigator.clipboard.writeText(location.href).then(function(){
-    var btn = document.getElementById('shareBtn');
-    btn.innerHTML = 'u2714 Copied!';
-    btn.classList.add('copied');
-    setTimeout(function(){btn.innerHTML = '🔗 Copy Link';btn.classList.remove('copied');},2000);
-  });
-}
+document.addEventListener('DOMContentLoaded',function(){calcCompound();});
 </script>
-
-
 </body>
 </html>
