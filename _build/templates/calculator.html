@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta property="og:title" content="{{OG_TITLE}}">
+<meta property="og:description" content="{{OG_DESC}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{OG_TITLE}}">
+<meta name="twitter:description" content="{{OG_DESC}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<link rel="icon" type="image/svg+xml" href="{{FAVICON_PATH}}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{SEO_TITLE}}</title>
+<meta name="description" content="{{META_DESC}}">
+<link rel="stylesheet" href="{{CSS_PATH}}">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s)document.documentElement.setAttribute("data-theme",s);else if(window.matchMedia("(prefers-color-scheme:dark)").matches)document.documentElement.setAttribute("data-theme","dark");window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);localStorage.setItem("theme",n);document.getElementById("themeIcon").innerHTML=n==="dark"?"\u2600\uFE0F":"\uD83C\uDF19";};})();</script>
+{{SCHEMA_BREADCRUMB}}
+{{SCHEMA_WEBAPP}}
+{{SCHEMA_FAQ}}
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-in">
+    <a href="{{HOME_PATH}}" class="logo">Num<span>brly</span></a>
+    <a href="{{HOME_PATH}}">Tools</a>
+    <a href="{{HOME_PATH}}#guides">Guides</a>
+    <a href="{{PRIVACY_PATH}}">Privacy</a>
+    <a href="{{SEARCH_PATH}}" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a>
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="breadcrumb">
+    <a href="{{HOME_PATH}}">Numbrly</a> / <a href="{{HOME_PATH}}#calculators">Calculators</a> / {{H1}}
+  </div>
+
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">{{ICON}} {{H1}}</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:700px">{{INTRO}}</p>
+  </section>
+
+  <section>
+    <div class="card" style="max-width:640px">
+      {{INPUTS}}
+      <button class="btn btn-block" onclick="{{CALC_FN}}()" style="margin-top:8px">Calculate</button>
+    </div>
+    <div class="result" id="result" style="max-width:640px">
+      {{RESULT_HTML}}
+    </div>
+    {{SCHEDULE_HTML}}
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>How to Use This Calculator</h2>
+    <ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px">
+      {{HOWTO_ITEMS}}
+    </ol>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Example{{EXAMPLE_TITLE_SUFFIX}}</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">{{EXAMPLE_SCENARIO}}</p>
+    <div class="highlight-box">
+      <h4>{{EXAMPLE_BOX_TITLE}}</h4>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.8">
+        {{EXAMPLE_BULLETS}}
+      </ul>
+    </div>
+    {{EXAMPLE_AFTER}}
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Why Use This Calculator?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+      {{BENEFITS}}
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Common Mistakes</h2>
+    <div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px">
+      {{MISTAKES}}
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      {{FAQ_HTML}}
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Calculators</h2>
+    <div class="tool-grid" style="margin-top:16px">
+      {{RELATED_CALCS}}
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Guides</h2>
+    {{RELATED_GUIDES}}
+  </section>
+</main>
+
+<footer>
+  <div class="footer-links">
+    <a href="{{HOME_PATH}}">Tools</a>
+    <a href="{{HOME_PATH}}#guides">Guides</a>
+    <a href="{{PRIVACY_PATH}}">Privacy Policy</a>
+  </div>
+  <p>&copy; 2026 Numbrly. All calculators are for educational purposes only. Not financial advice.</p>
+</footer>
+
+<script>{{CALC_FN_BODY}}</script>
+<script>
+(function(){
+  var pg = "{{SLUG}}";
+  var ins = document.querySelectorAll("input[id], select[id]");
+  try {
+    var sv = JSON.parse(localStorage.getItem("Numbrly_" + pg) || "{}");
+    ins.forEach(function(e) { if (sv[e.id] !== undefined) e.value = sv[e.id]; });
+  } catch(x) {}
+  ins.forEach(function(e) {
+    e.addEventListener("input", function() {
+      try {
+        var a = {};
+        ins.forEach(function(x) { a[x.id] = x.value; });
+        localStorage.setItem("Numbrly_" + pg, JSON.stringify(a));
+      } catch(y) {}
+    });
+  });
+})();
+document.addEventListener("DOMContentLoaded", function() { {{CALC_FN}}(); });
+</script>
+</body>
+</html>

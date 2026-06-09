@@ -1,0 +1,27 @@
+{
+  "_schema_version": "1.0",
+  "guides": [
+    {
+      "slug": "pay-off-mortgage-early",
+      "title": "Should You Pay Off Your Mortgage Early?",
+      "h1": "Should You Pay Off Your Mortgage Early?",
+      "category": "mortgage",
+      "description": "Paying off your mortgage early can save thousands in interest — but is it always the right move? We break down the math, tradeoffs, and when it makes sense.",
+      "ogDescription": "Weigh the math and emotions of paying off your mortgage early. Real numbers, tradeoffs, and when it makes sense.",
+      "datePublished": "2026-06-01",
+      "dateModified": "2026-06-09",
+      "dateHuman": "June 2026",
+      "readTime": 8,
+      "introduction": "<p>Few financial questions spark as much debate as this one. On one side, the math often says: invest the extra cash. On the other, the emotional weight of being debt-free is undeniable. Let us walk through both sides — with real numbers and clear tradeoffs.</p>",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "faq": [
+        {"q": "Is it worth paying off my mortgage early?", "a": "It depends on your interest rate. Above 5%, paying early gives a guaranteed return equal to your rate. Below 4%, you may earn more by investing."},
+        {"q": "How much can I save by paying an extra $200/month?", "a": "On a $320,000 mortgage at 6.5% for 30 years, adding $200/month saves approximately $100,000 in interest and pays off the loan 6 years early."}
+      ],
+      "relatedCalculators": ["mortgage-calculator", "compound-interest-calculator", "roi-calculator", "loan-calculator"],
+      "relatedArticles": ["15-vs-30-year-mortgage", "how-to-calculate-mortgage-payment", "power-of-compound-interest"],
+      "adUnit": "<ins class=\"adsbygoogle\" style=\"display:block;text-align:center;margin:28px 0\" data-ad-client=\"ca-pub-4970468814214538\" data-ad-format=\"auto\" data-full-width-responsive=\"true\"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>"
+    }
+  ]
+}
