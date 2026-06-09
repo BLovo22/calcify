@@ -24,6 +24,40 @@ function loadHeader() {
   return fs.readFileSync(path.join(TPL_DIR, "header.html"), "utf8").trim();
 }
 
+function escapeHTML(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function sortGuidesNewestFirst(guides) {
+  return [...guides].sort((a, b) => {
+    return String(b.datePublished || "").localeCompare(String(a.datePublished || ""));
+  });
+}
+
+function guideCategoryLabel(guide, uppercase) {
+  const label = String(guide.category || "general").replace(/-/g, " ");
+  return uppercase ? label.toUpperCase() : label.replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function buildHomepageGuideCard(guide) {
+  return '    <a href="/guides/' + guide.slug + '.html" class="group bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">\n' +
+    '      <span class="inline-block text-xs font-semibold text-pri bg-pri-light px-2 py-1 rounded mb-3">' + escapeHTML(guideCategoryLabel(guide, true)) + '</span>\n' +
+    '      <h4 class="font-bold mb-2 group-hover:text-pri transition">' + escapeHTML(guide.h1 || guide.title) + '</h4>\n' +
+    '      <p class="text-gray-500 text-sm">Updated ' + escapeHTML(guide.dateHuman || "") + ' &middot; ' + escapeHTML(guide.readTime || "") + ' min read</p>\n' +
+    '    </a>';
+}
+
+function buildGuideIndexCard(guide) {
+  return '<a href="' + guide.slug + '.html" class="article-card"><div class="art-cat">' +
+    escapeHTML(guideCategoryLabel(guide, false)) + '</div><h4>' +
+    escapeHTML(guide.h1 || guide.title) + '</h4><div class="art-date">' +
+    escapeHTML(guide.dateHuman || "") + ' &middot; ' + escapeHTML(guide.readTime || "") + ' min read</div></a>';
+}
+
 // ─── UNIFIED DARK MODE SCRIPT ─────────────────────────
 const NEW_THEME_SCRIPT = `(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"\u2600\uFE0F":"\uD83C\uDF19";};})();`;
 
@@ -101,27 +135,81 @@ function buildHomepage(guides, headerHTML) {
   if (html.includes("{{HEADER}}")) {
     html = html.replace("{{HEADER}}", headerHTML);
   } else {
-    const headerRegex = /<header class="sticky[^"]*">[\s\S]*?<\/header>/;
+    const headerRegex = /(?:<!-- Header -->\s*)?(?:<!-- SHARED HEADER -->\s*)*<header class="sticky[^"]*">[\s\S]*?<\/header>/;
     if (headerRegex.test(html)) {
-      html = html.replace(headerRegex, headerHTML);
+      html = html.replace(headerRegex, "<!-- Header -->\n" + headerHTML);
     }
   }
 
   // Guide cards (4 most recent)
-  const sorted = [...guides].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+  const sorted = sortGuidesNewestFirst(guides);
   const featured = sorted.slice(0, 4);
-  const guideCards = featured.map(g => {
-    const cat = (g.category || "general").toUpperCase();
-    return '<a href="/guides/' + g.slug + '.html" class="group bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">\n      <span class="inline-block text-xs font-semibold text-pri bg-pri-light px-2 py-1 rounded mb-3">' + cat + '</span>\n      <h4 class="font-bold mb-2 group-hover:text-pri transition">' + g.h1 + '</h4>\n      <p class="text-gray-500 text-sm">Updated ' + g.dateHuman + ' &middot; ' + g.readTime + ' min read</p>\n    </a>';
-  }).join("\n                ");
+  const guideCards = featured.map(buildHomepageGuideCard).join("\n");
 
   if (html.includes("{{GUIDE_CARDS}}")) {
     html = html.replace("{{GUIDE_CARDS}}", guideCards);
+  } else if (html.includes("<!-- AUTO_GUIDE_CARDS_START -->") && html.includes("<!-- AUTO_GUIDE_CARDS_END -->")) {
+    html = html.replace(
+      /<!-- AUTO_GUIDE_CARDS_START -->[\s\S]*?<!-- AUTO_GUIDE_CARDS_END -->/,
+      "<!-- AUTO_GUIDE_CARDS_START -->\n" + guideCards + "\n    <!-- AUTO_GUIDE_CARDS_END -->"
+    );
+  } else {
+    const guideGridRegex = /(<section class="max-w-6xl mx-auto px-4 py-16 border-t border-gray-200">\s*<div class="text-center mb-10">[\s\S]*?Financial Guides[\s\S]*?<div class="grid grid-cols-1 md:grid-cols-2 gap-4">\s*)([\s\S]*?)(\s*<\/div>\s*<div class="text-center mt-8">)/;
+    if (guideGridRegex.test(html)) {
+      html = html.replace(
+        guideGridRegex,
+        "$1<!-- AUTO_GUIDE_CARDS_START -->\n" + guideCards + "\n    <!-- AUTO_GUIDE_CARDS_END -->$3"
+      );
+    }
   }
   html = html.replace(/View all \d+ guides/, "View all " + guides.length + " guides");
 
   fs.writeFileSync(path.join(ROOT, "index.html"), html, "utf8");
   console.log("  \uD83C\uDFE0 Homepage \u2014 " + guides.length + " guides, " + featured.length + " featured");
+}
+
+// 鈹€鈹€鈹€ BUILD GUIDES INDEX 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+function buildGuidesIndex(guides, headerHTML) {
+  const sorted = sortGuidesNewestFirst(guides);
+  const guideCards = sorted.map(buildGuideIndexCard).join("\n");
+  const html = '<!DOCTYPE html>\n' +
+    '<html lang="en">\n' +
+    '<head>\n' +
+    '<meta charset="UTF-8">\n' +
+    '<meta property="og:title" content="Money Guides & Financial Articles | Numbrly">\n' +
+    '<meta property="og:description" content="Browse all our free financial guides: mortgages, investing, retirement, saving, and more. Expert-written, no paywall.">\n' +
+    '<meta property="og:url" content="' + DOMAIN + '/guides/">\n' +
+    '<meta property="og:type" content="website">\n' +
+    '<meta name="twitter:card" content="summary_large_image">\n' +
+    '<meta name="twitter:title" content="Money Guides & Financial Articles | Numbrly">\n' +
+    '<meta name="twitter:description" content="Free financial guides on mortgages, investing, saving, and retirement planning.">\n' +
+    '<link rel="canonical" href="' + DOMAIN + '/guides/">\n' +
+    '<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+    '<title>All Money Guides & Financial Articles | Numbrly</title>\n' +
+    '<meta name="description" content="Browse all Numbrly guides: mortgage advice, investing strategies, retirement planning, and smart money tips. Free, no sign-up required.">\n' +
+    '<link rel="stylesheet" href="../style.css">\n' +
+    '<script src="https://cdn.tailwindcss.com"></script>\n' +
+    '<script>tailwind.config={darkMode:"class"}</script>\n' +
+    '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>\n' +
+    '<script>' + NEW_THEME_SCRIPT + '</script>\n' +
+    '</head>\n' +
+    '<body>\n' +
+    headerHTML + '\n\n' +
+    '<main class="main">\n' +
+    '<div class="breadcrumb"><a href="/">Home</a> / All Guides</div>\n\n' +
+    '<section style="margin-top:20px">\n' +
+    '<div class="sec-title">&#x1F4DA; All Money Guides</div>\n' +
+    '<p class="sec-desc">' + guides.length + ' in-depth articles covering mortgages, investing, saving, and retirement. Updated regularly.</p>\n\n' +
+    guideCards + '\n' +
+    '</section>\n' +
+    '</main>\n\n' +
+    '<footer><div class="footer-links"><a href="/">Tools</a><a href="/guides/">Guides</a><a href="/privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. Not financial advice.</p></footer>\n' +
+    '</body>\n' +
+    '</html>\n';
+
+  fs.writeFileSync(path.join(GUIDES_DIR, "index.html"), html, "utf8");
+  console.log("  \uD83D\uDCDA Guides index \u2014 " + guides.length + " guides");
 }
 
 // ─── BUILD SITEMAP ────────────────────────────────────
@@ -195,6 +283,7 @@ function main() {
   injectHeaderAll(headerHTML);
 
   buildHomepage(guides, headerHTML);
+  buildGuidesIndex(guides, headerHTML);
   buildSitemap(guides, calculators);
   verifyRobots();
   buildSearchData(guides, calculators);

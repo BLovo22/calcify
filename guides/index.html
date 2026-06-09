@@ -15,33 +15,57 @@
 <title>All Money Guides & Financial Articles | Numbrly</title>
 <meta name="description" content="Browse all Numbrly guides: mortgage advice, investing strategies, retirement planning, and smart money tips. Free, no sign-up required.">
 <link rel="stylesheet" href="../style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:"class"}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
 </head>
 <body>
-<nav class="nav"><div class="nav-in"><a href="../index.html" class="logo">Num<span>brly</span></a><a href="../index.html">Tools</a><a href="../index.html#guides">Guides</a><a href="../privacy-policy.html">Privacy</a><a href="search.html" style="color:var(--muted);text-decoration:none;font-size:16px;line-height:1">&#x1F50D;</a><button class="theme-btn" onclick="toggleTheme()" title="Toggle dark mode" id="themeIcon" style="margin-left:auto">&#x1F319;</button></div></nav>
-<script>(function(){var s=localStorage.getItem('theme');if(s)document.documentElement.setAttribute('data-theme',s);else if(window.matchMedia('(prefers-color-scheme:dark)').matches)document.documentElement.setAttribute('data-theme','dark');window.toggleTheme=function(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);document.getElementById('themeIcon').innerHTML=n==='dark'?'☀️':'🌙';};var icon=document.getElementById('themeIcon');if(icon)icon.innerHTML=(s||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':''))==='dark'?'☀️':'🌙';})();</script>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
 
 <main class="main">
-<div class="breadcrumb"><a href="../index.html">Home</a> / All Guides</div>
+<div class="breadcrumb"><a href="/">Home</a> / All Guides</div>
 
 <section style="margin-top:20px">
 <div class="sec-title">&#x1F4DA; All Money Guides</div>
-<p class="sec-desc">9 in-depth articles covering mortgages, investing, saving, and retirement. Updated regularly.</p>
+<p class="sec-desc">10 in-depth articles covering mortgages, investing, saving, and retirement. Updated regularly.</p>
 
-<a href="how-to-calculate-mortgage-payment.html" class="article-card"><div class="art-cat">Mortgage</div><h4>How to Calculate Your Mortgage Payment: The Complete Guide</h4><div class="art-date">June 2026 · 7 min read</div></a>
-<a href="rent-or-buy-analysis.html" class="article-card"><div class="art-cat">Housing</div><h4>Is It Better to Rent or Buy? A Complete Financial Analysis</h4><div class="art-date">June 2026 · 8 min read</div></a>
-<a href="15-vs-30-year-mortgage.html" class="article-card"><div class="art-cat">Mortgage</div><h4>15-Year vs. 30-Year Mortgage: The Real Cost Difference</h4><div class="art-date">June 2026 · 7 min read</div></a>
-<a href="pay-off-mortgage-early.html" class="article-card"><div class="art-cat">Mortgage</div><h4>Should You Pay Off Your Mortgage Early? The Complete Guide</h4><div class="art-date">June 2026 · 8 min read</div></a>
-<a href="average-stock-market-return.html" class="article-card"><div class="art-cat">Investing</div><h4>Average Stock Market Return: What 100 Years of Data Tells Us</h4><div class="art-date">June 2026 · 6 min read</div></a>
-<a href="power-of-compound-interest.html" class="article-card"><div class="art-cat">Investing</div><h4>The Power of Compound Interest: Starting at 25 vs. 35</h4><div class="art-date">June 2026 · 6 min read</div></a>
-<a href="simple-vs-compound-interest.html" class="article-card"><div class="art-cat">Investing</div><h4>Simple vs Compound Interest: The Difference Explained With Examples</h4><div class="art-date">June 2026 · 5 min read</div></a>
-<a href="how-much-emergency-fund.html" class="article-card"><div class="art-cat">Saving</div><h4>How Much Emergency Fund Do You Need? A Practical Guide</h4><div class="art-date">June 2026 · 5 min read</div></a>
-<a href="how-much-to-retire.html" class="article-card"><div class="art-cat">Retirement</div><h4>How Much Do You Really Need to Retire? The 4% Rule Explained</h4><div class="art-date">June 2026 · 5 min read</div></a>
+<a href="how-much-mortgage-can-i-afford.html" class="article-card"><div class="art-cat">Mortgage</div><h4>How Much Mortgage Can I Afford? A Step-by-Step Guide to Finding Your Number</h4><div class="art-date">June 2026 &middot; 8 min read</div></a>
+<a href="pay-off-mortgage-early.html" class="article-card"><div class="art-cat">Mortgage</div><h4>Should You Pay Off Your Mortgage Early? A Complete Analysis</h4><div class="art-date">June 2026 &middot; 8 min read</div></a>
+<a href="power-of-compound-interest.html" class="article-card"><div class="art-cat">Investing</div><h4>The Power of Compound Interest: Starting at 25 vs. 35</h4><div class="art-date">June 2026 &middot; 6 min read</div></a>
+<a href="15-vs-30-year-mortgage.html" class="article-card"><div class="art-cat">Mortgage</div><h4>15 vs 30 Year Mortgage: Which Term Saves More?</h4><div class="art-date">June 2026 &middot; 7 min read</div></a>
+<a href="how-much-to-retire.html" class="article-card"><div class="art-cat">Retirement</div><h4>How Much Do You Really Need to Retire? The 4% Rule Explained</h4><div class="art-date">June 2026 &middot; 5 min read</div></a>
+<a href="how-to-calculate-mortgage-payment.html" class="article-card"><div class="art-cat">Mortgage</div><h4>How to Calculate Your Mortgage Payment — Step by Step</h4><div class="art-date">June 2026 &middot; 5 min read</div></a>
+<a href="rent-or-buy-analysis.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>Rent or Buy? A Complete Financial Analysis</h4><div class="art-date">June 2026 &middot; 6 min read</div></a>
+<a href="average-stock-market-return.html" class="article-card"><div class="art-cat">Investing</div><h4>What Is the Average Stock Market Return?</h4><div class="art-date">June 2026 &middot; 5 min read</div></a>
+<a href="how-much-emergency-fund.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>How Much Emergency Fund Do You Need?</h4><div class="art-date">June 2026 &middot; 5 min read</div></a>
+<a href="simple-vs-compound-interest.html" class="article-card"><div class="art-cat">Investing</div><h4>Simple vs Compound Interest: What is the Difference?</h4><div class="art-date">June 2026 &middot; 5 min read</div></a>
 </section>
 </main>
 
-<footer><div class="footer-links"><a href="../index.html">Tools</a><a href="index.html">Guides</a><a href="../privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. Not financial advice.</p></footer>
-
-
+<footer><div class="footer-links"><a href="/">Tools</a><a href="/guides/">Guides</a><a href="/privacy-policy.html">Privacy Policy</a></div><p>&copy; 2026 Numbrly. Not financial advice.</p></footer>
 </body>
 </html>
