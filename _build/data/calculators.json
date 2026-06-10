@@ -9,6 +9,22 @@
                             "title":  "Mortgage Payment Calculator"
                         },
                         {
+                            "slug":  "home-affordability-calculator",
+                            "description":  "Estimate how much house you can afford based on income, debt, down payment, mortgage rate, taxes, insurance, HOA, and PMI.",
+                            "icon":  "🏡",
+                            "h1":  "Home Affordability Calculator",
+                            "category":  "mortgage",
+                            "title":  "Home Affordability Calculator"
+                        },
+                        {
+                            "slug":  "mortgage-payoff-calculator",
+                            "description":  "See how extra monthly payments or a one-time lump sum can shorten your mortgage and reduce total interest.",
+                            "icon":  "🏦",
+                            "h1":  "Mortgage Payoff Calculator",
+                            "category":  "mortgage",
+                            "title":  "Mortgage Payoff Calculator"
+                        },
+                        {
                             "slug":  "compound-interest-calculator",
                             "description":  "See how your money grows over time with compound interest. Compare starting early vs. late.",
                             "icon":  "📈",

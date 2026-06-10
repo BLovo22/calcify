@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta property="og:title" content="Home Affordability Calculator - How Much House Can I Afford? | Numbrly">
+<meta property="og:description" content="Estimate how much house you can afford using income, debts, down payment, mortgage rate, property taxes, insurance, HOA, and PMI.">
+<meta property="og:url" content="https://numbrly.cc/home-affordability-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Home Affordability Calculator - How Much House Can I Afford? | Numbrly">
+<meta name="twitter:description" content="Estimate how much house you can afford using income, debts, down payment, mortgage rate, property taxes, insurance, HOA, and PMI.">
+<link rel="canonical" href="https://numbrly.cc/home-affordability-calculator.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Affordability Calculator - How Much House Can I Afford? | Numbrly</title>
+<meta name="description" content="Free home affordability calculator. Estimate how much house you can afford with income, debt, down payment, mortgage rate, taxes, insurance, HOA, and PMI.">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:"class"}</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Numbrly", "item": "https://numbrly.cc/"},
+    {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://numbrly.cc/#calculators"},
+    {"@type": "ListItem", "position": 3, "name": "Home Affordability Calculator", "item": "https://numbrly.cc/home-affordability-calculator.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Home Affordability Calculator",
+  "url": "https://numbrly.cc/home-affordability-calculator.html",
+  "description": "Estimate how much house you can afford based on income, monthly debt, down payment, mortgage rate, taxes, insurance, HOA, and PMI.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How much house can I afford?", "acceptedAnswer": {"@type": "Answer", "text": "A common starting point is to keep housing costs near 28% of gross monthly income and total debt payments near 36%. Your exact number depends on income, debt, down payment, mortgage rate, property taxes, insurance, HOA fees, PMI, credit profile, and lender rules."}},
+    {"@type": "Question", "name": "What is included in a home affordability calculation?", "acceptedAnswer": {"@type": "Answer", "text": "A useful affordability estimate should include principal, interest, property taxes, homeowners insurance, HOA fees, PMI when applicable, and your existing monthly debt payments."}},
+    {"@type": "Question", "name": "What debt-to-income ratio do lenders use?", "acceptedAnswer": {"@type": "Answer", "text": "Many lenders look at a front-end housing ratio and a back-end total debt ratio. A common rule of thumb is 28% for housing costs and 36% for total debt, although some loans allow higher ratios."}},
+    {"@type": "Question", "name": "Does a larger down payment increase affordability?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. A larger down payment lowers the loan amount, reduces the monthly principal and interest payment, and may remove PMI if you put at least 20% down."}},
+    {"@type": "Question", "name": "Should I buy the maximum home I qualify for?", "acceptedAnswer": {"@type": "Answer", "text": "Not always. The maximum amount a lender approves may be higher than what feels comfortable. Leave room for maintenance, utilities, savings, retirement contributions, and unexpected expenses."}}
+  ]
+}
+</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb">
+    <a href="index.html">Numbrly</a> / <a href="index.html#calculators">Calculators</a> / Home Affordability Calculator
+  </div>
+
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F3E1; Home Affordability Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:760px">Estimate how much house you can afford using your income, monthly debt, down payment, mortgage rate, property taxes, insurance, HOA fees, and PMI. This calculator focuses on the real monthly housing cost buyers actually face.</p>
+  </section>
+
+  <section>
+    <div class="card" style="max-width:720px">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Annual Household Income ($)</label>
+          <input type="number" id="annualIncome" value="90000" min="1" step="1000">
+        </div>
+        <div class="form-group">
+          <label>Monthly Debt Payments ($)</label>
+          <input type="number" id="monthlyDebt" value="500" min="0" step="50">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Down Payment ($)</label>
+          <input type="number" id="downPayment" value="60000" min="0" step="1000">
+        </div>
+        <div class="form-group">
+          <label>Mortgage Rate (%)</label>
+          <input type="number" id="rate" value="6.5" min="0.1" max="20" step="0.1">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Loan Term (years)</label>
+          <select id="term">
+            <option value="15">15 years</option>
+            <option value="20">20 years</option>
+            <option value="30" selected>30 years</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Property Tax Rate (%)</label>
+          <input type="number" id="taxRate" value="1.1" min="0" max="5" step="0.1">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Home Insurance ($/month)</label>
+          <input type="number" id="insurance" value="150" min="0" step="10">
+        </div>
+        <div class="form-group">
+          <label>HOA Fees ($/month)</label>
+          <input type="number" id="hoa" value="0" min="0" step="10">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>PMI Rate (%)</label>
+          <input type="number" id="pmiRate" value="0.6" min="0" max="3" step="0.1">
+        </div>
+        <div class="form-group">
+          <label>Maximum Total DTI (%)</label>
+          <input type="number" id="backDti" value="36" min="20" max="55" step="1">
+        </div>
+      </div>
+      <button class="btn btn-block" onclick="calcAffordability()" style="margin-top:8px">Calculate Affordability</button>
+    </div>
+
+    <div class="result" id="result" style="max-width:720px">
+      <div class="result-num" id="maxPrice">$0</div>
+      <div class="result-label">estimated affordable home price</div>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="ri-val" id="monthlyBudget">$0</div>
+          <div class="ri-label">Max Housing Payment</div>
+        </div>
+        <div class="result-item">
+          <div class="ri-val" id="loanAmount">$0</div>
+          <div class="ri-label">Estimated Loan</div>
+        </div>
+        <div class="result-item">
+          <div class="ri-val" id="usedDti">0%</div>
+          <div class="ri-label">Total DTI</div>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:18px">
+        <h4>Monthly Payment Breakdown</h4>
+        <div id="paymentBreakdown" style="color:var(--muted);font-size:13px;line-height:1.8"></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>How to Use This Calculator</h2>
+    <ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px">
+      <li><strong style="color:var(--text)">Enter your annual household income</strong> before taxes.</li>
+      <li><strong style="color:var(--text)">Add monthly debt payments</strong> such as car loans, student loans, credit cards, and personal loans.</li>
+      <li><strong style="color:var(--text)">Enter your down payment</strong> and mortgage assumptions.</li>
+      <li><strong style="color:var(--text)">Include taxes, insurance, HOA, and PMI</strong> so your estimate reflects real housing costs.</li>
+      <li><strong style="color:var(--text)">Click Calculate</strong> to see a practical home price estimate and monthly payment breakdown.</li>
+    </ol>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Example: $90,000 Income With $500 Monthly Debt</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">A buyer earning <strong style="color:var(--text)">$90,000 per year</strong> has about <strong style="color:var(--text)">$7,500 in gross monthly income</strong>. With $500 in existing debt, a $60,000 down payment, and a 6.5% mortgage rate, affordability depends heavily on total monthly housing costs.</p>
+    <div class="highlight-box">
+      <h4>&#x1F3E1; Affordability Snapshot</h4>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.8">
+        <li>Gross monthly income: <strong style="color:var(--text)">$7,500</strong></li>
+        <li>Target housing budget at 28%: <strong style="color:var(--text)">$2,100/month</strong></li>
+        <li>Total debt limit at 36%: <strong style="color:var(--text)">$2,700/month</strong></li>
+        <li>After $500 of existing debt, housing budget is capped near <strong style="color:var(--text)">$2,200/month</strong></li>
+        <li>Taxes, insurance, HOA, and PMI reduce the loan amount the same monthly budget can support.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Why Use This Calculator?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+      <div class="card" style="padding:20px"><div class="tag">&#x1F4B0; Real Monthly Cost</div><p style="font-size:13px;line-height:1.7">Includes more than principal and interest, so you can see a fuller PITI-style payment.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F4CB; Debt-Aware</div><p style="font-size:13px;line-height:1.7">Accounts for existing monthly debts that reduce mortgage affordability.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F3E6; Lender Logic</div><p style="font-size:13px;line-height:1.7">Uses front-end and back-end DTI rules of thumb to estimate a practical range.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F512; Private</div><p style="font-size:13px;line-height:1.7">Everything runs in your browser. No account, no saved financial profile.</p></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Common Mistakes</h2>
+    <div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px">
+      <p><strong style="color:var(--text)">Forgetting taxes and insurance.</strong> A mortgage payment without property taxes and insurance can make a home look more affordable than it really is.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Ignoring HOA fees.</strong> A $300 monthly HOA can reduce affordability by tens of thousands of dollars.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Underestimating PMI.</strong> If your down payment is below 20%, PMI can add a meaningful monthly cost.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Buying at the absolute maximum.</strong> Leave room for repairs, utilities, emergency savings, and retirement contributions.</p>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      <details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How much house can I afford?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">A common starting point is to keep housing costs near 28% of gross monthly income and total debt payments near 36%. Your actual number depends on income, debt, down payment, rate, taxes, insurance, HOA, PMI, and lender rules.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What payment does this calculator include?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">It includes principal, interest, estimated property taxes, homeowners insurance, HOA fees, and estimated PMI when your down payment is below 20%.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is DTI?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Debt-to-income ratio compares monthly debt payments to gross monthly income. Lenders often use it to decide how much mortgage payment you may qualify for.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Does this replace lender pre-approval?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">No. It is an educational estimate. A lender will also review your credit, assets, employment history, loan program, reserves, and local rules.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Should I use the maximum affordable price?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Usually, it is smarter to treat the result as an upper estimate and then choose a monthly payment that still leaves room for savings, repairs, and normal life.</div></details>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Calculators</h2>
+    <div class="tool-grid" style="margin-top:16px">
+      <a href="mortgage-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3E0;</div><h3>Mortgage Calculator</h3><p>Calculate the monthly payment for a specific home price and loan amount.</p></a>
+      <a href="rent-vs-buy-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3D8;</div><h3>Rent vs. Buy Calculator</h3><p>Compare the long-term cost of renting versus buying.</p></a>
+      <a href="loan-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4B3;</div><h3>Loan Calculator</h3><p>Estimate payments for personal, auto, student, or other loans.</p></a>
+      <a href="savings-goal-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3AF;</div><h3>Savings Goal Calculator</h3><p>Plan how much to save for a down payment and closing costs.</p></a>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Guides</h2>
+    <a href="guides/how-much-mortgage-can-i-afford.html" class="article-card"><div class="art-cat">Mortgage</div><h4>How Much Mortgage Can I Afford? A Step-by-Step Guide to Finding Your Number</h4><div class="art-date">Updated June 2026 &middot; 8 min read</div></a>
+    <a href="guides/rent-or-buy-analysis.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>Rent or Buy? A Complete Financial Analysis</h4><div class="art-date">Updated June 2026 &middot; 6 min read</div></a>
+    <a href="guides/how-to-calculate-mortgage-payment.html" class="article-card"><div class="art-cat">Mortgage</div><h4>How to Calculate Your Mortgage Payment - Step by Step</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a>
+  </section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
+          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
+          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script>
+function fmtMoney(value) {
+  return "$" + Math.max(0, value).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function monthlyPI(loan, annualRate, years) {
+  if (loan <= 0) return 0;
+  var months = years * 12;
+  var rate = annualRate / 100 / 12;
+  if (rate === 0) return loan / months;
+  return loan * (rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
+}
+function monthlyCost(price, down, annualRate, years, taxRate, insurance, hoa, pmiRate) {
+  var loan = Math.max(price - down, 0);
+  var pi = monthlyPI(loan, annualRate, years);
+  var tax = price * (taxRate / 100) / 12;
+  var downPct = price > 0 ? down / price : 1;
+  var pmi = downPct < 0.20 ? loan * (pmiRate / 100) / 12 : 0;
+  return {total: pi + tax + insurance + hoa + pmi, pi: pi, tax: tax, insurance: insurance, hoa: hoa, pmi: pmi, loan: loan};
+}
+function calcAffordability() {
+  var income = parseFloat(document.getElementById("annualIncome").value) || 90000;
+  var debt = parseFloat(document.getElementById("monthlyDebt").value) || 0;
+  var down = parseFloat(document.getElementById("downPayment").value) || 0;
+  var rate = parseFloat(document.getElementById("rate").value) || 6.5;
+  var years = parseInt(document.getElementById("term").value, 10) || 30;
+  var taxRate = parseFloat(document.getElementById("taxRate").value) || 0;
+  var insurance = parseFloat(document.getElementById("insurance").value) || 0;
+  var hoa = parseFloat(document.getElementById("hoa").value) || 0;
+  var pmiRate = parseFloat(document.getElementById("pmiRate").value) || 0;
+  var backDti = (parseFloat(document.getElementById("backDti").value) || 36) / 100;
+  var monthlyIncome = income / 12;
+  var frontLimit = monthlyIncome * 0.28;
+  var backLimit = Math.max(monthlyIncome * backDti - debt, 0);
+  var housingBudget = Math.min(frontLimit, backLimit);
+
+  var low = 0;
+  var high = Math.max(down + housingBudget * 360, 100000);
+  for (var i = 0; i < 70; i++) {
+    var mid = (low + high) / 2;
+    var cost = monthlyCost(mid, down, rate, years, taxRate, insurance, hoa, pmiRate);
+    if (cost.total <= housingBudget) low = mid;
+    else high = mid;
+  }
+
+  var finalCost = monthlyCost(low, down, rate, years, taxRate, insurance, hoa, pmiRate);
+  var totalDti = monthlyIncome > 0 ? ((finalCost.total + debt) / monthlyIncome) * 100 : 0;
+
+  document.getElementById("maxPrice").textContent = fmtMoney(low);
+  document.getElementById("monthlyBudget").textContent = fmtMoney(housingBudget);
+  document.getElementById("loanAmount").textContent = fmtMoney(finalCost.loan);
+  document.getElementById("usedDti").textContent = totalDti.toFixed(1) + "%";
+  document.getElementById("paymentBreakdown").innerHTML =
+    "<div>Principal + interest: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.pi) + "</strong></div>" +
+    "<div>Property taxes: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.tax) + "</strong></div>" +
+    "<div>Home insurance: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.insurance) + "</strong></div>" +
+    "<div>HOA fees: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.hoa) + "</strong></div>" +
+    "<div>Estimated PMI: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.pmi) + "</strong></div>" +
+    "<div style=\"margin-top:6px\">Total estimated housing payment: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.total) + "/month</strong></div>";
+  document.getElementById("result").classList.add("show");
+}
+(function(){
+  var pg = location.pathname.split("/").pop() || "home-affordability";
+  var ins = document.querySelectorAll("input[id], select[id]");
+  try {
+    var sv = JSON.parse(localStorage.getItem("Numbrly_" + pg) || "{}");
+    ins.forEach(function(e) { if (sv[e.id] !== undefined) e.value = sv[e.id]; });
+  } catch(x) {}
+  ins.forEach(function(e) {
+    e.addEventListener("input", function() {
+      try {
+        var a = {};
+        ins.forEach(function(x) { a[x.id] = x.value; });
+        localStorage.setItem("Numbrly_" + pg, JSON.stringify(a));
+      } catch(y) {}
+    });
+  });
+})();
+document.addEventListener("DOMContentLoaded", function(){ calcAffordability(); });
+</script>
+</body>
+</html>

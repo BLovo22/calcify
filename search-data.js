@@ -6,6 +6,16 @@ var searchIndex = [
     "kw": "mortgage Mortgage Payment Calculator"
   },
   {
+    "title": "Home Affordability Calculator",
+    "url": "home-affordability-calculator.html",
+    "kw": "mortgage Home Affordability Calculator"
+  },
+  {
+    "title": "Mortgage Payoff Calculator",
+    "url": "mortgage-payoff-calculator.html",
+    "kw": "mortgage Mortgage Payoff Calculator"
+  },
+  {
     "title": "Compound Interest Calculator",
     "url": "compound-interest-calculator.html",
     "kw": "investing Compound Interest Calculator"

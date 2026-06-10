@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta property="og:title" content="Mortgage Payoff Calculator - Extra Payment Savings | Numbrly">
+<meta property="og:description" content="See how extra monthly mortgage payments or a one-time lump sum can reduce interest, shorten your loan, and move up your payoff date.">
+<meta property="og:url" content="https://numbrly.cc/mortgage-payoff-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mortgage Payoff Calculator - Extra Payment Savings | Numbrly">
+<meta name="twitter:description" content="See how extra monthly mortgage payments or a one-time lump sum can reduce interest, shorten your loan, and move up your payoff date.">
+<link rel="canonical" href="https://numbrly.cc/mortgage-payoff-calculator.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage Payoff Calculator - Extra Payment Savings | Numbrly</title>
+<meta name="description" content="Free mortgage payoff calculator. See how extra monthly payments or a lump sum can shorten your mortgage, reduce interest, and change your payoff date.">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:"class"}</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Numbrly", "item": "https://numbrly.cc/"},
+    {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://numbrly.cc/#calculators"},
+    {"@type": "ListItem", "position": 3, "name": "Mortgage Payoff Calculator", "item": "https://numbrly.cc/mortgage-payoff-calculator.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mortgage Payoff Calculator",
+  "url": "https://numbrly.cc/mortgage-payoff-calculator.html",
+  "description": "Calculate how extra monthly mortgage payments or a one-time lump sum can reduce interest and shorten your payoff timeline.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How do extra mortgage payments reduce interest?", "acceptedAnswer": {"@type": "Answer", "text": "Extra payments reduce principal faster. Because future interest is charged on the remaining balance, lowering the balance earlier can reduce total interest and shorten the mortgage term."}},
+    {"@type": "Question", "name": "Is it better to make extra monthly payments or a lump sum?", "acceptedAnswer": {"@type": "Answer", "text": "Both can help. A lump sum reduces principal immediately, while extra monthly payments keep lowering the balance over time. The better option depends on your cash flow, emergency fund, interest rate, and other goals."}},
+    {"@type": "Question", "name": "Should I pay off my mortgage early or invest?", "acceptedAnswer": {"@type": "Answer", "text": "Paying off a mortgage early gives a return similar to your mortgage rate. Investing may earn more over the long run, but it has market risk. Compare your after-tax mortgage cost with realistic investment returns before deciding."}},
+    {"@type": "Question", "name": "Do extra mortgage payments automatically go to principal?", "acceptedAnswer": {"@type": "Answer", "text": "Not always. Many lenders let you apply extra payments to principal, but you should confirm instructions with your servicer so the payment is not treated as a future scheduled payment."}},
+    {"@type": "Question", "name": "Can I pay off a mortgage too early?", "acceptedAnswer": {"@type": "Answer", "text": "It can be possible to over-prioritize mortgage payoff if it leaves you without emergency savings, retirement contributions, or cash for higher-interest debt. Early payoff is strongest when your broader financial base is already stable."}}
+  ]
+}
+</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb">
+    <a href="index.html">Numbrly</a> / <a href="index.html#calculators">Calculators</a> / Mortgage Payoff Calculator
+  </div>
+
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F3E6; Mortgage Payoff Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:760px">See how extra monthly mortgage payments or a one-time lump sum could change your payoff date. Compare your current path with an accelerated payoff plan and estimate interest savings before sending extra money to the lender.</p>
+  </section>
+
+  <section>
+    <div class="card" style="max-width:720px">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Current Mortgage Balance ($)</label>
+          <input type="number" id="balance" value="320000" min="1" step="1000">
+        </div>
+        <div class="form-group">
+          <label>Interest Rate (%)</label>
+          <input type="number" id="rate" value="6.5" min="0" max="20" step="0.1">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Years Remaining</label>
+          <input type="number" id="yearsRemaining" value="30" min="1" max="40" step="1">
+        </div>
+        <div class="form-group">
+          <label>Current Monthly Payment ($)</label>
+          <input type="number" id="basePayment" value="2022" min="1" step="10">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Extra Monthly Payment ($)</label>
+          <input type="number" id="extraMonthly" value="200" min="0" step="25">
+        </div>
+        <div class="form-group">
+          <label>One-Time Extra Payment ($)</label>
+          <input type="number" id="lumpSum" value="0" min="0" step="500">
+        </div>
+      </div>
+      <button class="btn btn-block" onclick="calcPayoff()" style="margin-top:8px">Calculate Payoff</button>
+    </div>
+
+    <div class="result" id="result" style="max-width:720px">
+      <div class="result-num" id="newPayoff">0 years</div>
+      <div class="result-label">new estimated payoff timeline</div>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="ri-val" id="interestSaved">$0</div>
+          <div class="ri-label">Interest Saved</div>
+        </div>
+        <div class="result-item">
+          <div class="ri-val" id="timeSaved">0 years</div>
+          <div class="ri-label">Time Saved</div>
+        </div>
+        <div class="result-item">
+          <div class="ri-val" id="newTotalInterest">$0</div>
+          <div class="ri-label">New Interest</div>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:18px">
+        <h4>Payoff Comparison</h4>
+        <div id="comparisonText" style="color:var(--muted);font-size:13px;line-height:1.8"></div>
+      </div>
+      <div id="warningBox" style="display:none;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-top:14px;font-size:13px;line-height:1.6"></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>How to Use This Calculator</h2>
+    <ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px">
+      <li><strong style="color:var(--text)">Enter your current mortgage balance</strong>, not the original loan amount.</li>
+      <li><strong style="color:var(--text)">Enter your interest rate</strong> and the years left on the loan.</li>
+      <li><strong style="color:var(--text)">Enter your current principal and interest payment</strong>. If you are not sure, use your statement amount before taxes and insurance.</li>
+      <li><strong style="color:var(--text)">Add extra monthly or one-time payments</strong> to see how the payoff date changes.</li>
+      <li><strong style="color:var(--text)">Compare interest saved</strong> with other uses for the money, such as investing or paying high-interest debt.</li>
+    </ol>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Example: $320,000 Balance at 6.5%</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">A homeowner has a <strong style="color:var(--text)">$320,000 remaining mortgage balance</strong> at 6.5% with 30 years left. The regular principal and interest payment is about <strong style="color:var(--text)">$2,022/month</strong>.</p>
+    <div class="highlight-box">
+      <h4>&#x1F3E6; Extra Payment Impact</h4>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.8">
+        <li>Adding $200/month can shorten the loan by several years.</li>
+        <li>The interest savings can reach tens of thousands of dollars.</li>
+        <li>A one-time lump sum helps most when it is applied early in the payoff schedule.</li>
+        <li>The higher the mortgage rate, the more powerful extra principal payments become.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Why Use This Calculator?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+      <div class="card" style="padding:20px"><div class="tag">&#x23F1; See Time Saved</div><p style="font-size:13px;line-height:1.7">Estimate how many months or years extra payments could cut from your mortgage.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F4B5; Estimate Interest Saved</div><p style="font-size:13px;line-height:1.7">Compare total interest with and without additional principal payments.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F4CA; Compare Scenarios</div><p style="font-size:13px;line-height:1.7">Test monthly extra payments, one-time payments, or both together.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F512; Private</div><p style="font-size:13px;line-height:1.7">No personal mortgage data is sent anywhere. The math runs in your browser.</p></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Common Mistakes</h2>
+    <div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px">
+      <p><strong style="color:var(--text)">Using the full mortgage payment.</strong> Taxes and insurance do not reduce principal, so use the principal and interest portion for payoff math.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Forgetting higher-interest debt.</strong> Credit cards and personal loans often cost much more than a mortgage, so they may deserve priority first.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Skipping the emergency fund.</strong> Sending every spare dollar to the mortgage can create cash stress if repairs or job changes hit.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Not telling the lender to apply extra money to principal.</strong> Confirm your servicer applies extra payments the way you intend.</p>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      <details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How much can extra mortgage payments save?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">It depends on your balance, rate, remaining term, and how much extra you pay. On a large mortgage at a higher rate, even $100 or $200 extra per month can save a meaningful amount of interest.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Should I make extra mortgage payments every month?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Extra monthly payments are useful when you have stable cash flow, an emergency fund, and no higher-interest debt. They are less attractive if the money would earn more elsewhere or if you need liquidity.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Is a lump sum better than extra monthly payments?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">A lump sum reduces principal immediately, so it can be powerful. Extra monthly payments are easier for many households because they fit normal cash flow. This calculator lets you compare both.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Can extra payments remove PMI sooner?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">They can help you reach a lower loan-to-value ratio faster, but PMI cancellation rules vary. Contact your lender to confirm the process, appraisal requirements, and automatic cancellation rules.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Does this include taxes and insurance?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">No. Mortgage payoff math should use principal and interest because taxes and insurance do not reduce the loan balance.</div></details>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Calculators</h2>
+    <div class="tool-grid" style="margin-top:16px">
+      <a href="mortgage-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3E0;</div><h3>Mortgage Calculator</h3><p>Calculate the payment and amortization schedule for a mortgage.</p></a>
+      <a href="home-affordability-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3E1;</div><h3>Home Affordability Calculator</h3><p>Estimate how much house your income and debt can support.</p></a>
+      <a href="compound-interest-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4C8;</div><h3>Investment Calculator</h3><p>Compare mortgage payoff with investing the same extra cash.</p></a>
+      <a href="credit-card-payoff-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4B3;</div><h3>Credit Card Payoff Calculator</h3><p>Compare mortgage payoff with clearing higher-interest debt first.</p></a>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Guides</h2>
+    <a href="guides/pay-off-mortgage-early.html" class="article-card"><div class="art-cat">Mortgage</div><h4>Should You Pay Off Your Mortgage Early? A Complete Analysis</h4><div class="art-date">Updated June 2026 &middot; 8 min read</div></a>
+    <a href="guides/debt-vs-investing.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>How to Choose Between Paying Off Debt or Investing First</h4><div class="art-date">Updated June 2026 &middot; 9 min read</div></a>
+    <a href="guides/15-vs-30-year-mortgage.html" class="article-card"><div class="art-cat">Mortgage</div><h4>15 vs 30 Year Mortgage: Which Term Saves More?</h4><div class="art-date">Updated June 2026 &middot; 7 min read</div></a>
+  </section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
+          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
+          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script>
+function fmtMoney(value) {
+  return "$" + Math.max(0, value).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function fmtYears(months) {
+  if (!isFinite(months) || months <= 0) return "0 months";
+  var years = Math.floor(months / 12);
+  var rem = months % 12;
+  if (years === 0) return rem + " months";
+  if (rem === 0) return years + (years === 1 ? " year" : " years");
+  return years + " yr " + rem + " mo";
+}
+function payoffScenario(balance, annualRate, payment, lumpSum, maxMonths) {
+  var bal = Math.max(balance - lumpSum, 0);
+  var monthlyRate = annualRate / 100 / 12;
+  var months = 0;
+  var interest = 0;
+  if (bal <= 0) return {months: 0, interest: 0, paid: lumpSum};
+  while (bal > 0.01 && months < maxMonths) {
+    var intPart = bal * monthlyRate;
+    var principal = payment - intPart;
+    if (principal <= 0) return {months: Infinity, interest: Infinity, paid: Infinity};
+    if (principal > bal) principal = bal;
+    bal -= principal;
+    interest += intPart;
+    months++;
+  }
+  return {months: months, interest: interest, paid: balance + interest};
+}
+function calcPayoff() {
+  var balance = parseFloat(document.getElementById("balance").value) || 320000;
+  var rate = parseFloat(document.getElementById("rate").value) || 0;
+  var years = parseFloat(document.getElementById("yearsRemaining").value) || 30;
+  var basePayment = parseFloat(document.getElementById("basePayment").value) || 2022;
+  var extraMonthly = parseFloat(document.getElementById("extraMonthly").value) || 0;
+  var lumpSum = parseFloat(document.getElementById("lumpSum").value) || 0;
+  var maxMonths = Math.ceil(years * 12 * 2);
+  var baseline = payoffScenario(balance, rate, basePayment, 0, maxMonths);
+  var accelerated = payoffScenario(balance, rate, basePayment + extraMonthly, lumpSum, maxMonths);
+  var warning = document.getElementById("warningBox");
+
+  if (!isFinite(baseline.months) || !isFinite(accelerated.months)) {
+    warning.style.display = "block";
+    warning.textContent = "The payment is too low to cover monthly interest. Increase the current monthly payment or lower the rate.";
+    document.getElementById("result").classList.add("show");
+    document.getElementById("newPayoff").textContent = "Payment too low";
+    document.getElementById("interestSaved").textContent = "$0";
+    document.getElementById("timeSaved").textContent = "0 months";
+    document.getElementById("newTotalInterest").textContent = "$0";
+    document.getElementById("comparisonText").innerHTML = "";
+    return;
+  }
+
+  var interestSaved = Math.max(baseline.interest - accelerated.interest, 0);
+  var monthsSaved = Math.max(baseline.months - accelerated.months, 0);
+  warning.style.display = "none";
+  document.getElementById("newPayoff").textContent = fmtYears(accelerated.months);
+  document.getElementById("interestSaved").textContent = fmtMoney(interestSaved);
+  document.getElementById("timeSaved").textContent = fmtYears(monthsSaved);
+  document.getElementById("newTotalInterest").textContent = fmtMoney(accelerated.interest);
+  document.getElementById("comparisonText").innerHTML =
+    "<div>Current plan payoff: <strong style=\"color:var(--text)\">" + fmtYears(baseline.months) + "</strong></div>" +
+    "<div>Accelerated payoff: <strong style=\"color:var(--text)\">" + fmtYears(accelerated.months) + "</strong></div>" +
+    "<div>Current plan interest: <strong style=\"color:var(--text)\">" + fmtMoney(baseline.interest) + "</strong></div>" +
+    "<div>Accelerated interest: <strong style=\"color:var(--text)\">" + fmtMoney(accelerated.interest) + "</strong></div>" +
+    "<div style=\"margin-top:6px\">Extra payment strategy: <strong style=\"color:var(--text)\">" + fmtMoney(extraMonthly) + "/month plus " + fmtMoney(lumpSum) + " one time</strong></div>";
+  document.getElementById("result").classList.add("show");
+}
+(function(){
+  var pg = location.pathname.split("/").pop() || "mortgage-payoff";
+  var ins = document.querySelectorAll("input[id], select[id]");
+  try {
+    var sv = JSON.parse(localStorage.getItem("Numbrly_" + pg) || "{}");
+    ins.forEach(function(e) { if (sv[e.id] !== undefined) e.value = sv[e.id]; });
+  } catch(x) {}
+  ins.forEach(function(e) {
+    e.addEventListener("input", function() {
+      try {
+        var a = {};
+        ins.forEach(function(x) { a[x.id] = x.value; });
+        localStorage.setItem("Numbrly_" + pg, JSON.stringify(a));
+      } catch(y) {}
+    });
+  });
+})();
+document.addEventListener("DOMContentLoaded", function(){ calcPayoff(); });
+</script>
+</body>
+</html>
