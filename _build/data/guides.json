@@ -1,273 +1,350 @@
 {
-    "_schema_version":  "1.0",
-    "guides":  [
-                   {
-                       "datePublished":  "2026-06-01",
-                       "relatedArticles":  [
-                                               "15-vs-30-year-mortgage",
-                                               "how-to-calculate-mortgage-payment",
-                                               "power-of-compound-interest"
-                                           ],
-                       "ogDescription":  "Weigh the math and emotions of paying off your mortgage early. Real numbers, tradeoffs, and when it makes sense.",
-                       "dateHuman":  "June 2026",
-                       "title":  "Should You Pay Off Your Mortgage Early?",
-                       "faq":  [
-                                   {
-                                       "a":  "It depends on your interest rate. Above 5%, paying early gives a guaranteed return. Below 4%, you may earn more by investing.",
-                                       "q":  "Is it worth paying off my mortgage early?"
-                                   }
-                               ],
-                       "category":  "mortgage",
-                       "description":  "Paying off your mortgage early can save thousands in interest — but is it always the right move? We break down the math, the tradeoffs, and when it makes sense.",
-                       "readTime":  8,
-                       "slug":  "pay-off-mortgage-early",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "mortgage-calculator",
-                                                  "compound-interest-calculator",
-                                                  "roi-calculator",
-                                                  "loan-calculator"
-                                              ],
-                       "dateModified":  "2026-06-09",
-                       "h1":  "Should You Pay Off Your Mortgage Early? A Complete Analysis"
-                   },
-                   {
-                       "datePublished":  "2026-06-01",
-                       "relatedArticles":  [
-                                               "average-stock-market-return",
-                                               "simple-vs-compound-interest"
-                                           ],
-                       "ogDescription":  "See how starting early with compound interest can mean over a million dollars more at retirement.",
-                       "dateHuman":  "June 2026",
-                       "title":  "The Power of Compound Interest",
-                       "faq":  [
-                                   {
-                                       "a":  "Starting at 25 vs. 35 can mean over a million dollars difference by retirement.",
-                                       "q":  "How much difference does starting early make?"
-                                   }
-                               ],
-                       "category":  "investing",
-                       "description":  "See how starting early with compound interest can mean over a million dollars more at retirement. Real numbers comparing starting at 25 vs. 35.",
-                       "readTime":  6,
-                       "slug":  "power-of-compound-interest",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "compound-interest-calculator",
-                                                  "roi-calculator",
-                                                  "retirement-calculator"
-                                              ],
-                       "dateModified":  "2026-06-09",
-                       "h1":  "The Power of Compound Interest: Starting at 25 vs. 35"
-                   },
-                   {
-                       "datePublished":  "2026-06-01",
-                       "relatedArticles":  [
-                                               "pay-off-mortgage-early",
-                                               "how-to-calculate-mortgage-payment"
-                                           ],
-                       "ogDescription":  "Compare 15-year and 30-year mortgage terms. See how much you save with a shorter term.",
-                       "dateHuman":  "June 2026",
-                       "title":  "15 vs 30 Year Mortgage",
-                       "faq":  [
-                                   {
-                                       "a":  "A 15-year term saves tens of thousands in interest but has higher monthly payments.",
-                                       "q":  "Which mortgage term is better?"
-                                   }
-                               ],
-                       "category":  "mortgage",
-                       "description":  "Compare 15-year and 30-year mortgage terms with real numbers. See how much you save in interest with a shorter term and when it makes sense.",
-                       "readTime":  7,
-                       "slug":  "15-vs-30-year-mortgage",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "mortgage-calculator",
-                                                  "loan-calculator"
-                                              ],
-                       "dateModified":  "2026-06-09",
-                       "h1":  "15 vs 30 Year Mortgage: Which Term Saves More?"
-                   },
-                   {
-                       "datePublished":  "2026-06-01",
-                       "relatedArticles":  [
-                                               "power-of-compound-interest",
-                                               "how-much-emergency-fund"
-                                           ],
-                       "ogDescription":  "Learn the 4% rule for retirement. Calculate your retirement number.",
-                       "dateHuman":  "June 2026",
-                       "title":  "How Much Do You Really Need to Retire?",
-                       "faq":  [
-                                   {
-                                       "a":  "Multiply your desired annual income by 25. For ,000/year, you need roughly .5 million.",
-                                       "q":  "How much do I need to retire?"
-                                   }
-                               ],
-                       "category":  "retirement",
-                       "description":  "Learn the 4% rule for retirement savings. Calculate your retirement number based on your desired annual income and expected returns.",
-                       "readTime":  5,
-                       "slug":  "how-much-to-retire",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "retirement-calculator",
-                                                  "compound-interest-calculator"
-                                              ],
-                       "dateModified":  "2026-06-09",
-                       "h1":  "How Much Do You Really Need to Retire? The 4% Rule Explained"
-                   },
-                   {
-                       "datePublished":  "2026-06-01",
-                       "relatedArticles":  [
-                                               "pay-off-mortgage-early",
-                                               "15-vs-30-year-mortgage"
-                                           ],
-                       "ogDescription":  "Learn the mortgage payment formula step by step.",
-                       "dateHuman":  "June 2026",
-                       "title":  "How to Calculate Your Mortgage Payment",
-                       "faq":  [
-                                   {
-                                       "a":  "M = P[r(1+r)^n]/[(1+r)^n-1] where P is principal, r is monthly rate, n is total payments.",
-                                       "q":  "What is the mortgage payment formula?"
-                                   }
-                               ],
-                       "category":  "mortgage",
-                       "description":  "Learn the mortgage payment formula and how each component — principal, interest, taxes, insurance — affects your monthly cost.",
-                       "readTime":  5,
-                       "slug":  "how-to-calculate-mortgage-payment",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "mortgage-calculator",
-                                                  "loan-calculator"
-                                              ],
-                       "dateModified":  "2026-06-09",
-                       "h1":  "How to Calculate Your Mortgage Payment — Step by Step"
-                   },
-                   {
-                       "datePublished":  "2026-06-01",
-                       "relatedArticles":  [
-                                               "how-much-mortgage-can-i-afford",
-                                               "pay-off-mortgage-early"
-                                           ],
-                       "ogDescription":  "A complete financial analysis of renting vs. buying a home.",
-                       "dateHuman":  "June 2026",
-                       "title":  "Rent or Buy?",
-                       "faq":  [
-                                   {
-                                       "a":  "If you plan to stay 5+ years, buying is usually better. Under 3-5 years, renting wins.",
-                                       "q":  "Is it better to rent or buy?"
-                                   }
-                               ],
-                       "category":  "personal-finance",
-                       "description":  "A complete financial analysis of renting vs. buying a home. Compare total costs, build equity, and find your break-even point.",
-                       "readTime":  6,
-                       "slug":  "rent-or-buy-analysis",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "rent-vs-buy-calculator",
-                                                  "mortgage-calculator"
-                                              ],
-                       "dateModified":  "2026-06-09",
-                       "h1":  "Rent or Buy? A Complete Financial Analysis"
-                   },
-                   {
-                       "datePublished":  "2026-06-01",
-                       "relatedArticles":  [
-                                               "power-of-compound-interest",
-                                               "simple-vs-compound-interest"
-                                           ],
-                       "ogDescription":  "Understand historical S\u0026P 500 returns and what to expect from your investments.",
-                       "dateHuman":  "June 2026",
-                       "title":  "What Is the Average Stock Market Return?",
-                       "faq":  [
-                                   {
-                                       "a":  "The S\u0026P 500 has historically returned about 7-8% annually after inflation.",
-                                       "q":  "What is the average stock market return?"
-                                   }
-                               ],
-                       "category":  "investing",
-                       "description":  "Understand historical S\u0026P 500 returns, inflation-adjusted returns, and what to expect from your investments over the long term.",
-                       "readTime":  5,
-                       "slug":  "average-stock-market-return",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "compound-interest-calculator",
-                                                  "roi-calculator",
-                                                  "inflation-calculator"
-                                              ],
-                       "dateModified":  "2026-06-09",
-                       "h1":  "What Is the Average Stock Market Return?"
-                   },
-                   {
-                       "datePublished":  "2026-06-01",
-                       "relatedArticles":  [
-                                               "how-much-to-retire",
-                                               "rent-or-buy-analysis"
-                                           ],
-                       "ogDescription":  "Learn how much emergency fund you need. 3-6 months of expenses is the rule of thumb.",
-                       "dateHuman":  "June 2026",
-                       "title":  "How Much Emergency Fund Do You Need?",
-                       "faq":  [
-                                   {
-                                       "a":  "3-6 months of living expenses is the standard recommendation.",
-                                       "q":  "How much emergency fund do I need?"
-                                   }
-                               ],
-                       "category":  "personal-finance",
-                       "description":  "Learn how to calculate the right emergency fund size for your situation. 3-6 months of expenses is the standard rule of thumb.",
-                       "readTime":  5,
-                       "slug":  "how-much-emergency-fund",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "savings-goal-calculator"
-                                              ],
-                       "dateModified":  "2026-06-09",
-                       "h1":  "How Much Emergency Fund Do You Need?"
-                   },
-                   {
-                       "datePublished":  "2026-06-01",
-                       "relatedArticles":  [
-                                               "power-of-compound-interest",
-                                               "average-stock-market-return"
-                                           ],
-                       "ogDescription":  "Learn the difference between simple and compound interest with real examples.",
-                       "dateHuman":  "June 2026",
-                       "title":  "Simple vs Compound Interest",
-                       "faq":  [
-                                   {
-                                       "a":  "Simple interest is on principal only. Compound interest is on principal plus accumulated interest.",
-                                       "q":  "What is the difference between simple and compound interest?"
-                                   }
-                               ],
-                       "category":  "investing",
-                       "description":  "Learn the critical difference between simple and compound interest. See how compound interest dramatically outperforms simple interest over time.",
-                       "readTime":  5,
-                       "slug":  "simple-vs-compound-interest",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "compound-interest-calculator",
-                                                  "roi-calculator"
-                                              ],
-                       "dateModified":  "2026-06-09",
-                       "h1":  "Simple vs Compound Interest: What is the Difference?"
-                   },
-                   {
-                       "datePublished":  "2026-06-09",
-                       "relatedArticles":  [
-                                               "how-to-calculate-mortgage-payment",
-                                               "pay-off-mortgage-early",
-                                               "15-vs-30-year-mortgage",
-                                               "rent-or-buy-analysis"
-                                           ],
-                       "dateModified":  "2026-06-09",
-                       "title":  "How Much Mortgage Can I Afford?",
-                       "faq":  [
-                                   {
-                                       "a":  "At ,000/year, the 28% rule caps housing at ,333/month — roughly a ,000 loan.",
-                                       "q":  "How much mortgage can I afford with a ,000 salary?"
-                                   }
-                               ],
-                       "category":  "mortgage",
-                       "dateHuman":  "June 2026",
-                       "description":  "Learn how to calculate the mortgage you can truly afford using the 28/36 rule, real examples with numbers, and our free mortgage calculator.",
-                       "readTime":  8,
-                       "slug":  "how-much-mortgage-can-i-afford",
-                       "mainContent": "MAIN_CONTENT_PLACEHOLDER", "caseStudy": "CASE_STUDY_PLACEHOLDER", "introduction": "", "relatedCalculators":  [
-                                                  "mortgage-calculator",
-                                                  "rent-vs-buy-calculator",
-                                                  "loan-calculator",
-                                                  "credit-card-payoff-calculator"
-                                              ],
-                       "ogDescription":  "Learn how to calculate the mortgage you can truly afford using the 28/36 rule and our free mortgage calculator.",
-                       "h1":  "How Much Mortgage Can I Afford? A Step-by-Step Guide to Finding Your Number"
-                   }
-               ]
+  "_schema_version": "1.0",
+  "guides": [
+    {
+      "datePublished": "2026-06-01",
+      "relatedArticles": [
+        "15-vs-30-year-mortgage",
+        "how-to-calculate-mortgage-payment",
+        "power-of-compound-interest"
+      ],
+      "ogDescription": "Weigh the math and emotions of paying off your mortgage early. Real numbers, tradeoffs, and when it makes sense.",
+      "dateHuman": "June 2026",
+      "title": "Should You Pay Off Your Mortgage Early?",
+      "faq": [
+        {
+          "a": "It depends on your interest rate. Above 5%, paying early gives a guaranteed return. Below 4%, you may earn more by investing.",
+          "q": "Is it worth paying off my mortgage early?"
+        }
+      ],
+      "category": "mortgage",
+      "description": "Paying off your mortgage early can save thousands in interest — but is it always the right move? We break down the math, the tradeoffs, and when it makes sense.",
+      "readTime": 8,
+      "slug": "pay-off-mortgage-early",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "mortgage-calculator",
+        "compound-interest-calculator",
+        "roi-calculator",
+        "loan-calculator"
+      ],
+      "dateModified": "2026-06-09",
+      "h1": "Should You Pay Off Your Mortgage Early? A Complete Analysis"
+    },
+    {
+      "datePublished": "2026-06-01",
+      "relatedArticles": [
+        "average-stock-market-return",
+        "simple-vs-compound-interest"
+      ],
+      "ogDescription": "See how starting early with compound interest can mean over a million dollars more at retirement.",
+      "dateHuman": "June 2026",
+      "title": "The Power of Compound Interest",
+      "faq": [
+        {
+          "a": "Starting at 25 vs. 35 can mean over a million dollars difference by retirement.",
+          "q": "How much difference does starting early make?"
+        }
+      ],
+      "category": "investing",
+      "description": "See how starting early with compound interest can mean over a million dollars more at retirement. Real numbers comparing starting at 25 vs. 35.",
+      "readTime": 6,
+      "slug": "power-of-compound-interest",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "compound-interest-calculator",
+        "roi-calculator",
+        "retirement-calculator"
+      ],
+      "dateModified": "2026-06-09",
+      "h1": "The Power of Compound Interest: Starting at 25 vs. 35"
+    },
+    {
+      "datePublished": "2026-06-01",
+      "relatedArticles": [
+        "pay-off-mortgage-early",
+        "how-to-calculate-mortgage-payment"
+      ],
+      "ogDescription": "Compare 15-year and 30-year mortgage terms. See how much you save with a shorter term.",
+      "dateHuman": "June 2026",
+      "title": "15 vs 30 Year Mortgage",
+      "faq": [
+        {
+          "a": "A 15-year term saves tens of thousands in interest but has higher monthly payments.",
+          "q": "Which mortgage term is better?"
+        }
+      ],
+      "category": "mortgage",
+      "description": "Compare 15-year and 30-year mortgage terms with real numbers. See how much you save in interest with a shorter term and when it makes sense.",
+      "readTime": 7,
+      "slug": "15-vs-30-year-mortgage",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "mortgage-calculator",
+        "loan-calculator"
+      ],
+      "dateModified": "2026-06-09",
+      "h1": "15 vs 30 Year Mortgage: Which Term Saves More?"
+    },
+    {
+      "datePublished": "2026-06-01",
+      "relatedArticles": [
+        "power-of-compound-interest",
+        "how-much-emergency-fund"
+      ],
+      "ogDescription": "Learn the 4% rule for retirement. Calculate your retirement number.",
+      "dateHuman": "June 2026",
+      "title": "How Much Do You Really Need to Retire?",
+      "faq": [
+        {
+          "a": "Multiply your desired annual income by 25. For ,000/year, you need roughly .5 million.",
+          "q": "How much do I need to retire?"
+        }
+      ],
+      "category": "retirement",
+      "description": "Learn the 4% rule for retirement savings. Calculate your retirement number based on your desired annual income and expected returns.",
+      "readTime": 5,
+      "slug": "how-much-to-retire",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "retirement-calculator",
+        "compound-interest-calculator"
+      ],
+      "dateModified": "2026-06-09",
+      "h1": "How Much Do You Really Need to Retire? The 4% Rule Explained"
+    },
+    {
+      "datePublished": "2026-06-01",
+      "relatedArticles": [
+        "pay-off-mortgage-early",
+        "15-vs-30-year-mortgage"
+      ],
+      "ogDescription": "Learn the mortgage payment formula step by step.",
+      "dateHuman": "June 2026",
+      "title": "How to Calculate Your Mortgage Payment",
+      "faq": [
+        {
+          "a": "M = P[r(1+r)^n]/[(1+r)^n-1] where P is principal, r is monthly rate, n is total payments.",
+          "q": "What is the mortgage payment formula?"
+        }
+      ],
+      "category": "mortgage",
+      "description": "Learn the mortgage payment formula and how each component — principal, interest, taxes, insurance — affects your monthly cost.",
+      "readTime": 5,
+      "slug": "how-to-calculate-mortgage-payment",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "mortgage-calculator",
+        "loan-calculator"
+      ],
+      "dateModified": "2026-06-09",
+      "h1": "How to Calculate Your Mortgage Payment — Step by Step"
+    },
+    {
+      "datePublished": "2026-06-01",
+      "relatedArticles": [
+        "how-much-mortgage-can-i-afford",
+        "pay-off-mortgage-early"
+      ],
+      "ogDescription": "A complete financial analysis of renting vs. buying a home.",
+      "dateHuman": "June 2026",
+      "title": "Rent or Buy?",
+      "faq": [
+        {
+          "a": "If you plan to stay 5+ years, buying is usually better. Under 3-5 years, renting wins.",
+          "q": "Is it better to rent or buy?"
+        }
+      ],
+      "category": "personal-finance",
+      "description": "A complete financial analysis of renting vs. buying a home. Compare total costs, build equity, and find your break-even point.",
+      "readTime": 6,
+      "slug": "rent-or-buy-analysis",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "rent-vs-buy-calculator",
+        "mortgage-calculator"
+      ],
+      "dateModified": "2026-06-09",
+      "h1": "Rent or Buy? A Complete Financial Analysis"
+    },
+    {
+      "datePublished": "2026-06-01",
+      "relatedArticles": [
+        "power-of-compound-interest",
+        "simple-vs-compound-interest"
+      ],
+      "ogDescription": "Understand historical S&P 500 returns and what to expect from your investments.",
+      "dateHuman": "June 2026",
+      "title": "What Is the Average Stock Market Return?",
+      "faq": [
+        {
+          "a": "The S&P 500 has historically returned about 7-8% annually after inflation.",
+          "q": "What is the average stock market return?"
+        }
+      ],
+      "category": "investing",
+      "description": "Understand historical S&P 500 returns, inflation-adjusted returns, and what to expect from your investments over the long term.",
+      "readTime": 5,
+      "slug": "average-stock-market-return",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "compound-interest-calculator",
+        "roi-calculator",
+        "inflation-calculator"
+      ],
+      "dateModified": "2026-06-09",
+      "h1": "What Is the Average Stock Market Return?"
+    },
+    {
+      "datePublished": "2026-06-01",
+      "relatedArticles": [
+        "how-much-to-retire",
+        "rent-or-buy-analysis"
+      ],
+      "ogDescription": "Learn how much emergency fund you need. 3-6 months of expenses is the rule of thumb.",
+      "dateHuman": "June 2026",
+      "title": "How Much Emergency Fund Do You Need?",
+      "faq": [
+        {
+          "a": "3-6 months of living expenses is the standard recommendation.",
+          "q": "How much emergency fund do I need?"
+        }
+      ],
+      "category": "personal-finance",
+      "description": "Learn how to calculate the right emergency fund size for your situation. 3-6 months of expenses is the standard rule of thumb.",
+      "readTime": 5,
+      "slug": "how-much-emergency-fund",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "savings-goal-calculator"
+      ],
+      "dateModified": "2026-06-09",
+      "h1": "How Much Emergency Fund Do You Need?"
+    },
+    {
+      "datePublished": "2026-06-01",
+      "relatedArticles": [
+        "power-of-compound-interest",
+        "average-stock-market-return"
+      ],
+      "ogDescription": "Learn the difference between simple and compound interest with real examples.",
+      "dateHuman": "June 2026",
+      "title": "Simple vs Compound Interest",
+      "faq": [
+        {
+          "a": "Simple interest is on principal only. Compound interest is on principal plus accumulated interest.",
+          "q": "What is the difference between simple and compound interest?"
+        }
+      ],
+      "category": "investing",
+      "description": "Learn the critical difference between simple and compound interest. See how compound interest dramatically outperforms simple interest over time.",
+      "readTime": 5,
+      "slug": "simple-vs-compound-interest",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "compound-interest-calculator",
+        "roi-calculator"
+      ],
+      "dateModified": "2026-06-09",
+      "h1": "Simple vs Compound Interest: What is the Difference?"
+    },
+    {
+      "datePublished": "2026-06-09",
+      "relatedArticles": [
+        "how-to-calculate-mortgage-payment",
+        "pay-off-mortgage-early",
+        "15-vs-30-year-mortgage",
+        "rent-or-buy-analysis"
+      ],
+      "dateModified": "2026-06-09",
+      "title": "How Much Mortgage Can I Afford?",
+      "faq": [
+        {
+          "a": "At ,000/year, the 28% rule caps housing at ,333/month — roughly a ,000 loan.",
+          "q": "How much mortgage can I afford with a ,000 salary?"
+        }
+      ],
+      "category": "mortgage",
+      "dateHuman": "June 2026",
+      "description": "Learn how to calculate the mortgage you can truly afford using the 28/36 rule, real examples with numbers, and our free mortgage calculator.",
+      "readTime": 8,
+      "slug": "how-much-mortgage-can-i-afford",
+      "mainContent": "MAIN_CONTENT_PLACEHOLDER",
+      "caseStudy": "CASE_STUDY_PLACEHOLDER",
+      "introduction": "",
+      "relatedCalculators": [
+        "mortgage-calculator",
+        "rent-vs-buy-calculator",
+        "loan-calculator",
+        "credit-card-payoff-calculator"
+      ],
+      "ogDescription": "Learn how to calculate the mortgage you can truly afford using the 28/36 rule and our free mortgage calculator.",
+      "h1": "How Much Mortgage Can I Afford? A Step-by-Step Guide to Finding Your Number"
+    },
+    {
+      "datePublished": "2026-06-10",
+      "relatedArticles": [
+        "simple-vs-compound-interest",
+        "average-stock-market-return",
+        "how-much-emergency-fund"
+      ],
+      "ogDescription": "Use debt vs investing rules of thumb to decide whether to pay off debt first or invest, with examples and calculator links.",
+      "dateHuman": "June 2026",
+      "title": "Debt vs Investing: How to Choose Between Paying Off Debt or Investing",
+      "faq": [
+        {
+          "q": "Should I pay off credit card debt before investing?",
+          "a": "Usually yes. Credit card APR is often far higher than a realistic long-term investment return, so paying it down gives you a guaranteed win. Once the balance is gone, you can redirect the same cash into investing."
+        },
+        {
+          "q": "What if my employer offers a 401(k) match?",
+          "a": "Try to capture the full match before aggressively paying extra on low-interest debt. A match is immediate compensation, and skipping it is like turning down part of your paycheck."
+        },
+        {
+          "q": "Is it ever smart to invest while I still have debt?",
+          "a": "Yes, if the debt is low-interest and your emergency fund is in place. Low-rate student loans or mortgages can sometimes coexist with investing, especially if you are also using tax-advantaged accounts."
+        },
+        {
+          "q": "How much emergency fund should I keep first?",
+          "a": "At minimum, aim for a small starter buffer so you do not lean on credit cards again. Most households should then build toward three to six months of expenses before taking big investing risks."
+        },
+        {
+          "q": "Does debt vs investing change if I am close to retirement?",
+          "a": "Yes. If retirement is close, lowering guaranteed costs and keeping money liquid often matters more than chasing higher but uncertain returns. The closer you are to needing the money, the more conservative the decision should be."
+        }
+      ],
+      "category": "personal-finance",
+      "description": "Debt vs investing can feel like a tug-of-war. Learn when to pay off debt first, when to invest, and how to compare the numbers with simple rules.",
+      "readTime": 9,
+      "slug": "debt-vs-investing",
+      "introduction": "<p>When money is tight, debt vs investing can feel like a false choice between being responsible and being ambitious. In reality, the better decision is the one that gives your next dollar the highest expected payoff. If you are carrying high-interest debt, paying it off is often a guaranteed return. If you are already getting an employer match or sitting on low-rate debt, investing may be the better move.</p><p>The trick is not to guess. It is to compare your interest rate, your time horizon, your emergency fund, and the size of any free money on the table. In this guide, we will walk through a simple framework for deciding whether to pay off debt or invest first, and we will use real numbers so you can test the idea against your own situation.</p>",
+      "mainContent": "<h2>What Is Debt vs Investing?</h2><p>Debt vs investing is really a question of where your extra cash creates the most value. Paying off debt reduces a balance you already owe and saves future interest. Investing puts money into assets like index funds, retirement accounts, or other growth vehicles with the hope of earning more over time. One path lowers a guaranteed cost. The other path seeks a possible gain.</p><p>That difference matters. If your debt costs 20% or 25% a year, eliminating it is a lot like earning a risk-free return at that same rate. By contrast, even a well-diversified portfolio can still have a bad year, a flat year, or a multi-year slump. So the right choice depends on the rate you are paying, the return you expect, and how much risk you can tolerate.</p><h2>How Does It Work?</h2><p>A practical debt vs investing decision usually follows a simple order. Start by making sure your minimum debt payments are covered. Then protect a small emergency buffer so you do not need to borrow again. After that, compare the cost of debt to the expected return from investing and factor in any employer match or tax advantage.</p><ul><li><strong>Step 1:</strong> Pay every minimum on time so your credit stays healthy and penalties stay off the table.</li><li><strong>Step 2:</strong> Keep enough cash in reserve to avoid turning a small surprise into new debt.</li><li><strong>Step 3:</strong> If your employer matches retirement contributions, capture the full match first.</li><li><strong>Step 4:</strong> Put high-interest debt against expected investment returns. The higher the APR, the more attractive debt payoff becomes.</li><li><strong>Step 5:</strong> Send extra cash to the winner, then reassess every time your balance or rate changes.</li></ul><p>A good rule of thumb is that debt above roughly 7% to 8% APR deserves serious attention before extra investing, while low-interest debt may be reasonable to carry if you are investing consistently and building wealth elsewhere. The exact cutoff depends on your goals, taxes, and risk tolerance, but this gives you a clean starting point.</p><h2>Example Calculation</h2><p>Let us compare two versions of the same $300 per month decision. In the first version, you have a $6,000 credit card balance at 21% APR. In the second, you have a $6,000 student loan at 4.5% APR and an employer who matches 4% of your pay in a retirement plan. Same cash. Very different math.</p><table class=\"data-table\"><thead><tr><th>Scenario</th><th>Balance</th><th>Rate</th><th>Likely Move</th></tr></thead><tbody><tr><td>High-interest debt</td><td>$6,000</td><td>21%</td><td>Pay it off first</td></tr><tr><td>Low-interest debt + match</td><td>$6,000</td><td>4.5%</td><td>Invest enough to get the match, then decide</td></tr><tr><td>Long-term investing</td><td>$300 per month</td><td>7% expected return</td><td>Invest once expensive debt is gone</td></tr></tbody></table><p>If you throw the entire $300 at the 21% credit card, you remove a guaranteed drain on your budget and free up future cash flow. If you instead invest the same $300 while carrying that debt, your portfolio has to grow fast enough to outrun the interest cost. That is a tough race to win, especially after taxes and fees.</p><div class=\"highlight-box\"><h4>Rule of Thumb</h4><p>Pay off debt first when the interest rate is clearly above your realistic after-tax investment return. Invest first, or at least invest enough to capture a match, when the debt is low-cost and the investment account is giving you free money.</p></div><p>This is why debt vs investing is not about always choosing one side. It is about matching the next dollar to the strongest return available today.</p><h2>Benefits</h2><ul><li>You cut guaranteed interest on expensive balances and improve cash flow right away.</li><li>You still benefit from compounding when the numbers favor investing.</li><li>You avoid the all-or-nothing trap that makes people either overpay debt or underinvest.</li><li>You keep enough liquidity to handle emergencies without reaching for a credit card.</li><li>You make decisions with a repeatable framework instead of emotion or guilt.</li></ul><h2>Common Mistakes</h2><ul><li>Ignoring an employer match and leaving free compensation on the table.</li><li>Paying down low-rate debt so aggressively that you stop investing entirely.</li><li>Using stock market averages as if they were guaranteed returns.</li><li>Skipping the emergency fund and then borrowing again when life gets messy.</li><li>Forgetting taxes, fees, and minimum payments when comparing the numbers.</li></ul><h2>Use Our Calculator</h2><p>Use the <a href=\"../credit-card-payoff-calculator.html\" style=\"color:var(--pri)\">Debt Payoff Calculator</a> to see how much interest extra payments can save and how quickly a balance disappears. Then open the <a href=\"../compound-interest-calculator.html\" style=\"color:var(--pri)\">Investment Calculator</a> to model what the same money could become over the same period.</p><p>If you want to see the effect of rate changes, the <a href=\"../loan-calculator.html\" style=\"color:var(--pri)\">Loan Calculator</a> can help you compare payoff schedules side by side. That makes debt vs investing much easier to judge with real numbers instead of guesswork.</p><p>The practical move is simple: test the debt payoff path, test the investing path, and keep the one that creates the better outcome for your current situation. If the answer changes after an employer match, a refinance, or a rate drop, run the numbers again.</p><h2>Conclusion</h2><p>Debt vs investing is not about choosing a team. It is about putting the next dollar where it creates the most value. High-interest debt, especially credit cards, usually comes first because paying it down is a guaranteed return. Low-interest debt, retirement matches, and tax-advantaged accounts can make investing the better move even before every balance is gone.</p><p>The right answer changes with rates, time horizon, and risk tolerance, but the framework stays the same: protect a basic emergency fund, capture free money, eliminate expensive debt, and then invest aggressively once the math turns in your favor. Use the calculators above to test your own situation before you decide.</p>",
+      "caseStudy": "<div class=\"highlight-box\"><h4>Case Study: The 21% APR problem</h4><p>Mia has $6,000 on a credit card at 21% APR and $300 a month to spare. If she uses the money to pay down the card, she removes a guaranteed high-cost drag on her budget. Once the balance is gone, she can invest the same $300 every month with a much stronger starting point. If she instead invested first, the market would need to outperform a 21% annual cost just to keep up. That is why debt vs investing starts with the rate on the debt, not with a generic rule.</p></div>",
+      "relatedCalculators": [
+        "credit-card-payoff-calculator",
+        "compound-interest-calculator",
+        "loan-calculator"
+      ],
+      "dateModified": "2026-06-10",
+      "h1": "How to Choose Between Paying Off Debt or Investing First"
+    }
+  ]
 }

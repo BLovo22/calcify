@@ -99,5 +99,10 @@ var searchIndex = [
     "title": "How Much Mortgage Can I Afford? A Step-by-Step Guide to Finding Your Number",
     "url": "guides/how-much-mortgage-can-i-afford.html",
     "kw": "mortgage How Much Mortgage Can I Afford?"
+  },
+  {
+    "title": "How to Choose Between Paying Off Debt or Investing First",
+    "url": "guides/debt-vs-investing.html",
+    "kw": "personal-finance Debt vs Investing: How to Choose Between Paying Off Debt or Investing"
   }
 ];

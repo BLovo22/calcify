@@ -274,6 +274,123 @@ function buildGuidesIndex(guides, headerHTML, footerHTML) {
 }
 
 // ─── BUILD SITEMAP ────────────────────────────────────
+function formatFAQHtml(items) {
+  if (!items || !items.length) return "";
+  return items.map(function(item, index) {
+    return '<details class="card" style="cursor:pointer;padding:0' + (index ? ';margin-top:8px' : '') + '"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">' +
+      escapeHTML(item.q) + '<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">' +
+      item.a + '</div></details>';
+  }).join("\n");
+}
+
+function buildFaqSchema(items) {
+  if (!items || !items.length) return "";
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": items.map(function(item) {
+      return {
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": { "@type": "Answer", "text": item.a }
+      };
+    })
+  }, null, 2);
+}
+
+function buildBreadcrumbSchema(guide) {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Numbrly", "item": DOMAIN + "/" },
+      { "@type": "ListItem", "position": 2, "name": "Guides", "item": DOMAIN + "/guides/" },
+      { "@type": "ListItem", "position": 3, "name": guide.title, "item": DOMAIN + "/guides/" + guide.slug + ".html" }
+    ]
+  }, null, 2);
+}
+
+function relatedCalculatorTitle(slug, calc) {
+  const override = {
+    "credit-card-payoff-calculator": "Debt Payoff Calculator",
+    "compound-interest-calculator": "Investment Calculator"
+  };
+  return override[slug] || (calc && (calc.title || calc.h1)) || slug;
+}
+
+function buildRelatedCalculatorCards(guide, calculators) {
+  const map = new Map((calculators || []).map(function(c) { return [c.slug, c]; }));
+  const slugs = (guide.relatedCalculators || []).slice(0, 3);
+  return slugs.map(function(slug) {
+    const calc = map.get(slug);
+    const title = relatedCalculatorTitle(slug, calc);
+    const desc = calc ? (calc.description || "") : "";
+    return '<a href="../' + slug + '.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">' +
+      escapeHTML(title) + '</div><div style="color:var(--muted);font-size:12px;margin-top:2px">' + escapeHTML(desc) + '</div></a>';
+  }).join("\n");
+}
+
+function buildRelatedArticleCards(guide, guideMap) {
+  const slugs = (guide.relatedArticles || []).slice(0, 3);
+  return slugs.map(function(slug) {
+    const related = guideMap.get(slug);
+    if (!related) return "";
+    const href = "guides/" + related.slug + ".html";
+    const category = (related.category || "general").replace(/-/g, " ");
+    return '<a href="' + href + '" class="article-card"><div class="art-cat">' +
+      escapeHTML(category.replace(/\b\w/g, function(c) { return c.toUpperCase(); })) +
+      '</div><h4>' + escapeHTML(related.h1 || related.title) + '</h4><div class="art-date">Updated ' +
+      escapeHTML(related.dateHuman || "") + ' &middot; ' + escapeHTML(related.readTime || "") + ' min read</div></a>';
+  }).filter(Boolean).join("\n");
+}
+
+function buildGuideArticlePage(guide, guideMap, calculators) {
+  const template = fs.readFileSync(path.join(TPL_DIR, "article.html"), "utf8");
+  const canonical = DOMAIN + "/guides/" + guide.slug + ".html";
+  const seoTitle = (guide.title || guide.h1) + " | Numbrly";
+  const faqItems = guide.faq || [];
+  const adUnit = '<ins class="adsbygoogle" style="display:block;text-align:center;margin:28px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>\n    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>';
+
+  const html = template
+    .replace("{{SCHEMA_BREADCRUMB}}", buildBreadcrumbSchema(guide))
+    .replace("{{SCHEMA_FAQ}}", buildFaqSchema(faqItems))
+    .replace("{{ARTICLE_HEADLINE}}", escapeHTML(guide.h1 || guide.title))
+    .replaceAll("{{CANONICAL}}", canonical)
+    .replace("{{DATE_PUB}}", guide.datePublished || TODAY)
+    .replace("{{DATE_MOD}}", guide.dateModified || guide.datePublished || TODAY)
+    .replace("{{FAVICON_PATH}}", "../favicon.svg")
+    .replace("{{SEO_TITLE}}", escapeHTML(seoTitle))
+    .replace("{{META_DESC}}", escapeHTML(guide.description || ""))
+    .replaceAll("{{OG_TITLE}}", escapeHTML(seoTitle))
+    .replaceAll("{{OG_DESC}}", escapeHTML(guide.ogDescription || guide.description || ""))
+    .replace("{{CSS_PATH}}", "../style.css")
+    .replaceAll("{{HOME_PATH}}", "../")
+    .replace("{{PRIVACY_PATH}}", "../privacy-policy.html")
+    .replaceAll("{{H1}}", escapeHTML(guide.h1 || guide.title))
+    .replace("{{DATE_HUMAN}}", escapeHTML(guide.dateHuman || ""))
+    .replace("{{READ_TIME}}", escapeHTML(guide.readTime || ""))
+    .replace("{{INTRODUCTION}}", guide.introduction || "")
+    .replace("{{MAIN_CONTENT}}", guide.mainContent || "")
+    .replace("{{AD_UNIT}}", adUnit)
+    .replace("{{CASE_STUDY}}", guide.caseStudy || "")
+    .replace("{{FAQ_HTML}}", formatFAQHtml(faqItems))
+    .replace("{{RELATED_CALCS}}", buildRelatedCalculatorCards(guide, calculators))
+    .replace("{{RELATED_ARTICLES}}", buildRelatedArticleCards(guide, guideMap))
+    .replace("{{SLUG}}", guide.slug);
+
+  fs.writeFileSync(path.join(GUIDES_DIR, guide.slug + ".html"), html, "utf8");
+  console.log("  \u2713 article: guides/" + guide.slug + ".html");
+}
+
+function buildGuidePages(guides, calculators) {
+  const guideMap = new Map(guides.map(function(g) { return [g.slug, g]; }));
+  guides.forEach(function(guide) {
+    const renderable = guide.introduction && guide.mainContent && !String(guide.mainContent).includes("PLACEHOLDER");
+    if (!renderable) return;
+    buildGuideArticlePage(guide, guideMap, calculators);
+  });
+}
+
 function buildSitemap(guides, calculators) {
   const urls = [];
   urls.push({ loc: DOMAIN + "/", priority: "1.0", changefreq: "weekly", lastmod: TODAY });
@@ -383,6 +500,7 @@ function main() {
 
   if (!guides.length) { console.error("\u274C No guides found in guides.json \u2014 aborting."); process.exit(1); }
 
+  buildGuidePages(guides, calculators);
   console.log("  \uD83D\uDD04 Injecting shared header...");
   injectHeaderAll(headerHTML);
   console.log("  \uD83D\uDD04 Injecting shared footer...");
