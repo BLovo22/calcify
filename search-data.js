@@ -31,6 +31,11 @@ var searchIndex = [
     "kw": "debt Loan Calculator"
   },
   {
+    "title": "Debt Payoff Calculator",
+    "url": "debt-payoff-calculator.html",
+    "kw": "debt Debt Payoff Calculator"
+  },
+  {
     "title": "Savings Goal Calculator",
     "url": "savings-goal-calculator.html",
     "kw": "personal-finance Savings Goal Calculator"

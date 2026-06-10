@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta property="og:title" content="Debt Payoff Calculator - Snowball vs Avalanche | Numbrly">
+<meta property="og:description" content="Compare debt snowball and avalanche payoff plans across multiple debts. See your payoff order, debt-free date, and total interest.">
+<meta property="og:url" content="https://numbrly.cc/debt-payoff-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Debt Payoff Calculator - Snowball vs Avalanche | Numbrly">
+<meta name="twitter:description" content="Compare debt snowball and avalanche payoff plans across multiple debts. See your payoff order, debt-free date, and total interest.">
+<link rel="canonical" href="https://numbrly.cc/debt-payoff-calculator.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debt Payoff Calculator - Snowball vs Avalanche | Numbrly</title>
+<meta name="description" content="Free debt payoff calculator. Compare debt snowball and avalanche methods across multiple debts and estimate your debt-free date, payoff order, and interest cost.">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:"class"}</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Numbrly", "item": "https://numbrly.cc/"},
+    {"@type": "ListItem", "position": 2, "name": "Calculators", "item": "https://numbrly.cc/#calculators"},
+    {"@type": "ListItem", "position": 3, "name": "Debt Payoff Calculator", "item": "https://numbrly.cc/debt-payoff-calculator.html"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Debt Payoff Calculator",
+  "url": "https://numbrly.cc/debt-payoff-calculator.html",
+  "description": "Compare debt snowball and avalanche strategies across multiple debts to estimate payoff order, total interest, and debt-free date.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the difference between debt snowball and debt avalanche?", "acceptedAnswer": {"@type": "Answer", "text": "Debt snowball pays the smallest balance first to build momentum, while debt avalanche pays the highest interest rate first to minimize total interest. Both can work if you stay consistent."}},
+    {"@type": "Question", "name": "Which debt payoff strategy saves more money?", "acceptedAnswer": {"@type": "Answer", "text": "Debt avalanche usually saves more money because it attacks the highest APR first. Debt snowball may feel easier to stick with because it creates faster psychological wins."}},
+    {"@type": "Question", "name": "Should I pay off credit cards or loans first?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the balances, interest rates, and minimum payments. High-interest credit cards often deserve priority, but a multi-debt calculator helps you compare the full payoff path."}},
+    {"@type": "Question", "name": "Can I use this calculator for student loans and personal loans too?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. This calculator works for credit cards, personal loans, student loans, auto loans, or any debt with a balance, APR, and monthly minimum payment."}},
+    {"@type": "Question", "name": "What if my monthly payment budget is too low?", "acceptedAnswer": {"@type": "Answer", "text": "If your total monthly budget does not cover interest and minimums, the balances will not go down. In that case you need to increase payments, reduce rates, or restructure the debt."}}
+  ]
+}
+</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb">
+    <a href="index.html">Numbrly</a> / <a href="index.html#calculators">Calculators</a> / Debt Payoff Calculator
+  </div>
+
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F4CB; Debt Payoff Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:760px">Compare debt snowball and debt avalanche payoff plans across multiple balances. See your payoff order, debt-free date, total interest, and which strategy saves more money for your exact mix of debts.</p>
+  </section>
+
+  <section>
+    <div class="card" style="max-width:760px">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Monthly Debt Budget ($)</label>
+          <input type="number" id="monthlyBudget" value="1200" min="1" step="25">
+        </div>
+        <div class="form-group">
+          <label>Preferred Strategy</label>
+          <select id="strategy">
+            <option value="avalanche" selected>Debt Avalanche</option>
+            <option value="snowball">Debt Snowball</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card" style="padding:18px 18px 4px;margin-top:12px">
+        <h3 style="margin-bottom:12px">Debt 1</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="d1Name" value="Credit Card">
+          </div>
+          <div class="form-group">
+            <label>Balance ($)</label>
+            <input type="number" id="d1Bal" value="6500" min="0" step="100">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>APR (%)</label>
+            <input type="number" id="d1Apr" value="22.9" min="0" max="60" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Minimum Payment ($)</label>
+            <input type="number" id="d1Min" value="180" min="0" step="10">
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:18px 18px 4px;margin-top:12px">
+        <h3 style="margin-bottom:12px">Debt 2</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="d2Name" value="Auto Loan">
+          </div>
+          <div class="form-group">
+            <label>Balance ($)</label>
+            <input type="number" id="d2Bal" value="14000" min="0" step="100">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>APR (%)</label>
+            <input type="number" id="d2Apr" value="7.2" min="0" max="60" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Minimum Payment ($)</label>
+            <input type="number" id="d2Min" value="320" min="0" step="10">
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:18px 18px 4px;margin-top:12px">
+        <h3 style="margin-bottom:12px">Debt 3</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="d3Name" value="Student Loan">
+          </div>
+          <div class="form-group">
+            <label>Balance ($)</label>
+            <input type="number" id="d3Bal" value="9000" min="0" step="100">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>APR (%)</label>
+            <input type="number" id="d3Apr" value="5.4" min="0" max="60" step="0.1">
+          </div>
+          <div class="form-group">
+            <label>Minimum Payment ($)</label>
+            <input type="number" id="d3Min" value="140" min="0" step="10">
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-block" onclick="calcDebtPayoff()" style="margin-top:12px">Calculate Debt Payoff</button>
+    </div>
+
+    <div class="result" id="result" style="max-width:760px">
+      <div class="result-num" id="debtFreeTime">0 months</div>
+      <div class="result-label">estimated debt-free timeline</div>
+      <div class="result-grid">
+        <div class="result-item">
+          <div class="ri-val" id="totalInterest">$0</div>
+          <div class="ri-label">Total Interest</div>
+        </div>
+        <div class="result-item">
+          <div class="ri-val" id="totalPaid">$0</div>
+          <div class="ri-label">Total Paid</div>
+        </div>
+        <div class="result-item">
+          <div class="ri-val" id="bestStrategy">Avalanche</div>
+          <div class="ri-label">Lower-Interest Strategy</div>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:18px">
+        <h4>Chosen Strategy Summary</h4>
+        <div id="chosenSummary" style="color:var(--muted);font-size:13px;line-height:1.8"></div>
+      </div>
+      <div class="highlight-box" style="margin-top:14px">
+        <h4>Strategy Comparison</h4>
+        <div id="compareSummary" style="color:var(--muted);font-size:13px;line-height:1.8"></div>
+      </div>
+      <div id="warningBox" style="display:none;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-top:14px;font-size:13px;line-height:1.6"></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>How to Use This Calculator</h2>
+    <ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px">
+      <li><strong style="color:var(--text)">Enter your total monthly debt budget</strong>, not just the minimums.</li>
+      <li><strong style="color:var(--text)">List each debt</strong> with its balance, APR, and minimum payment.</li>
+      <li><strong style="color:var(--text)">Choose snowball or avalanche</strong> to see your preferred payoff order.</li>
+      <li><strong style="color:var(--text)">Compare the results</strong> to see which strategy clears debt faster or cheaper.</li>
+      <li><strong style="color:var(--text)">Adjust the budget</strong> to test how an extra $50 or $100 per month changes the timeline.</li>
+    </ol>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Example: Three Debts and a $1,200 Budget</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">Imagine you have a $6,500 credit card at 22.9%, a $14,000 auto loan at 7.2%, and a $9,000 student loan at 5.4%. Your minimums total $640 per month, but you can afford to send $1,200 total toward debt.</p>
+    <div class="highlight-box">
+      <h4>&#x1F4CB; What This Shows</h4>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.8">
+        <li>Debt avalanche usually saves more interest because it targets the highest APR first.</li>
+        <li>Debt snowball may knock out a smaller balance sooner and feel more motivating.</li>
+        <li>The bigger your monthly budget above the minimums, the faster both strategies improve.</li>
+        <li>Adding even $100 more per month can dramatically reduce your total payoff timeline.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Why Use This Calculator?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+      <div class="card" style="padding:20px"><div class="tag">&#x1F4C8; Compare Strategies</div><p style="font-size:13px;line-height:1.7">See debt snowball and avalanche side by side using your actual numbers.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F4B5; Estimate Interest</div><p style="font-size:13px;line-height:1.7">Find out how much interest each strategy may cost over time.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x23F1; Get a Timeline</div><p style="font-size:13px;line-height:1.7">Understand when you could become debt-free instead of guessing.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F512; Private</div><p style="font-size:13px;line-height:1.7">All debt calculations happen in your browser with no account required.</p></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Common Mistakes</h2>
+    <div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px">
+      <p><strong style="color:var(--text)">Using only minimum payments.</strong> Minimums keep debt alive for a long time. The real progress starts when your total monthly budget is meaningfully above the minimums.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Ignoring APR differences.</strong> Two debts with similar balances can have very different long-term cost because of the interest rate.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Switching strategies every month.</strong> Both snowball and avalanche can work, but consistency matters more than constantly changing plans.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">Skipping emergency savings.</strong> Paying debt aggressively is useful, but not if every surprise pushes you back onto a credit card.</p>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      <details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is the difference between debt snowball and debt avalanche?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Debt snowball focuses on the smallest balance first for momentum. Debt avalanche focuses on the highest APR first to minimize interest. The best choice is the one you will stick with.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Which strategy saves more money?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Debt avalanche usually saves more money because it reduces the highest-interest balances first. Debt snowball may still be useful if quick wins help you stay motivated.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Can I use this for student loans, personal loans, and credit cards?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Yes. Any debt with a balance, APR, and minimum payment can be modeled here, including credit cards, auto loans, student loans, and personal loans.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What if my monthly budget is not enough?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">If your total budget does not cover interest and minimums, the debts will not amortize properly. In that case you may need to increase income, reduce expenses, lower interest rates, or consider restructuring.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Should I pay off debt or invest first?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">High-interest debt often deserves attention before extra investing, especially credit cards. Lower-rate debt may be different. Use this calculator with an investment calculator to compare both paths.</div></details>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Calculators</h2>
+    <div class="tool-grid" style="margin-top:16px">
+      <a href="credit-card-payoff-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4B3;</div><h3>Credit Card Payoff Calculator</h3><p>Model a single card balance in more detail and test payment levels.</p></a>
+      <a href="loan-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4CB;</div><h3>Loan Calculator</h3><p>Estimate monthly payments and total interest for any single loan.</p></a>
+      <a href="savings-goal-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3AF;</div><h3>Savings Goal Calculator</h3><p>Plan what to do with your cash flow after the debts are gone.</p></a>
+      <a href="compound-interest-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4C8;</div><h3>Investment Calculator</h3><p>See how redirected debt payments could grow once you are debt-free.</p></a>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Guides</h2>
+    <a href="guides/debt-vs-investing.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>How to Choose Between Paying Off Debt or Investing First</h4><div class="art-date">Updated June 2026 &middot; 9 min read</div></a>
+    <a href="guides/how-much-emergency-fund.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>How Much Emergency Fund Do You Need?</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a>
+    <a href="guides/what-is-a-good-credit-score.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>What Is a Good Credit Score and How to Improve Yours</h4><div class="art-date">Updated June 2026 &middot; 8 min read</div></a>
+  </section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
+          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
+          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
+          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script>
+function fmtMoney(value) {
+  return "$" + Math.max(0, value).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function fmtMonths(months) {
+  if (!isFinite(months) || months <= 0) return "0 months";
+  var years = Math.floor(months / 12);
+  var rem = months % 12;
+  if (years === 0) return rem + " months";
+  if (rem === 0) return years + (years === 1 ? " year" : " years");
+  return years + " yr " + rem + " mo";
+}
+function readDebts() {
+  var debts = [];
+  [
+    { name: document.getElementById("d1Name").value || "Debt 1", bal: parseFloat(document.getElementById("d1Bal").value) || 0, apr: parseFloat(document.getElementById("d1Apr").value) || 0, min: parseFloat(document.getElementById("d1Min").value) || 0 },
+    { name: document.getElementById("d2Name").value || "Debt 2", bal: parseFloat(document.getElementById("d2Bal").value) || 0, apr: parseFloat(document.getElementById("d2Apr").value) || 0, min: parseFloat(document.getElementById("d2Min").value) || 0 },
+    { name: document.getElementById("d3Name").value || "Debt 3", bal: parseFloat(document.getElementById("d3Bal").value) || 0, apr: parseFloat(document.getElementById("d3Apr").value) || 0, min: parseFloat(document.getElementById("d3Min").value) || 0 }
+  ].forEach(function(d, idx) {
+    if (d.bal > 0 && d.min > 0) {
+      debts.push({ id: idx + 1, name: d.name, balance: d.bal, apr: d.apr, min: d.min, paidOffMonth: null });
+    }
+  });
+  return debts;
+}
+function chooseTarget(debts, strategy) {
+  var active = debts.filter(function(d) { return d.balance > 0.01; });
+  if (!active.length) return null;
+  active.sort(function(a, b) {
+    if (strategy === "snowball") {
+      if (a.balance !== b.balance) return a.balance - b.balance;
+      if (a.apr !== b.apr) return b.apr - a.apr;
+      return a.id - b.id;
+    }
+    if (a.apr !== b.apr) return b.apr - a.apr;
+    if (a.balance !== b.balance) return a.balance - b.balance;
+    return a.id - b.id;
+  });
+  return active[0];
+}
+function simulateStrategy(seedDebts, monthlyBudget, strategy) {
+  var debts = seedDebts.map(function(d) {
+    return { id: d.id, name: d.name, balance: d.balance, apr: d.apr, min: d.min, paidOffMonth: null };
+  });
+  var totalPrincipal = debts.reduce(function(sum, d) { return sum + d.balance; }, 0);
+  var totalMinimums = debts.reduce(function(sum, d) { return sum + d.min; }, 0);
+  var maxMonths = 1200;
+  var month = 0;
+  var totalInterest = 0;
+  while (month < maxMonths && debts.some(function(d) { return d.balance > 0.01; })) {
+    month++;
+    debts.forEach(function(d) {
+      if (d.balance > 0.01) {
+        var interest = d.balance * (d.apr / 100 / 12);
+        d.balance += interest;
+        totalInterest += interest;
+      }
+    });
+
+    var remaining = monthlyBudget;
+    var active = debts.filter(function(d) { return d.balance > 0.01; });
+    var requiredMinimums = active.reduce(function(sum, d) { return sum + Math.min(d.min, d.balance); }, 0);
+    if (remaining + 0.001 < requiredMinimums) {
+      return { valid: false, reason: "Monthly budget is below the current minimum payments.", totalMinimums: totalMinimums };
+    }
+
+    active.forEach(function(d) {
+      var due = Math.min(d.min, d.balance);
+      d.balance -= due;
+      remaining -= due;
+      if (d.balance <= 0.01 && d.paidOffMonth === null) {
+        d.balance = 0;
+        d.paidOffMonth = month;
+      }
+    });
+
+    while (remaining > 0.01) {
+      var target = chooseTarget(debts, strategy);
+      if (!target) break;
+      var extraPay = Math.min(remaining, target.balance);
+      target.balance -= extraPay;
+      remaining -= extraPay;
+      if (target.balance <= 0.01 && target.paidOffMonth === null) {
+        target.balance = 0;
+        target.paidOffMonth = month;
+      }
+    }
+  }
+
+  if (debts.some(function(d) { return d.balance > 0.01; })) {
+    return { valid: false, reason: "The debts do not amortize with the current inputs.", totalMinimums: totalMinimums };
+  }
+
+  var payoffOrder = debts
+    .slice()
+    .sort(function(a, b) { return a.paidOffMonth - b.paidOffMonth; })
+    .map(function(d) { return d.name + " (" + fmtMonths(d.paidOffMonth) + ")"; });
+
+  return {
+    valid: true,
+    months: month,
+    totalInterest: totalInterest,
+    totalPaid: totalPrincipal + totalInterest,
+    payoffOrder: payoffOrder,
+    totalMinimums: totalMinimums
+  };
+}
+function calcDebtPayoff() {
+  var monthlyBudget = parseFloat(document.getElementById("monthlyBudget").value) || 0;
+  var strategy = document.getElementById("strategy").value || "avalanche";
+  var debts = readDebts();
+  var warning = document.getElementById("warningBox");
+
+  if (!debts.length) {
+    warning.style.display = "block";
+    warning.textContent = "Add at least one debt with a positive balance and minimum payment.";
+    document.getElementById("result").classList.add("show");
+    return;
+  }
+
+  var avalanche = simulateStrategy(debts, monthlyBudget, "avalanche");
+  var snowball = simulateStrategy(debts, monthlyBudget, "snowball");
+  var chosen = strategy === "snowball" ? snowball : avalanche;
+  var other = strategy === "snowball" ? avalanche : snowball;
+
+  if (!chosen.valid || !other.valid) {
+    warning.style.display = "block";
+    warning.textContent = (chosen.reason || other.reason) + " Try increasing the monthly budget above the minimum payments total.";
+    document.getElementById("debtFreeTime").textContent = "Budget too low";
+    document.getElementById("totalInterest").textContent = "$0";
+    document.getElementById("totalPaid").textContent = "$0";
+    document.getElementById("bestStrategy").textContent = "N/A";
+    document.getElementById("chosenSummary").innerHTML = "";
+    document.getElementById("compareSummary").innerHTML = "Current minimum payments total about <strong style=\"color:var(--text)\">" + fmtMoney((chosen.totalMinimums || other.totalMinimums || 0)) + "/month</strong>.";
+    document.getElementById("result").classList.add("show");
+    return;
+  }
+
+  warning.style.display = "none";
+  var lowerInterest = avalanche.totalInterest <= snowball.totalInterest ? "Avalanche" : "Snowball";
+  var otherName = strategy === "snowball" ? "avalanche" : "snowball";
+  var interestDiff = Math.abs(chosen.totalInterest - other.totalInterest);
+  var monthDiff = Math.abs(chosen.months - other.months);
+
+  document.getElementById("debtFreeTime").textContent = fmtMonths(chosen.months);
+  document.getElementById("totalInterest").textContent = fmtMoney(chosen.totalInterest);
+  document.getElementById("totalPaid").textContent = fmtMoney(chosen.totalPaid);
+  document.getElementById("bestStrategy").textContent = lowerInterest;
+  document.getElementById("chosenSummary").innerHTML =
+    "<div>Strategy selected: <strong style=\"color:var(--text)\">" + (strategy === "snowball" ? "Debt Snowball" : "Debt Avalanche") + "</strong></div>" +
+    "<div>Payoff order: <strong style=\"color:var(--text)\">" + chosen.payoffOrder.join(" → ") + "</strong></div>" +
+    "<div>Total monthly debt budget: <strong style=\"color:var(--text)\">" + fmtMoney(monthlyBudget) + "</strong></div>";
+  document.getElementById("compareSummary").innerHTML =
+    "<div>Debt avalanche total interest: <strong style=\"color:var(--text)\">" + fmtMoney(avalanche.totalInterest) + "</strong></div>" +
+    "<div>Debt snowball total interest: <strong style=\"color:var(--text)\">" + fmtMoney(snowball.totalInterest) + "</strong></div>" +
+    "<div style=\"margin-top:6px\">Compared with " + otherName + ", this plan differs by <strong style=\"color:var(--text)\">" + fmtMoney(interestDiff) + "</strong> in interest and <strong style=\"color:var(--text)\">" + fmtMonths(monthDiff) + "</strong> in payoff time.</div>";
+  document.getElementById("result").classList.add("show");
+}
+(function(){
+  var pg = location.pathname.split("/").pop() || "debt-payoff";
+  var ins = document.querySelectorAll("input[id], select[id]");
+  try {
+    var sv = JSON.parse(localStorage.getItem("Numbrly_" + pg) || "{}");
+    ins.forEach(function(e) { if (sv[e.id] !== undefined) e.value = sv[e.id]; });
+  } catch(x) {}
+  ins.forEach(function(e) {
+    e.addEventListener("input", function() {
+      try {
+        var a = {};
+        ins.forEach(function(x) { a[x.id] = x.value; });
+        localStorage.setItem("Numbrly_" + pg, JSON.stringify(a));
+      } catch(y) {}
+    });
+  });
+})();
+document.addEventListener("DOMContentLoaded", function(){ calcDebtPayoff(); });
+</script>
+</body>
+</html>

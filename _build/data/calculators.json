@@ -49,6 +49,14 @@
                             "title":  "Loan Calculator"
                         },
                         {
+                            "slug":  "debt-payoff-calculator",
+                            "description":  "Compare debt snowball and avalanche strategies across multiple balances. See your payoff order, total interest, and debt-free date.",
+                            "icon":  "📋",
+                            "h1":  "Debt Payoff Calculator",
+                            "category":  "debt",
+                            "title":  "Debt Payoff Calculator"
+                        },
+                        {
                             "slug":  "savings-goal-calculator",
                             "description":  "Set a savings target and see exactly when you will reach your goal.",
                             "icon":  "🎯",
