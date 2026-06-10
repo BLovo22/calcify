@@ -114,5 +114,10 @@ var searchIndex = [
     "title": "How to Choose Between Paying Off Debt or Investing First",
     "url": "guides/debt-vs-investing.html",
     "kw": "personal-finance Debt vs Investing: How to Choose Between Paying Off Debt or Investing"
+  },
+  {
+    "title": "What Is a Good Credit Score and How to Improve Yours",
+    "url": "guides/what-is-a-good-credit-score.html",
+    "kw": "personal-finance What Is a Good Credit Score and How to Improve It"
   }
 ];
