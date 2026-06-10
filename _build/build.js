@@ -13,6 +13,7 @@ const TPL_DIR = path.join(__dirname, "templates");
 const GUIDES_DIR = path.join(ROOT, "guides");
 const DOMAIN = "https://numbrly.cc";
 const TODAY = new Date().toISOString().split("T")[0];
+const HOSTNAME = DOMAIN.replace(/^https?:\/\//, "");
 
 // ─── HELPERS ──────────────────────────────────────────
 function loadJSON(filename) {
@@ -60,6 +61,26 @@ function buildGuideIndexCard(guide) {
     escapeHTML(guideCategoryLabel(guide, false)) + '</div><h4>' +
     escapeHTML(guide.h1 || guide.title) + '</h4><div class="art-date">' +
     escapeHTML(guide.dateHuman || "") + ' &middot; ' + escapeHTML(guide.readTime || "") + ' min read</div></a>';
+}
+
+function localPathForUrl(url) {
+  if (!url.startsWith(DOMAIN + "/")) return null;
+  const pathname = url.slice(DOMAIN.length);
+  if (pathname === "/") return path.join(ROOT, "index.html");
+  if (pathname === "/guides/") return path.join(GUIDES_DIR, "index.html");
+  return path.join(ROOT, pathname.replace(/^\//, ""));
+}
+
+function expectedUrlForLocalPath(filePath) {
+  const rel = path.relative(ROOT, filePath).replace(/\\/g, "/");
+  if (rel === "index.html") return DOMAIN + "/";
+  if (rel === "guides/index.html") return DOMAIN + "/guides/";
+  return DOMAIN + "/" + rel;
+}
+
+function extractAttr(html, regex) {
+  const match = html.match(regex);
+  return match ? match[1] : "";
 }
 
 // ─── UNIFIED DARK MODE SCRIPT ─────────────────────────
@@ -255,19 +276,20 @@ function buildGuidesIndex(guides, headerHTML, footerHTML) {
 // ─── BUILD SITEMAP ────────────────────────────────────
 function buildSitemap(guides, calculators) {
   const urls = [];
-  urls.push({ loc: DOMAIN + "/", priority: "1.0", changefreq: "weekly" });
-  calculators.forEach(c => urls.push({ loc: DOMAIN + "/" + c.slug + ".html", priority: "0.9", changefreq: "monthly" }));
-  urls.push({ loc: DOMAIN + "/guides/", priority: "0.7", changefreq: "weekly" });
-  guides.forEach(g => urls.push({ loc: DOMAIN + "/guides/" + g.slug + ".html", priority: "0.7", changefreq: "monthly" }));
-  urls.push({ loc: DOMAIN + "/search.html", priority: "0.5", changefreq: "monthly" });
-  urls.push({ loc: DOMAIN + "/privacy-policy.html", priority: "0.3", changefreq: "yearly" });
+  urls.push({ loc: DOMAIN + "/", priority: "1.0", changefreq: "weekly", lastmod: TODAY });
+  calculators.forEach(c => urls.push({ loc: DOMAIN + "/" + c.slug + ".html", priority: "0.9", changefreq: "monthly", lastmod: TODAY }));
+  urls.push({ loc: DOMAIN + "/guides/", priority: "0.7", changefreq: "weekly", lastmod: TODAY });
+  guides.forEach(g => urls.push({ loc: DOMAIN + "/guides/" + g.slug + ".html", priority: "0.7", changefreq: "monthly", lastmod: g.dateModified || g.datePublished || TODAY }));
+  urls.push({ loc: DOMAIN + "/search.html", priority: "0.5", changefreq: "monthly", lastmod: TODAY });
+  urls.push({ loc: DOMAIN + "/privacy-policy.html", priority: "0.3", changefreq: "yearly", lastmod: TODAY });
 
   const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-    urls.map(u => "  <url>\n    <loc>" + u.loc + "</loc>\n    <changefreq>" + u.changefreq + "</changefreq>\n    <priority>" + u.priority + "</priority>\n    <lastmod>" + TODAY + "</lastmod>\n  </url>").join("\n") +
+    urls.map(u => "  <url>\n    <loc>" + u.loc + "</loc>\n    <changefreq>" + u.changefreq + "</changefreq>\n    <priority>" + u.priority + "</priority>\n    <lastmod>" + u.lastmod + "</lastmod>\n  </url>").join("\n") +
     "\n</urlset>\n";
 
   fs.writeFileSync(path.join(ROOT, "sitemap.xml"), xml, "utf8");
   console.log("  \uD83D\uDDFA\uFE0F Sitemap \u2014 " + urls.length + " URLs");
+  return urls;
 }
 
 // ─── VERIFY ROBOTS.TXT ────────────────────────────────
@@ -277,7 +299,7 @@ function verifyRobots() {
   try { robots = fs.readFileSync(robotsPath, "utf8"); } catch (e) {}
 
   const expected = "User-agent: *\nAllow: /\n\nSitemap: " + DOMAIN + "/sitemap.xml\n";
-  if (robots.includes("Sitemap:") && robots.includes("Allow: /")) {
+  if (robots.replace(/\r\n/g, "\n") === expected) {
     console.log("  \uD83E\uDD16 robots.txt \u2014 OK");
   } else {
     fs.writeFileSync(robotsPath, expected, "utf8");
@@ -297,6 +319,47 @@ function buildSearchData(guides, calculators) {
 }
 
 // ─── PRINT STATS ──────────────────────────────────────
+function validateSeoOutputs(sitemapUrls) {
+  const errors = [];
+  const cnamePath = path.join(ROOT, "CNAME");
+  const robotsPath = path.join(ROOT, "robots.txt");
+  const sitemapPath = path.join(ROOT, "sitemap.xml");
+
+  const cname = fs.existsSync(cnamePath) ? fs.readFileSync(cnamePath, "utf8").trim() : "";
+  if (cname !== HOSTNAME) errors.push("CNAME must be " + HOSTNAME + " but found " + (cname || "<missing>"));
+
+  const robots = fs.existsSync(robotsPath) ? fs.readFileSync(robotsPath, "utf8").replace(/\r\n/g, "\n") : "";
+  const expectedRobots = "User-agent: *\nAllow: /\n\nSitemap: " + DOMAIN + "/sitemap.xml\n";
+  if (robots !== expectedRobots) errors.push("robots.txt does not match the canonical sitemap directive.");
+
+  const sitemap = fs.existsSync(sitemapPath) ? fs.readFileSync(sitemapPath, "utf8") : "";
+  const locs = Array.from(sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)).map(m => m[1]);
+  if (locs.length !== sitemapUrls.length) errors.push("sitemap.xml URL count mismatch.");
+
+  locs.forEach(loc => {
+    if (!loc.startsWith(DOMAIN + "/")) errors.push("Sitemap URL is outside canonical host: " + loc);
+    const localPath = localPathForUrl(loc);
+    if (!localPath || !fs.existsSync(localPath)) {
+      errors.push("Sitemap URL has no local file: " + loc);
+      return;
+    }
+    const html = fs.readFileSync(localPath, "utf8");
+    const canonical = extractAttr(html, /<link rel="canonical" href="([^"]+)"/);
+    const ogUrl = extractAttr(html, /<meta property="og:url" content="([^"]+)"/);
+    const expectedUrl = expectedUrlForLocalPath(localPath);
+    if (canonical !== expectedUrl) errors.push("Canonical mismatch for " + path.relative(ROOT, localPath) + ": " + (canonical || "<missing>"));
+    if (ogUrl && ogUrl !== expectedUrl) errors.push("og:url mismatch for " + path.relative(ROOT, localPath) + ": " + ogUrl);
+  });
+
+  if (errors.length) {
+    console.error("\nSEO output validation failed:");
+    errors.forEach(e => console.error("  - " + e));
+    process.exit(1);
+  }
+
+  console.log("  \u2705 SEO checks \u2014 canonical host, robots, sitemap, canonical tags OK");
+}
+
 function printStats(guides, calculators) {
   const cats = {};
   guides.forEach(g => { var c = g.category || "uncategorized"; cats[c] = (cats[c] || 0) + 1; });
@@ -327,9 +390,10 @@ function main() {
 
   buildHomepage(guides, headerHTML, footerHTML);
   buildGuidesIndex(guides, headerHTML, footerHTML);
-  buildSitemap(guides, calculators);
+  const sitemapUrls = buildSitemap(guides, calculators);
   verifyRobots();
   buildSearchData(guides, calculators);
+  validateSeoOutputs(sitemapUrls);
   printStats(guides, calculators);
 
   console.log("\n\u2728 Build complete!\n");

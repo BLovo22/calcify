@@ -1,4 +1,4 @@
-// Site search data — auto-generated 2026-06-09
+// Site search data — auto-generated 2026-06-10
 var searchIndex = [
   {
     "title": "Mortgage Payment Calculator",
