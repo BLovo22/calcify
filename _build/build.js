@@ -656,7 +656,17 @@ function main() {
   const guideData = loadJSON("guides.json");
   const calculators = calcData.calculators || [];
   const contentArticles = loadContentArticles();
-  const guides = mergeGuides(guideData.guides || [], contentArticles);
+  let guides = mergeGuides(guideData.guides || [], contentArticles);
+  // Defensive: deduplicate by slug (prevents duplicate articles on homepage/guides index)
+  const seenSlugs = new Set();
+  guides = guides.filter(g => {
+    if (seenSlugs.has(g.slug)) {
+      console.warn('  ⚠️ Duplicate slug skipped: ' + g.slug);
+      return false;
+    }
+    seenSlugs.add(g.slug);
+    return true;
+  });
   const headerHTML = loadHeader();
   const footerHTML = loadFooter();
 
