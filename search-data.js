@@ -124,5 +124,10 @@ var searchIndex = [
     "title": "What Is a Good Credit Score and How to Improve Yours",
     "url": "guides/what-is-a-good-credit-score.html",
     "kw": "personal-finance What Is a Good Credit Score and How to Improve It what is a good credit score improve credit score FICO score"
+  },
+  {
+    "title": "How Much Should I Save Each Month? A Practical Guide",
+    "url": "guides/how-much-should-i-save-each-month.html",
+    "kw": "savings How Much Should I Save Each Month? how much should I save each month monthly savings target how much of my income should I save 20 percent savings rule"
   }
 ];
