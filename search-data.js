@@ -1,4 +1,4 @@
-// Site search data — auto-generated 2026-06-10
+// Site search data — auto-generated 2026-06-11
 var searchIndex = [
   {
     "title": "Mortgage Payment Calculator",
@@ -68,61 +68,61 @@ var searchIndex = [
   {
     "title": "Should You Pay Off Your Mortgage Early? A Complete Analysis",
     "url": "guides/pay-off-mortgage-early.html",
-    "kw": "mortgage Should You Pay Off Your Mortgage Early?"
+    "kw": "mortgage Should You Pay Off Your Mortgage Early? pay off mortgage early mortgage payoff extra mortgage payments"
   },
   {
     "title": "The Power of Compound Interest: Starting at 25 vs. 35",
     "url": "guides/power-of-compound-interest.html",
-    "kw": "investing The Power of Compound Interest"
+    "kw": "investing The Power of Compound Interest power of compound interest compound interest start investing early"
   },
   {
     "title": "15 vs 30 Year Mortgage: Which Term Saves More?",
     "url": "guides/15-vs-30-year-mortgage.html",
-    "kw": "mortgage 15 vs 30 Year Mortgage"
+    "kw": "mortgage 15 vs 30 Year Mortgage 15 vs 30 year mortgage mortgage term comparison 15 year mortgage"
   },
   {
     "title": "How Much Do You Really Need to Retire? The 4% Rule Explained",
     "url": "guides/how-much-to-retire.html",
-    "kw": "retirement How Much Do You Really Need to Retire?"
+    "kw": "retirement How Much Do You Really Need to Retire? how much to retire retirement savings 4 percent rule"
   },
   {
     "title": "How to Calculate Your Mortgage Payment — Step by Step",
     "url": "guides/how-to-calculate-mortgage-payment.html",
-    "kw": "mortgage How to Calculate Your Mortgage Payment"
+    "kw": "mortgage How to Calculate Your Mortgage Payment calculate mortgage payment mortgage payment formula monthly mortgage payment"
   },
   {
     "title": "Rent or Buy? A Complete Financial Analysis",
     "url": "guides/rent-or-buy-analysis.html",
-    "kw": "personal-finance Rent or Buy?"
+    "kw": "personal-finance Rent or Buy? rent vs buy rent or buy a house rent vs buy analysis"
   },
   {
     "title": "What Is the Average Stock Market Return?",
     "url": "guides/average-stock-market-return.html",
-    "kw": "investing What Is the Average Stock Market Return?"
+    "kw": "investing What Is the Average Stock Market Return? average stock market return S&P 500 return investment returns"
   },
   {
     "title": "How Much Emergency Fund Do You Need?",
     "url": "guides/how-much-emergency-fund.html",
-    "kw": "personal-finance How Much Emergency Fund Do You Need?"
+    "kw": "personal-finance How Much Emergency Fund Do You Need? how much emergency fund emergency savings 3 to 6 months expenses"
   },
   {
     "title": "Simple vs Compound Interest: What is the Difference?",
     "url": "guides/simple-vs-compound-interest.html",
-    "kw": "investing Simple vs Compound Interest"
+    "kw": "investing Simple vs Compound Interest simple vs compound interest compound interest simple interest"
   },
   {
     "title": "How Much Mortgage Can I Afford? A Step-by-Step Guide to Finding Your Number",
     "url": "guides/how-much-mortgage-can-i-afford.html",
-    "kw": "mortgage How Much Mortgage Can I Afford?"
+    "kw": "mortgage How Much Mortgage Can I Afford? how much mortgage can I afford mortgage affordability 28 36 rule"
   },
   {
     "title": "How to Choose Between Paying Off Debt or Investing First",
     "url": "guides/debt-vs-investing.html",
-    "kw": "personal-finance Debt vs Investing: How to Choose Between Paying Off Debt or Investing"
+    "kw": "personal-finance Debt vs Investing: How to Choose Between Paying Off Debt or Investing debt vs investing pay off debt or invest investing with debt"
   },
   {
     "title": "What Is a Good Credit Score and How to Improve Yours",
     "url": "guides/what-is-a-good-credit-score.html",
-    "kw": "personal-finance What Is a Good Credit Score and How to Improve It"
+    "kw": "personal-finance What Is a Good Credit Score and How to Improve It what is a good credit score improve credit score FICO score"
   }
 ];

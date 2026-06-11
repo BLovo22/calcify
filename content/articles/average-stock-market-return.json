@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0",
+  "slug": "average-stock-market-return",
+  "title": "What Is the Average Stock Market Return?",
+  "h1": "What Is the Average Stock Market Return?",
+  "description": "What is the average stock market return? 100 years of S&amp;P 500 data, nominal vs real returns, and what to expect for your investments.",
+  "ogDescription": "What is the average stock market return? We analyze 100 years of S&amp;P 500 data, explain real vs nominal returns, and what to expect going forward.",
+  "seoTitle": "Average Stock Market Return: What History Tells Us | Numbrly",
+  "ogTitle": "Average Stock Market Return: What History Tells Us | Numbrly",
+  "keywords": [
+    "average stock market return",
+    "S&P 500 return",
+    "investment returns"
+  ],
+  "category": "investing",
+  "datePublished": "2026-06-01",
+  "dateModified": "2026-06-09",
+  "dateHuman": "June 2026",
+  "readTime": 5,
+  "article": {
+    "format": "html",
+    "content": "<h1 style=\"font-size:28px;font-weight:800;margin-bottom:8px\">Average Stock Market Return: What History Tells Us</h1>\r\n<p style=\"color:var(--muted);font-size:13px;margin-bottom:32px\">Updated June 2026 · 6 min read</p>\r\n\r\n<div class=\"toc\" id=\"toc\"><h4>&#x1F4D1; Table of Contents</h4><ol id=\"tocList\"></ol></div>\r\n<script>(function(){var hs=document.querySelectorAll('.article-body h2');var list=document.getElementById('tocList');if(!list||hs.length===0)return;hs.forEach(function(h,i){h.id='section-'+i;var li=document.createElement('li');var a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;li.appendChild(a);list.appendChild(li);});})();</script>\r\n\r\n<p>When people say \"the market,\" they usually mean the S&P 500. And when they ask \"what's the average return,\" the answer depends on what you count and how you measure it.</p>\r\n\r\n<h2>The Numbers: 100 Years of S&P 500</h2>\r\n<table class=\"data-table\" style=\"margin:16px 0\">\r\n  <thead><tr><th>Period</th><th>Nominal Return</th><th>Real Return (after inflation)</th></tr></thead>\r\n  <tbody>\r\n    <tr><td>1926-2026 (99 years)</td><td>~10.0%</td><td>~7.0%</td></tr>\r\n    <tr><td>Last 50 years</td><td>~10.5%</td><td>~6.6%</td></tr>\r\n    <tr><td>Last 30 years</td><td>~9.7%</td><td>~7.2%</td></tr>\r\n    <tr><td>Last 10 years</td><td>~13.1%</td><td>~10.1%</td></tr>\r\n    <tr><td>2000-2010 (\"Lost Decade\")</td><td>~-1.0%</td><td>~-3.5%</td></tr>\r\n  </tbody>\r\n</table>\r\n<p>The key takeaway: the long-term average is about <strong>10% nominal, 7% real</strong>. But any single decade can deviate wildly from that average.</p>\r\n\r\n<h2>Nominal vs. Real Returns: Why Inflation Matters</h2>\r\n<p>A 10% return that loses 3% to inflation is really a 7% return in purchasing power. Over 30 years, that 3% gap compounds into a massive difference. This is why financial planners use real returns for retirement projections — $1 million in 2055 will not buy what $1 million buys today.</p>\r\n\r\n<ins class=\"adsbygoogle\" style=\"display:block;text-align:center;margin:28px 0\" data-ad-client=\"ca-pub-4970468814214538\" data-ad-format=\"auto\" data-full-width-responsive=\"true\"></ins>\r\n<script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>\r\n\r\n<h2>The Danger of Recency Bias</h2>\r\n<p>The last 10 years have been exceptional — ~13% annual returns. Many new investors assume this is normal. It is not. The last decade benefited from near-zero interest rates and a historic tech bull run. Future returns are widely expected to be lower. Major institutions forecast 5-7% nominal returns for the next decade, not 13%.</p>\r\n\r\n<h2>What to Expect Going Forward</h2>\r\n<ul>\r\n  <li><strong>Conservative estimate:</strong> 5-6% nominal (2-3% real)</li>\r\n  <li><strong>Base case:</strong> 7-8% nominal (4-5% real)</li>\r\n  <li><strong>Optimistic:</strong> 9-10% nominal (6-7% real)</li>\r\n</ul>\r\n\r\n<h2>How to Use These Numbers in Your Planning</h2>\r\n<p>Never assume the best-case scenario. Use a <strong>6-7% nominal return</strong> as your planning assumption for long-term goals. This gives you a margin of safety. If returns are higher, great. If lower, you are still on track.</p>\r\n<p>For retirement planning, use our compound interest calculator with a 7% rate and see your projected balance. Then try 5% — the gap between those numbers is your risk buffer.</p>\r\n\r\n<p style=\"margin-top:32px\"><a href=\"../compound-interest-calculator.html\" class=\"btn\">&#x1F4CA; Try the Compound Interest Calculator &rarr;</a></p>\r\n\r\n\r\n<h2 id=\"section-case\">📋 Real-Life Case Study</h2>\r\n<p style=\"color:var(--muted);font-size:14px;line-height:1.8\">Every financial decision looks different with real numbers. Use the calculators linked below to model your own situation and find the answer that fits your life.</p>\r\n\r\n<h2>Frequently Asked Questions</h2><div style=\"margin-top:16px\"><details class=\"card\" style=\"cursor:pointer;padding:0;margin-top:0px\"><summary style=\"padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center\">What is the average stock market return?<span style=\"color:var(--muted);font-size:12px\">&#x25BC;</span></summary><div style=\"padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px\">Use our related calculators to run your own numbers for this scenario.</div></details><details class=\"card\" style=\"cursor:pointer;padding:0;margin-top:8px\"><summary style=\"padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center\">What is a good annual return on investment?<span style=\"color:var(--muted);font-size:12px\">&#x25BC;</span></summary><div style=\"padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px\">Use our related calculators to run your own numbers for this scenario.</div></details><details class=\"card\" style=\"cursor:pointer;padding:0;margin-top:8px\"><summary style=\"padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center\">What is the S&P 500 average return over the last 30 years?<span style=\"color:var(--muted);font-size:12px\">&#x25BC;</span></summary><div style=\"padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px\">Use our related calculators to run your own numbers for this scenario.</div></details><details class=\"card\" style=\"cursor:pointer;padding:0;margin-top:8px\"><summary style=\"padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center\">Numbrly<span style=\"color:var(--muted);font-size:12px\">&#x25BC;</span></summary><div style=\"padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px\">Use our related calculators to run your own numbers for this scenario.</div></details><details class=\"card\" style=\"cursor:pointer;padding:0;margin-top:8px\"><summary style=\"padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center\">Guides<span style=\"color:var(--muted);font-size:12px\">&#x25BC;</span></summary><div style=\"padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px\">Use our related calculators to run your own numbers for this scenario.</div></details></div>\r\n\r\n<div style=\"margin-top:40px;padding:24px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius)\">\r\n<h3 style=\"font-size:16px;margin-bottom:14px\">🧮 Try These Calculators</h3>\r\n<div style=\"display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px\">\r\n  <a href=\"../mortgage-calculator.html\" style=\"color:var(--pri);text-decoration:none\">🏠 Mortgage Calculator</a>\r\n  <a href=\"../compound-interest-calculator.html\" style=\"color:var(--pri);text-decoration:none\">📈 Compound Interest</a>\r\n  <a href=\"../roi-calculator.html\" style=\"color:var(--pri);text-decoration:none\">📊 ROI Calculator</a>\r\n  <a href=\"../retirement-calculator.html\" style=\"color:var(--pri);text-decoration:none\">👴 Retirement Planner</a>\r\n</div>\r\n</div>"
+  },
+  "faq": [
+    {
+      "q": "What is the average stock market return?",
+      "a": "The S&P 500 has returned approximately 10% per year on average since 1926 (nominal, before inflation). After adjusting for inflation, the real return is about 7% per year."
+    },
+    {
+      "q": "What is a good annual return on investment?",
+      "a": "A 7-10% annualized return is considered good for long-term stock investments. This matches the historical average of the S&P 500. Anything above 10% consistently is exceptional."
+    },
+    {
+      "q": "What is the S&P 500 average return over the last 30 years?",
+      "a": "From 1995 to 2026, the S&P 500 averaged approximately 9.7% per year nominal, or roughly 7% after inflation. This includes the dot-com crash, 2008 financial crisis, and COVID-19 crash."
+    }
+  ],
+  "relatedArticles": [
+    "power-of-compound-interest",
+    "simple-vs-compound-interest"
+  ],
+  "recommendedCalculators": [
+    "compound-interest-calculator",
+    "roi-calculator",
+    "inflation-calculator"
+  ]
+}

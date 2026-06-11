@@ -11,6 +11,7 @@ const ROOT = path.resolve(__dirname, "..");
 const DATA_DIR = path.join(__dirname, "data");
 const TPL_DIR = path.join(__dirname, "templates");
 const GUIDES_DIR = path.join(ROOT, "guides");
+const ARTICLES_DIR = path.join(ROOT, "content", "articles");
 const DOMAIN = "https://numbrly.cc";
 const TODAY = new Date().toISOString().split("T")[0];
 const HOSTNAME = DOMAIN.replace(/^https?:\/\//, "");
@@ -19,6 +20,134 @@ const HOSTNAME = DOMAIN.replace(/^https?:\/\//, "");
 function loadJSON(filename) {
   const raw = fs.readFileSync(path.join(DATA_DIR, filename), "utf8").replace(/^\uFEFF/, "");
   return JSON.parse(raw);
+}
+
+function readJSONFile(filePath) {
+  const raw = fs.readFileSync(filePath, "utf8").replace(/^\uFEFF/, "");
+  return JSON.parse(raw);
+}
+
+function normalizeArticle(article) {
+  const content = article.article || {};
+  return {
+    ...article,
+    keywords: Array.isArray(article.keywords) ? article.keywords : [],
+    relatedArticles: Array.isArray(article.relatedArticles) ? article.relatedArticles : [],
+    relatedCalculators: Array.isArray(article.recommendedCalculators)
+      ? article.recommendedCalculators
+      : (Array.isArray(article.relatedCalculators) ? article.relatedCalculators : []),
+    introduction: content.introduction != null ? content.introduction : (article.introduction || ""),
+    mainContent: content.body != null ? content.body : (article.mainContent || ""),
+    caseStudy: content.caseStudy != null ? content.caseStudy : (article.caseStudy || ""),
+    fullArticleHtml: content.format === "html" ? String(content.content || "") : ""
+  };
+}
+
+function validateContentArticleShape(article, filename) {
+  const errors = [];
+  const requiredText = ["slug", "title", "description"];
+  const requiredArrays = ["keywords", "faq", "relatedArticles", "recommendedCalculators"];
+
+  requiredText.forEach(function(field) {
+    if (!String(article[field] || "").trim()) errors.push("missing " + field);
+  });
+  requiredArrays.forEach(function(field) {
+    if (!Array.isArray(article[field])) errors.push(field + " must be an array");
+  });
+
+  if (!article.article || typeof article.article !== "object" || Array.isArray(article.article)) {
+    errors.push("article must be an object");
+  } else if (article.article.format === "structured") {
+    if (!String(article.article.body || "").trim()) errors.push("structured article is missing body");
+  } else if (article.article.format === "html") {
+    if (!String(article.article.content || "").trim()) errors.push("html article is missing content");
+  } else {
+    errors.push("article.format must be structured or html");
+  }
+
+  if (Array.isArray(article.faq)) {
+    article.faq.forEach(function(item, index) {
+      if (!item || !String(item.q || "").trim() || !String(item.a || "").trim()) {
+        errors.push("faq[" + index + "] must include q and a");
+      }
+    });
+  }
+
+  if (errors.length) {
+    throw new Error("Invalid article content in " + filename + ":\n  - " + errors.join("\n  - "));
+  }
+}
+
+function loadContentArticles() {
+  if (!fs.existsSync(ARTICLES_DIR)) return [];
+
+  return fs.readdirSync(ARTICLES_DIR)
+    .filter(function(filename) { return filename.endsWith(".json"); })
+    .sort()
+    .map(function(filename) {
+      const filePath = path.join(ARTICLES_DIR, filename);
+      let article;
+      try {
+        article = readJSONFile(filePath);
+      } catch (error) {
+        throw new Error("Invalid article JSON in " + path.relative(ROOT, filePath) + ": " + error.message);
+      }
+
+      validateContentArticleShape(article, path.relative(ROOT, filePath));
+      const expectedSlug = path.basename(filename, ".json");
+      if (article.slug !== expectedSlug) {
+        throw new Error("Article slug must match filename: " + filename + " has slug " + (article.slug || "<missing>"));
+      }
+
+      return normalizeArticle(article);
+    });
+}
+
+function mergeGuides(legacyGuides, contentArticles) {
+  const guideMap = new Map();
+  (legacyGuides || []).forEach(function(guide) {
+    guideMap.set(guide.slug, normalizeArticle(guide));
+  });
+  contentArticles.forEach(function(article) {
+    guideMap.set(article.slug, article);
+  });
+  return Array.from(guideMap.values());
+}
+
+function validateArticles(guides, calculators) {
+  const errors = [];
+  const slugs = new Set();
+  const guideSlugs = new Set(guides.map(function(guide) { return guide.slug; }));
+  const calculatorSlugs = new Set(calculators.map(function(calculator) { return calculator.slug; }));
+
+  guides.forEach(function(guide) {
+    const label = guide.slug || "<missing slug>";
+    ["slug", "title", "description"].forEach(function(field) {
+      if (!String(guide[field] || "").trim()) errors.push(label + " is missing " + field);
+    });
+
+    if (slugs.has(guide.slug)) errors.push("Duplicate article slug: " + guide.slug);
+    slugs.add(guide.slug);
+
+    if (!Array.isArray(guide.keywords)) errors.push(label + " keywords must be an array");
+    if (!Array.isArray(guide.faq)) errors.push(label + " faq must be an array");
+    if (!guide.fullArticleHtml && !String(guide.mainContent || "").trim()) {
+      errors.push(label + " is missing article content");
+    }
+
+    (guide.relatedArticles || []).forEach(function(slug) {
+      if (!guideSlugs.has(slug)) errors.push(label + " references missing article: " + slug);
+      if (slug === guide.slug) errors.push(label + " cannot link to itself as a related article");
+    });
+
+    (guide.relatedCalculators || []).forEach(function(slug) {
+      if (!calculatorSlugs.has(slug)) errors.push(label + " references missing calculator: " + slug);
+    });
+  });
+
+  if (errors.length) {
+    throw new Error("Article validation failed:\n  - " + errors.join("\n  - "));
+  }
 }
 
 function loadHeader() {
@@ -335,7 +464,7 @@ function buildRelatedArticleCards(guide, guideMap) {
   return slugs.map(function(slug) {
     const related = guideMap.get(slug);
     if (!related) return "";
-    const href = "guides/" + related.slug + ".html";
+    const href = related.slug + ".html";
     const category = (related.category || "general").replace(/-/g, " ");
     return '<a href="' + href + '" class="article-card"><div class="art-cat">' +
       escapeHTML(category.replace(/\b\w/g, function(c) { return c.toUpperCase(); })) +
@@ -344,12 +473,49 @@ function buildRelatedArticleCards(guide, guideMap) {
   }).filter(Boolean).join("\n");
 }
 
+function buildStructuredArticleContent(guide, guideMap, calculators) {
+  const faqItems = guide.faq || [];
+  const adUnit = '<ins class="adsbygoogle" style="display:block;text-align:center;margin:28px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>\n    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>';
+
+  return '    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">' + escapeHTML(guide.h1 || guide.title) + '</h1>\n' +
+    '    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated ' + escapeHTML(guide.dateHuman || "") + ' &middot; ' + escapeHTML(guide.readTime || "") + ' min read</p>\n\n' +
+    '    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>\n' +
+    '    <script>\n' +
+    '    (function(){\n' +
+    '      var hs = document.querySelectorAll(".article-body h2");\n' +
+    '      var list = document.getElementById("tocList");\n' +
+    '      if (!list || hs.length === 0) return;\n' +
+    '      hs.forEach(function(h, i) {\n' +
+    '        h.id = "section-" + i;\n' +
+    '        var li = document.createElement("li");\n' +
+    '        var a = document.createElement("a");\n' +
+    '        a.href = "#section-" + i;\n' +
+    '        a.textContent = h.textContent;\n' +
+    '        li.appendChild(a);\n' +
+    '        list.appendChild(li);\n' +
+    '      });\n' +
+    '    })();\n' +
+    '    </script>\n\n' +
+    '    ' + (guide.introduction || "") + '\n\n' +
+    '    ' + (guide.mainContent || "") + '\n\n' +
+    '    ' + adUnit + '\n\n' +
+    '    ' + (guide.caseStudy || "") + '\n\n' +
+    '    <h2>Frequently Asked Questions</h2>\n' +
+    '    <div style="margin-top:16px">\n' + formatFAQHtml(faqItems) + '\n    </div>\n\n' +
+    '    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>\n' +
+    '    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">\n' +
+    buildRelatedCalculatorCards(guide, calculators) + '\n    </div>\n\n' +
+    '    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>\n' +
+    buildRelatedArticleCards(guide, guideMap);
+}
+
 function buildGuideArticlePage(guide, guideMap, calculators) {
   const template = fs.readFileSync(path.join(TPL_DIR, "article.html"), "utf8");
   const canonical = DOMAIN + "/guides/" + guide.slug + ".html";
-  const seoTitle = (guide.title || guide.h1) + " | Numbrly";
+  const seoTitle = guide.seoTitle || ((guide.title || guide.h1) + " | Numbrly");
+  const ogTitle = guide.ogTitle || seoTitle;
   const faqItems = guide.faq || [];
-  const adUnit = '<ins class="adsbygoogle" style="display:block;text-align:center;margin:28px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>\n    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>';
+  const articleContent = guide.fullArticleHtml || buildStructuredArticleContent(guide, guideMap, calculators);
 
   const html = template
     .replace("{{SCHEMA_BREADCRUMB}}", buildBreadcrumbSchema(guide))
@@ -361,21 +527,14 @@ function buildGuideArticlePage(guide, guideMap, calculators) {
     .replace("{{FAVICON_PATH}}", "../favicon.svg")
     .replace("{{SEO_TITLE}}", escapeHTML(seoTitle))
     .replace("{{META_DESC}}", escapeHTML(guide.description || ""))
-    .replaceAll("{{OG_TITLE}}", escapeHTML(seoTitle))
+    .replace("{{META_KEYWORDS}}", escapeHTML((guide.keywords || []).join(", ")))
+    .replaceAll("{{OG_TITLE}}", escapeHTML(ogTitle))
     .replaceAll("{{OG_DESC}}", escapeHTML(guide.ogDescription || guide.description || ""))
     .replace("{{CSS_PATH}}", "../style.css")
     .replaceAll("{{HOME_PATH}}", "../")
     .replace("{{PRIVACY_PATH}}", "../privacy-policy.html")
     .replaceAll("{{H1}}", escapeHTML(guide.h1 || guide.title))
-    .replace("{{DATE_HUMAN}}", escapeHTML(guide.dateHuman || ""))
-    .replace("{{READ_TIME}}", escapeHTML(guide.readTime || ""))
-    .replace("{{INTRODUCTION}}", guide.introduction || "")
-    .replace("{{MAIN_CONTENT}}", guide.mainContent || "")
-    .replace("{{AD_UNIT}}", adUnit)
-    .replace("{{CASE_STUDY}}", guide.caseStudy || "")
-    .replace("{{FAQ_HTML}}", formatFAQHtml(faqItems))
-    .replace("{{RELATED_CALCS}}", buildRelatedCalculatorCards(guide, calculators))
-    .replace("{{RELATED_ARTICLES}}", buildRelatedArticleCards(guide, guideMap))
+    .replace("{{ARTICLE_CONTENT}}", articleContent)
     .replace("{{SLUG}}", guide.slug);
 
   fs.writeFileSync(path.join(GUIDES_DIR, guide.slug + ".html"), html, "utf8");
@@ -385,8 +544,6 @@ function buildGuideArticlePage(guide, guideMap, calculators) {
 function buildGuidePages(guides, calculators) {
   const guideMap = new Map(guides.map(function(g) { return [g.slug, g]; }));
   guides.forEach(function(guide) {
-    const renderable = guide.introduction && guide.mainContent && !String(guide.mainContent).includes("PLACEHOLDER");
-    if (!renderable) return;
     buildGuideArticlePage(guide, guideMap, calculators);
   });
 }
@@ -428,7 +585,11 @@ function verifyRobots() {
 function buildSearchData(guides, calculators) {
   const items = [];
   calculators.forEach(c => items.push({ title: c.title || c.h1, url: c.slug + ".html", kw: [c.category, c.title].join(" ") }));
-  guides.forEach(g => items.push({ title: g.h1 || g.title, url: "guides/" + g.slug + ".html", kw: [g.category, g.title].join(" ") }));
+  guides.forEach(g => items.push({
+    title: g.h1 || g.title,
+    url: "guides/" + g.slug + ".html",
+    kw: [g.category, g.title].concat(g.keywords || []).join(" ")
+  }));
 
   const js = "// Site search data \u2014 auto-generated " + TODAY + "\nvar searchIndex = " + JSON.stringify(items, null, 2) + ";\n";
   fs.writeFileSync(path.join(ROOT, "search-data.js"), js, "utf8");
@@ -494,11 +655,14 @@ function main() {
   const calcData = loadJSON("calculators.json");
   const guideData = loadJSON("guides.json");
   const calculators = calcData.calculators || [];
-  const guides = guideData.guides || [];
+  const contentArticles = loadContentArticles();
+  const guides = mergeGuides(guideData.guides || [], contentArticles);
   const headerHTML = loadHeader();
   const footerHTML = loadFooter();
 
-  if (!guides.length) { console.error("\u274C No guides found in guides.json \u2014 aborting."); process.exit(1); }
+  if (!guides.length) { console.error("\u274C No article content found \u2014 aborting."); process.exit(1); }
+  validateArticles(guides, calculators);
+  console.log("  \uD83D\uDCC4 Content articles \u2014 " + contentArticles.length + " JSON files");
 
   buildGuidePages(guides, calculators);
   console.log("  \uD83D\uDD04 Injecting shared header...");
