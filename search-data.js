@@ -126,8 +126,28 @@ var searchIndex = [
     "kw": "personal-finance What Is a Good Credit Score and How to Improve It what is a good credit score improve credit score FICO score"
   },
   {
+    "title": "How Much Do I Need When Retire? A Step-by-Step Guide to Your Number",
+    "url": "guides/how-much-do-i-need-when-retire.html",
+    "kw": "retirement How Much Do I Need When Retire? A Step-by-Step Guide to Your Number how much do i need when retire retirement savings target 4% rule retirement calculator Social Security retirement expenses"
+  },
+  {
+    "title": "How Much Should I Save Each Month? A Practical Income-Based Guide",
+    "url": "guides/how-much-should-i-have-in-my-401k.html",
+    "kw": "retirement How Much Should I Save Each Month? Examples by Income how much should I save each month monthly savings target what percentage of income should I save how much of my paycheck should I save"
+  },
+  {
+    "title": "How Much Should I Save Each Month? A Practical Income-Based Guide",
+    "url": "guides/how-much-should-i-have-saved-for-retirement.html",
+    "kw": "retirement How Much Should I Save Each Month? Examples by Income how much should I save each month monthly savings target what percentage of income should I save how much of my paycheck should I save"
+  },
+  {
     "title": "How Much Should I Save Each Month? A Practical Guide",
     "url": "guides/how-much-should-i-save-each-month.html",
     "kw": "savings How Much Should I Save Each Month? how much should I save each month monthly savings target how much of my income should I save 20 percent savings rule"
+  },
+  {
+    "title": "How Much Should I Save Each Month? A Practical Income-Based Guide",
+    "url": "guides/how-much-should-i-use-of-my-credit.html",
+    "kw": "personal-finance How Much Should I Save Each Month? Examples by Income how much should I save each month monthly savings target what percentage of income should I save how much of my paycheck should I save"
   }
 ];
