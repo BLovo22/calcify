@@ -67,6 +67,8 @@
   .chart-head p{font-size:12px;color:var(--muted);line-height:1.5;margin-top:3px}
   .chart-wrap{position:relative;width:100%;min-height:240px}
   .chart-wrap canvas{width:100%;height:240px;display:block}
+  .pie-chart-wrap{width:min(100%,280px);aspect-ratio:1/1;min-height:0;margin:0 auto}
+  .pie-chart-wrap canvas{width:100%;height:100%;display:block}
   .pie-legend{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:14px}
   .legend-item{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;min-width:0}
   .legend-dot{width:10px;height:10px;border-radius:999px;flex:0 0 auto}
@@ -105,6 +107,8 @@
   .capture-mode .card,.capture-mode .result,.capture-mode .budget-score-inner{background:#fff!important;color:#0f172a!important;border-color:#e2e8f0!important}
   .capture-mode .result-label,.capture-mode .chart-head p,.capture-mode .legend-item,.capture-mode .insight-item,.capture-mode .projection-item span,.capture-mode .budget-metric span{color:#64748b!important}
   .capture-mode .insight-item,.capture-mode .projection-item,.capture-mode .budget-rule-box,.capture-mode .goal-result,.capture-mode .bar-track{background:#f8fafc!important;border-color:#e2e8f0!important}
+  .exporting input,.exporting select,.exporting textarea{height:42px!important;min-height:42px!important;line-height:20px!important;padding:10px 12px!important;font-size:14px!important;box-sizing:border-box!important;transform:none!important}
+  .exporting textarea{height:auto!important;min-height:84px!important}
   [data-theme="dark"] .privacy-note{background:rgba(37,99,235,.12);border-color:#1e3a8a;color:#bfdbfe}
   [data-theme="dark"] .bar-fill{background:linear-gradient(90deg,#60a5fa,#22c55e)}
   @media(max-width:860px){
@@ -124,6 +128,8 @@
     .pie-legend{grid-template-columns:1fr}
     .chart-wrap{min-height:220px}
     .chart-wrap canvas{height:220px}
+    .pie-chart-wrap{width:min(100%,260px);min-height:0}
+    .pie-chart-wrap canvas{height:100%}
   }
 </style>
 </head>
@@ -279,7 +285,7 @@
                 <p>Monthly spending by category.</p>
               </div>
             </div>
-            <div class="chart-wrap"><canvas id="expensePieChart" width="520" height="320" aria-label="Expense breakdown pie chart"></canvas></div>
+            <div class="chart-wrap pie-chart-wrap"><canvas id="expensePieChart" width="320" height="320" aria-label="Expense breakdown pie chart"></canvas></div>
             <div class="pie-legend" id="expensePieLegend"></div>
           </div>
 
@@ -970,7 +976,7 @@ function downloadPngReport() {
     return;
   }
   setExportStatus("Preparing PNG report...");
-  document.body.classList.add("capture-mode");
+  document.body.classList.add("capture-mode", "exporting");
   calculateBudget();
   setTimeout(function() {
     html2canvas(target, {
@@ -989,7 +995,7 @@ function downloadPngReport() {
     }).catch(function() {
       setExportStatus("PNG export failed. Please try again.");
     }).finally(function() {
-      document.body.classList.remove("capture-mode");
+      document.body.classList.remove("capture-mode", "exporting");
       calculateBudget();
     });
   }, 120);
