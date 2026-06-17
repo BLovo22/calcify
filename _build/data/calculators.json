@@ -65,6 +65,15 @@
                             "title":  "Savings Goal Calculator"
                         },
                         {
+                            "slug":  "budget-planner",
+                            "url":  "tools/budget-planner/",
+                            "description":  "Create a monthly budget and improve your financial health.",
+                            "icon":  "馃搵",
+                            "h1":  "Budget Planner",
+                            "category":  "personal-finance",
+                            "title":  "Budget Planner"
+                        },
+                        {
                             "slug":  "rent-vs-buy-calculator",
                             "description":  "Compare the full cost of renting versus buying. Find your break-even point.",
                             "icon":  "🏘",

@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta property="og:title" content="Budget Planner - Free Monthly Budget Calculator">
+<meta property="og:description" content="Create a monthly budget and improve your financial health.">
+<meta property="og:url" content="https://numbrly.cc/tools/budget-planner/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Budget Planner - Free Monthly Budget Calculator">
+<meta name="twitter:description" content="Create a monthly budget and improve your financial health.">
+<link rel="canonical" href="https://numbrly.cc/tools/budget-planner/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Budget Planner - Free Monthly Budget Calculator</title>
+<meta name="description" content="Create a monthly budget and improve your financial health.">
+<link rel="stylesheet" href="../../style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:"class"}</script>
+<script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numbrly","item":"https://numbrly.cc/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://numbrly.cc/#calculators"},{"@type":"ListItem","position":3,"name":"Budget Planner","item":"https://numbrly.cc/tools/budget-planner/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Budget Planner","url":"https://numbrly.cc/tools/budget-planner/","description":"Create a monthly budget and improve your financial health.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a monthly budget planner?","acceptedAnswer":{"@type":"Answer","text":"A monthly budget planner helps you organize income, expenses, savings, and remaining cash flow so you can make better financial decisions."}},{"@type":"Question","name":"Does Numbrly save my budget online?","acceptedAnswer":{"@type":"Answer","text":"No. Your budget data is saved only in your browser using localStorage. Numbrly does not upload or store your financial information."}},{"@type":"Question","name":"How is the Budget Score calculated?","acceptedAnswer":{"@type":"Answer","text":"The Budget Score uses rule-based checks for savings rate, rent as a percentage of income, and total expenses as a percentage of income."}},{"@type":"Question","name":"What does the 50/30/20 rule mean?","acceptedAnswer":{"@type":"Answer","text":"The 50/30/20 rule suggests using 50% of income for needs, 30% for wants, and 20% for savings or investments."}},{"@type":"Question","name":"Can I export my budget report?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can download a PNG report or export your budget categories to CSV directly from the Budget Planner."}}]}</script>
+<style>
+  .budget-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+  .budget-panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .budget-panel-title h2{font-size:18px;font-weight:800;letter-spacing:-.2px}
+  .budget-pill{display:inline-flex;align-items:center;border-radius:999px;background:var(--pri-light);color:var(--pri);font-size:12px;font-weight:700;padding:4px 10px;white-space:nowrap}
+  .budget-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .budget-expense-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .budget-summary{position:sticky;top:84px}
+  .budget-score-ring{width:124px;height:124px;border-radius:999px;margin:4px auto 14px;display:grid;place-items:center;background:conic-gradient(var(--pri) calc(var(--score,0)*1%), var(--border) 0)}
+  .budget-score-inner{width:96px;height:96px;border-radius:999px;background:var(--card);display:grid;place-items:center;border:1px solid var(--border)}
+  .budget-score-value{font-size:34px;font-weight:800;line-height:1;color:var(--pri)}
+  .budget-status{text-align:center;font-size:18px;font-weight:800;margin-bottom:4px}
+  .budget-rule{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+  .budget-rule-box{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);padding:12px;text-align:center}
+  .budget-rule-box strong{display:block;font-size:20px;color:var(--text);line-height:1.2}
+  .budget-rule-box span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+  .budget-metric{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+  .budget-metric:last-child{border-bottom:none}
+  .budget-metric span{color:var(--muted);font-size:13px}
+  .budget-metric strong{font-size:16px;text-align:right}
+  .budget-actions{display:flex;gap:10px;margin-top:14px}
+  .btn-secondary{background:var(--card);color:var(--text);border:1px solid var(--border)}
+  .btn-secondary:hover{background:var(--bg)}
+  .icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px}
+  .icon-btn svg,.share-option svg{width:20px;height:20px;stroke-width:2;color:currentColor;flex:0 0 auto}
+  .action-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:18px}
+  .action-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .share-wrap{position:relative}
+  .share-panel{display:none;position:absolute;right:0;top:calc(100% + 8px);z-index:20;width:240px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 14px 40px rgba(15,23,42,.14);padding:8px}
+  .share-panel.show{display:grid;gap:4px}
+  .share-option{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;background:transparent;color:var(--text);text-decoration:none;border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;text-align:left}
+  .share-option:hover{background:var(--bg);color:var(--pri)}
+  .export-status{font-size:12px;color:var(--muted);min-height:18px;margin-top:8px}
+  .privacy-note{border:1px solid #bfdbfe;background:#eff6ff;border-radius:var(--radius);padding:16px 18px;color:#1e3a8a;font-size:13px;line-height:1.7}
+  .report-area{background:var(--bg);border-radius:var(--radius);padding:0}
+  .analytics-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:20px;align-items:start}
+  .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .chart-card{min-width:0}
+  .chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+  .chart-head h2{font-size:18px;font-weight:800;letter-spacing:-.2px;line-height:1.25}
+  .chart-head p{font-size:12px;color:var(--muted);line-height:1.5;margin-top:3px}
+  .chart-wrap{position:relative;width:100%;min-height:240px}
+  .chart-wrap canvas{width:100%;height:240px;display:block}
+  .pie-legend{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:14px}
+  .legend-item{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;min-width:0}
+  .legend-dot{width:10px;height:10px;border-radius:999px;flex:0 0 auto}
+  .bar-list{display:grid;gap:12px;margin-top:4px}
+  .bar-row{display:grid;gap:6px}
+  .bar-meta{display:flex;justify-content:space-between;gap:12px;font-size:13px}
+  .bar-label{font-weight:700;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bar-value{color:var(--muted);font-weight:700;white-space:nowrap}
+  .bar-track{height:10px;background:var(--bg);border:1px solid var(--border);border-radius:999px;overflow:hidden}
+  .bar-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--pri),#16a34a);transition:width .55s ease}
+  .projection-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+  .projection-item{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);padding:10px;text-align:center}
+  .projection-item strong{display:block;font-size:15px;color:var(--text);line-height:1.25}
+  .projection-item span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+  .insight-list{display:grid;gap:10px;margin-top:12px}
+  .insight-item{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);padding:12px 14px;color:var(--muted);font-size:13px;line-height:1.55}
+  .insight-item strong{color:var(--text)}
+  .goal-result{border:1px solid var(--border);border-radius:var(--radius);background:var(--bg);padding:18px;margin-top:16px}
+  .goal-result-label{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+  .goal-result-value{font-size:30px;font-weight:800;color:var(--pri);line-height:1.15;margin-top:4px}
+  .goal-result-sub{font-size:13px;color:var(--muted);margin-top:4px}
+  .snapshot-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start}
+  .snapshot-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .snapshot-stat{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);padding:12px}
+  .snapshot-stat span{display:block;color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
+  .snapshot-stat strong{display:block;color:var(--text);font-size:20px;line-height:1.25;margin-top:4px}
+  .snapshot-list{display:grid;gap:8px;margin-top:12px;max-height:220px;overflow:auto}
+  .snapshot-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);padding:10px 12px;font-size:12px;color:var(--muted)}
+  .snapshot-row strong{display:block;color:var(--text);font-size:13px}
+  .faq-list details{margin-top:10px}
+  .faq-list summary{padding:16px 20px;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;gap:12px;cursor:pointer}
+  .faq-list summary::-webkit-details-marker{display:none}
+  .faq-answer{padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.75;border-top:1px solid var(--border);padding-top:12px}
+  .capture-mode{background:#f8fafc!important;color:#0f172a!important}
+  .capture-mode .report-area{background:#f8fafc!important}
+  .capture-mode .card,.capture-mode .result,.capture-mode .budget-score-inner{background:#fff!important;color:#0f172a!important;border-color:#e2e8f0!important}
+  .capture-mode .result-label,.capture-mode .chart-head p,.capture-mode .legend-item,.capture-mode .insight-item,.capture-mode .projection-item span,.capture-mode .budget-metric span{color:#64748b!important}
+  .capture-mode .insight-item,.capture-mode .projection-item,.capture-mode .budget-rule-box,.capture-mode .goal-result,.capture-mode .bar-track{background:#f8fafc!important;border-color:#e2e8f0!important}
+  [data-theme="dark"] .privacy-note{background:rgba(37,99,235,.12);border-color:#1e3a8a;color:#bfdbfe}
+  [data-theme="dark"] .bar-fill{background:linear-gradient(90deg,#60a5fa,#22c55e)}
+  @media(max-width:860px){
+    .budget-layout,.analytics-grid,.chart-grid,.snapshot-grid{grid-template-columns:1fr}
+    .budget-summary{position:static}
+    .share-panel{left:0;right:auto}
+  }
+  @media(max-width:640px){
+    .budget-input-grid,.budget-expense-grid,.budget-rule{grid-template-columns:1fr}
+    .budget-actions,.action-group{flex-direction:column;align-items:stretch;width:100%}
+    .action-bar{align-items:stretch}
+    .icon-btn,.share-wrap{width:100%}
+    .share-panel{position:static;width:100%;margin-top:8px}
+    .budget-panel-title{align-items:flex-start;flex-direction:column}
+    .projection-summary{grid-template-columns:1fr 1fr}
+    .snapshot-stats{grid-template-columns:1fr}
+    .pie-legend{grid-template-columns:1fr}
+    .chart-wrap{min-height:220px}
+    .chart-wrap canvas{height:220px}
+  }
+</style>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Tools</a> / Budget Planner</div>
+
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F4D2; Budget Planner</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:720px">Create a monthly budget, compare your spending to the 50/30/20 rule, and get a quick budget score based on savings rate, rent ratio, and total spending.</p>
+    <div class="action-bar">
+      <div class="action-group">
+        <button class="btn icon-btn" type="button" onclick="saveSnapshot()"><i data-lucide="copy"></i>Save Snapshot</button>
+        <button class="btn btn-secondary icon-btn" type="button" onclick="downloadPngReport()"><i data-lucide="download"></i>Download PNG Report</button>
+        <button class="btn btn-secondary icon-btn" type="button" onclick="exportCsv()"><i data-lucide="download"></i>Export CSV</button>
+      </div>
+      <div class="share-wrap">
+        <button class="btn btn-secondary icon-btn" type="button" onclick="handleShare()"><i data-lucide="share-2"></i>Share</button>
+        <div class="share-panel" id="sharePanel">
+          <button class="share-option" type="button" onclick="copyShareLink()"><i data-lucide="link"></i>Copy Link</button>
+          <a class="share-option" id="shareX" target="_blank" rel="noopener"><i data-lucide="x"></i>Share on X</a>
+          <a class="share-option" id="shareReddit" target="_blank" rel="noopener"><i data-lucide="messages-square"></i>Share on Reddit</a>
+          <a class="share-option" id="shareFacebook" target="_blank" rel="noopener"><i data-lucide="thumbs-up"></i>Share on Facebook</a>
+          <a class="share-option" id="shareLinkedIn" target="_blank" rel="noopener"><i data-lucide="briefcase"></i>Share on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div class="export-status" id="exportStatus" aria-live="polite"></div>
+  </section>
+
+  <div id="budgetReportArea" class="report-area">
+  <section class="budget-layout">
+    <div>
+      <div class="card">
+        <div class="budget-panel-title">
+          <h2>Monthly Income</h2>
+          <span class="budget-pill">Total: <span id="incomeTotalMini" style="margin-left:4px">$0</span></span>
+        </div>
+        <div class="budget-input-grid">
+          <div class="form-group">
+            <label for="salary">Salary</label>
+            <input type="number" id="salary" min="0" step="50" value="5000">
+          </div>
+          <div class="form-group">
+            <label for="sideIncome">Side Income</label>
+            <input type="number" id="sideIncome" min="0" step="50" value="300">
+          </div>
+          <div class="form-group">
+            <label for="otherIncome">Other Income</label>
+            <input type="number" id="otherIncome" min="0" step="50" value="0">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="budget-panel-title">
+          <h2>Monthly Expenses</h2>
+          <span class="budget-pill">Total: <span id="expenseTotalMini" style="margin-left:4px">$0</span></span>
+        </div>
+        <div class="budget-expense-grid">
+          <div class="form-group"><label for="rent">Rent / Mortgage</label><input type="number" id="rent" min="0" step="25" value="1600"></div>
+          <div class="form-group"><label for="food">Food</label><input type="number" id="food" min="0" step="25" value="650"></div>
+          <div class="form-group"><label for="transportation">Transportation</label><input type="number" id="transportation" min="0" step="25" value="350"></div>
+          <div class="form-group"><label for="utilities">Utilities</label><input type="number" id="utilities" min="0" step="25" value="250"></div>
+          <div class="form-group"><label for="insurance">Insurance</label><input type="number" id="insurance" min="0" step="25" value="220"></div>
+          <div class="form-group"><label for="healthcare">Healthcare</label><input type="number" id="healthcare" min="0" step="25" value="150"></div>
+          <div class="form-group"><label for="entertainment">Entertainment</label><input type="number" id="entertainment" min="0" step="25" value="250"></div>
+          <div class="form-group"><label for="shopping">Shopping</label><input type="number" id="shopping" min="0" step="25" value="300"></div>
+          <div class="form-group"><label for="savings">Savings</label><input type="number" id="savings" min="0" step="25" value="500"></div>
+          <div class="form-group"><label for="investments">Investments</label><input type="number" id="investments" min="0" step="25" value="350"></div>
+          <div class="form-group"><label for="other">Other</label><input type="number" id="other" min="0" step="25" value="150"></div>
+        </div>
+        <div class="budget-actions">
+          <button class="btn" type="button" onclick="calculateBudget()">Calculate</button>
+          <button class="btn btn-secondary" type="button" onclick="clearBudgetData()">Clear Data</button>
+        </div>
+      </div>
+
+      <div class="privacy-note">
+        <strong>Your budget data is saved only in your browser.</strong><br>
+        Numbrly does not upload or store your financial information.
+      </div>
+    </div>
+
+    <aside class="budget-summary">
+      <div class="result show" style="margin-top:0">
+        <div class="budget-score-ring" id="scoreRing">
+          <div class="budget-score-inner">
+            <div class="budget-score-value" id="budgetScore">0</div>
+          </div>
+        </div>
+        <div class="budget-status" id="budgetStatus">Needs Improvement</div>
+        <div class="result-label" style="text-align:center">Budget Score</div>
+        <div style="margin-top:18px">
+          <div class="budget-metric"><span>Total Income</span><strong id="totalIncome">$0</strong></div>
+          <div class="budget-metric"><span>Total Expenses</span><strong id="totalExpenses">$0</strong></div>
+          <div class="budget-metric"><span>Remaining Balance</span><strong id="remainingBalance">$0</strong></div>
+          <div class="budget-metric"><span>Savings Rate</span><strong id="savingsRate">0%</strong></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 style="font-size:18px;font-weight:800;margin-bottom:14px">50/30/20 Rule</h2>
+        <div style="font-size:12px;color:var(--muted);font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px">Recommended</div>
+        <div class="budget-rule">
+          <div class="budget-rule-box"><strong>50%</strong><span>Needs</span></div>
+          <div class="budget-rule-box"><strong>30%</strong><span>Wants</span></div>
+          <div class="budget-rule-box"><strong>20%</strong><span>Savings</span></div>
+        </div>
+        <div style="font-size:12px;color:var(--muted);font-weight:700;margin:16px 0 8px;text-transform:uppercase;letter-spacing:.5px">Your Budget</div>
+        <div class="budget-rule">
+          <div class="budget-rule-box"><strong id="needsPct">0%</strong><span>Needs</span></div>
+          <div class="budget-rule-box"><strong id="wantsPct">0%</strong><span>Wants</span></div>
+          <div class="budget-rule-box"><strong id="savingsPct">0%</strong><span>Savings</span></div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section style="margin-top:40px">
+    <div class="analytics-grid">
+      <div>
+        <div class="chart-grid">
+          <div class="card chart-card">
+            <div class="chart-head">
+              <div>
+                <h2>Expense Breakdown</h2>
+                <p>Monthly spending by category.</p>
+              </div>
+            </div>
+            <div class="chart-wrap"><canvas id="expensePieChart" width="520" height="320" aria-label="Expense breakdown pie chart"></canvas></div>
+            <div class="pie-legend" id="expensePieLegend"></div>
+          </div>
+
+          <div class="card chart-card">
+            <div class="chart-head">
+              <div>
+                <h2>Top Spending Categories</h2>
+                <p>Sorted from highest to lowest.</p>
+              </div>
+            </div>
+            <div class="bar-list" id="topSpendingBars"></div>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-head">
+            <div>
+              <h2>Savings Projection</h2>
+              <p>Projected growth from your current monthly savings pace.</p>
+            </div>
+            <span class="budget-pill" id="monthlySavingsPace">$0/mo</span>
+          </div>
+          <div class="chart-wrap"><canvas id="savingsProjectionChart" width="820" height="300" aria-label="Savings projection line chart"></canvas></div>
+          <div class="projection-summary">
+            <div class="projection-item"><strong id="projection1Year">$0</strong><span>1 Year</span></div>
+            <div class="projection-item"><strong id="projection3Years">$0</strong><span>3 Years</span></div>
+            <div class="projection-item"><strong id="projection5Years">$0</strong><span>5 Years</span></div>
+            <div class="projection-item"><strong id="projection10Years">$0</strong><span>10 Years</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="chart-head" style="margin-bottom:6px">
+            <div>
+              <h2>Financial Insights</h2>
+              <p>Rule-based notes generated from your numbers.</p>
+            </div>
+          </div>
+          <div class="insight-list" id="financialInsights"></div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <div class="chart-head">
+          <div>
+            <h2>Savings Goal Planner</h2>
+            <p>Estimate when a goal becomes fully funded.</p>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:12px">
+          <label for="goalName">Goal Name</label>
+          <input type="text" id="goalName" value="Buy a House">
+        </div>
+        <div class="form-group" style="margin-bottom:12px">
+          <label for="goalTarget">Target Amount</label>
+          <input type="number" id="goalTarget" min="0" step="500" value="50000">
+        </div>
+        <div class="form-group" style="margin-bottom:12px">
+          <label for="goalCurrent">Current Savings</label>
+          <input type="number" id="goalCurrent" min="0" step="100" value="5000">
+        </div>
+        <div class="form-group">
+          <label for="goalMonthly">Monthly Contribution</label>
+          <input type="number" id="goalMonthly" min="0" step="50" value="900">
+        </div>
+        <div class="goal-result">
+          <div class="goal-result-label">Estimated Completion Time</div>
+          <div class="goal-result-value" id="goalMonths">50 Months</div>
+          <div class="goal-result-sub" id="goalSummary">Goal: Buy a House</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+  </div>
+
+  <section style="margin-top:40px">
+    <div class="snapshot-grid">
+      <div class="card chart-card">
+        <div class="chart-head">
+          <div>
+            <h2>Monthly Snapshot</h2>
+            <p>Save budget snapshots and track income, expenses, and savings over time.</p>
+          </div>
+          <span class="budget-pill" id="snapshotCount">0 saved</span>
+        </div>
+        <div class="chart-wrap"><canvas id="snapshotTrendChart" width="820" height="300" aria-label="Income, expense, and savings trend chart"></canvas></div>
+      </div>
+      <aside class="card">
+        <div class="budget-panel-title">
+          <h2>Latest Snapshot</h2>
+          <button class="btn btn-secondary icon-btn" type="button" onclick="clearSnapshots()"><i data-lucide="copy"></i>Clear</button>
+        </div>
+        <div class="snapshot-stats">
+          <div class="snapshot-stat"><span>Income</span><strong id="snapshotIncome">$0</strong></div>
+          <div class="snapshot-stat"><span>Expenses</span><strong id="snapshotExpenses">$0</strong></div>
+          <div class="snapshot-stat"><span>Savings Rate</span><strong id="snapshotSavings">0%</strong></div>
+          <div class="snapshot-stat"><span>Budget Score</span><strong id="snapshotScore">0</strong></div>
+        </div>
+        <div class="snapshot-list" id="snapshotList"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list" style="margin-top:16px">
+      <details class="card" style="padding:0"><summary>What is a monthly budget planner?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div class="faq-answer">A monthly budget planner helps you organize income, expenses, savings, and remaining cash flow so you can make better financial decisions.</div></details>
+      <details class="card" style="padding:0"><summary>Does Numbrly save my budget online?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div class="faq-answer">No. Your budget data is saved only in your browser using localStorage. Numbrly does not upload or store your financial information.</div></details>
+      <details class="card" style="padding:0"><summary>How is the Budget Score calculated?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div class="faq-answer">The Budget Score uses rule-based checks for savings rate, rent as a percentage of income, and total expenses as a percentage of income.</div></details>
+      <details class="card" style="padding:0"><summary>What does the 50/30/20 rule mean?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div class="faq-answer">The 50/30/20 rule suggests using 50% of income for needs, 30% for wants, and 20% for savings or investments.</div></details>
+      <details class="card" style="padding:0"><summary>Can I export my budget report?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div class="faq-answer">Yes. You can download a PNG report or export your budget categories to CSV directly from the Budget Planner.</div></details>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Tools</h2>
+    <div class="tool-grid" style="margin-top:16px">
+      <a href="/savings-goal-calculator.html" class="tool-card"><div class="tool-icon">&#x1F3AF;</div><h3>Savings Goal Calculator</h3><p>Set a target and see how long it takes to reach your savings goal.</p></a>
+      <a href="/salary-to-hourly-calculator.html" class="tool-card"><div class="tool-icon">&#x23F0;</div><h3>Salary to Hourly Calculator</h3><p>Convert annual salary to monthly, weekly, daily, and hourly income.</p></a>
+      <a href="/debt-payoff-calculator.html" class="tool-card"><div class="tool-icon">&#x1F4CB;</div><h3>Debt Payoff Calculator</h3><p>Compare payoff strategies and see how debt payments affect your plan.</p></a>
+      <a href="/retirement-calculator.html" class="tool-card"><div class="tool-icon">&#x1F474;</div><h3>Retirement Calculator</h3><p>Project long-term savings and retirement readiness.</p></a>
+    </div>
+  </section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
+          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
+          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
+          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script>
+var BUDGET_STORAGE_KEY = "numbrly_budget_planner_data";
+var SNAPSHOT_STORAGE_KEY = "numbrly_budget_planner_snapshots";
+var incomeIds = ["salary","sideIncome","otherIncome"];
+var expenseIds = ["rent","food","transportation","utilities","insurance","healthcare","entertainment","shopping","savings","investments","other"];
+var goalIds = ["goalName","goalTarget","goalCurrent","goalMonthly"];
+var allBudgetIds = incomeIds.concat(expenseIds, goalIds);
+var pieAnimationFrame = null;
+var projectionAnimationFrame = null;
+var snapshotAnimationFrame = null;
+var latestBudgetState = null;
+var chartColors = ["#2563eb","#16a34a","#f59e0b","#ec4899","#8b5cf6","#14b8a6","#64748b"];
+var expenseLabels = {
+  rent: "Rent / Mortgage",
+  food: "Food",
+  transportation: "Transportation",
+  utilities: "Utilities",
+  insurance: "Insurance",
+  healthcare: "Healthcare",
+  entertainment: "Entertainment",
+  shopping: "Shopping",
+  savings: "Savings",
+  investments: "Investments",
+  other: "Other"
+};
+
+function money(value) {
+  var sign = value < 0 ? "-" : "";
+  return sign + "$" + Math.abs(value).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function percent(value) {
+  if (!isFinite(value)) return "0%";
+  return value.toFixed(1).replace(/\.0$/, "") + "%";
+}
+
+function num(id) {
+  return Math.max(0, parseFloat(document.getElementById(id).value) || 0);
+}
+
+function setText(id, value) {
+  document.getElementById(id).textContent = value;
+}
+
+function scoreSavingsRate(rate) {
+  if (rate >= 20) return 40;
+  if (rate >= 15) return 32;
+  if (rate >= 10) return 24;
+  if (rate >= 5) return 12;
+  return rate > 0 ? 4 : 0;
+}
+
+function scoreRentRatio(rate) {
+  if (rate <= 0) return 30;
+  if (rate <= 25) return 30;
+  if (rate <= 30) return 24;
+  if (rate <= 35) return 16;
+  if (rate <= 40) return 8;
+  return 0;
+}
+
+function scoreExpenseRatio(rate) {
+  if (rate <= 80) return 30;
+  if (rate <= 90) return 20;
+  if (rate <= 100) return 10;
+  return 0;
+}
+
+function statusForScore(score) {
+  if (score >= 85) return "Excellent";
+  if (score >= 70) return "Good";
+  if (score >= 50) return "Fair";
+  return "Needs Improvement";
+}
+
+function cssColor(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+function resizeCanvas(canvas) {
+  var rect = canvas.getBoundingClientRect();
+  var dpr = window.devicePixelRatio || 1;
+  var width = Math.max(260, Math.round(rect.width || canvas.clientWidth || canvas.width));
+  var height = Math.max(220, Math.round(rect.height || canvas.clientHeight || 240));
+  if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+  }
+  var ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { ctx: ctx, width: width, height: height };
+}
+
+function getPieBreakdown() {
+  return [
+    { label: "Rent", value: num("rent"), color: chartColors[0] },
+    { label: "Food", value: num("food"), color: chartColors[1] },
+    { label: "Transportation", value: num("transportation"), color: chartColors[2] },
+    { label: "Entertainment", value: num("entertainment"), color: chartColors[3] },
+    { label: "Shopping", value: num("shopping"), color: chartColors[4] },
+    { label: "Savings", value: num("savings"), color: chartColors[5] },
+    { label: "Other", value: num("utilities") + num("insurance") + num("healthcare") + num("investments") + num("other"), color: chartColors[6] }
+  ];
+}
+
+function drawPieChart(progress) {
+  var canvas = document.getElementById("expensePieChart");
+  if (!canvas) return;
+  var chart = resizeCanvas(canvas);
+  var ctx = chart.ctx;
+  var width = chart.width;
+  var height = chart.height;
+  var data = getPieBreakdown().filter(function(item) { return item.value > 0; });
+  var total = data.reduce(function(sum, item) { return sum + item.value; }, 0);
+  var textColor = cssColor("--text") || "#0f172a";
+  var muted = cssColor("--muted") || "#64748b";
+  var card = cssColor("--card") || "#fff";
+  ctx.clearRect(0, 0, width, height);
+
+  if (!total) {
+    ctx.fillStyle = muted;
+    ctx.font = "700 14px Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Add expenses to see a breakdown", width / 2, height / 2);
+    return;
+  }
+
+  var radius = Math.min(width, height) * 0.34;
+  var cx = width / 2;
+  var cy = height / 2;
+  var angle = -Math.PI / 2;
+  data.forEach(function(item) {
+    var slice = item.value / total * Math.PI * 2 * progress;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, radius, angle, angle + slice);
+    ctx.closePath();
+    ctx.fillStyle = item.color;
+    ctx.fill();
+    angle += slice;
+  });
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius * 0.58, 0, Math.PI * 2);
+  ctx.fillStyle = card;
+  ctx.fill();
+  ctx.fillStyle = textColor;
+  ctx.font = "800 22px Arial, sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(money(total), cx, cy - 6);
+  ctx.fillStyle = muted;
+  ctx.font = "700 12px Arial, sans-serif";
+  ctx.fillText("tracked", cx, cy + 18);
+}
+
+function updatePieChart() {
+  var legend = document.getElementById("expensePieLegend");
+  var data = getPieBreakdown();
+  if (legend) {
+    legend.innerHTML = data.map(function(item) {
+      return '<div class="legend-item"><span class="legend-dot" style="background:' + item.color + '"></span><span>' + item.label + ' ' + money(item.value) + '</span></div>';
+    }).join("");
+  }
+  if (pieAnimationFrame) cancelAnimationFrame(pieAnimationFrame);
+  var started = performance.now();
+  function step(now) {
+    var progress = Math.min(1, (now - started) / 650);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    drawPieChart(eased);
+    if (progress < 1) pieAnimationFrame = requestAnimationFrame(step);
+  }
+  pieAnimationFrame = requestAnimationFrame(step);
+}
+
+function updateTopSpendingBars() {
+  var list = document.getElementById("topSpendingBars");
+  if (!list) return;
+  var rows = expenseIds.map(function(id) {
+    return { id: id, label: expenseLabels[id], value: num(id) };
+  }).sort(function(a, b) { return b.value - a.value; }).filter(function(item) { return item.value > 0; });
+  var max = rows.length ? rows[0].value : 0;
+  if (!rows.length) {
+    list.innerHTML = '<div class="insight-item">Add expenses to see your top categories.</div>';
+    return;
+  }
+  list.innerHTML = rows.slice(0, 8).map(function(item, index) {
+    var width = max ? Math.max(4, item.value / max * 100) : 0;
+    return '<div class="bar-row"><div class="bar-meta"><span class="bar-label">' + item.label + '</span><span class="bar-value">' + money(item.value) + '</span></div><div class="bar-track"><div class="bar-fill" style="width:0;background:' + chartColors[index % chartColors.length] + '"></div></div></div>';
+  }).join("");
+  requestAnimationFrame(function() {
+    Array.prototype.forEach.call(list.querySelectorAll(".bar-fill"), function(fill, index) {
+      fill.style.width = (rows[index].value / max * 100) + "%";
+    });
+  });
+}
+
+function projectionValues(monthlySavings) {
+  var current = num("goalCurrent");
+  return [
+    { label: "1 Year", months: 12, value: current + monthlySavings * 12 },
+    { label: "3 Years", months: 36, value: current + monthlySavings * 36 },
+    { label: "5 Years", months: 60, value: current + monthlySavings * 60 },
+    { label: "10 Years", months: 120, value: current + monthlySavings * 120 }
+  ];
+}
+
+function drawProjectionChart(points, progress) {
+  var canvas = document.getElementById("savingsProjectionChart");
+  if (!canvas) return;
+  var chart = resizeCanvas(canvas);
+  var ctx = chart.ctx;
+  var width = chart.width;
+  var height = chart.height;
+  var pad = width < 520 ? 34 : 46;
+  var textColor = cssColor("--text") || "#0f172a";
+  var muted = cssColor("--muted") || "#64748b";
+  var border = cssColor("--border") || "#e2e8f0";
+  var pri = cssColor("--pri") || "#2563eb";
+  var maxValue = Math.max.apply(null, points.map(function(p) { return p.value; }).concat([1]));
+  var minValue = Math.min(0, Math.min.apply(null, points.map(function(p) { return p.value; })));
+  var plotW = width - pad * 2;
+  var plotH = height - pad * 1.55;
+  var baseY = height - pad;
+  ctx.clearRect(0, 0, width, height);
+
+  ctx.strokeStyle = border;
+  ctx.lineWidth = 1;
+  for (var i = 0; i < 4; i++) {
+    var gy = pad / 2 + plotH / 3 * i;
+    ctx.beginPath();
+    ctx.moveTo(pad, gy);
+    ctx.lineTo(width - pad, gy);
+    ctx.stroke();
+  }
+
+  function xFor(index) { return pad + plotW / (points.length - 1) * index; }
+  function yFor(value) { return baseY - ((value - minValue) / (maxValue - minValue || 1)) * plotH * 0.9; }
+
+  ctx.beginPath();
+  points.forEach(function(point, index) {
+    var x = xFor(index);
+    var y = yFor(point.value);
+    if (index === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = pri;
+  ctx.lineWidth = 4;
+  ctx.lineCap = "round";
+  ctx.setLineDash([plotW * progress, plotW]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  points.forEach(function(point, index) {
+    var x = xFor(index);
+    var y = yFor(point.value);
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = progress >= index / Math.max(1, points.length - 1) ? pri : border;
+    ctx.fill();
+    ctx.fillStyle = muted;
+    ctx.font = "700 11px Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(point.label, x, height - 12);
+    ctx.fillStyle = textColor;
+    ctx.font = "800 12px Arial, sans-serif";
+    ctx.fillText(money(point.value), x, Math.max(16, y - 12));
+  });
+}
+
+function updateSavingsProjection(monthlySavings) {
+  var points = projectionValues(monthlySavings);
+  setText("monthlySavingsPace", money(monthlySavings) + "/mo");
+  setText("projection1Year", money(points[0].value));
+  setText("projection3Years", money(points[1].value));
+  setText("projection5Years", money(points[2].value));
+  setText("projection10Years", money(points[3].value));
+  if (projectionAnimationFrame) cancelAnimationFrame(projectionAnimationFrame);
+  var started = performance.now();
+  function step(now) {
+    var progress = Math.min(1, (now - started) / 700);
+    var eased = 1 - Math.pow(1 - progress, 3);
+    drawProjectionChart(points, eased);
+    if (progress < 1) projectionAnimationFrame = requestAnimationFrame(step);
+  }
+  projectionAnimationFrame = requestAnimationFrame(step);
+}
+
+function updateInsights(income, expenses, remaining, plannedSavings, needs, wants) {
+  var rentRatio = income > 0 ? num("rent") / income * 100 : 0;
+  var expenseRatio = income > 0 ? expenses / income * 100 : 0;
+  var savingsRate = income > 0 ? plannedSavings / income * 100 : 0;
+  var wantsRatio = income > 0 ? wants / income * 100 : 0;
+  var insights = [];
+
+  if (income <= 0) {
+    insights.push("<strong>Add your monthly income.</strong> Insights become more useful once income is entered.");
+  } else {
+    insights.push("<strong>Your rent consumes " + percent(rentRatio) + " of your income.</strong> " + (rentRatio > 30 ? "This is above the commonly recommended 30%." : "This is within the commonly recommended 30% range."));
+    insights.push("<strong>Your total expenses use " + percent(expenseRatio) + " of your income.</strong> " + (expenseRatio > 100 ? "You are spending more than you bring in." : expenseRatio > 80 ? "There is limited room for surprises or irregular bills." : "You still have a useful monthly cushion."));
+    insights.push("<strong>Your savings rate is " + percent(savingsRate) + ".</strong> " + (savingsRate >= 20 ? "That meets or beats the 20% savings target." : "Try moving closer to 20% over time."));
+  }
+
+  if (wantsRatio > 30) insights.push("<strong>Wants are " + percent(wantsRatio) + " of income.</strong> Entertainment, shopping, and other flexible spending may be worth trimming first.");
+  else insights.push("<strong>Your wants category is " + percent(wantsRatio) + " of income.</strong> This is aligned with the 30% guideline.");
+
+  if (remaining < 0) insights.push("<strong>Your remaining balance is negative.</strong> Reduce flexible spending or adjust savings contributions until the plan balances.");
+  else insights.push("<strong>Your remaining balance is " + money(remaining) + ".</strong> Assigning leftover money to savings, debt payoff, or a buffer can make the plan stronger.");
+
+  var list = document.getElementById("financialInsights");
+  if (list) list.innerHTML = insights.slice(0, 5).map(function(text) { return '<div class="insight-item">' + text + '</div>'; }).join("");
+}
+
+function updateGoalPlanner() {
+  var name = String(document.getElementById("goalName").value || "Savings Goal").trim() || "Savings Goal";
+  var target = num("goalTarget");
+  var current = num("goalCurrent");
+  var monthly = num("goalMonthly");
+  var remaining = Math.max(0, target - current);
+  var months = monthly > 0 ? Math.ceil(remaining / monthly) : Infinity;
+  var result = remaining <= 0 ? "Already Funded" : (isFinite(months) ? months + " Months" : "Add Contribution");
+  setText("goalMonths", result);
+  setText("goalSummary", "Goal: " + name);
+}
+
+function dateStamp(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function setExportStatus(message) {
+  var el = document.getElementById("exportStatus");
+  if (el) el.textContent = message || "";
+}
+
+function currentBudgetState() {
+  var income = incomeIds.reduce(function(sum, id) { return sum + num(id); }, 0);
+  var expenses = expenseIds.reduce(function(sum, id) { return sum + num(id); }, 0);
+  var remaining = income - expenses;
+  var plannedSavings = num("savings") + num("investments") + Math.max(remaining, 0);
+  var savingsRate = income > 0 ? plannedSavings / income * 100 : 0;
+  var rentRatio = income > 0 ? num("rent") / income * 100 : 100;
+  var expenseRatio = income > 0 ? expenses / income * 100 : 100;
+  var score = income > 0 ? Math.round(scoreSavingsRate(savingsRate) + scoreRentRatio(rentRatio) + scoreExpenseRatio(expenseRatio)) : 0;
+  return { income: income, expenses: expenses, remaining: remaining, plannedSavings: plannedSavings, savingsRate: savingsRate, score: score, rentRatio: rentRatio, expenseRatio: expenseRatio };
+}
+
+function loadSnapshots() {
+  try {
+    var items = JSON.parse(localStorage.getItem(SNAPSHOT_STORAGE_KEY) || "[]");
+    return Array.isArray(items) ? items : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function storeSnapshots(items) {
+  try { localStorage.setItem(SNAPSHOT_STORAGE_KEY, JSON.stringify(items.slice(-24))); } catch (e) {}
+}
+
+function saveSnapshot() {
+  var state = latestBudgetState || currentBudgetState();
+  var now = new Date();
+  var snapshots = loadSnapshots();
+  snapshots.push({
+    id: String(now.getTime()),
+    date: dateStamp(now),
+    label: now.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+    income: state.income,
+    expenses: state.expenses,
+    savingsRate: state.savingsRate,
+    budgetScore: state.score
+  });
+  storeSnapshots(snapshots);
+  renderSnapshots();
+  setExportStatus("Snapshot saved in this browser.");
+}
+
+function clearSnapshots() {
+  try { localStorage.removeItem(SNAPSHOT_STORAGE_KEY); } catch (e) {}
+  renderSnapshots();
+  setExportStatus("Snapshots cleared.");
+}
+
+function renderSnapshots() {
+  var snapshots = loadSnapshots();
+  var latest = snapshots[snapshots.length - 1];
+  setText("snapshotCount", snapshots.length + (snapshots.length === 1 ? " saved" : " saved"));
+  setText("snapshotIncome", latest ? money(latest.income) : "$0");
+  setText("snapshotExpenses", latest ? money(latest.expenses) : "$0");
+  setText("snapshotSavings", latest ? percent(latest.savingsRate) : "0%");
+  setText("snapshotScore", latest ? String(latest.budgetScore) : "0");
+  var list = document.getElementById("snapshotList");
+  if (list) {
+    list.innerHTML = snapshots.length ? snapshots.slice(-6).reverse().map(function(item) {
+      return '<div class="snapshot-row"><div><strong>' + item.label + '</strong><span>' + money(item.income) + ' income</span></div><div style="text-align:right"><strong>' + money(item.expenses) + '</strong><span>' + percent(item.savingsRate) + '</span></div></div>';
+    }).join("") : '<div class="insight-item">No snapshots yet. Save one to start a trend.</div>';
+  }
+  updateSnapshotTrend(snapshots);
+}
+
+function updateSnapshotTrend(snapshots) {
+  if (snapshotAnimationFrame) cancelAnimationFrame(snapshotAnimationFrame);
+  var started = performance.now();
+  function step(now) {
+    var progress = Math.min(1, (now - started) / 650);
+    drawSnapshotTrendChart(snapshots, 1 - Math.pow(1 - progress, 3));
+    if (progress < 1) snapshotAnimationFrame = requestAnimationFrame(step);
+  }
+  snapshotAnimationFrame = requestAnimationFrame(step);
+}
+
+function drawSnapshotTrendChart(snapshots, progress) {
+  var canvas = document.getElementById("snapshotTrendChart");
+  if (!canvas) return;
+  var chart = resizeCanvas(canvas);
+  var ctx = chart.ctx;
+  var width = chart.width;
+  var height = chart.height;
+  var pad = width < 520 ? 36 : 48;
+  var muted = cssColor("--muted") || "#64748b";
+  var textColor = cssColor("--text") || "#0f172a";
+  var border = cssColor("--border") || "#e2e8f0";
+  ctx.clearRect(0, 0, width, height);
+  if (!snapshots.length) {
+    ctx.fillStyle = muted;
+    ctx.font = "700 14px Arial, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("Save snapshots to see income, expense, and savings trends", width / 2, height / 2);
+    return;
+  }
+
+  var points = snapshots.slice(-12);
+  if (points.length === 1) points = [points[0], points[0]];
+  var series = [
+    { key: "income", label: "Income Trend", color: "#2563eb" },
+    { key: "expenses", label: "Expense Trend", color: "#f59e0b" },
+    { key: "savingsRate", label: "Savings Trend", color: "#16a34a" }
+  ];
+  var values = [];
+  points.forEach(function(p) { values.push(p.income, p.expenses, p.savingsRate); });
+  var maxValue = Math.max.apply(null, values.concat([1]));
+  var minValue = Math.min.apply(null, values.concat([0]));
+  var plotW = width - pad * 2;
+  var plotH = height - pad * 1.6;
+  var baseY = height - pad;
+
+  ctx.strokeStyle = border;
+  ctx.lineWidth = 1;
+  for (var i = 0; i < 4; i++) {
+    var y = pad / 2 + plotH / 3 * i;
+    ctx.beginPath();
+    ctx.moveTo(pad, y);
+    ctx.lineTo(width - pad, y);
+    ctx.stroke();
+  }
+  function xFor(index) { return pad + plotW / Math.max(1, points.length - 1) * index; }
+  function yFor(value) { return baseY - ((value - minValue) / (maxValue - minValue || 1)) * plotH * 0.9; }
+  series.forEach(function(s) {
+    ctx.beginPath();
+    points.forEach(function(point, index) {
+      var x = xFor(index);
+      var y = yFor(point[s.key] || 0);
+      if (index === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.strokeStyle = s.color;
+    ctx.lineWidth = 3;
+    ctx.lineCap = "round";
+    ctx.setLineDash([plotW * progress, plotW]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  });
+  series.forEach(function(s, index) {
+    var x = pad + index * 136;
+    ctx.fillStyle = s.color;
+    ctx.fillRect(x, 10, 12, 12);
+    ctx.fillStyle = textColor;
+    ctx.font = "700 12px Arial, sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText(s.label, x + 18, 20);
+  });
+  ctx.fillStyle = muted;
+  ctx.font = "700 11px Arial, sans-serif";
+  ctx.textAlign = "center";
+  points.forEach(function(point, index) {
+    ctx.fillText(point.label, xFor(index), height - 12);
+  });
+}
+
+function expenseCsvRows() {
+  var total = expenseIds.reduce(function(sum, id) { return sum + num(id); }, 0);
+  return expenseIds.map(function(id) {
+    var amount = num(id);
+    return { category: expenseLabels[id], amount: amount, percentage: total > 0 ? amount / total * 100 : 0 };
+  });
+}
+
+function downloadBlob(filename, content, type) {
+  var blob = new Blob([content], { type: type });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function exportCsv() {
+  var rows = [["Category","Amount","Percentage"]].concat(expenseCsvRows().map(function(row) {
+    return [row.category, row.amount.toFixed(2), percent(row.percentage)];
+  }));
+  var csv = rows.map(function(row) {
+    return row.map(function(cell) { return '"' + String(cell).replace(/"/g, '""') + '"'; }).join(",");
+  }).join("\n");
+  downloadBlob("numbrly-budget-data-" + dateStamp(new Date()) + ".csv", csv, "text/csv;charset=utf-8");
+  setExportStatus("CSV exported.");
+}
+
+function downloadPngReport() {
+  var target = document.getElementById("budgetReportArea");
+  if (!target || !window.html2canvas) {
+    setExportStatus("PNG export is not available yet. Please try again in a moment.");
+    return;
+  }
+  setExportStatus("Preparing PNG report...");
+  document.body.classList.add("capture-mode");
+  calculateBudget();
+  setTimeout(function() {
+    html2canvas(target, {
+      backgroundColor: "#f8fafc",
+      scale: Math.min(3, Math.max(2, window.devicePixelRatio || 1)),
+      useCORS: true,
+      logging: false,
+      scrollX: 0,
+      scrollY: -window.scrollY
+    }).then(function(canvas) {
+      var link = document.createElement("a");
+      link.download = "numbrly-budget-report-" + dateStamp(new Date()) + ".png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+      setExportStatus("PNG report downloaded.");
+    }).catch(function() {
+      setExportStatus("PNG export failed. Please try again.");
+    }).finally(function() {
+      document.body.classList.remove("capture-mode");
+      calculateBudget();
+    });
+  }, 120);
+}
+
+function shareUrl() {
+  return window.location.href.split("#")[0];
+}
+
+function updateShareLinks() {
+  var url = encodeURIComponent(shareUrl());
+  var title = encodeURIComponent("Budget Planner - Free Monthly Budget Calculator");
+  var text = encodeURIComponent("Create a monthly budget and improve your financial health with Numbrly.");
+  document.getElementById("shareX").href = "https://twitter.com/intent/tweet?url=" + url + "&text=" + text;
+  document.getElementById("shareReddit").href = "https://www.reddit.com/submit?url=" + url + "&title=" + title;
+  document.getElementById("shareFacebook").href = "https://www.facebook.com/sharer/sharer.php?u=" + url;
+  document.getElementById("shareLinkedIn").href = "https://www.linkedin.com/sharing/share-offsite/?url=" + url;
+}
+
+function toggleSharePanel(force) {
+  var panel = document.getElementById("sharePanel");
+  if (!panel) return;
+  panel.classList.toggle("show", force == null ? !panel.classList.contains("show") : force);
+}
+
+function handleShare() {
+  updateShareLinks();
+  if (navigator.share) {
+    navigator.share({
+      title: "Budget Planner - Free Monthly Budget Calculator",
+      text: "Create a monthly budget and improve your financial health with Numbrly.",
+      url: shareUrl()
+    }).catch(function() { toggleSharePanel(true); });
+    return;
+  }
+  toggleSharePanel();
+}
+
+function copyShareLink() {
+  var url = shareUrl();
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function() { setExportStatus("Link copied."); });
+  } else {
+    var input = document.createElement("input");
+    input.value = url;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand("copy");
+    input.remove();
+    setExportStatus("Link copied.");
+  }
+  toggleSharePanel(false);
+}
+
+function updateBudgetV2(income, expenses, remaining, needs, wants, plannedSavings) {
+  updatePieChart();
+  updateTopSpendingBars();
+  updateSavingsProjection(plannedSavings);
+  updateInsights(income, expenses, remaining, plannedSavings, needs, wants);
+  updateGoalPlanner();
+  latestBudgetState = currentBudgetState();
+}
+
+function calculateBudget() {
+  var income = incomeIds.reduce(function(sum, id) { return sum + num(id); }, 0);
+  var expenses = expenseIds.reduce(function(sum, id) { return sum + num(id); }, 0);
+  var remaining = income - expenses;
+  var needs = num("rent") + num("food") + num("transportation") + num("utilities") + num("insurance") + num("healthcare");
+  var wants = num("entertainment") + num("shopping") + num("other");
+  var plannedSavings = num("savings") + num("investments") + Math.max(remaining, 0);
+  var savingsRate = income > 0 ? plannedSavings / income * 100 : 0;
+  var rentRatio = income > 0 ? num("rent") / income * 100 : 100;
+  var expenseRatio = income > 0 ? expenses / income * 100 : 100;
+  var score = income > 0 ? Math.round(scoreSavingsRate(savingsRate) + scoreRentRatio(rentRatio) + scoreExpenseRatio(expenseRatio)) : 0;
+
+  setText("incomeTotalMini", money(income));
+  setText("expenseTotalMini", money(expenses));
+  setText("totalIncome", money(income));
+  setText("totalExpenses", money(expenses));
+  setText("remainingBalance", money(remaining));
+  setText("savingsRate", percent(savingsRate));
+  setText("budgetScore", score);
+  setText("budgetStatus", statusForScore(score));
+  setText("needsPct", percent(income > 0 ? needs / income * 100 : 0));
+  setText("wantsPct", percent(income > 0 ? wants / income * 100 : 0));
+  setText("savingsPct", percent(savingsRate));
+  document.getElementById("scoreRing").style.setProperty("--score", score);
+  document.getElementById("remainingBalance").style.color = remaining < 0 ? "#dc2626" : "var(--green)";
+  updateBudgetV2(income, expenses, remaining, needs, wants, plannedSavings);
+}
+
+function saveBudgetData() {
+  var data = {};
+  allBudgetIds.forEach(function(id) { data[id] = document.getElementById(id).value; });
+  try { localStorage.setItem(BUDGET_STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+}
+
+function restoreBudgetData() {
+  try {
+    var data = JSON.parse(localStorage.getItem(BUDGET_STORAGE_KEY) || "{}");
+    allBudgetIds.forEach(function(id) {
+      if (data[id] !== undefined) document.getElementById(id).value = data[id];
+    });
+  } catch (e) {}
+}
+
+function clearBudgetData() {
+  try { localStorage.removeItem(BUDGET_STORAGE_KEY); } catch (e) {}
+  allBudgetIds.forEach(function(id) { document.getElementById(id).value = document.getElementById(id).defaultValue; });
+  calculateBudget();
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  restoreBudgetData();
+  allBudgetIds.forEach(function(id) {
+    document.getElementById(id).addEventListener("input", function() {
+      calculateBudget();
+      saveBudgetData();
+    });
+  });
+  var originalToggleTheme = window.toggleTheme;
+  if (typeof originalToggleTheme === "function") {
+    window.toggleTheme = function() {
+      originalToggleTheme();
+      setTimeout(function() {
+        calculateBudget();
+        renderSnapshots();
+        if (window.lucide) lucide.createIcons({ attrs: { width: 20, height: 20 } });
+      }, 0);
+    };
+  }
+  window.addEventListener("resize", function() {
+    clearTimeout(window.budgetPlannerResizeTimer);
+    window.budgetPlannerResizeTimer = setTimeout(function() {
+      calculateBudget();
+      renderSnapshots();
+    }, 120);
+  });
+  document.addEventListener("click", function(event) {
+    if (!event.target.closest(".share-wrap")) toggleSharePanel(false);
+  });
+  updateShareLinks();
+  calculateBudget();
+  renderSnapshots();
+  if (window.lucide) lucide.createIcons({ attrs: { width: 20, height: 20 } });
+});
+</script>
+</body>
+</html>

@@ -197,6 +197,7 @@ function localPathForUrl(url) {
   const pathname = url.slice(DOMAIN.length);
   if (pathname === "/") return path.join(ROOT, "index.html");
   if (pathname === "/guides/") return path.join(GUIDES_DIR, "index.html");
+  if (pathname.endsWith("/")) return path.join(ROOT, pathname.replace(/^\//, ""), "index.html");
   return path.join(ROOT, pathname.replace(/^\//, ""));
 }
 
@@ -204,7 +205,12 @@ function expectedUrlForLocalPath(filePath) {
   const rel = path.relative(ROOT, filePath).replace(/\\/g, "/");
   if (rel === "index.html") return DOMAIN + "/";
   if (rel === "guides/index.html") return DOMAIN + "/guides/";
+  if (rel.endsWith("/index.html")) return DOMAIN + "/" + rel.replace(/\/index\.html$/, "/");
   return DOMAIN + "/" + rel;
+}
+
+function calculatorUrl(calculator) {
+  return calculator.url || (calculator.slug + ".html");
 }
 
 function extractAttr(html, regex) {
@@ -299,6 +305,16 @@ function eachContentPage(callback) {
   if (fs.existsSync(GUIDES_DIR)) {
     const guideFiles = fs.readdirSync(GUIDES_DIR).filter(f => f.endsWith(".html"));
     guideFiles.forEach(f => callback(path.join(GUIDES_DIR, f), "guides/" + f));
+  }
+
+  const toolsDir = path.join(ROOT, "tools");
+  if (fs.existsSync(toolsDir)) {
+    fs.readdirSync(toolsDir, { withFileTypes: true })
+      .filter(entry => entry.isDirectory())
+      .forEach(entry => {
+        const toolIndex = path.join(toolsDir, entry.name, "index.html");
+        if (fs.existsSync(toolIndex)) callback(toolIndex, "tools/" + entry.name + "/index.html");
+      });
   }
 }
 
@@ -454,7 +470,8 @@ function buildRelatedCalculatorCards(guide, calculators) {
     const calc = map.get(slug);
     const title = relatedCalculatorTitle(slug, calc);
     const desc = calc ? (calc.description || "") : "";
-    return '<a href="../' + slug + '.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">' +
+    const href = calc ? ("../" + calculatorUrl(calc)) : ("../" + slug + ".html");
+    return '<a href="' + href + '" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">' +
       escapeHTML(title) + '</div><div style="color:var(--muted);font-size:12px;margin-top:2px">' + escapeHTML(desc) + '</div></a>';
   }).join("\n");
 }
@@ -551,7 +568,7 @@ function buildGuidePages(guides, calculators) {
 function buildSitemap(guides, calculators) {
   const urls = [];
   urls.push({ loc: DOMAIN + "/", priority: "1.0", changefreq: "weekly", lastmod: TODAY });
-  calculators.forEach(c => urls.push({ loc: DOMAIN + "/" + c.slug + ".html", priority: "0.9", changefreq: "monthly", lastmod: TODAY }));
+  calculators.forEach(c => urls.push({ loc: DOMAIN + "/" + calculatorUrl(c), priority: "0.9", changefreq: "monthly", lastmod: TODAY }));
   urls.push({ loc: DOMAIN + "/guides/", priority: "0.7", changefreq: "weekly", lastmod: TODAY });
   guides.forEach(g => urls.push({ loc: DOMAIN + "/guides/" + g.slug + ".html", priority: "0.7", changefreq: "monthly", lastmod: g.dateModified || g.datePublished || TODAY }));
   urls.push({ loc: DOMAIN + "/search.html", priority: "0.5", changefreq: "monthly", lastmod: TODAY });
@@ -584,7 +601,7 @@ function verifyRobots() {
 // ─── BUILD SEARCH INDEX ───────────────────────────────
 function buildSearchData(guides, calculators) {
   const items = [];
-  calculators.forEach(c => items.push({ title: c.title || c.h1, url: c.slug + ".html", kw: [c.category, c.title].join(" ") }));
+  calculators.forEach(c => items.push({ title: c.title || c.h1, url: calculatorUrl(c), kw: [c.category, c.title].join(" ") }));
   guides.forEach(g => items.push({
     title: g.h1 || g.title,
     url: "guides/" + g.slug + ".html",

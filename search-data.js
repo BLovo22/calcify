@@ -1,4 +1,4 @@
-// Site search data — auto-generated 2026-06-15
+// Site search data — auto-generated 2026-06-17
 var searchIndex = [
   {
     "title": "Mortgage Payment Calculator",
@@ -39,6 +39,11 @@ var searchIndex = [
     "title": "Savings Goal Calculator",
     "url": "savings-goal-calculator.html",
     "kw": "personal-finance Savings Goal Calculator"
+  },
+  {
+    "title": "Budget Planner",
+    "url": "tools/budget-planner/",
+    "kw": "personal-finance Budget Planner"
   },
   {
     "title": "Rent vs. Buy Calculator",
@@ -149,6 +154,11 @@ var searchIndex = [
     "title": "How Much Should I Use Of My Credit",
     "url": "guides/how-much-should-i-use-of-my-credit.html",
     "kw": "personal-finance How Much Should I Use Of My Credit how much should I save each month monthly savings target what percentage of income should I save how much of my paycheck should I save"
+  },
+  {
+    "title": "The Complete Money Planning Guide (2026)",
+    "url": "guides/how-to-plan-your-money.html",
+    "kw": "personal-finance How to Plan Your Money: The Complete Money Planning Guide (2026) how to plan your money money planning guide how to manage your paycheck budgeting and saving personal finance planning how to organize your finances where should my money go each month"
   },
   {
     "title": "Rent vs Buy: Which Is Better in 2026?",
