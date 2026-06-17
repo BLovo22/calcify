@@ -90,6 +90,9 @@
   .goal-result-label{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
   .goal-result-value{font-size:30px;font-weight:800;color:var(--pri);line-height:1.15;margin-top:4px}
   .goal-result-sub{font-size:13px;color:var(--muted);margin-top:4px}
+  .goal-result-section{padding-top:14px;margin-top:14px;border-top:1px solid var(--border)}
+  .goal-result-section:first-child{padding-top:0;margin-top:0;border-top:0}
+  .goal-result-secondary{font-size:18px;font-weight:800;color:var(--text);line-height:1.25;margin-top:4px}
   .snapshot-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start}
   .snapshot-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .snapshot-stat{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);padding:12px}
@@ -352,8 +355,15 @@
           <input type="number" id="goalMonthly" min="0" step="50" value="900">
         </div>
         <div class="goal-result">
-          <div class="goal-result-label">Estimated Completion Time</div>
-          <div class="goal-result-value" id="goalMonths">50 Months</div>
+          <div class="goal-result-section">
+            <div class="goal-result-label">Remaining</div>
+            <div class="goal-result-value" id="goalRemaining">$45,000</div>
+          </div>
+          <div class="goal-result-section">
+            <div class="goal-result-label">Estimated Completion</div>
+            <div class="goal-result-secondary" id="goalMonths">50 Months</div>
+            <div class="goal-result-sub" id="goalYearsMonths">≈ 4 Years 2 Months</div>
+          </div>
           <div class="goal-result-sub" id="goalSummary">Goal: Buy a House</div>
         </div>
       </aside>
@@ -770,7 +780,12 @@ function updateGoalPlanner() {
   var remaining = Math.max(0, target - current);
   var months = monthly > 0 ? Math.ceil(remaining / monthly) : Infinity;
   var result = remaining <= 0 ? "Already Funded" : (isFinite(months) ? months + " Months" : "Add Contribution");
+  var years = isFinite(months) ? Math.floor(months / 12) : 0;
+  var leftoverMonths = isFinite(months) ? months % 12 : 0;
+  var yearsMonths = remaining <= 0 ? "Goal reached" : (isFinite(months) ? "≈ " + years + " " + (years === 1 ? "Year" : "Years") + " " + leftoverMonths + " " + (leftoverMonths === 1 ? "Month" : "Months") : "Add a monthly contribution");
+  setText("goalRemaining", money(remaining));
   setText("goalMonths", result);
+  setText("goalYearsMonths", yearsMonths);
   setText("goalSummary", "Goal: " + name);
 }
 
