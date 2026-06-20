@@ -262,7 +262,7 @@ function injectHeaderIntoFile(filePath, headerHTML) {
   if (!html.includes("cdn.tailwindcss.com")) {
     html = html.replace(
       "</title>",
-      '</title>\n<script src="https://cdn.tailwindcss.com" defer></script>\n<script>tailwind.config={darkMode:"class"}</script>'
+      '</title>\n<script src="https://cdn.tailwindcss.com"></script>\n<script>tailwind.config={darkMode:"class"}</script>'
     );
   }
 
@@ -395,7 +395,7 @@ function buildGuidesIndex(guides, headerHTML, footerHTML) {
     '<title>All Money Guides & Financial Articles | Numbrly</title>\n' +
     '<meta name="description" content="Browse all Numbrly guides: mortgage advice, investing strategies, retirement planning, and smart money tips. Free, no sign-up required.">\n' +
     '<link rel="stylesheet" href="../style.css">\n' +
-    '<script src="https://cdn.tailwindcss.com" defer></script>\n' +
+    '<script src="https://cdn.tailwindcss.com"></script>\n' +
     '<script>tailwind.config={darkMode:"class"}</script>\n' +
     '<script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>\n' +
     '<script>' + NEW_THEME_SCRIPT + '</script>\n' +
