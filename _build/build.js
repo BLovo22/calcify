@@ -262,7 +262,7 @@ function injectHeaderIntoFile(filePath, headerHTML) {
   if (!html.includes("cdn.tailwindcss.com")) {
     html = html.replace(
       "</title>",
-      '</title>\n<script src="https://cdn.tailwindcss.com"></script>\n<script>tailwind.config={darkMode:"class"}</script>'
+      '</title>\n<script src="https://cdn.tailwindcss.com" defer></script>\n<script>tailwind.config={darkMode:"class"}</script>'
     );
   }
 
@@ -395,9 +395,9 @@ function buildGuidesIndex(guides, headerHTML, footerHTML) {
     '<title>All Money Guides & Financial Articles | Numbrly</title>\n' +
     '<meta name="description" content="Browse all Numbrly guides: mortgage advice, investing strategies, retirement planning, and smart money tips. Free, no sign-up required.">\n' +
     '<link rel="stylesheet" href="../style.css">\n' +
-    '<script src="https://cdn.tailwindcss.com"></script>\n' +
+    '<script src="https://cdn.tailwindcss.com" defer></script>\n' +
     '<script>tailwind.config={darkMode:"class"}</script>\n' +
-    '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>\n' +
+    '<script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>\n' +
     '<script>' + NEW_THEME_SCRIPT + '</script>\n' +
     '</head>\n' +
     '<body>\n' +
@@ -405,7 +405,7 @@ function buildGuidesIndex(guides, headerHTML, footerHTML) {
     '<main class="main">\n' +
     '<div class="breadcrumb"><a href="/">Home</a> / All Guides</div>\n\n' +
     '<section style="margin-top:20px">\n' +
-    '<div class="sec-title">&#x1F4DA; All Money Guides</div>\n' +
+    '<h1 class="sec-title">&#x1F4DA; All Money Guides</h1>\n' +
     '<p class="sec-desc">' + guides.length + ' in-depth articles covering mortgages, investing, saving, and retirement. Updated regularly.</p>\n\n' +
     guideCards + '\n' +
     '</section>\n' +
