@@ -169,5 +169,10 @@ var searchIndex = [
     "title": "Rent vs Buy: Which Is Better in 2026?",
     "url": "guides/rent-vs-buy.html",
     "kw": "personal-finance Rent vs Buy: Which Is Better in 2026? rent vs buy buying vs renting should I rent or buy a house renting vs buying a home rent or buy calculator first-time home buyer"
+  },
+  {
+    "title": "What Is a Trust Fund? Benefits, Costs, and Basics",
+    "url": "guides/trust-fund.html",
+    "kw": "personal-finance What Is a Trust Fund? Benefits, Costs, and Basics trust fund what is a trust fund how does a trust fund work trust fund vs will revocable trust irrevocable trust estate planning"
   }
 ];
