@@ -1,4 +1,4 @@
-// Site search data — auto-generated 2026-06-17
+// Site search data — auto-generated 2026-06-25
 var searchIndex = [
   {
     "title": "Mortgage Payment Calculator",
@@ -129,6 +129,11 @@ var searchIndex = [
     "title": "What Is a Good Credit Score and How to Improve Yours",
     "url": "guides/what-is-a-good-credit-score.html",
     "kw": "personal-finance What Is a Good Credit Score and How to Improve It what is a good credit score improve credit score FICO score"
+  },
+  {
+    "title": "Financial Discipline: Build Better Money Habits",
+    "url": "guides/financial-discipline.html",
+    "kw": "personal-finance Financial Discipline: Build Better Money Habits financial discipline money habits how to build financial discipline personal finance habits automatic savings delayed spending"
   },
   {
     "title": "How Much Do I Need When Retire? A Step-by-Step Guide to Your Number",

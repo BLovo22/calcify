@@ -4,7 +4,11 @@
   "description": "Numbrly — Free Financial Calculators & Money Guides",
   "private": true,
   "scripts": {
-    "build": "node _build/build.js"
+    "build": "node _build/build.js",
+    "content:status": "node scripts/content-ops.js status",
+    "content:check": "node scripts/content-ops.js check",
+    "content:new": "node scripts/content-ops.js new",
+    "content:publish": "node scripts/content-ops.js publish"
   },
   "keywords": ["financial-calculators", "mortgage", "compound-interest", "retirement"],
   "license": "UNLICENSED"
