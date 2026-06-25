@@ -161,6 +161,11 @@ var searchIndex = [
     "kw": "personal-finance How Much Should I Use Of My Credit how much should I save each month monthly savings target what percentage of income should I save how much of my paycheck should I save"
   },
   {
+    "title": "How to Buy a Car: Smart Steps Before Financing",
+    "url": "guides/how-to-buy-a-car.html",
+    "kw": "personal-finance How to Buy a Car: Smart Steps Before Financing how to buy a car buying a car car buying guide how much car can I afford auto loan car financing used car buying checklist"
+  },
+  {
     "title": "The Complete Money Planning Guide (2026)",
     "url": "guides/how-to-plan-your-money.html",
     "kw": "personal-finance How to Plan Your Money: The Complete Money Planning Guide (2026) how to plan your money money planning guide how to manage your paycheck budgeting and saving personal finance planning how to organize your finances where should my money go each month"
