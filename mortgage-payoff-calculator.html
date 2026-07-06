@@ -14,9 +14,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mortgage Payoff Calculator - Extra Payment Savings | Numbrly</title>
 <meta name="description" content="Free mortgage payoff calculator. See how extra monthly payments or a lump sum can shorten your mortgage, reduce interest, and change your payoff date.">
+<link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="style.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={darkMode:"class"}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
 <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
 <script type="application/ld+json">
@@ -96,31 +95,31 @@
     <div class="card" style="max-width:720px">
       <div class="form-row">
         <div class="form-group">
-          <label>Current Mortgage Balance ($)</label>
+          <label for="balance">Current Mortgage Balance ($)</label>
           <input type="number" id="balance" value="320000" min="1" step="1000">
         </div>
         <div class="form-group">
-          <label>Interest Rate (%)</label>
+          <label for="rate">Interest Rate (%)</label>
           <input type="number" id="rate" value="6.5" min="0" max="20" step="0.1">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Years Remaining</label>
+          <label for="yearsRemaining">Years Remaining</label>
           <input type="number" id="yearsRemaining" value="30" min="1" max="40" step="1">
         </div>
         <div class="form-group">
-          <label>Current Monthly Payment ($)</label>
+          <label for="basePayment">Current Monthly Payment ($)</label>
           <input type="number" id="basePayment" value="2022" min="1" step="10">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Extra Monthly Payment ($)</label>
+          <label for="extraMonthly">Extra Monthly Payment ($)</label>
           <input type="number" id="extraMonthly" value="200" min="0" step="25">
         </div>
         <div class="form-group">
-          <label>One-Time Extra Payment ($)</label>
+          <label for="lumpSum">One-Time Extra Payment ($)</label>
           <input type="number" id="lumpSum" value="0" min="0" step="500">
         </div>
       </div>
@@ -240,6 +239,7 @@
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
           <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
           <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>

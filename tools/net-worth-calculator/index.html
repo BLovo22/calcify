@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta property="og:title" content="Net Worth Calculator - Calculate Your Total Assets and Liabilities">
+<meta property="og:description" content="Calculate your net worth by tracking assets and liabilities. Understand your financial position easily.">
+<meta property="og:url" content="https://numbrly.cc/tools/net-worth-calculator/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Net Worth Calculator - Calculate Your Total Assets and Liabilities">
+<meta name="twitter:description" content="Calculate your net worth by tracking assets and liabilities. Understand your financial position easily.">
+<link rel="canonical" href="https://numbrly.cc/tools/net-worth-calculator/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Net Worth Calculator - Calculate Your Total Assets and Liabilities</title>
+<meta name="description" content="Calculate your net worth by tracking assets and liabilities. Understand your financial position easily.">
+<meta name="keywords" content="net worth calculator, assets calculator, liabilities calculator, personal finance tool">
+<link rel="stylesheet" href="../../tailwind.css">
+<link rel="stylesheet" href="../../style.css">
+<script defer src="../../assets/vendor/lucide-0.468.0.min.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Numbrly","item":"https://numbrly.cc/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://numbrly.cc/#calculators"},{"@type":"ListItem","position":3,"name":"Net Worth Calculator","item":"https://numbrly.cc/tools/net-worth-calculator/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Net Worth Calculator","url":"https://numbrly.cc/tools/net-worth-calculator/","description":"Calculate your net worth by tracking assets and liabilities. Understand your financial position easily.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>
+  .networth-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+  .networth-panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .networth-panel-title h2{font-size:18px;font-weight:800;letter-spacing:-.2px}
+  .networth-pill{display:inline-flex;align-items:center;border-radius:999px;background:var(--pri-light);color:var(--pri);font-size:12px;font-weight:700;padding:4px 10px;white-space:nowrap}
+  .networth-input-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .networth-summary{position:sticky;top:84px}
+  .networth-main-value{font-size:46px;font-weight:800;color:var(--pri);line-height:1.05;word-break:break-word}
+  .networth-status{font-size:13px;color:var(--muted);margin-top:6px}
+  .networth-metric{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+  .networth-metric:last-child{border-bottom:none}
+  .networth-metric span{color:var(--muted);font-size:13px}
+  .networth-metric strong{font-size:16px;text-align:right}
+  .networth-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+  .btn-secondary{background:var(--card);color:var(--text);border:1px solid var(--border)}
+  .btn-secondary:hover{background:var(--bg)}
+  .privacy-note{border:1px solid #bfdbfe;background:#eff6ff;border-radius:var(--radius);padding:16px 18px;color:#1e3a8a;font-size:13px;line-height:1.7}
+  .networth-bar{display:grid;gap:10px;margin-top:18px}
+  .networth-bar-row{display:grid;grid-template-columns:88px 1fr auto;gap:10px;align-items:center;font-size:12px;color:var(--muted)}
+  .networth-track{height:10px;background:var(--bg);border:1px solid var(--border);border-radius:999px;overflow:hidden}
+  .networth-fill{height:100%;width:0;border-radius:999px;background:var(--pri);transition:width .25s ease}
+  .networth-fill.debt{background:#dc2626}
+  [data-theme="dark"] .privacy-note{background:rgba(37,99,235,.12);border-color:#1e3a8a;color:#bfdbfe}
+  @media(max-width:860px){
+    .networth-layout{grid-template-columns:1fr}
+    .networth-summary{position:static}
+  }
+  @media(max-width:640px){
+    .networth-input-grid{grid-template-columns:1fr}
+    .networth-panel-title{align-items:flex-start;flex-direction:column}
+    .networth-actions{flex-direction:column;align-items:stretch}
+    .networth-actions .btn{width:100%}
+    .networth-main-value{font-size:36px}
+    .networth-bar-row{grid-template-columns:1fr;gap:5px}
+  }
+</style>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Tools</a> / Net Worth Calculator</div>
+
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">Net Worth Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:720px">Calculate your total assets, liabilities, net worth, and debt ratio in your browser. Your entries are saved locally on this device.</p>
+  </section>
+
+  <section class="networth-layout" aria-label="Net worth calculator">
+    <div>
+      <div class="card">
+        <div class="networth-panel-title">
+          <h2>Assets</h2>
+          <span class="networth-pill">Total: <span id="assetTotalMini" style="margin-left:4px">$0</span></span>
+        </div>
+        <div class="networth-input-grid">
+          <div class="form-group"><label for="cash">Cash</label><input type="number" id="cash" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="checkingAccount">Checking Account</label><input type="number" id="checkingAccount" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="savingsAccount">Savings Account</label><input type="number" id="savingsAccount" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="stocks">Stocks</label><input type="number" id="stocks" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="retirement401k">Retirement / 401k</label><input type="number" id="retirement401k" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="realEstate">Real Estate</label><input type="number" id="realEstate" min="0" step="1000" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="vehicle">Vehicle</label><input type="number" id="vehicle" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="otherAssets">Other Assets</label><input type="number" id="otherAssets" min="0" step="100" value="0" inputmode="decimal"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="networth-panel-title">
+          <h2>Liabilities</h2>
+          <span class="networth-pill">Total: <span id="liabilityTotalMini" style="margin-left:4px">$0</span></span>
+        </div>
+        <div class="networth-input-grid">
+          <div class="form-group"><label for="creditCardDebt">Credit Card Debt</label><input type="number" id="creditCardDebt" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="studentLoan">Student Loan</label><input type="number" id="studentLoan" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="mortgage">Mortgage</label><input type="number" id="mortgage" min="0" step="1000" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="autoLoan">Auto Loan</label><input type="number" id="autoLoan" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="personalLoan">Personal Loan</label><input type="number" id="personalLoan" min="0" step="100" value="0" inputmode="decimal"></div>
+          <div class="form-group"><label for="otherDebt">Other Debt</label><input type="number" id="otherDebt" min="0" step="100" value="0" inputmode="decimal"></div>
+        </div>
+        <div class="networth-actions">
+          <button class="btn" type="button" onclick="calculateNetWorth()">Calculate</button>
+          <button class="btn btn-secondary" type="button" onclick="clearNetWorthData()">Clear Data</button>
+        </div>
+      </div>
+
+      <div class="privacy-note">
+        <strong>Your net worth data is saved only in your browser.</strong><br>
+        Numbrly does not upload or store your financial information.
+      </div>
+    </div>
+
+    <aside class="networth-summary">
+      <div class="result show" style="margin-top:0">
+        <div class="result-label">Net Worth</div>
+        <div class="networth-main-value" id="netWorth">$0</div>
+        <div class="networth-status" id="netWorthStatus">Enter assets and liabilities to see your financial position.</div>
+        <div style="margin-top:18px">
+          <div class="networth-metric"><span>Total Assets</span><strong id="totalAssets">$0</strong></div>
+          <div class="networth-metric"><span>Total Liabilities</span><strong id="totalLiabilities">$0</strong></div>
+          <div class="networth-metric"><span>Debt Ratio</span><strong id="debtRatio">0%</strong></div>
+        </div>
+        <div class="networth-bar" aria-hidden="true">
+          <div class="networth-bar-row">
+            <span>Assets</span>
+            <div class="networth-track"><div class="networth-fill" id="assetBar"></div></div>
+            <strong id="assetBarLabel">$0</strong>
+          </div>
+          <div class="networth-bar-row">
+            <span>Debt</span>
+            <div class="networth-track"><div class="networth-fill debt" id="liabilityBar"></div></div>
+            <strong id="liabilityBarLabel">$0</strong>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
+          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
+          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
+          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script>
+var NET_WORTH_STORAGE_KEY = "numbrly_net_worth_data";
+var assetIds = ["cash","checkingAccount","savingsAccount","stocks","retirement401k","realEstate","vehicle","otherAssets"];
+var liabilityIds = ["creditCardDebt","studentLoan","mortgage","autoLoan","personalLoan","otherDebt"];
+var allNetWorthIds = assetIds.concat(liabilityIds);
+
+function num(id) {
+  var value = parseFloat(document.getElementById(id).value);
+  return isFinite(value) && value > 0 ? value : 0;
+}
+
+function money(value) {
+  return value.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0
+  });
+}
+
+function percent(value) {
+  return (isFinite(value) ? value : 0).toFixed(1).replace(".0", "") + "%";
+}
+
+function setText(id, value) {
+  var el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+function saveNetWorthData() {
+  var data = {};
+  allNetWorthIds.forEach(function(id) {
+    data[id] = document.getElementById(id).value;
+  });
+  try { localStorage.setItem(NET_WORTH_STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+}
+
+function restoreNetWorthData() {
+  try {
+    var data = JSON.parse(localStorage.getItem(NET_WORTH_STORAGE_KEY) || "{}");
+    allNetWorthIds.forEach(function(id) {
+      if (data[id] !== undefined) document.getElementById(id).value = data[id];
+    });
+  } catch (e) {}
+}
+
+function clearNetWorthData() {
+  try { localStorage.removeItem(NET_WORTH_STORAGE_KEY); } catch (e) {}
+  allNetWorthIds.forEach(function(id) {
+    document.getElementById(id).value = document.getElementById(id).defaultValue;
+  });
+  calculateNetWorth();
+}
+
+function updateBars(totalAssets, totalLiabilities) {
+  var maxValue = Math.max(totalAssets, totalLiabilities, 1);
+  var assetWidth = totalAssets / maxValue * 100;
+  var liabilityWidth = totalLiabilities / maxValue * 100;
+  document.getElementById("assetBar").style.width = assetWidth + "%";
+  document.getElementById("liabilityBar").style.width = liabilityWidth + "%";
+  setText("assetBarLabel", money(totalAssets));
+  setText("liabilityBarLabel", money(totalLiabilities));
+}
+
+function calculateNetWorth() {
+  var totalAssets = assetIds.reduce(function(sum, id) { return sum + num(id); }, 0);
+  var totalLiabilities = liabilityIds.reduce(function(sum, id) { return sum + num(id); }, 0);
+  var netWorth = totalAssets - totalLiabilities;
+  var debtRatio = totalAssets > 0 ? totalLiabilities / totalAssets * 100 : 0;
+
+  setText("assetTotalMini", money(totalAssets));
+  setText("liabilityTotalMini", money(totalLiabilities));
+  setText("totalAssets", money(totalAssets));
+  setText("totalLiabilities", money(totalLiabilities));
+  setText("netWorth", money(netWorth));
+  setText("debtRatio", percent(debtRatio));
+  document.getElementById("netWorth").style.color = netWorth < 0 ? "#dc2626" : "var(--pri)";
+  setText("netWorthStatus", netWorth >= 0 ? "Your assets are higher than your liabilities." : "Your liabilities are higher than your assets.");
+  updateBars(totalAssets, totalLiabilities);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  var themeBtn = document.getElementById("themeBtn");
+  if (themeBtn) themeBtn.textContent = document.documentElement.getAttribute("data-theme") === "dark" ? "Light" : "Dark";
+
+  restoreNetWorthData();
+  allNetWorthIds.forEach(function(id) {
+    document.getElementById(id).addEventListener("input", function() {
+      calculateNetWorth();
+      saveNetWorthData();
+    });
+  });
+  calculateNetWorth();
+  if (window.lucide) lucide.createIcons({ attrs: { width: 20, height: 20 } });
+});
+</script>
+</body>
+</html>

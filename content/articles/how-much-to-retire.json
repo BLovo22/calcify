@@ -5,7 +5,7 @@
   "h1": "How Much Do You Really Need to Retire? The 4% Rule Explained",
   "description": "The 4% rule is the most popular retirement planning framework. Learn how it works, its limitations, and how to calculate your personal retirement number.",
   "ogDescription": "Learn the 4% rule, calculate your retirement number, and see how much you need to save. Free calculator included.",
-  "seoTitle": "How Much Do You Really Need to Retire? The 4% Rule Explained | Numbrly",
+  "seoTitle": "How Much Do You Need to Retire? The 4% Rule | Numbrly",
   "ogTitle": "How Much Do You Really Need to Retire? The 4% Rule Explained | Numbrly",
   "keywords": [
     "how much to retire",
@@ -24,7 +24,15 @@
   "faq": [
     {
       "q": "How much do I need to retire?",
-      "a": "Multiply your desired annual income by 25. For ,000/year, you need roughly .5 million."
+      "a": "Multiply your desired annual income by 25 as a starting estimate. For $60,000 per year, that is roughly $1.5 million in today's dollars."
+    },
+    {
+      "q": "Does Social Security reduce my retirement savings target?",
+      "a": "Yes. Subtract dependable Social Security or pension income from annual spending before applying a withdrawal-rate estimate to the remaining amount."
+    },
+    {
+      "q": "Is the 4% rule guaranteed to work?",
+      "a": "No. It is a historical planning guideline, not a guarantee. Retirement length, investment returns, inflation, taxes, fees, and spending flexibility can all change the result."
     }
   ],
   "relatedArticles": [

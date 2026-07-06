@@ -14,9 +14,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Debt Payoff Calculator - Snowball vs Avalanche | Numbrly</title>
 <meta name="description" content="Free debt payoff calculator. Compare debt snowball and avalanche methods across multiple debts and estimate your debt-free date, payoff order, and interest cost.">
+<link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="style.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={darkMode:"class"}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
 <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
 <script type="application/ld+json">
@@ -96,11 +95,11 @@
     <div class="card" style="max-width:760px">
       <div class="form-row">
         <div class="form-group">
-          <label>Monthly Debt Budget ($)</label>
+          <label for="monthlyBudget">Monthly Debt Budget ($)</label>
           <input type="number" id="monthlyBudget" value="1200" min="1" step="25">
         </div>
         <div class="form-group">
-          <label>Preferred Strategy</label>
+          <label for="strategy">Preferred Strategy</label>
           <select id="strategy">
             <option value="avalanche" selected>Debt Avalanche</option>
             <option value="snowball">Debt Snowball</option>
@@ -112,21 +111,21 @@
         <h3 style="margin-bottom:12px">Debt 1</h3>
         <div class="form-row">
           <div class="form-group">
-            <label>Name</label>
+            <label for="d1Name">Name</label>
             <input type="text" id="d1Name" value="Credit Card">
           </div>
           <div class="form-group">
-            <label>Balance ($)</label>
+            <label for="d1Bal">Balance ($)</label>
             <input type="number" id="d1Bal" value="6500" min="0" step="100">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>APR (%)</label>
+            <label for="d1Apr">APR (%)</label>
             <input type="number" id="d1Apr" value="22.9" min="0" max="60" step="0.1">
           </div>
           <div class="form-group">
-            <label>Minimum Payment ($)</label>
+            <label for="d1Min">Minimum Payment ($)</label>
             <input type="number" id="d1Min" value="180" min="0" step="10">
           </div>
         </div>
@@ -136,21 +135,21 @@
         <h3 style="margin-bottom:12px">Debt 2</h3>
         <div class="form-row">
           <div class="form-group">
-            <label>Name</label>
+            <label for="d2Name">Name</label>
             <input type="text" id="d2Name" value="Auto Loan">
           </div>
           <div class="form-group">
-            <label>Balance ($)</label>
+            <label for="d2Bal">Balance ($)</label>
             <input type="number" id="d2Bal" value="14000" min="0" step="100">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>APR (%)</label>
+            <label for="d2Apr">APR (%)</label>
             <input type="number" id="d2Apr" value="7.2" min="0" max="60" step="0.1">
           </div>
           <div class="form-group">
-            <label>Minimum Payment ($)</label>
+            <label for="d2Min">Minimum Payment ($)</label>
             <input type="number" id="d2Min" value="320" min="0" step="10">
           </div>
         </div>
@@ -160,21 +159,21 @@
         <h3 style="margin-bottom:12px">Debt 3</h3>
         <div class="form-row">
           <div class="form-group">
-            <label>Name</label>
+            <label for="d3Name">Name</label>
             <input type="text" id="d3Name" value="Student Loan">
           </div>
           <div class="form-group">
-            <label>Balance ($)</label>
+            <label for="d3Bal">Balance ($)</label>
             <input type="number" id="d3Bal" value="9000" min="0" step="100">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>APR (%)</label>
+            <label for="d3Apr">APR (%)</label>
             <input type="number" id="d3Apr" value="5.4" min="0" max="60" step="0.1">
           </div>
           <div class="form-group">
-            <label>Minimum Payment ($)</label>
+            <label for="d3Min">Minimum Payment ($)</label>
             <input type="number" id="d3Min" value="140" min="0" step="10">
           </div>
         </div>
@@ -300,6 +299,7 @@
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
           <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
           <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>

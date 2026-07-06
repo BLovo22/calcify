@@ -13,9 +13,8 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Compound Interest Calculator — See Your Money Grow Over Time | Numbrly</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={darkMode:"class"}</script>
 <meta name="description" content="Calculate how your investments grow with compound interest. See the difference between starting now vs. waiting, with monthly contributions and different compounding frequencies. Free, private, no sign-up.">
+<link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
 <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
@@ -90,9 +89,9 @@
 
   <section>
     <div class="card" style="max-width:640px">
-      <div class="form-row"><div class="form-group"><label>Initial Investment ($)</label><input type="number" id="initial" value="10000" min="0" step="500"></div><div class="form-group"><label>Monthly Contribution ($)</label><input type="number" id="monthly" value="500" min="0" step="50"></div></div>
-      <div class="form-row"><div class="form-group"><label>Annual Return (%)</label><input type="number" id="returnRate" value="8" min="0.1" max="50" step="0.1"></div><div class="form-group"><label>Years to Grow</label><input type="number" id="years" value="30" min="1" max="60" step="1"></div></div>
-      <div class="form-row"><div class="form-group"><label>Compound Frequency</label><select id="frequency"><option value="12" selected>Monthly</option><option value="4">Quarterly</option><option value="1">Annually</option></select></div></div>
+      <div class="form-row"><div class="form-group"><label for="initial">Initial Investment ($)</label><input type="number" id="initial" value="10000" min="0" step="500"></div><div class="form-group"><label for="monthly">Monthly Contribution ($)</label><input type="number" id="monthly" value="500" min="0" step="50"></div></div>
+      <div class="form-row"><div class="form-group"><label for="returnRate">Annual Return (%)</label><input type="number" id="returnRate" value="8" min="0.1" max="50" step="0.1"></div><div class="form-group"><label for="years">Years to Grow</label><input type="number" id="years" value="30" min="1" max="60" step="1"></div></div>
+      <div class="form-row"><div class="form-group"><label for="frequency">Compound Frequency</label><select id="frequency"><option value="12" selected>Monthly</option><option value="4">Quarterly</option><option value="1">Annually</option></select></div></div>
       <button class="btn btn-block" onclick="calcCompound()" style="margin-top:8px">Calculate Growth</button>
     </div>
     <div class="result" id="result" style="max-width:640px">
@@ -120,9 +119,9 @@
 
   <section style="margin-top:40px">
     <h2>Example: Starting at 25 vs. 35</h2>
-    <p style="color:var(--muted);font-size:14px;line-height:1.8">Two investors both put away \/month at 8% return. The only difference? When they start.</p>
-    <div class="card" style="margin:16px 0;padding:20px;background:var(--bg)"><h4 style="font-size:14px;margin-bottom:8px">&#x1F31F; Emma starts at 25 (40 years to grow)</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>Total contributed: <strong style="color:var(--text)">\,000</strong></li><li>Final balance: <strong style="color:var(--text)">~\,745,000</strong></li><li>That is <strong style="color:var(--text)">\.5 million in pure earnings</strong> — 86% of the total</li></ul></div>
-    <div class="card" style="margin:16px 0;padding:20px;background:var(--bg)"><h4 style="font-size:14px;margin-bottom:8px">&#x1F464; Mike starts at 35 (30 years to grow)</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>Total contributed: <strong style="color:var(--text)">\,000</strong></li><li>Final balance: <strong style="color:var(--text)">~\,000</strong></li><li>Waiting 10 years costs him <strong style="color:var(--text)">\,000,000</strong> in lost growth</li></ul></div>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">Two investors both put away $500/month at 8% return. The only difference? When they start.</p>
+    <div class="card" style="margin:16px 0;padding:20px;background:var(--bg)"><h4 style="font-size:14px;margin-bottom:8px">&#x1F31F; Emma starts at 25 (40 years to grow)</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>Total contributed: <strong style="color:var(--text)">$240,000</strong></li><li>Final balance: <strong style="color:var(--text)">~$1,745,000</strong></li><li>That is <strong style="color:var(--text)">$1.5 million in pure earnings</strong> — 86% of the total</li></ul></div>
+    <div class="card" style="margin:16px 0;padding:20px;background:var(--bg)"><h4 style="font-size:14px;margin-bottom:8px">&#x1F464; Mike starts at 35 (30 years to grow)</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>Total contributed: <strong style="color:var(--text)">$180,000</strong></li><li>Final balance: <strong style="color:var(--text)">~$745,000</strong></li><li>Waiting 10 years costs him <strong style="color:var(--text)">$1,000,000</strong> in lost growth</li></ul></div>
     <p style="color:var(--muted);font-size:14px;line-height:1.8">The lesson: the single most important factor in compound interest is <strong style="color:var(--text)">time</strong>. Start as early as you possibly can.</p>
   </section>
 
@@ -139,10 +138,10 @@
   <section style="margin-top:40px">
     <h2>Common Mistakes When Projecting Growth</h2>
     <div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px">
-      <p><strong style="color:var(--text)">&#x274C; Underestimating the power of starting early.</strong> Waiting just 10 years can cost you over \,000,000 in lost compounding. Even if you start with \/month, start now — you can always increase later.</p>
+      <p><strong style="color:var(--text)">&#x274C; Underestimating the power of starting early.</strong> Waiting just 10 years can cost you over $1,000,000 in lost compounding. Even if you start with $50/month, start now — you can always increase later.</p>
       <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Using unrealistic return expectations.</strong> 12%+ annual returns are not sustainable long-term. The S&P 500 has historically returned about 7-8% after inflation. Use conservative numbers and be pleasantly surprised.</p>
       <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Forgetting about fees.</strong> A 1% management fee may not sound like much, but over 30 years it can eat 25-30% of your returns. Always check expense ratios.</p>
-      <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Ignoring inflation.</strong> \,000,000 in 30 years will not buy what \,000,000 buys today. Use our Inflation Calculator to see your purchasing power in real terms.</p>
+      <p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Ignoring inflation.</strong> $1,000,000 in 30 years will not buy what $1,000,000 buys today. Use our Inflation Calculator to see your purchasing power in real terms.</p>
     </div>
   </section>
 
@@ -187,6 +186,7 @@
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
           <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
           <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>

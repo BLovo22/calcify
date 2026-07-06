@@ -5,7 +5,7 @@
   "h1": "The Power of Compound Interest: Starting at 25 vs. 35",
   "description": "Discover how starting to invest just 10 years earlier can double your retirement savings. Real numbers, clear examples, and a calculator to see for yourself.",
   "ogDescription": "See how starting to invest 10 years earlier can double your retirement savings. Real examples and actionable steps.",
-  "seoTitle": "The Power of Compound Interest: Starting at 25 vs. 35 | Numbrly",
+  "seoTitle": "Power of Compound Interest: Why Start Early | Numbrly",
   "ogTitle": "The Power of Compound Interest: Starting at 25 vs. 35 | Numbrly",
   "keywords": [
     "power of compound interest",
@@ -25,6 +25,14 @@
     {
       "q": "How much difference does starting early make?",
       "a": "Starting at 25 vs. 35 can mean over a million dollars difference by retirement."
+    },
+    {
+      "q": "What is compound interest?",
+      "a": "Compound interest is growth earned on both the original balance and prior earnings. The effect becomes larger as the balance and time horizon grow."
+    },
+    {
+      "q": "What is the Rule of 72?",
+      "a": "Divide 72 by an annual return rate to estimate how many years an investment may take to double. It is a shortcut, not a guarantee of future returns."
     }
   ],
   "relatedArticles": [

@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Numbrly — Free Financial Calculators & Money Guides</title>
+<link rel="stylesheet" href="tailwind.css">
 <meta name="description" content="Free online financial calculators: mortgage, compound interest, loan, ROI, retirement & more. Make smarter money decisions with easy-to-use tools and expert guides.">
 <link rel="canonical" href="https://numbrly.cc/">
 <meta property="og:title" content="Numbrly — Free Financial Calculators & Money Guides">
@@ -14,24 +15,6 @@
 <meta name="twitter:title" content="Numbrly — Free Financial Calculators & Money Guides">
 <meta name="twitter:description" content="Free online financial calculators: mortgage, compound interest, loan, ROI. Make smarter money decisions with easy-to-use tools and expert guides.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-  darkMode: 'class',
-  theme: {
-    extend: {
-      colors: {
-        pri: '#2563eb',
-        'pri-dark': '#1d4ed8',
-        'pri-light': '#eff6ff',
-      },
-      fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-      },
-    }
-  }
-}
-</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
 <style>
   :root { --pri: #2563eb; }
@@ -177,7 +160,7 @@ tailwind.config = {
     <a href="/rent-vs-buy-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
       <div class="text-4xl mb-3">&#x1F3D8;</div>
       <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Rent vs. Buy</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Compare the full cost of renting vs. buying. Find your break-even point.</p>
+      <p class="text-gray-500 text-sm leading-relaxed">Compare estimated net costs after financing, ownership expenses, transaction costs, rent growth, and home equity.</p>
     </a>
     <!-- Budget Planner -->
     <a href="/tools/budget-planner/" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
@@ -188,7 +171,7 @@ tailwind.config = {
   </div>
   <div class="text-center mt-8">
     <a href="/#all-tools" class="inline-flex items-center gap-1 text-pri font-semibold text-sm hover:underline">
-      View all 14 calculators &#x2192;
+      View all 15 calculators &#x2192;
     </a>
   </div>
 </section>
@@ -234,6 +217,7 @@ tailwind.config = {
       <h3 class="text-lg font-bold mb-4 flex items-center gap-2">&#x1F4B0; Personal Finance</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         <a href="/tools/budget-planner/" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F4D2; Budget Planner</a>
+        <a href="/tools/net-worth-calculator/" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F4BC; Net Worth</a>
         <a href="/savings-goal-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F3AF; Savings Goal</a>
         <a href="/salary-to-hourly-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x23F0; Salary to Hourly</a>
         <a href="/retirement-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F474; Retirement Planner</a>
@@ -331,6 +315,7 @@ tailwind.config = {
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
           <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
           <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>

@@ -14,9 +14,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home Affordability Calculator - How Much House Can I Afford? | Numbrly</title>
 <meta name="description" content="Free home affordability calculator. Estimate how much house you can afford with income, debt, down payment, mortgage rate, taxes, insurance, HOA, and PMI.">
+<link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="style.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={darkMode:"class"}</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
 <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
 <script type="application/ld+json">
@@ -96,27 +95,27 @@
     <div class="card" style="max-width:720px">
       <div class="form-row">
         <div class="form-group">
-          <label>Annual Household Income ($)</label>
+          <label for="annualIncome">Annual Household Income ($)</label>
           <input type="number" id="annualIncome" value="90000" min="1" step="1000">
         </div>
         <div class="form-group">
-          <label>Monthly Debt Payments ($)</label>
+          <label for="monthlyDebt">Monthly Debt Payments ($)</label>
           <input type="number" id="monthlyDebt" value="500" min="0" step="50">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Down Payment ($)</label>
+          <label for="downPayment">Down Payment ($)</label>
           <input type="number" id="downPayment" value="60000" min="0" step="1000">
         </div>
         <div class="form-group">
-          <label>Mortgage Rate (%)</label>
+          <label for="rate">Mortgage Rate (%)</label>
           <input type="number" id="rate" value="6.5" min="0.1" max="20" step="0.1">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Loan Term (years)</label>
+          <label for="term">Loan Term (years)</label>
           <select id="term">
             <option value="15">15 years</option>
             <option value="20">20 years</option>
@@ -124,27 +123,27 @@
           </select>
         </div>
         <div class="form-group">
-          <label>Property Tax Rate (%)</label>
+          <label for="taxRate">Property Tax Rate (%)</label>
           <input type="number" id="taxRate" value="1.1" min="0" max="5" step="0.1">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>Home Insurance ($/month)</label>
+          <label for="insurance">Home Insurance ($/month)</label>
           <input type="number" id="insurance" value="150" min="0" step="10">
         </div>
         <div class="form-group">
-          <label>HOA Fees ($/month)</label>
+          <label for="hoa">HOA Fees ($/month)</label>
           <input type="number" id="hoa" value="0" min="0" step="10">
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>PMI Rate (%)</label>
+          <label for="pmiRate">PMI Rate (%)</label>
           <input type="number" id="pmiRate" value="0.6" min="0" max="3" step="0.1">
         </div>
         <div class="form-group">
-          <label>Maximum Total DTI (%)</label>
+          <label for="backDti">Maximum Total DTI (%)</label>
           <input type="number" id="backDti" value="36" min="20" max="55" step="1">
         </div>
       </div>
@@ -264,6 +263,7 @@
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
           <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
           <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>

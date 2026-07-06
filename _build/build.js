@@ -6,6 +6,7 @@
 
 const fs = require("fs");
 const path = require("path");
+const childProcess = require("child_process");
 
 const ROOT = path.resolve(__dirname, "..");
 const DATA_DIR = path.join(__dirname, "data");
@@ -218,6 +219,43 @@ function extractAttr(html, regex) {
   return match ? match[1] : "";
 }
 
+function tailwindHrefFor(filePath) {
+  return path.relative(path.dirname(filePath), path.join(ROOT, "tailwind.css")).replace(/\\/g, "/");
+}
+
+function ensureTailwindStylesheet(html, filePath) {
+  html = html.replace(/\s*<script src=["']https:\/\/cdn\.tailwindcss\.com\/?["']><\/script>/gi, "");
+  html = html.replace(/\s*<script>\s*tailwind\.config\s*=\s*[\s\S]*?<\/script>/gi, "");
+  if (!/<link\b[^>]*href=["'][^"']*tailwind\.css["']/i.test(html)) {
+    const link = '<link rel="stylesheet" href="' + tailwindHrefFor(filePath) + '">';
+    if (/<link\b[^>]*href=["'][^"']*style\.css["']/i.test(html)) {
+      html = html.replace(/(<link\b[^>]*href=["'][^"']*style\.css["'][^>]*>)/i, link + "\n$1");
+    } else {
+      html = html.replace("</title>", "</title>\n" + link);
+    }
+  }
+  return html;
+}
+
+function buildTailwindStyles() {
+  const cliPath = path.join(ROOT, "node_modules", "tailwindcss", "lib", "cli.js");
+  if (!fs.existsSync(cliPath)) {
+    throw new Error("Tailwind is not installed. Run npm install before building.");
+  }
+  childProcess.execFileSync(process.execPath, [
+    cliPath,
+    "-c", path.join(ROOT, "tailwind.config.js"),
+    "-i", path.join(ROOT, "assets", "tailwind-input.css"),
+    "-o", path.join(ROOT, "tailwind.css"),
+    "--minify"
+  ], {
+    cwd: ROOT,
+    stdio: "inherit",
+    env: { ...process.env, BROWSERSLIST_IGNORE_OLD_DATA: "true" }
+  });
+  console.log("  \uD83C\uDFA8 Tailwind CSS \u2014 local production bundle");
+}
+
 // ─── UNIFIED DARK MODE SCRIPT ─────────────────────────
 const NEW_THEME_SCRIPT = `(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"\u2600\uFE0F":"\uD83C\uDF19";};})();`;
 
@@ -258,13 +296,7 @@ function injectHeaderIntoFile(filePath, headerHTML) {
     html = html.replace(headerRegex, headerHTML);
   }
 
-  // Ensure Tailwind CDN is present
-  if (!html.includes("cdn.tailwindcss.com")) {
-    html = html.replace(
-      "</title>",
-      '</title>\n<script src="https://cdn.tailwindcss.com"></script>\n<script>tailwind.config={darkMode:"class"}</script>'
-    );
-  }
+  html = ensureTailwindStylesheet(html, filePath);
 
   // Replace old theme toggle scripts with unified version
   if (OLD_THEME_RE1.test(html)) {
@@ -333,8 +365,9 @@ function injectFooterAll(footerHTML) {
 }
 
 // ─── BUILD HOMEPAGE ───────────────────────────────────
-function buildHomepage(guides, headerHTML, footerHTML) {
+function buildHomepage(guides, calculators, headerHTML, footerHTML) {
   let html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
+  html = ensureTailwindStylesheet(html, path.join(ROOT, "index.html"));
 
   // Inject shared header
   if (html.includes("{{HEADER}}")) {
@@ -368,13 +401,14 @@ function buildHomepage(guides, headerHTML, footerHTML) {
     }
   }
   html = html.replace(/View all \d+ guides/, "View all " + guides.length + " guides");
+  html = html.replace(/View all \d+ calculators/, "View all " + calculators.length + " calculators");
   html = html.replace(/(?:<!-- SHARED FOOTER -->\s*)?<footer\b[\s\S]*?<\/footer>/, footerHTML);
 
   fs.writeFileSync(path.join(ROOT, "index.html"), html, "utf8");
   console.log("  \uD83C\uDFE0 Homepage \u2014 " + guides.length + " guides, " + featured.length + " featured");
 }
 
-// 鈹€鈹€鈹€ BUILD GUIDES INDEX 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€
+// BUILD GUIDES INDEX
 function buildGuidesIndex(guides, headerHTML, footerHTML) {
   const sorted = sortGuidesNewestFirst(guides);
   const guideCards = sorted.map(buildGuideIndexCard).join("\n");
@@ -394,9 +428,8 @@ function buildGuidesIndex(guides, headerHTML, footerHTML) {
     '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
     '<title>All Money Guides & Financial Articles | Numbrly</title>\n' +
     '<meta name="description" content="Browse all Numbrly guides: mortgage advice, investing strategies, retirement planning, and smart money tips. Free, no sign-up required.">\n' +
+    '<link rel="stylesheet" href="../tailwind.css">\n' +
     '<link rel="stylesheet" href="../style.css">\n' +
-    '<script src="https://cdn.tailwindcss.com"></script>\n' +
-    '<script>tailwind.config={darkMode:"class"}</script>\n' +
     '<script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>\n' +
     '<script>' + NEW_THEME_SCRIPT + '</script>\n' +
     '</head>\n' +
@@ -476,6 +509,16 @@ function buildRelatedCalculatorCards(guide, calculators) {
   }).join("\n");
 }
 
+function buildLegacyArticleContent(guide) {
+  let html = String(guide.fullArticleHtml || "");
+  const placeholderMarker = html.indexOf('<h2 id="section-case">');
+  if (placeholderMarker === -1) return html;
+  html = html.slice(0, placeholderMarker).trim();
+  const faqHtml = formatFAQHtml(guide.faq || []);
+  if (!faqHtml) return html;
+  return html + '\n<section style="margin-top:40px"><h2>Frequently Asked Questions</h2><div style="margin-top:16px">' + faqHtml + "</div></section>";
+}
+
 function buildRelatedArticleCards(guide, guideMap) {
   const slugs = (guide.relatedArticles || []).slice(0, 3);
   return slugs.map(function(slug) {
@@ -532,7 +575,9 @@ function buildGuideArticlePage(guide, guideMap, calculators) {
   const seoTitle = guide.seoTitle || ((guide.title || guide.h1) + " | Numbrly");
   const ogTitle = guide.ogTitle || seoTitle;
   const faqItems = guide.faq || [];
-  const articleContent = guide.fullArticleHtml || buildStructuredArticleContent(guide, guideMap, calculators);
+  const articleContent = guide.fullArticleHtml
+    ? buildLegacyArticleContent(guide)
+    : buildStructuredArticleContent(guide, guideMap, calculators);
 
   const html = template
     .replace("{{SCHEMA_BREADCRUMB}}", buildBreadcrumbSchema(guide))
@@ -547,6 +592,7 @@ function buildGuideArticlePage(guide, guideMap, calculators) {
     .replace("{{META_KEYWORDS}}", escapeHTML((guide.keywords || []).join(", ")))
     .replaceAll("{{OG_TITLE}}", escapeHTML(ogTitle))
     .replaceAll("{{OG_DESC}}", escapeHTML(guide.ogDescription || guide.description || ""))
+    .replace("{{TAILWIND_PATH}}", "../tailwind.css")
     .replace("{{CSS_PATH}}", "../style.css")
     .replaceAll("{{HOME_PATH}}", "../")
     .replace("{{PRIVACY_PATH}}", "../privacy-policy.html")
@@ -565,14 +611,20 @@ function buildGuidePages(guides, calculators) {
   });
 }
 
-function buildSitemap(guides, calculators) {
+function buildSitemap(guides, calculators, siteData) {
   const urls = [];
-  urls.push({ loc: DOMAIN + "/", priority: "1.0", changefreq: "weekly", lastmod: TODAY });
-  calculators.forEach(c => urls.push({ loc: DOMAIN + "/" + calculatorUrl(c), priority: "0.9", changefreq: "monthly", lastmod: TODAY }));
-  urls.push({ loc: DOMAIN + "/guides/", priority: "0.7", changefreq: "weekly", lastmod: TODAY });
+  const guideLastModified = guides.reduce(function(latest, guide) {
+    const date = guide.dateModified || guide.datePublished || "";
+    return date > latest ? date : latest;
+  }, "");
+  const siteLastModified = siteData.siteLastModified || guideLastModified;
+  const contentLastModified = guideLastModified > siteLastModified ? guideLastModified : siteLastModified;
+  urls.push({ loc: DOMAIN + "/", priority: "1.0", changefreq: "weekly", lastmod: contentLastModified });
+  calculators.forEach(c => urls.push({ loc: DOMAIN + "/" + calculatorUrl(c), priority: "0.9", changefreq: "monthly", lastmod: c.dateModified || siteLastModified }));
+  urls.push({ loc: DOMAIN + "/guides/", priority: "0.7", changefreq: "weekly", lastmod: guideLastModified });
   guides.forEach(g => urls.push({ loc: DOMAIN + "/guides/" + g.slug + ".html", priority: "0.7", changefreq: "monthly", lastmod: g.dateModified || g.datePublished || TODAY }));
-  urls.push({ loc: DOMAIN + "/search.html", priority: "0.5", changefreq: "monthly", lastmod: TODAY });
-  urls.push({ loc: DOMAIN + "/privacy-policy.html", priority: "0.3", changefreq: "yearly", lastmod: TODAY });
+  urls.push({ loc: DOMAIN + "/search.html", priority: "0.5", changefreq: "monthly", lastmod: contentLastModified });
+  urls.push({ loc: DOMAIN + "/privacy-policy.html", priority: "0.3", changefreq: "yearly", lastmod: siteData.privacyLastModified || siteLastModified });
 
   const xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
     urls.map(u => "  <url>\n    <loc>" + u.loc + "</loc>\n    <changefreq>" + u.changefreq + "</changefreq>\n    <priority>" + u.priority + "</priority>\n    <lastmod>" + u.lastmod + "</lastmod>\n  </url>").join("\n") +
@@ -608,7 +660,7 @@ function buildSearchData(guides, calculators) {
     kw: [g.category, g.title].concat(g.keywords || []).join(" ")
   }));
 
-  const js = "// Site search data \u2014 auto-generated " + TODAY + "\nvar searchIndex = " + JSON.stringify(items, null, 2) + ";\n";
+  const js = "// Site search data \u2014 auto-generated\nvar searchIndex = " + JSON.stringify(items, null, 2) + ";\n";
   fs.writeFileSync(path.join(ROOT, "search-data.js"), js, "utf8");
   console.log("  \uD83D\uDD0D Search index \u2014 " + items.length + " entries");
 }
@@ -669,8 +721,11 @@ function printStats(guides, calculators) {
 function main() {
   console.log("\uD83D\uDCE6 Numbrly Builder \u2014 " + TODAY + "\n");
 
+  buildTailwindStyles();
+
   const calcData = loadJSON("calculators.json");
   const guideData = loadJSON("guides.json");
+  const siteData = loadJSON("site.json");
   const calculators = calcData.calculators || [];
   const contentArticles = loadContentArticles();
   let guides = mergeGuides(guideData.guides || [], contentArticles);
@@ -697,9 +752,9 @@ function main() {
   console.log("  \uD83D\uDD04 Injecting shared footer...");
   injectFooterAll(footerHTML);
 
-  buildHomepage(guides, headerHTML, footerHTML);
+  buildHomepage(guides, calculators, headerHTML, footerHTML);
   buildGuidesIndex(guides, headerHTML, footerHTML);
-  const sitemapUrls = buildSitemap(guides, calculators);
+  const sitemapUrls = buildSitemap(guides, calculators, siteData);
   verifyRobots();
   buildSearchData(guides, calculators);
   validateSeoOutputs(sitemapUrls);

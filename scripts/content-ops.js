@@ -179,7 +179,9 @@ function validateArticle(entry, seenSlugs, guideSlugs, calculatorSlugs, errors, 
   });
 
   checkLocalLinksInHtml(rel, [body.introduction, body.body, body.caseStudy, body.content].join("\n"), errors, GUIDES_DIR);
-  if (!htmlToPlainText([body.introduction, body.body, body.content].join(" ")).includes((article.keywords || [])[0] || "")) {
+  const bodyText = htmlToPlainText([body.introduction, body.body, body.content].join(" ")).toLowerCase();
+  const primaryKeyword = String((article.keywords || [])[0] || "").toLowerCase();
+  if (primaryKeyword && !bodyText.includes(primaryKeyword)) {
     warnings.push(rel + " may not mention its primary keyword in body copy");
   }
 }

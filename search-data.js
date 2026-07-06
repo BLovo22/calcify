@@ -1,4 +1,4 @@
-// Site search data — auto-generated 2026-06-25
+// Site search data — auto-generated
 var searchIndex = [
   {
     "title": "Mortgage Payment Calculator",
@@ -66,6 +66,11 @@ var searchIndex = [
     "kw": "debt Credit Card Payoff Calculator"
   },
   {
+    "title": "Net Worth Calculator",
+    "url": "tools/net-worth-calculator/",
+    "kw": "personal-finance Net Worth Calculator"
+  },
+  {
     "title": "Retirement Calculator",
     "url": "retirement-calculator.html",
     "kw": "retirement Retirement Calculator"
@@ -73,7 +78,7 @@ var searchIndex = [
   {
     "title": "Should You Pay Off Your Mortgage Early? A Complete Analysis",
     "url": "guides/pay-off-mortgage-early.html",
-    "kw": "mortgage Should You Pay Off Your Mortgage Early? pay off mortgage early mortgage payoff extra mortgage payments"
+    "kw": "mortgage Should You Pay Off Your Mortgage Early? pay off your mortgage early mortgage payoff extra mortgage payments"
   },
   {
     "title": "The Power of Compound Interest: Starting at 25 vs. 35",
@@ -153,7 +158,7 @@ var searchIndex = [
   {
     "title": "How Much Should I Save Each Month",
     "url": "guides/how-much-should-i-save-each-month.html",
-    "kw": "savings How Much Should I Save Each Month how much should I save each month monthly savings target how much of my income should I save 20 percent savings rule"
+    "kw": "savings How Much Should I Save Each Month how much should you save each month monthly savings target how much of my income should I save 20 percent savings rule"
   },
   {
     "title": "How Much Should I Use Of My Credit",

@@ -13,9 +13,8 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ROI Calculator — Free Online Calculator | Numbrly</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={darkMode:"class"}</script>
 <meta name="description" content="Calculate your return on investment instantly. Compare two investments to find the winner. Free, private, no sign-up required.">
+<link rel="stylesheet" href="tailwind.css">
 <link rel="stylesheet" href="style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
 <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
@@ -68,7 +67,7 @@
   </section>
 
   <section>
-    <div class="card" style="max-width:640px"><div class="form-row"><div class="form-group"><label>Amount Invested ($)</label><input type="number" id="invested" value="10000" min="1" step="100"></div><div class="form-group"><label>Amount Returned ($)</label><input type="number" id="returned" value="15000" min="1" step="100"></div></div><button class="btn btn-block" onclick="calcROI()" style="margin-top:8px">Calculate</button></div>
+    <div class="card" style="max-width:640px"><div class="form-row"><div class="form-group"><label for="invested">Amount Invested ($)</label><input type="number" id="invested" value="10000" min="1" step="100"></div><div class="form-group"><label for="returned">Amount Returned ($)</label><input type="number" id="returned" value="15000" min="1" step="100"></div></div><button class="btn btn-block" onclick="calcROI()" style="margin-top:8px">Calculate</button></div>
     <div class="result" id="result" style="max-width:640px"><div class="result-num" id="roiPct">50.00%</div><div class="result-label">return on investment</div>
 <div class="result-grid"><div class="result-item"><div class="ri-val" id="roiInv">$10,000</div><div class="ri-label">Invested</div></div><div class="result-item"><div class="ri-val" id="roiReturn">$15,000</div><div class="ri-label">Returned</div></div><div class="result-item"><div class="ri-val" id="roiGain">$5,000</div><div class="ri-label">Net Gain</div></div></div></div>
   </section>
@@ -115,6 +114,7 @@
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
           <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
           <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>

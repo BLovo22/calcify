@@ -68,14 +68,14 @@
                             "slug":  "budget-planner",
                             "url":  "tools/budget-planner/",
                             "description":  "Create a monthly budget and improve your financial health.",
-                            "icon":  "馃搵",
+                            "icon":  "📒",
                             "h1":  "Budget Planner",
                             "category":  "personal-finance",
                             "title":  "Budget Planner"
                         },
                         {
                             "slug":  "rent-vs-buy-calculator",
-                            "description":  "Compare the full cost of renting versus buying. Find your break-even point.",
+                            "description":  "Compare estimated net costs for renting versus buying, including ownership expenses, transaction costs, and equity.",
                             "icon":  "🏘",
                             "h1":  "Rent vs. Buy Calculator",
                             "category":  "mortgage",
@@ -104,6 +104,15 @@
                             "h1":  "Credit Card Payoff Calculator",
                             "category":  "debt",
                             "title":  "Credit Card Payoff Calculator"
+                        },
+                        {
+                            "slug":  "net-worth-calculator",
+                            "url":  "tools/net-worth-calculator/",
+                            "description":  "Calculate your net worth from assets and liabilities, then track changes over time.",
+                            "icon":  "💼",
+                            "h1":  "Net Worth Calculator",
+                            "category":  "personal-finance",
+                            "title":  "Net Worth Calculator"
                         },
                         {
                             "slug":  "retirement-calculator",
