@@ -179,10 +179,9 @@ function guideCategoryLabel(guide, uppercase) {
 }
 
 function buildHomepageGuideCard(guide) {
-  return '    <a href="/guides/' + guide.slug + '.html" class="group bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">\n' +
-    '      <span class="inline-block text-xs font-semibold text-pri bg-pri-light px-2 py-1 rounded mb-3">' + escapeHTML(guideCategoryLabel(guide, true)) + '</span>\n' +
-    '      <h4 class="font-bold mb-2 group-hover:text-pri transition">' + escapeHTML(guide.h1 || guide.title) + '</h4>\n' +
-    '      <p class="text-gray-500 text-sm">Updated ' + escapeHTML(guide.dateHuman || "") + ' &middot; ' + escapeHTML(guide.readTime || "") + ' min read</p>\n' +
+  return '    <a href="/guides/' + guide.slug + '.html" class="editorial-guide-card">\n' +
+    '      <div class="editorial-guide-card__meta"><span>' + escapeHTML(guideCategoryLabel(guide, true)) + '</span><span>' + escapeHTML(guide.readTime || "") + ' min</span></div>\n' +
+    '      <h4>' + escapeHTML(guide.h1 || guide.title) + '</h4>\n' +
     '    </a>';
 }
 
@@ -223,6 +222,10 @@ function tailwindHrefFor(filePath) {
   return path.relative(path.dirname(filePath), path.join(ROOT, "tailwind.css")).replace(/\\/g, "/");
 }
 
+function assetHrefFor(filePath, relativeAssetPath) {
+  return path.relative(path.dirname(filePath), path.join(ROOT, relativeAssetPath)).replace(/\\/g, "/");
+}
+
 function ensureTailwindStylesheet(html, filePath) {
   html = html.replace(/\s*<script src=["']https:\/\/cdn\.tailwindcss\.com\/?["']><\/script>/gi, "");
   html = html.replace(/\s*<script>\s*tailwind\.config\s*=\s*[\s\S]*?<\/script>/gi, "");
@@ -235,6 +238,18 @@ function ensureTailwindStylesheet(html, filePath) {
     }
   }
   return html;
+}
+
+function ensureSiteStylesheet(html, filePath) {
+  if (/<link\b[^>]*href=["'][^"']*style\.css["']/i.test(html)) return html;
+  const link = '<link rel="stylesheet" href="' + assetHrefFor(filePath, "style.css") + '">';
+  return html.replace("</head>", link + "\n</head>");
+}
+
+function ensureSiteUiScript(html, filePath) {
+  if (/<script\b[^>]*src=["'][^"']*assets\/site-ui\.js["']/i.test(html)) return html;
+  const script = '<script defer src="' + assetHrefFor(filePath, path.join("assets", "site-ui.js")) + '"></script>';
+  return html.replace("</body>", script + "\n</body>");
 }
 
 function buildTailwindStyles() {
@@ -257,7 +272,7 @@ function buildTailwindStyles() {
 }
 
 // ─── UNIFIED DARK MODE SCRIPT ─────────────────────────
-const NEW_THEME_SCRIPT = `(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"\u2600\uFE0F":"\uD83C\uDF19";};})();`;
+const NEW_THEME_SCRIPT = `(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"\u2600":"\u25D0"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();`;
 
 // Two patterns to match old theme scripts (non-minified & minified)
 const OLD_THEME_RE1 = /\(function\(\)\{\s*var\s+stored\s*=\s*localStorage\.getItem\(['"]theme['"]\);\s*if\(stored\)\s*document\.documentElement\.setAttribute\(['"]data-theme['"],\s*stored\);\s*else\s+if\(window\.matchMedia\(['"]\(prefers-color-scheme:\s*dark\)['"]\)\.matches\)\s*document\.documentElement\.setAttribute\(['"]data-theme['"],\s*['"]dark['"]\);\s*window\.toggleTheme\s*=\s*function\(\)\s*\{\s*var\s+\w+\s*=\s*document\.documentElement\.getAttribute\(['"]data-theme['"]\);\s*var\s+\w+\s*=\s*\w+\s*===\s*['"]dark['"]\s*\?\s*['"]light['"]\s*:\s*['"]dark['"];\s*document\.documentElement\.setAttribute\(['"]data-theme['"],\s*\w+\);\s*localStorage\.setItem\(['"]theme['"],\s*\w+\);\s*document\.getElementById\(['"]themeIcon['"]\)\.innerHTML\s*=\s*\w+\s*===\s*['"]dark['"]\s*\?\s*'[^']*'\s*:\s*'[^']*';(?:\s*\};)?\s*\}\)\(\);/;
@@ -265,20 +280,13 @@ const OLD_THEME_RE1 = /\(function\(\)\{\s*var\s+stored\s*=\s*localStorage\.getIt
 const OLD_THEME_RE2 = /\(function\(\)\{var\s+\w+=localStorage\.getItem\(['"]theme['"]\);if\(\w+\)\s*document\.documentElement\.setAttribute\(['"]data-theme['"],\s*\w+\);else\s+if\(window\.matchMedia\(['"]\(prefers-color-scheme:\s*dark\)['"]\)\.matches\)\s*document\.documentElement\.setAttribute\(['"]data-theme['"],\s*['"]dark['"]\);window\.toggleTheme\s*=\s*function\(\)\{var\s+\w+=document\.documentElement\.getAttribute\(['"]data-theme['"]\);var\s+\w+=\w+===['"]dark['"]\?['"]light['"]:['"]dark['"];document\.documentElement\.setAttribute\(['"]data-theme['"],\s*\w+\);localStorage\.setItem\(['"]theme['"],\s*\w+\);document\.getElementById\(['"]themeIcon['"]\)\.innerHTML\s*=\s*\w+===['"]dark['"]\?['"][^'"]*['"]:['"][^'"]*['"];(?:\s*\};)?\s*\}\)\(\);/;
 
 function normalizeThemeScripts(html) {
-  let foundThemeScript = false;
   html = html.replace(/<script>[\s\S]*?<\/script>/g, function(block) {
     if (!block.includes("toggleTheme")) return block;
     if (!block.includes("themeIcon") && !block.includes("themeBtn") && !block.includes("data-theme")) return block;
-    if (foundThemeScript) return "";
-    foundThemeScript = true;
-    return "<script>" + NEW_THEME_SCRIPT + "</script>";
+    return "";
   });
 
-  if (!foundThemeScript) {
-    html = html.replace("</head>", "<script>" + NEW_THEME_SCRIPT + "</script>\n</head>");
-  }
-
-  return html;
+  return html.replace("</head>", "<script>" + NEW_THEME_SCRIPT + "</script>\n</head>");
 }
 
 // ─── INJECT SHARED HEADER INTO ONE FILE ───────────────
@@ -287,7 +295,7 @@ function injectHeaderIntoFile(filePath, headerHTML) {
 
   // Replace old <nav class="nav">...</nav> block with shared header
   const navRegex = /<nav class="nav">[\s\S]*?<\/nav>/;
-  const headerRegex = /(?:<!-- Header -->\s*)?(?:<!-- SHARED HEADER -->\s*)*<header class="sticky[^"]*">[\s\S]*?<\/header>/;
+  const headerRegex = /(?:<!-- Header -->\s*)?(?:<!-- SHARED HEADER -->\s*)*<header\b[^>]*class=["'][^"']*(?:site-header|sticky)[^"']*["'][^>]*>[\s\S]*?<\/header>/;
   if (navRegex.test(html)) {
     html = html.replace(navRegex, headerHTML);
   } else if (html.includes("{{HEADER}}")) {
@@ -297,6 +305,8 @@ function injectHeaderIntoFile(filePath, headerHTML) {
   }
 
   html = ensureTailwindStylesheet(html, filePath);
+  html = ensureSiteStylesheet(html, filePath);
+  html = ensureSiteUiScript(html, filePath);
 
   // Replace old theme toggle scripts with unified version
   if (OLD_THEME_RE1.test(html)) {
@@ -368,12 +378,14 @@ function injectFooterAll(footerHTML) {
 function buildHomepage(guides, calculators, headerHTML, footerHTML) {
   let html = fs.readFileSync(path.join(ROOT, "index.html"), "utf8");
   html = ensureTailwindStylesheet(html, path.join(ROOT, "index.html"));
+  html = ensureSiteStylesheet(html, path.join(ROOT, "index.html"));
+  html = ensureSiteUiScript(html, path.join(ROOT, "index.html"));
 
   // Inject shared header
   if (html.includes("{{HEADER}}")) {
     html = html.replace("{{HEADER}}", headerHTML);
   } else {
-    const headerRegex = /(?:<!-- Header -->\s*)?(?:<!-- SHARED HEADER -->\s*)*<header class="sticky[^"]*">[\s\S]*?<\/header>/;
+    const headerRegex = /(?:<!-- Header -->\s*)?(?:<!-- SHARED HEADER -->\s*)*<header\b[^>]*class=["'][^"']*(?:site-header|sticky)[^"']*["'][^>]*>[\s\S]*?<\/header>/;
     if (headerRegex.test(html)) {
       html = html.replace(headerRegex, "<!-- Header -->\n" + headerHTML);
     }
@@ -403,6 +415,7 @@ function buildHomepage(guides, calculators, headerHTML, footerHTML) {
   html = html.replace(/View all \d+ guides/, "View all " + guides.length + " guides");
   html = html.replace(/View all \d+ calculators/, "View all " + calculators.length + " calculators");
   html = html.replace(/(?:<!-- SHARED FOOTER -->\s*)?<footer\b[\s\S]*?<\/footer>/, footerHTML);
+  html = normalizeThemeScripts(html);
 
   fs.writeFileSync(path.join(ROOT, "index.html"), html, "utf8");
   console.log("  \uD83C\uDFE0 Homepage \u2014 " + guides.length + " guides, " + featured.length + " featured");
@@ -431,15 +444,17 @@ function buildGuidesIndex(guides, headerHTML, footerHTML) {
     '<link rel="stylesheet" href="../tailwind.css">\n' +
     '<link rel="stylesheet" href="../style.css">\n' +
     '<script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous"></script>\n' +
+    '<script defer src="../assets/site-ui.js"></script>\n' +
     '<script>' + NEW_THEME_SCRIPT + '</script>\n' +
     '</head>\n' +
-    '<body>\n' +
+    '<body class="guides-index-page">\n' +
     headerHTML + '\n\n' +
     '<main class="main">\n' +
     '<div class="breadcrumb"><a href="/">Home</a> / All Guides</div>\n\n' +
-    '<section style="margin-top:20px">\n' +
-    '<h1 class="sec-title">&#x1F4DA; All Money Guides</h1>\n' +
-    '<p class="sec-desc">' + guides.length + ' in-depth articles covering mortgages, investing, saving, and retirement. Updated regularly.</p>\n\n' +
+    '<section class="guides-index-hero">\n' +
+    '<p class="section-kicker">Research desk / ' + guides.length + ' guides</p>\n' +
+    '<h1 class="sec-title">Money, without the fog.</h1>\n' +
+    '<p class="sec-desc">Clear, sourced guides for mortgages, credit, investing, saving, retirement, and the financial decisions in between.</p>\n\n' +
     guideCards + '\n' +
     '</section>\n' +
     '</main>\n\n' +
@@ -455,8 +470,8 @@ function buildGuidesIndex(guides, headerHTML, footerHTML) {
 function formatFAQHtml(items) {
   if (!items || !items.length) return "";
   return items.map(function(item, index) {
-    return '<details class="card" style="cursor:pointer;padding:0' + (index ? ';margin-top:8px' : '') + '"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">' +
-      escapeHTML(item.q) + '<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">' +
+    return '<details class="card faq-card"' + (index ? ' style="margin-top:8px"' : '') + '><summary>' +
+      escapeHTML(item.q) + '<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">' +
       item.a + '</div></details>';
   }).join("\n");
 }
@@ -504,13 +519,15 @@ function buildRelatedCalculatorCards(guide, calculators) {
     const title = relatedCalculatorTitle(slug, calc);
     const desc = calc ? (calc.description || "") : "";
     const href = calc ? ("../" + calculatorUrl(calc)) : ("../" + slug + ".html");
-    return '<a href="' + href + '" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">' +
-      escapeHTML(title) + '</div><div style="color:var(--muted);font-size:12px;margin-top:2px">' + escapeHTML(desc) + '</div></a>';
+    return '<a href="' + href + '" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">' +
+      escapeHTML(title) + '</div><div style="color:var(--muted);font-size:12px;margin-top:5px">' + escapeHTML(desc) + '</div></a>';
   }).join("\n");
 }
 
 function buildLegacyArticleContent(guide) {
-  let html = String(guide.fullArticleHtml || "");
+  let html = String(guide.fullArticleHtml || "").replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, function(block) {
+    return block.includes("article-body h2") && block.includes("tocList") ? "" : block;
+  }).replace(/[ \t]+$/gm, "");
   const placeholderMarker = html.indexOf('<h2 id="section-case">');
   if (placeholderMarker === -1) return html;
   html = html.slice(0, placeholderMarker).trim();
@@ -537,35 +554,19 @@ function buildStructuredArticleContent(guide, guideMap, calculators) {
   const faqItems = guide.faq || [];
   const adUnit = '<ins class="adsbygoogle" style="display:block;text-align:center;margin:28px 0" data-ad-client="ca-pub-4970468814214538" data-ad-format="auto" data-full-width-responsive="true"></ins>\n    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>';
 
-  return '    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">' + escapeHTML(guide.h1 || guide.title) + '</h1>\n' +
-    '    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated ' + escapeHTML(guide.dateHuman || "") + ' &middot; ' + escapeHTML(guide.readTime || "") + ' min read</p>\n\n' +
-    '    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>\n' +
-    '    <script>\n' +
-    '    (function(){\n' +
-    '      var hs = document.querySelectorAll(".article-body h2");\n' +
-    '      var list = document.getElementById("tocList");\n' +
-    '      if (!list || hs.length === 0) return;\n' +
-    '      hs.forEach(function(h, i) {\n' +
-    '        h.id = "section-" + i;\n' +
-    '        var li = document.createElement("li");\n' +
-    '        var a = document.createElement("a");\n' +
-    '        a.href = "#section-" + i;\n' +
-    '        a.textContent = h.textContent;\n' +
-    '        li.appendChild(a);\n' +
-    '        list.appendChild(li);\n' +
-    '      });\n' +
-    '    })();\n' +
-    '    </script>\n\n' +
+  return '    <h1 class="article-title">' + escapeHTML(guide.h1 || guide.title) + '</h1>\n' +
+    '    <p class="article-meta">Reviewed ' + escapeHTML(guide.dateHuman || "") + ' &middot; ' + escapeHTML(guide.readTime || "") + ' min read &middot; Numbrly research desk</p>\n\n' +
+    '    <div class="toc" id="toc"><h4>In this guide</h4><ol id="tocList"></ol></div>\n' +
     '    ' + (guide.introduction || "") + '\n\n' +
     '    ' + (guide.mainContent || "") + '\n\n' +
     '    ' + adUnit + '\n\n' +
     '    ' + (guide.caseStudy || "") + '\n\n' +
     '    <h2>Frequently Asked Questions</h2>\n' +
     '    <div style="margin-top:16px">\n' + formatFAQHtml(faqItems) + '\n    </div>\n\n' +
-    '    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>\n' +
-    '    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">\n' +
+    '    <h2>Run the numbers</h2>\n' +
+    '    <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">\n' +
     buildRelatedCalculatorCards(guide, calculators) + '\n    </div>\n\n' +
-    '    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>\n' +
+    '    <h2>Keep reading</h2>\n' +
     buildRelatedArticleCards(guide, guideMap);
 }
 

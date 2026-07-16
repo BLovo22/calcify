@@ -91,32 +91,47 @@
 <link rel="stylesheet" href="../tailwind.css">
 <link rel="stylesheet" href="../style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
 <body>
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
 <main class="main">
@@ -125,27 +140,10 @@
   </div>
 
   <article class="article-body">
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">Emergency Funds for Freelancers: Why Three Months May Not Be Enough</h1>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated July 2026 &middot; 10 min read</p>
+    <h1 class="article-title">Emergency Funds for Freelancers: Why Three Months May Not Be Enough</h1>
+    <p class="article-meta">Reviewed July 2026 &middot; 10 min read &middot; Numbrly research desk</p>
 
-    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>
-    <script>
-    (function(){
-      var hs = document.querySelectorAll(".article-body h2");
-      var list = document.getElementById("tocList");
-      if (!list || hs.length === 0) return;
-      hs.forEach(function(h, i) {
-        h.id = "section-" + i;
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = "#section-" + i;
-        a.textContent = h.textContent;
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-    })();
-    </script>
-
+    <div class="toc" id="toc"><h4>In this guide</h4><ol id="tocList"></ol></div>
     <p>An <strong>emergency fund for freelancers</strong> often needs to cover risks that a standard three-month reserve may not fully capture. Revenue can decline gradually, invoices can be late, several clients can share the same economic exposure, and there may be no severance, paid leave, or employer-sponsored benefits.</p><p>A resilient plan separates business operating cash, tax money, predictable irregular expenses, and personal emergency savings. Mixing them can make the account balance look safer than it is. For broader context, the <a href='https://www.federalreserve.gov/publications/2026-economic-well-being-of-us-households-in-2025-savings-investments.htm' target='_blank' rel='noopener' style='color:var(--pri)'>Federal Reserve's 2025 household survey</a> reports on emergency savings and income variability across U.S. adults.</p>
 
     <h2>Why freelance income risk is different</h2><p>A salaried worker often knows when employment ends. A freelancer can remain technically employed while assignments shrink, client approvals stall, or payment terms stretch. That slow decline makes it harder to identify the exact moment an emergency begins.</p><p>Income may also be concentrated. Five clients are not true diversification if all depend on the same industry, platform, agency, or seasonal cycle. Estimate how much revenue could disappear together.</p><h2>Three months can be only a starting point</h2><p>Three months of essential expenses may work for someone with stable recurring contracts, low client concentration, strong household backup income, and short replacement times. A freelancer with seasonal work, one dominant client, specialized services, or expensive private insurance may need six, nine, or more months.</p><p>The target should reflect the time required to replace revenue, not only the time to find one project. Winning a client, onboarding, completing work, invoicing, and receiving payment can span several months.</p><h2>Separate four kinds of cash</h2><h3>1. Tax money</h3><p>Money reserved for estimated taxes is not emergency savings. Keep it labeled and separate so a slow month does not turn into a tax problem.</p><h3>2. Business operating reserve</h3><p>This covers software, insurance, contractors, equipment, professional fees, and other costs required to keep earning. Decide which expenses can be cut quickly and which continue during a slowdown.</p><h3>3. Sinking funds</h3><p>Equipment replacement, annual subscriptions, licensing, routine vehicle costs, and planned time off are irregular but expected. Saving for them separately prevents predictable costs from repeatedly draining the emergency fund.</p><h3>4. Personal emergency fund</h3><p>This covers essential household expenses during a serious income interruption or life event. It should not be double-counted as business cash or a tax reserve.</p><h2>Calculate essential personal expenses</h2><p>List housing, basic food, utilities, personal insurance, healthcare, minimum debt payments, and necessary transportation. Include costs that an employer might otherwise subsidize, such as health coverage or disability protection. Remove discretionary spending that could be paused.</p><p>If business and personal spending share an account, reconstruct a clean monthly number from several months of records. Averages can hide seasonal peaks, so also note the most expensive necessary month.</p><h2>Set a base range from income stability</h2><p>A freelancer with predictable retainers and diverse clients might begin around six months. A project-based worker with uneven demand may begin around nine. A highly seasonal worker may consider a 9-to-12-month range. These are planning heuristics, not universal requirements.</p><p>Then compare the range with your revenue replacement timeline. If it typically takes eight months from prospecting to paid invoice, a three-month fund is unlikely to bridge the full cycle.</p><h2>Add known cash exposures</h2><p>Expense months do not capture every shock. Add an amount for the largest likely health, auto, homeowners, or renters insurance deductible. Consider equipment that is essential to earning and not fully covered by a business sinking fund.</p><p>Do not simply add every imaginable disaster. Focus on plausible exposures that could occur during a revenue decline and that require cash before reimbursement or recovery.</p><h2>Use income smoothing</h2><p>Instead of spending whatever arrives each month, pay yourself a stable transfer based on a conservative revenue estimate. Strong months replenish business reserves and future pay periods. Weak months draw from the income-smoothing buffer before the personal emergency fund.</p><p>This structure makes variable revenue easier to budget and reveals whether the business consistently supports the chosen personal pay. Review the transfer after taxes, business costs, and reserve contributions.</p><h2>A freelancer example</h2><p>Suppose essential household expenses are $4,000 per month. Income is project-based, two clients provide 70% of revenue, the expected replacement cycle is seven months, and the largest insurance deductible is $3,000. A planning target of eight expense months plus the deductible is $35,000.</p><p>If current personal emergency savings are $11,000, the gap is $24,000. Saving $1,000 per month would take about 24 months before interest. Windfalls and unusually strong client months can shorten the timeline, but tax and business reserves should remain separate.</p><h2>What to do before the full target is reached</h2><p>Build a starter buffer first. Reduce client concentration where practical. Tighten payment terms, request deposits when appropriate, invoice promptly, and follow up consistently. Maintain a pipeline before current work ends. Review disability, health, liability, and property coverage for gaps.</p><p>Also create a slowdown budget in advance. Identify subscriptions, contractor commitments, travel, and discretionary household spending that can be reduced quickly. A written plan stretches cash more effectively than improvising under stress.</p><h2>Where to keep the money</h2><p>Near-term emergency savings generally need safety, clear ownership, and access. Separate insured savings accounts can help distinguish tax, business, and personal reserves. Review transfer speed, account terms, fees, and deposit insurance coverage.</p><p>Avoid assuming volatile investments will be available at full value during a downturn. Client demand and markets can weaken at the same time.</p><h2>Review quarterly</h2><p>Freelance risk changes with contracts, dependents, insurance, business expenses, and industry conditions. Recalculate essential spending and client concentration at least quarterly. Increase the target before a known seasonal slowdown rather than after it begins.</p><h2>Bottom line</h2><p>Freelancers often need more than a basic three-month reserve because losing income can be gradual and replacement cash may arrive long after new work is won. Separate tax money, operating reserves, sinking funds, and personal emergencies, then size each deliberately.</p><p>Use the <a href='../emergency-fund-calculator.html' style='color:var(--pri)'>Emergency Fund Calculator</a> with variable or seasonal income selected. The result is a planning range; refine it using client concentration, payment cycles, household backup income, and the time from prospecting to paid invoice.</p>
@@ -157,20 +155,20 @@
 
     <h2>Frequently Asked Questions</h2>
     <div style="margin-top:16px">
-<details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How many months should a freelancer emergency fund cover?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">It depends on contract stability, client concentration, seasonality, household backup income, and replacement time. Six to twelve months may be a reasonable planning range for many variable-income situations.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Should tax savings count as an emergency fund?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">No. Tax money is already committed. Keep estimated taxes separate from business reserves and personal emergency savings.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Do I need both a business reserve and a personal emergency fund?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Usually yes. The business reserve keeps income-producing operations running, while the personal fund covers essential household expenses during a serious interruption.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How can a freelancer reduce the emergency-fund target?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Risk can be reduced through more diverse clients, stable retainers, deposits, faster invoicing, appropriate insurance, lower essential costs, and household backup income, but the target should still reflect realistic payment delays.</div></details>
+<details class="card faq-card"><summary>How many months should a freelancer emergency fund cover?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">It depends on contract stability, client concentration, seasonality, household backup income, and replacement time. Six to twelve months may be a reasonable planning range for many variable-income situations.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Should tax savings count as an emergency fund?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">No. Tax money is already committed. Keep estimated taxes separate from business reserves and personal emergency savings.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Do I need both a business reserve and a personal emergency fund?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Usually yes. The business reserve keeps income-producing operations running, while the personal fund covers essential household expenses during a serious interruption.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>How can a freelancer reduce the emergency-fund target?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Risk can be reduced through more diverse clients, stable retainers, deposits, faster invoicing, appropriate insurance, lower essential costs, and household backup income, but the target should still reflect realistic payment delays.</div></details>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
-<a href="../emergency-fund-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Emergency Fund Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Build a risk-weighted emergency fund target using essential expenses, income stability, dependents, and deductibles.</div></a>
-<a href="../tools/budget-planner/" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Budget Planner</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Create a monthly budget and improve your financial health.</div></a>
-<a href="../savings-goal-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Savings Goal Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Set a savings target and see exactly when you will reach your goal.</div></a>
+    <h2>Run the numbers</h2>
+    <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+<a href="../emergency-fund-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Emergency Fund Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Build a risk-weighted emergency fund target using essential expenses, income stability, dependents, and deductibles.</div></a>
+<a href="../tools/budget-planner/" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Budget Planner</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Create a monthly budget and improve your financial health.</div></a>
+<a href="../savings-goal-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Savings Goal Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Set a savings target and see exactly when you will reach your goal.</div></a>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>
+    <h2>Keep reading</h2>
 <a href="starter-vs-full-emergency-fund.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>Starter Emergency Fund vs. Full Emergency Fund: Which Should You Build First?</h4><div class="art-date">Updated July 2026 &middot; 9 min read</div></a>
 <a href="how-much-emergency-fund.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>How Much Emergency Fund Do You Need?</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a>
 <a href="financial-discipline.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>Financial Discipline: Build Better Money Habits</h4><div class="art-date">Updated June 2026 &middot; 6 min read</div></a>
@@ -184,10 +182,10 @@
   if (!list || hs.length === 0) return;
   list.innerHTML = "";
   hs.forEach(function(h, i) {
-    h.id = "section-" + i;
+    if (!h.id) h.id = "section-" + i;
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.href = "#section-" + i;
+    a.href = "#" + h.id;
     a.textContent = h.textContent;
     li.appendChild(a);
     list.appendChild(li);
@@ -196,44 +194,62 @@
 </script>
 
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
+<script defer src="../assets/site-ui.js"></script>
 </body>
 </html>

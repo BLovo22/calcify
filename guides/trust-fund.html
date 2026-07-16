@@ -99,32 +99,47 @@
 <link rel="stylesheet" href="../tailwind.css">
 <link rel="stylesheet" href="../style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
 <body>
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
 <main class="main">
@@ -133,27 +148,10 @@
   </div>
 
   <article class="article-body">
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">What Is a Trust Fund? Benefits, Costs, and Basics</h1>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated June 2026 &middot; 8 min read</p>
+    <h1 class="article-title">What Is a Trust Fund? Benefits, Costs, and Basics</h1>
+    <p class="article-meta">Reviewed June 2026 &middot; 8 min read &middot; Numbrly research desk</p>
 
-    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>
-    <script>
-    (function(){
-      var hs = document.querySelectorAll(".article-body h2");
-      var list = document.getElementById("tocList");
-      if (!list || hs.length === 0) return;
-      hs.forEach(function(h, i) {
-        h.id = "section-" + i;
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = "#section-" + i;
-        a.textContent = h.textContent;
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-    })();
-    </script>
-
+    <div class="toc" id="toc"><h4>In this guide</h4><ol id="tocList"></ol></div>
     <p>A <strong>trust fund</strong> is a legal arrangement that holds assets for one or more beneficiaries. Those assets might include cash, investments, real estate, life insurance proceeds, or other property. A trustee manages the assets according to the rules written in the trust document.</p><p>Trust funds are often associated with very wealthy families, but the basic idea is broader than that. A trust can help parents protect money for children, help families plan for incapacity, reduce probate friction, support charitable goals, or control how and when assets are distributed.</p><p>This guide explains what a trust fund is, how trusts usually work, common trust types, benefits, costs, and when it may be worth talking with an estate planning attorney.</p>
 
     <h2>What Is a Trust Fund?</h2><p>A trust fund is the pool of money or property placed inside a trust. The trust itself is the legal structure. The trust fund is what the structure owns or controls for the benefit of someone else.</p><p>Most trusts involve three key roles:</p><ul><li><strong>Grantor:</strong> The person who creates and funds the trust. This person may also be called the settlor or trustor.</li><li><strong>Trustee:</strong> The person or institution responsible for managing the trust assets and following the trust instructions.</li><li><strong>Beneficiary:</strong> The person, people, charity, or organization that may receive benefits from the trust.</li></ul><p>For example, a parent might create a trust for a child, transfer investments into it, name a responsible adult or professional trustee, and instruct that the money can be used for education, health costs, or living expenses until the child reaches a certain age.</p><h2>How Does a Trust Fund Work?</h2><p>A trust starts with a written trust agreement. That document explains who is involved, what assets belong to the trust, what the trustee can do, who receives money, and when distributions can happen.</p><p>After the trust is created, it usually needs to be funded. Funding means transferring assets into the trust. A trust document without assets may not accomplish much. Depending on the asset, funding could involve retitling a bank account, changing ownership of an investment account, recording a deed for real estate, or naming the trust as a beneficiary.</p><p>The trustee then manages the trust according to the document. That may include investing assets, keeping records, filing required tax documents, paying expenses, and making distributions to beneficiaries.</p><p>Because trust rules can affect taxes, property rights, and family outcomes, a trust should normally be drafted with help from a qualified estate planning attorney. This article is educational and is not legal, tax, or investment advice.</p><h2>Common Types of Trusts</h2><p>There are many types of trusts, and state law matters. Still, most beginner conversations start with a few broad categories.</p><h3>Revocable living trust</h3><p>A revocable living trust can usually be changed or canceled by the grantor while the grantor is alive and legally able to act. Many people use revocable trusts to organize assets, plan for incapacity, and help assets pass outside the public probate process.</p><p>Because the grantor typically keeps control, a revocable trust may not provide the same asset protection or tax treatment as certain irrevocable trusts. Its main value is often organization, continuity, and probate planning.</p><h3>Irrevocable trust</h3><p>An irrevocable trust is generally harder to change after it is created. In exchange for giving up some control, it may be used for specific estate tax, asset protection, Medicaid, charitable, or legacy planning goals.</p><p>Irrevocable trusts are more complex and should not be created casually. The tax consequences, control tradeoffs, and state-law details can be significant.</p><h3>Testamentary trust</h3><p>A testamentary trust is created through a will and usually takes effect after death. It may be used to manage assets for minor children or beneficiaries who should not receive a lump sum immediately.</p><p>Unlike a living trust, a testamentary trust is tied to the probate process because it is created through the will.</p><h3>Special needs trust</h3><p>A special needs trust may help support a person with a disability while preserving eligibility for certain public benefits. These trusts require careful drafting because benefit rules are detailed and mistakes can be costly.</p><h2>Trust Fund vs Will</h2><p>A will and a trust can both be part of an estate plan, but they work differently.</p><p>A will explains where assets should go after death, names an executor, and can name guardians for minor children. A will generally goes through probate. Probate is the court-supervised process of validating the will and distributing assets.</p><p>A trust can manage assets during life, after incapacity, and after death if it is properly funded. It can also give more detailed instructions for timing and conditions. For example, a trust might allow education expenses at age 18, partial distributions at age 25, and the rest later.</p><p>Many families use both. The will can handle guardianship and catch assets not already titled to the trust, while the trust manages specific property and distribution rules.</p><h2>Benefits of a Trust Fund</h2><p>A trust fund can be useful for several reasons:</p><ul><li><strong>Control:</strong> You can decide when and how beneficiaries receive money.</li><li><strong>Continuity:</strong> A successor trustee can manage assets if the grantor becomes incapacitated or dies.</li><li><strong>Privacy:</strong> Trust administration may be more private than probate court records.</li><li><strong>Minor children:</strong> Trusts can hold money for children until they are mature enough to manage it.</li><li><strong>Complex families:</strong> Trusts can help coordinate planning for blended families, second marriages, or multiple beneficiaries.</li><li><strong>Charitable goals:</strong> Some trusts are designed to support charities while also meeting family planning goals.</li></ul><p>Trusts can also help organize long-term money decisions. If a trust is intended to grow over time, you can estimate investment scenarios with the <a href="../compound-interest-calculator.html" style="color:var(--pri)">Compound Interest Calculator</a>. If the goal is to fund a future education, down payment, or family reserve, the <a href="../savings-goal-calculator.html" style="color:var(--pri)">Savings Goal Calculator</a> can help estimate monthly contributions.</p><h2>Costs and Tradeoffs</h2><p>A trust fund is not free. Common costs may include attorney fees, trustee fees, tax preparation, account maintenance, investment management, recordkeeping, and property transfer costs.</p><p>There is also an administrative burden. The trustee must follow the trust document, keep records, avoid conflicts of interest, and act in the beneficiaries' interests. A family member trustee may be less expensive than a professional trustee, but the job can be time-consuming and emotionally difficult.</p><p>Another tradeoff is complexity. A simple will may be enough for some households. A trust may be worth considering when there are minor children, significant assets, real estate in multiple states, privacy concerns, a beneficiary who needs support over time, or family circumstances that require more control.</p><h2>Tax and Reporting Basics</h2><p>Trust taxation depends on the type of trust, who controls it, what income it earns, and whether income is distributed. The IRS has separate filing rules for estates and trusts, including Form 1041 in many situations. Beneficiaries may also receive Schedule K-1 reporting their share of income, deductions, or credits.</p><p>Gift and estate tax rules can also matter when large assets are transferred during life or at death. The IRS explains that gift and estate taxes apply to transfers of money, property, and other assets, but the details depend on the size and type of transfer.</p><p>Bank accounts owned by trusts can also have separate FDIC deposit insurance rules. If a trust holds large cash balances, review bank coverage carefully instead of assuming all funds are protected the same way.</p><p>Because trust tax rules are technical and change over time, this is an area where professional advice is especially important.</p><h2>When Might a Trust Fund Make Sense?</h2><p>A trust fund may be worth exploring if any of these situations apply:</p><ul><li>You want assets managed for minor children or young adult beneficiaries.</li><li>You want to avoid or simplify probate for certain assets.</li><li>You want a plan for incapacity, not just death.</li><li>You own real estate in more than one state.</li><li>You want more privacy than a will alone may provide.</li><li>You have a blended family or specific inheritance timing goals.</li><li>You want to support a beneficiary who may need long-term financial guidance.</li><li>You have charitable or tax planning goals that require more structure.</li></ul><p>Trusts are not only about wealth. They are about instructions, timing, protection, and continuity. The right question is not just "Do I have enough money for a trust?" It is "Do my family situation and goals need more structure than a simple beneficiary designation or will?"</p><h2>How to Start Planning</h2><p>Before meeting an attorney, gather a simple financial snapshot. List your assets, debts, beneficiaries, insurance policies, retirement accounts, real estate, and major goals. Think about who you would trust to manage money if you could not.</p><p>You can also estimate how much money may be available for long-term goals. The <a href="../retirement-calculator.html" style="color:var(--pri)">Retirement Calculator</a> can help you understand whether your own future needs are funded before committing assets to heirs or charitable plans.</p><p>Then prepare questions. Ask what type of trust fits your goal, what it will cost to create and maintain, how assets should be titled, what tax filings may be required, and how often the documents should be reviewed.</p><h2>Bottom Line</h2><p>A trust fund is a structured way to hold and manage assets for beneficiaries. It can help with control, privacy, probate planning, incapacity planning, and long-term family goals. But trusts also involve costs, administration, and legal complexity.</p><p>For many households, the best next step is not to copy a generic trust form. It is to understand your goals, organize your financial picture, and speak with an estate planning attorney or tax professional who can apply the rules to your state and situation.</p>
@@ -165,21 +163,21 @@
 
     <h2>Frequently Asked Questions</h2>
     <div style="margin-top:16px">
-<details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is a trust fund in simple terms?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">A trust fund is money or property held inside a trust for beneficiaries. A trustee manages the assets according to written instructions in the trust document.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Do you have to be rich to have a trust fund?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">No. Trusts are often used by wealthy families, but they can also help ordinary households plan for minor children, incapacity, privacy, real estate, or complex family situations.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is the difference between a trust fund and a will?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">A will directs where assets go after death and usually goes through probate. A properly funded trust can manage assets during life, after incapacity, and after death with more detailed distribution rules.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Can a trust fund avoid taxes?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">A trust is not automatically a tax loophole. Tax treatment depends on the trust type, assets, income, distributions, and current law. Large transfers and trust income may require professional tax advice.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Who should manage a trust fund?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">The trustee should be someone responsible, organized, and able to follow the trust terms. Some families choose a trusted person, while others use a professional or corporate trustee.</div></details>
+<details class="card faq-card"><summary>What is a trust fund in simple terms?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">A trust fund is money or property held inside a trust for beneficiaries. A trustee manages the assets according to written instructions in the trust document.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Do you have to be rich to have a trust fund?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">No. Trusts are often used by wealthy families, but they can also help ordinary households plan for minor children, incapacity, privacy, real estate, or complex family situations.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>What is the difference between a trust fund and a will?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">A will directs where assets go after death and usually goes through probate. A properly funded trust can manage assets during life, after incapacity, and after death with more detailed distribution rules.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Can a trust fund avoid taxes?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">A trust is not automatically a tax loophole. Tax treatment depends on the trust type, assets, income, distributions, and current law. Large transfers and trust income may require professional tax advice.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Who should manage a trust fund?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">The trustee should be someone responsible, organized, and able to follow the trust terms. Some families choose a trusted person, while others use a professional or corporate trustee.</div></details>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
-<a href="../compound-interest-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Investment Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">See how your money grows over time with compound interest. Compare starting early vs. late.</div></a>
-<a href="../savings-goal-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Savings Goal Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Set a savings target and see exactly when you will reach your goal.</div></a>
-<a href="../retirement-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Retirement Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Project your retirement nest egg and see what changes get you to your goal faster.</div></a>
+    <h2>Run the numbers</h2>
+    <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+<a href="../compound-interest-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Investment Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">See how your money grows over time with compound interest. Compare starting early vs. late.</div></a>
+<a href="../savings-goal-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Savings Goal Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Set a savings target and see exactly when you will reach your goal.</div></a>
+<a href="../retirement-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Retirement Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Project your retirement nest egg and see what changes get you to your goal faster.</div></a>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>
+    <h2>Keep reading</h2>
 <a href="financial-discipline.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>Financial Discipline: Build Better Money Habits</h4><div class="art-date">Updated June 2026 &middot; 6 min read</div></a>
 <a href="how-to-plan-your-money.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>The Complete Money Planning Guide (2026)</h4><div class="art-date">Updated June 2026 &middot; 18 min read</div></a>
 <a href="how-much-should-i-have-saved-for-retirement.html" class="article-card"><div class="art-cat">Retirement</div><h4>How Much Should I Have Saved For Retirement</h4><div class="art-date">Updated June 2026 &middot; 12 min read</div></a>
@@ -193,10 +191,10 @@
   if (!list || hs.length === 0) return;
   list.innerHTML = "";
   hs.forEach(function(h, i) {
-    h.id = "section-" + i;
+    if (!h.id) h.id = "section-" + i;
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.href = "#section-" + i;
+    a.href = "#" + h.id;
     a.textContent = h.textContent;
     li.appendChild(a);
     list.appendChild(li);
@@ -205,44 +203,62 @@
 </script>
 
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
+<script defer src="../assets/site-ui.js"></script>
 </body>
 </html>

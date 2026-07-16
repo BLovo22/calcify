@@ -99,32 +99,47 @@
 <link rel="stylesheet" href="../tailwind.css">
 <link rel="stylesheet" href="../style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
 <body>
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
 <main class="main">
@@ -133,27 +148,10 @@
   </div>
 
   <article class="article-body">
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">2026 401(k) Contribution Limits: Under 50, 50+, and Ages 60–63</h1>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated July 2026 &middot; 8 min read</p>
+    <h1 class="article-title">2026 401(k) Contribution Limits: Under 50, 50+, and Ages 60–63</h1>
+    <p class="article-meta">Reviewed July 2026 &middot; 8 min read &middot; Numbrly research desk</p>
 
-    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>
-    <script>
-    (function(){
-      var hs = document.querySelectorAll(".article-body h2");
-      var list = document.getElementById("tocList");
-      if (!list || hs.length === 0) return;
-      hs.forEach(function(h, i) {
-        h.id = "section-" + i;
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = "#section-" + i;
-        a.textContent = h.textContent;
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-    })();
-    </script>
-
+    <div class="toc" id="toc"><h4>In this guide</h4><ol id="tocList"></ol></div>
     <p>The <strong>2026 401(k) contribution limits</strong> are a set of related ceilings, not one number. The regular employee elective-deferral limit is <strong>$24,500</strong>. The general age-50 catch-up is <strong>$8,000</strong>, while an eligible participant who turns 60, 61, 62, or 63 during 2026 may have an <strong>$11,250</strong> catch-up instead.</p><p>Employer contributions use a different limit. Annual additions are generally capped at the lesser of <strong>$72,000</strong> or <strong>100% of compensation</strong>, before eligible catch-up contributions. Compensation used for contribution calculations is generally limited to <strong>$360,000</strong> in 2026. A new Roth catch-up rule can also affect workers whose prior-year wages from the plan sponsor exceeded $150,000.</p>
 
     <h2>2026 Limits at a Glance</h2><table class="data-table"><thead><tr><th>Participant</th><th>Regular employee limit</th><th>Potential employee total</th></tr></thead><tbody><tr><td>Under age 50</td><td>$24,500</td><td>$24,500</td></tr><tr><td>Age 50–59 or 64+</td><td>$24,500 + $8,000 catch-up</td><td>$32,500</td></tr><tr><td>Ages 60–63</td><td>$24,500 + $11,250 special catch-up</td><td>$35,750</td></tr></tbody></table><p>The special catch-up for ages 60 through 63 replaces the general $8,000 catch-up; it is not added on top. The plan must permit catch-up contributions, and payroll or plan rules can impose additional restrictions.</p><h2>Employee Deferrals and Employer Contributions Use Different Limits</h2><p>The $24,500 limit applies to traditional and Roth 401(k) elective deferrals combined. Choosing Roth does not create a second employee bucket. For example, $14,500 of traditional contributions plus $10,000 of Roth contributions reaches the regular limit.</p><p>Employer match and profit-sharing contributions generally do not reduce the $24,500 employee limit. They count with regular employee contributions toward the separate annual-additions limit. For 2026, annual additions generally cannot exceed the lesser of $72,000 or 100% of the participant's compensation, before eligible catch-up contributions.</p><p>This lesser-of rule matters for lower-paid workers. If compensation is $50,000, the annual-additions ceiling is generally $50,000 rather than $72,000. Catch-up contributions are treated separately when the participant and plan qualify.</p><h2>The $360,000 Compensation Limit</h2><p>The amount of compensation a plan can generally take into account when determining contributions is limited to $360,000 for 2026. A match described as a percentage of eligible compensation may therefore stop growing after the plan reaches the applicable compensation ceiling, even when actual salary is higher.</p><p>Plan definitions still matter. A plan may exclude bonuses, commissions, overtime, or other pay from eligible compensation, or apply a lower operational limit. Read the summary plan description and confirm the formula with the plan administrator.</p><h2>2026 Roth Catch-Up Requirement</h2><p>Beginning in 2026, a catch-up-eligible participant whose prior-year FICA wages from the employer sponsoring the plan exceeded $150,000 generally must make catch-up contributions on a Roth basis when the applicable plan offers catch-up contributions under the rule. The threshold looks to prior-year wages from the plan sponsor, not simply household income or current salary.</p><p>This rule affects the tax treatment of catch-up dollars, not the regular $24,500 employee limit. It can also interact with plan design and payroll administration, so workers near the threshold should confirm how the employer will identify and process catch-up contributions.</p><h2>What Happens When You Have Two Jobs?</h2><p>The employee elective-deferral limit generally follows the person across 401(k) and 403(b) plans. Changing employers does not automatically restart the $24,500 limit. If you deferred $15,000 at one employer, only $9,500 of regular room remains for another covered plan in 2026.</p><p>Unrelated payroll systems may not know what you contributed elsewhere. Track year-to-date deferrals and tell the new employer what remains. Rules involving governmental 457(b), SIMPLE, and other plan types can differ, so do not assume every workplace account shares the same bucket.</p><h2>How Employer Match Changes the First Target</h2><p>A legal maximum is not automatically the right household contribution. The employer match often identifies a useful first milestone. If a plan matches 50% of contributions up to 6% of eligible pay, contributing 6% is normally required for the full stated match.</p><p>On $80,000 of eligible compensation, the employee contributes $4,800 and the simple match is $2,400. Contributions above 6% can still support retirement, but they may not receive additional match. Use the <a href="../401k-employer-match-calculator.html">401(k) Employer Match Calculator</a> to separate employee dollars, employer dollars, and unclaimed match.</p><h2>Common 2026 Limit Mistakes</h2><ul><li><strong>Adding Roth and traditional limits:</strong> they share the same employee elective-deferral ceiling.</li><li><strong>Counting employer match against $24,500:</strong> match belongs in the separate annual-additions calculation.</li><li><strong>Stacking both catch-up amounts:</strong> the ages 60–63 amount replaces the general age-50 catch-up.</li><li><strong>Ignoring the lesser-of rule:</strong> annual additions are capped at the lesser of $72,000 or 100% of compensation.</li><li><strong>Using unlimited salary for a match:</strong> compensation taken into account is generally capped at $360,000.</li><li><strong>Missing the Roth catch-up rule:</strong> prior-year sponsor wages above $150,000 can require 2026 catch-up dollars to be Roth.</li><li><strong>Restarting after a job change:</strong> personal elective deferrals generally remain subject to one annual limit.</li></ul><h2>How to Set a Payroll Percentage</h2><p>Choose a dollar target, subtract contributions already made, and divide the remainder by expected eligible pay. Someone earning $98,000 evenly through 2026 would need a rough full-year rate of 25% to reach $24,500. A midyear start requires a higher rate and may reduce take-home pay sharply.</p><p>Review the election after a raise, bonus, unpaid leave, or job change. Check whether the match is calculated each paycheck, whether the plan has a year-end true-up, and whether front-loading could cause missed match later in the year.</p><h2>Use Limits as Guardrails</h2><p>The correct contribution also depends on cash flow, expensive debt, emergency savings, investment options, taxes, and retirement timing. Capturing a full match may be a sensible early objective, but forcing the legal maximum while missing bills or carrying avoidable high-interest debt is not automatically an improvement.</p><p>For authoritative details, review the <a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-401k-and-profit-sharing-plan-contribution-limits" rel="noopener">IRS 401(k) contribution-limit guidance</a> and the <a href="https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-catch-up-contributions" rel="noopener">IRS catch-up contribution guidance</a>. Your plan document controls plan-specific matching, eligible compensation, vesting, and payroll rules.</p>
@@ -165,21 +163,21 @@
 
     <h2>Frequently Asked Questions</h2>
     <div style="margin-top:16px">
-<details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is the regular 401(k) employee limit for 2026?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">The regular elective-deferral limit is $24,500 across traditional and Roth 401(k) contributions combined.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How much can someone age 50 or older contribute in 2026?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">The general catch-up is $8,000, creating a potential employee total of $32,500 when the participant and plan qualify.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is the special catch-up for ages 60 through 63?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Eligible participants who turn 60, 61, 62, or 63 in 2026 may have an $11,250 catch-up instead of the general $8,000 amount, for a potential employee total of $35,750.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Is the overall 2026 plan limit always $72,000?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">No. Annual additions are generally limited to the lesser of $72,000 or 100% of compensation, before eligible catch-up contributions.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Who may have to make catch-up contributions as Roth in 2026?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">A catch-up-eligible participant whose prior-year FICA wages from the plan sponsor exceeded $150,000 generally must use Roth treatment for catch-up contributions under the applicable rule.</div></details>
+<details class="card faq-card"><summary>What is the regular 401(k) employee limit for 2026?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">The regular elective-deferral limit is $24,500 across traditional and Roth 401(k) contributions combined.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>How much can someone age 50 or older contribute in 2026?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">The general catch-up is $8,000, creating a potential employee total of $32,500 when the participant and plan qualify.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>What is the special catch-up for ages 60 through 63?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Eligible participants who turn 60, 61, 62, or 63 in 2026 may have an $11,250 catch-up instead of the general $8,000 amount, for a potential employee total of $35,750.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Is the overall 2026 plan limit always $72,000?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">No. Annual additions are generally limited to the lesser of $72,000 or 100% of compensation, before eligible catch-up contributions.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Who may have to make catch-up contributions as Roth in 2026?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">A catch-up-eligible participant whose prior-year FICA wages from the plan sponsor exceeded $150,000 generally must use Roth treatment for catch-up contributions under the applicable rule.</div></details>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
-<a href="../401k-employer-match-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">401(k) Employer Match Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Calculate your 401(k) contribution, employer match, unclaimed match, and the long-term value of matching dollars.</div></a>
-<a href="../retirement-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Retirement Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Project your retirement nest egg and see what changes get you to your goal faster.</div></a>
-<a href="../compound-interest-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Investment Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">See how your money grows over time with compound interest. Compare starting early vs. late.</div></a>
+    <h2>Run the numbers</h2>
+    <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+<a href="../401k-employer-match-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">401(k) Employer Match Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Calculate your 401(k) contribution, employer match, unclaimed match, and the long-term value of matching dollars.</div></a>
+<a href="../retirement-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Retirement Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Project your retirement nest egg and see what changes get you to your goal faster.</div></a>
+<a href="../compound-interest-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Investment Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">See how your money grows over time with compound interest. Compare starting early vs. late.</div></a>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>
+    <h2>Keep reading</h2>
 <a href="full-401k-employer-match.html" class="article-card"><div class="art-cat">Retirement</div><h4>How Much Should You Contribute to Get the Full 401(k) Match?</h4><div class="art-date">Updated July 2026 &middot; 8 min read</div></a>
 <a href="roth-vs-traditional-401k-take-home-pay.html" class="article-card"><div class="art-cat">Retirement</div><h4>Roth 401(k) vs. Traditional 401(k): Same Contribution or Same Take-Home Pay?</h4><div class="art-date">Updated July 2026 &middot; 9 min read</div></a>
 <a href="employer-match-value-over-time.html" class="article-card"><div class="art-cat">Retirement</div><h4>How Much Is Your Employer Match Worth After 20 or 30 Years?</h4><div class="art-date">Updated July 2026 &middot; 8 min read</div></a>
@@ -193,10 +191,10 @@
   if (!list || hs.length === 0) return;
   list.innerHTML = "";
   hs.forEach(function(h, i) {
-    h.id = "section-" + i;
+    if (!h.id) h.id = "section-" + i;
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.href = "#section-" + i;
+    a.href = "#" + h.id;
     a.textContent = h.textContent;
     li.appendChild(a);
     list.appendChild(li);
@@ -205,44 +203,62 @@
 </script>
 
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
+<script defer src="../assets/site-ui.js"></script>
 </body>
 </html>

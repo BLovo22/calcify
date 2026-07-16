@@ -11,12 +11,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        pri: "#2563eb",
-        "pri-dark": "#1d4ed8",
-        "pri-light": "#eff6ff"
+        pri: "#154734",
+        "pri-dark": "#0c3023",
+        "pri-light": "#e4f0e8",
+        accent: "#c7f36b",
+        ink: "#102018",
+        paper: "#f7f5ef"
       },
       fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"]
+        sans: ["Aptos", "Avenir Next", "Segoe UI Variable", "Segoe UI", "sans-serif"],
+        display: ["Aptos Display", "Avenir Next", "Trebuchet MS", "sans-serif"],
+        mono: ["Cascadia Mono", "SFMono-Regular", "Consolas", "monospace"]
       }
     }
   },

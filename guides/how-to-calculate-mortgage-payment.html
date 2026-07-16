@@ -83,32 +83,47 @@
 <link rel="stylesheet" href="../tailwind.css">
 <link rel="stylesheet" href="../style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
 <body>
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
 <main class="main">
@@ -121,7 +136,7 @@
 <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated June 2026 · 7 min read</p>
 
 <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>
-<script>(function(){var hs=document.querySelectorAll('.article-body h2');var list=document.getElementById('tocList');if(!list||hs.length===0)return;hs.forEach(function(h,i){h.id='section-'+i;var li=document.createElement('li');var a=document.createElement('a');a.href='#'+h.id;a.textContent=h.textContent;li.appendChild(a);list.appendChild(li);});})();</script>
+
 
 <p>Whether you are buying your first home or refinancing, understanding how mortgage payments work is essential. A mortgage payment is not random — it follows a precise mathematical formula. Once you know the formula, you can evaluate any loan offer instantly.</p>
 
@@ -174,9 +189,9 @@
 <p>Example: earning $8,000/month gross. 28% = $2,240 max housing payment. 36% = $2,880 max total debt payments.</p>
 
 <p style="margin-top:32px"><a href="../mortgage-calculator.html" class="btn">&#x1F4CA; Try the Mortgage Calculator &rarr;</a></p>
-<section style="margin-top:40px"><h2>Frequently Asked Questions</h2><div style="margin-top:16px"><details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How do I calculate my monthly mortgage payment?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Use the formula M = P[r(1+r)^n]/[(1+r)^n-1] where M is monthly payment, P is loan amount, r is monthly interest rate, and n is total number of payments. Or use Numbrly's free mortgage calculator to get instant results.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What factors affect my mortgage payment?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Five key factors: loan amount, interest rate, loan term, property taxes, and homeowners insurance. Your down payment also matters — 20% or more avoids PMI.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How much mortgage can I afford?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">The 28/36 rule is a good starting point: spend no more than 28% of gross monthly income on housing costs, and no more than 36% on total debt payments including the mortgage.</div></details></div></section>
+<section style="margin-top:40px"><h2>Frequently Asked Questions</h2><div style="margin-top:16px"><details class="card faq-card"><summary>How do I calculate my monthly mortgage payment?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Use the formula M = P[r(1+r)^n]/[(1+r)^n-1] where M is monthly payment, P is loan amount, r is monthly interest rate, and n is total number of payments. Or use Numbrly's free mortgage calculator to get instant results.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>What factors affect my mortgage payment?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Five key factors: loan amount, interest rate, loan term, property taxes, and homeowners insurance. Your down payment also matters — 20% or more avoids PMI.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>How much mortgage can I afford?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">The 28/36 rule is a good starting point: spend no more than 28% of gross monthly income on housing costs, and no more than 36% on total debt payments including the mortgage.</div></details></div></section>
   </article>
 </main>
 
@@ -187,10 +202,10 @@
   if (!list || hs.length === 0) return;
   list.innerHTML = "";
   hs.forEach(function(h, i) {
-    h.id = "section-" + i;
+    if (!h.id) h.id = "section-" + i;
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.href = "#section-" + i;
+    a.href = "#" + h.id;
     a.textContent = h.textContent;
     li.appendChild(a);
     list.appendChild(li);
@@ -199,44 +214,62 @@
 </script>
 
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
+<script defer src="../assets/site-ui.js"></script>
 </body>
 </html>

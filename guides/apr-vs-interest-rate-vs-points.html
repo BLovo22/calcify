@@ -91,32 +91,47 @@
 <link rel="stylesheet" href="../tailwind.css">
 <link rel="stylesheet" href="../style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
 <body>
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
 <main class="main">
@@ -125,27 +140,10 @@
   </div>
 
   <article class="article-body">
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">APR vs. Interest Rate vs. Mortgage Points: How to Compare Loan Estimates</h1>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated July 2026 &middot; 9 min read</p>
+    <h1 class="article-title">APR vs. Interest Rate vs. Mortgage Points: How to Compare Loan Estimates</h1>
+    <p class="article-meta">Reviewed July 2026 &middot; 9 min read &middot; Numbrly research desk</p>
 
-    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>
-    <script>
-    (function(){
-      var hs = document.querySelectorAll(".article-body h2");
-      var list = document.getElementById("tocList");
-      if (!list || hs.length === 0) return;
-      hs.forEach(function(h, i) {
-        h.id = "section-" + i;
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = "#section-" + i;
-        a.textContent = h.textContent;
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-    })();
-    </script>
-
+    <div class="toc" id="toc"><h4>In this guide</h4><ol id="tocList"></ol></div>
     <p>An <strong>APR vs interest rate</strong> comparison starts with recognizing that a mortgage advertisement can show a low note rate, a different APR, and a point charge in smaller print. Those figures answer different questions. Comparing only one can lead you toward an offer that is cheap for the lender's assumed timeline but expensive for yours.</p><p>The cleanest method is to compare official Loan Estimates for the same loan type, amount, term, and lock period, then connect upfront cost with monthly payment and expected holding period. The <a href='https://www.consumerfinance.gov/ask-cfpb/what-is-the-difference-between-a-mortgage-interest-rate-and-an-apr-en-135/' target='_blank' rel='noopener' style='color:var(--pri)'>CFPB mortgage rate and APR guide</a> identifies where both figures appear on the form.</p>
 
     <h2>Interest rate: the price used to calculate interest</h2><p>The note rate, commonly called the interest rate, is used to calculate the scheduled principal-and-interest payment. A lower fixed rate generally means a lower payment and less interest when the loan amount and term are identical.</p><p>The rate does not tell you how much cash the lender requires to obtain it. One lender may quote 6.0% with two points while another quotes 6.25% with no points. Looking at rate alone treats the upfront cost as invisible.</p><h2>APR: a standardized cost measure with assumptions</h2><p>The annual percentage rate incorporates the interest rate and certain finance charges into a percentage intended to help compare credit costs. APR is usually higher than the note rate on a fixed mortgage that has covered finance charges. It can be useful for screening similar offers because it makes some fees harder to hide.</p><p>APR is not your monthly rate, and your payment is generally based on the note rate rather than APR. It also relies on assumptions about the loan and how long it remains outstanding. A lower APR can be less useful if you plan to sell or refinance before high upfront fees have time to pay back.</p><h2>Discount points: prepaid cost for a lower rate</h2><p>The CFPB states that one point equals 1% of the loan amount. Points can be fractional and are paid at closing. Paying points should produce a lower rate than a comparable zero-point offer from the same lender, but there is no fixed amount by which one point must reduce the rate.</p><p>Points shift cost toward closing and savings into future monthly payments. That makes them highly sensitive to holding period. Calculate point cost, payment savings, and break-even rather than assuming the lowest rate is best.</p><h2>Lender credits: lower cash today, higher cost over time</h2><p>Lender credits generally work in reverse. The lender contributes toward closing costs in exchange for a higher rate. A credit can be useful when cash is constrained or the expected loan life is short. The tradeoff is a higher monthly payment and more interest if the loan remains outstanding for a long time.</p><p>Do not confuse a lender credit with a free discount. Compare the credited offer against a zero-credit offer and calculate how many months of higher payments use up the upfront credit.</p><h2>Why the lowest APR is not always the best personal choice</h2><p>Suppose one offer requires substantial points and has a lower APR, while another has a higher APR but much lower closing cost. The first may be cheaper over the disclosure's assumed horizon. If you refinance after two years, however, you may never recover the points. Your actual horizon can matter more than a small APR difference.</p><p>APR also does not replace review of loan features. Fixed versus adjustable rates, balloon payments, prepayment penalties, mortgage insurance, temporary buydowns, and different terms can make two percentages poor substitutes for a full comparison.</p><h2>How to compare Loan Estimates step by step</h2><ol style='margin:10px 0 16px 20px;color:var(--muted);font-size:14px;line-height:1.8'><li>Request Loan Estimates close together so market movement does not distort the comparison.</li><li>Confirm the loan amount, product, fixed or adjustable structure, term, occupancy, and rate-lock status match.</li><li>Record the note rate, APR, principal-and-interest payment, points, lender credits, and lender-controlled fees.</li><li>Separate true costs from prepaids and initial escrow deposits.</li><li>Compare cash to close, but account for down payment and credits that are not lender pricing.</li><li>Calculate the incremental upfront cost of each lower-rate option.</li><li>Divide that cost by monthly payment savings to find break-even.</li><li>Test the result against how long you may keep the mortgage.</li></ol><h2>A simple two-offer example</h2><p>Offer A on a $400,000 30-year mortgage has a 6.5% rate and no points. Offer B has a 6.125% rate and one point costing $4,000. The estimated payments are about $2,528 and $2,430, a difference of roughly $98 per month. The point cost breaks even after about 41 months.</p><p>If the borrower expects to refinance in two years, Offer A is likely cheaper despite its higher rate. If the borrower expects to keep the loan ten years, Offer B may produce substantial nominal savings. APR can help flag the longer-run cost difference, while break-even connects the choice to the borrower's timeline.</p><h2>Watch for temporary buydowns</h2><p>A temporary buydown may reduce payments for one or more early years without permanently changing the note rate. Do not compare its first-year payment with a permanent fixed-rate offer as if they were equivalent. Identify the full note rate, future scheduled payment, source of buydown funds, and what happens if the loan ends early.</p><h2>Rate lock and timing matter</h2><p>Rates and credits can change with the market. Comparing a Monday quote with a Friday quote may say more about market movement than lender competitiveness. Ask whether the rate is locked, the length of the lock, and whether extension fees apply. Written same-day estimates provide a stronger comparison.</p><h2>What APR and points do not answer</h2><p>Neither tells you whether the payment fits your budget, whether you have enough emergency cash after closing, or whether buying a different-priced home is wiser. The mortgage decision connects with property taxes, insurance, maintenance, mortgage insurance, and other household goals.</p><h2>Bottom line</h2><p>Interest rate determines the core scheduled payment. APR summarizes the rate plus certain finance charges under standardized assumptions. Points and lender credits explain how cost shifts between closing and future payments. None should be used alone.</p><p>Use the <a href='../mortgage-points-calculator.html' style='color:var(--pri)'>Mortgage Points Calculator</a> for point break-even and the <a href='../mortgage-refinance-calculator.html' style='color:var(--pri)'>Mortgage Refinance Calculator</a> when comparing a new offer with an existing loan. Base the final choice on complete written terms and your realistic holding period.</p>
@@ -157,20 +155,20 @@
 
     <h2>Frequently Asked Questions</h2>
     <div style="margin-top:16px">
-<details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is the difference between mortgage rate and APR?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">The note rate is used to calculate interest and the scheduled principal-and-interest payment. APR incorporates the rate and certain finance charges into a standardized annual measure.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Is the lowest APR always the best mortgage?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Not necessarily. APR uses standardized assumptions. A loan with high upfront points may have a lower APR but be more expensive if you sell or refinance before break-even.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is one discount point?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">One point equals 1% of the loan amount. The amount by which it reduces the rate varies by lender, loan, and market.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How should I compare lender credits?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Compare the upfront credit with the higher monthly payment it requires. Divide the credit by the payment difference to estimate when the higher payment consumes the initial benefit.</div></details>
+<details class="card faq-card"><summary>What is the difference between mortgage rate and APR?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">The note rate is used to calculate interest and the scheduled principal-and-interest payment. APR incorporates the rate and certain finance charges into a standardized annual measure.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Is the lowest APR always the best mortgage?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Not necessarily. APR uses standardized assumptions. A loan with high upfront points may have a lower APR but be more expensive if you sell or refinance before break-even.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>What is one discount point?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">One point equals 1% of the loan amount. The amount by which it reduces the rate varies by lender, loan, and market.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>How should I compare lender credits?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Compare the upfront credit with the higher monthly payment it requires. Divide the credit by the payment difference to estimate when the higher payment consumes the initial benefit.</div></details>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
-<a href="../mortgage-points-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Mortgage Points Break-Even Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Calculate discount-point cost, monthly payment savings, break-even time, and net savings at common holding periods.</div></a>
-<a href="../mortgage-refinance-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Mortgage Refinance Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Compare your current mortgage with a refinance, including closing costs, points, break-even time, and lifetime cost.</div></a>
-<a href="../mortgage-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Mortgage Payment Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Calculate your monthly mortgage payment, view a full amortization schedule, and see how extra payments save you thousands.</div></a>
+    <h2>Run the numbers</h2>
+    <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+<a href="../mortgage-points-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Mortgage Points Break-Even Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Calculate discount-point cost, monthly payment savings, break-even time, and net savings at common holding periods.</div></a>
+<a href="../mortgage-refinance-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Mortgage Refinance Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Compare your current mortgage with a refinance, including closing costs, points, break-even time, and lifetime cost.</div></a>
+<a href="../mortgage-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Mortgage Payment Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Calculate your monthly mortgage payment, view a full amortization schedule, and see how extra payments save you thousands.</div></a>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>
+    <h2>Keep reading</h2>
 <a href="mortgage-points-break-even.html" class="article-card"><div class="art-cat">Mortgage</div><h4>Mortgage Points Break-Even: How Long Must You Keep the Loan?</h4><div class="art-date">Updated July 2026 &middot; 9 min read</div></a>
 <a href="refinance-6-5-to-6-percent.html" class="article-card"><div class="art-cat">Mortgage</div><h4>Should I Refinance From 6.5% to 6.0%? A Real Break-Even Example</h4><div class="art-date">Updated July 2026 &middot; 9 min read</div></a>
 <a href="how-to-calculate-mortgage-payment.html" class="article-card"><div class="art-cat">Mortgage</div><h4>How to Calculate Your Mortgage Payment — Step by Step</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a>
@@ -184,10 +182,10 @@
   if (!list || hs.length === 0) return;
   list.innerHTML = "";
   hs.forEach(function(h, i) {
-    h.id = "section-" + i;
+    if (!h.id) h.id = "section-" + i;
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.href = "#section-" + i;
+    a.href = "#" + h.id;
     a.textContent = h.textContent;
     li.appendChild(a);
     list.appendChild(li);
@@ -196,44 +194,62 @@
 </script>
 
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
+<script defer src="../assets/site-ui.js"></script>
 </body>
 </html>

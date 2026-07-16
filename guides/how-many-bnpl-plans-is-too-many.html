@@ -91,32 +91,47 @@
 <link rel="stylesheet" href="../tailwind.css">
 <link rel="stylesheet" href="../style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
 <body>
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
 <main class="main">
@@ -125,27 +140,10 @@
   </div>
 
   <article class="article-body">
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">How Many BNPL Plans Is Too Many? A Cash-Flow Test for Pay-in-4</h1>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated July 2026 &middot; 9 min read</p>
+    <h1 class="article-title">How Many BNPL Plans Is Too Many? A Cash-Flow Test for Pay-in-4</h1>
+    <p class="article-meta">Reviewed July 2026 &middot; 9 min read &middot; Numbrly research desk</p>
 
-    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>
-    <script>
-    (function(){
-      var hs = document.querySelectorAll(".article-body h2");
-      var list = document.getElementById("tocList");
-      if (!list || hs.length === 0) return;
-      hs.forEach(function(h, i) {
-        h.id = "section-" + i;
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = "#section-" + i;
-        a.textContent = h.textContent;
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-    })();
-    </script>
-
+    <div class="toc" id="toc"><h4>In this guide</h4><ol id="tocList"></ol></div>
     <p>There is no universal number of buy now, pay later plans that is automatically safe. Two small plans may be harder to manage than five if their withdrawals land before payday, and one large plan can be too much if it competes with rent. The useful question is not <em>how many accounts do I have?</em> It is <em>how much committed cash leaves each pay period, and what must that money cover first?</em></p><p>The Federal Reserve's <a href="https://www.federalreserve.gov/publications/files/2025-report-economic-well-being-us-households-202605.pdf" rel="noopener noreferrer">2025 household survey</a> reported that 16% of adults had used BNPL in the prior 12 months and that 26% of users had paid late. CFPB research has also found consumers using several pay-in-four loans at the same time. Those findings make a calendar-based test more useful than an arbitrary plan limit.</p>
 
     <h2>The Short Answer: You Have Too Many When the Calendar Stops Working</h2><p>A BNPL plan becomes too much when its scheduled withdrawals cannot be covered after essential bills, minimum debt payments, and a small cash buffer. That can happen with one plan or ten. Count every future installment as money already committed. If you treat the remaining checking balance as spendable, the same dollars may be promised to several providers at once.</p><p>A practical warning sign is needing another credit card charge, overdraft, paycheck advance, or new BNPL plan to protect an older installment. Another is moving money away from rent, utilities, food, insurance, transportation, or required debt payments. These are signs that the purchase did not fit the current cash flow, even if every individual installment looked small at checkout.</p><h2>Run the Pay-Period Cash-Flow Test</h2><p>Start with the next four to eight weeks. List each paycheck and other reliable income on the date it will be available. Then list essentials, minimum debt payments, and every BNPL withdrawal by exact date. Do not use a monthly average when several payments can fall in one week.</p><ol><li><strong>Write down available cash at the start of the period.</strong> Exclude savings reserved for a true emergency or a known annual bill.</li><li><strong>Add dependable income.</strong> If hours or commissions vary, use a conservative amount rather than the best recent paycheck.</li><li><strong>Subtract essentials first.</strong> Include housing, utilities, food, transportation, insurance, medicine, childcare, and minimum debt payments.</li><li><strong>Subtract every existing BNPL payment.</strong> Include fees and plans from every provider.</li><li><strong>Keep a buffer.</strong> A plan that leaves exactly zero offers no room for fuel, a prescription, or a timing error.</li></ol><p>If the result is negative on any date, you already have more scheduled payments than the period can safely carry. If the result is positive but tiny, one ordinary surprise may still create a missed payment. Use the <a href="../bnpl-payment-planner.html">BNPL Payment Planner</a> to map each plan, then combine the schedules on one calendar.</p><h2>Example: Three Plans That Look Small Separately</h2><p>Suppose Maya is paid $1,600 every two weeks. Her next pay period includes $750 for rent, $230 for utilities and phone, $260 for groceries and transportation, and $180 in minimum loan and credit-card payments. That leaves $180 before BNPL. She has three installments due: $45, $60, and $90. The total is $195, so the period is already $15 short before any unexpected cost.</p><table class="data-table"><thead><tr><th>Pay-period item</th><th>Amount</th></tr></thead><tbody><tr><td>Income</td><td>$1,600</td></tr><tr><td>Essentials and minimums</td><td>-$1,420</td></tr><tr><td>Three BNPL installments</td><td>-$195</td></tr><tr><td>Remaining cash</td><td>-$15</td></tr></tbody></table><p>None of the plans looks dramatic on its own. Together they fail the cash-flow test. Maya should not open another plan just because its first payment is only $25. She needs to stop new BNPL purchases, protect essentials, and contact providers before a due date if the existing schedule cannot be met.</p><h2>Four Signals That Matter More Than the Number of Plans</h2><h3>1. The share of free cash already committed</h3><p>Compare BNPL payments with the money left after essentials and minimums, not with gross income. If a household has $300 of true monthly breathing room and $240 is committed to installments, the plan load is high even if the payments equal a small percentage of salary.</p><h3>2. Payment clustering</h3><p>Four payments spread across a month may be manageable; four withdrawals in the two days before payday may not be. Calendar timing can trigger overdraft or failed-payment consequences even when monthly income appears sufficient.</p><h3>3. Whether purchases are necessities or repeat discretionary spending</h3><p>Using installments for several optional purchases can hide how much current consumption is being pushed into future paychecks. If BNPL is repeatedly needed for groceries or utility bills, the problem is a recurring budget gap, not the number of apps installed.</p><h3>4. Dependence on autopay without a review system</h3><p>Autopay can prevent forgetfulness, but it cannot create cash. Keep one list of provider, amount, payment source, and date. Review it before each payday and whenever a purchase is returned, because refunds may not immediately cancel every scheduled withdrawal.</p><h2>A Simple Stoplight Rule</h2><ul><li><strong>Green:</strong> all payments fit after essentials, minimums, and a meaningful buffer; no new borrowing is needed.</li><li><strong>Yellow:</strong> payments fit only if income arrives on time and nothing unusual happens; pause new plans and build cash.</li><li><strong>Red:</strong> any installment competes with essentials, causes an overdraft, or requires another loan. Stop adding plans and make a triage plan now.</li></ul><p>This rule is deliberately based on resilience rather than a magic percentage. A stable two-income household with savings can absorb more scheduling risk than a worker with variable hours and no buffer.</p><h2>What to Do If You Already Have Too Many</h2><p>First, stop creating new installment obligations. Put all due dates on one calendar and protect housing, utilities, food, medicine, transportation to work, insurance, and minimum payments. Cancel unneeded orders when the merchant's return policy allows it, but confirm how the provider handles the refund. Contact the BNPL company before the due date to ask what options are available; do not assume a payment can be moved.</p><p>If credit cards are also involved, use the <a href="../debt-payoff-calculator.html">Debt Payoff Calculator</a> to organize required payments and the <a href="../credit-card-payoff-calculator.html">Credit Card Payoff Calculator</a> to see the cost of carrying a revolving balance. The goal is a schedule you can complete without sacrificing essentials or replacing one short-term debt with another.</p><h2>Bottom Line</h2><p>The safe number of BNPL plans is the number your real calendar can support after higher-priority obligations. Count dollars and dates, not logos or checkout approvals. When combined installments consume the cash needed for essentials or leave no margin for a normal surprise, you have reached the limit. Pause, map the schedule, and reduce commitments before adding another purchase.</p>
@@ -157,20 +155,20 @@
 
     <h2>Frequently Asked Questions</h2>
     <div style="margin-top:16px">
-<details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Is having two BNPL plans too many?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Not automatically. Two plans are too many if their combined due dates compete with essentials, minimum payments, or a basic cash buffer. Test the dates against each pay period.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Do BNPL providers know about my other plans?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Providers use different underwriting and reporting practices, so do not assume one company sees every obligation. You need your own combined list across all providers.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Should I use BNPL if I can pay cash?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Only if the schedule adds genuine convenience without causing overspending or losing purchase protections you value. Keep the full purchase amount mentally committed even when payments are split.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is the first step if I cannot make every payment?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Protect essential bills, stop new purchases, list every due date, and contact providers before payments fail to ask about available options. Terms differ, so confirm rather than assume.</div></details>
+<details class="card faq-card"><summary>Is having two BNPL plans too many?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Not automatically. Two plans are too many if their combined due dates compete with essentials, minimum payments, or a basic cash buffer. Test the dates against each pay period.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Do BNPL providers know about my other plans?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Providers use different underwriting and reporting practices, so do not assume one company sees every obligation. You need your own combined list across all providers.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Should I use BNPL if I can pay cash?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Only if the schedule adds genuine convenience without causing overspending or losing purchase protections you value. Keep the full purchase amount mentally committed even when payments are split.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>What is the first step if I cannot make every payment?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Protect essential bills, stop new purchases, list every due date, and contact providers before payments fail to ask about available options. Terms differ, so confirm rather than assume.</div></details>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
-<a href="../bnpl-payment-planner.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">BNPL Payment Planner</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Map every buy now, pay later installment, fee, and due date before a pay-in-4 plan strains your cash flow.</div></a>
-<a href="../debt-payoff-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Debt Payoff Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Compare debt snowball and avalanche strategies across multiple balances. See your payoff order, total interest, and debt-free date.</div></a>
-<a href="../credit-card-payoff-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Debt Payoff Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">See how long to pay off your credit card and compare payoff strategies.</div></a>
+    <h2>Run the numbers</h2>
+    <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+<a href="../bnpl-payment-planner.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">BNPL Payment Planner</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Map every buy now, pay later installment, fee, and due date before a pay-in-4 plan strains your cash flow.</div></a>
+<a href="../debt-payoff-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Debt Payoff Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Compare debt snowball and avalanche strategies across multiple balances. See your payoff order, total interest, and debt-free date.</div></a>
+<a href="../credit-card-payoff-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Debt Payoff Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">See how long to pay off your credit card and compare payoff strategies.</div></a>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>
+    <h2>Keep reading</h2>
 <a href="bnpl-vs-credit-card.html" class="article-card"><div class="art-cat">Credit And Debt</div><h4>BNPL vs. Credit Card: Which Costs More When You Miss a Payment?</h4><div class="art-date">Updated July 2026 &middot; 9 min read</div></a>
 <a href="how-to-get-out-of-bnpl-debt.html" class="article-card"><div class="art-cat">Credit And Debt</div><h4>How to Get Out of BNPL Debt Without Missing Rent or Credit Card Payments</h4><div class="art-date">Updated July 2026 &middot; 10 min read</div></a>
 <a href="how-to-plan-your-money.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>The Complete Money Planning Guide (2026)</h4><div class="art-date">Updated June 2026 &middot; 18 min read</div></a>
@@ -184,10 +182,10 @@
   if (!list || hs.length === 0) return;
   list.innerHTML = "";
   hs.forEach(function(h, i) {
-    h.id = "section-" + i;
+    if (!h.id) h.id = "section-" + i;
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.href = "#section-" + i;
+    a.href = "#" + h.id;
     a.textContent = h.textContent;
     li.appendChild(a);
     list.appendChild(li);
@@ -196,44 +194,62 @@
 </script>
 
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
+<script defer src="../assets/site-ui.js"></script>
 </body>
 </html>

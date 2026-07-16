@@ -91,32 +91,47 @@
 <link rel="stylesheet" href="../tailwind.css">
 <link rel="stylesheet" href="../style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
 <body>
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
 <main class="main">
@@ -125,27 +140,10 @@
   </div>
 
   <article class="article-body">
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">Starter Emergency Fund vs. Full Emergency Fund: Which Should You Build First?</h1>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated July 2026 &middot; 9 min read</p>
+    <h1 class="article-title">Starter Emergency Fund vs. Full Emergency Fund: Which Should You Build First?</h1>
+    <p class="article-meta">Reviewed July 2026 &middot; 9 min read &middot; Numbrly research desk</p>
 
-    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>
-    <script>
-    (function(){
-      var hs = document.querySelectorAll(".article-body h2");
-      var list = document.getElementById("tocList");
-      if (!list || hs.length === 0) return;
-      hs.forEach(function(h, i) {
-        h.id = "section-" + i;
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = "#section-" + i;
-        a.textContent = h.textContent;
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-    })();
-    </script>
-
+    <div class="toc" id="toc"><h4>In this guide</h4><ol id="tocList"></ol></div>
     <p>A full emergency fund can take months or years to build. Waiting for the perfect target before addressing expensive debt may be costly, but attacking debt with no cash buffer can send the next repair or deductible right back onto a card.</p><p>A two-stage plan resolves that tension: build a starter fund quickly, stabilize high-risk parts of the budget, then expand toward a full fund based on essential expenses and household risk.</p>
 
     <h2>What a starter emergency fund is for</h2><p>A starter fund handles smaller, common disruptions without new borrowing. Think of a car repair, medical copay, urgent travel, appliance failure, or temporary reduction in hours. It is not designed to replace months of income.</p><p>The right starter amount depends on your likely short-term shocks. A round number such as $1,000 can be a motivating milestone, but it may be too small if your insurance deductible is $3,000 or you rely on an older vehicle for work. Choose a number connected to real exposure.</p><h2>What a full emergency fund is for</h2><p>A full fund is intended for larger or longer disruptions: job loss, illness, caregiving, a major client gap, or overlapping expenses. A common starting range is three to six months of essential expenses, but income variability, dependents, insurance deductibles, and expected job-search time can support a higher target.</p><p>Essential expenses are costs that continue during a crisis: housing, basic food, utilities, insurance, necessary transportation, healthcare, and minimum debt payments. Exclude spending that can be paused quickly.</p><h2>Why two stages can work better</h2><p>The starter stage creates near-term resilience. Once it is in place, money can be divided between high-priority debt and the larger savings target. This avoids two extremes: building a large cash balance while very expensive debt compounds, or sending every dollar to debt and having no liquidity.</p><p>The second stage is not optional forever. A starter fund alone may not cover a deductible plus lost income, and it usually cannot support a prolonged job search. Put a date and monthly amount on the transition toward the full target.</p><h2>How to choose the starter target</h2><p>List the most plausible expenses you could face in the next year and the cash you would need before insurance, reimbursement, or regular income helps. Consider the largest insurance deductible, a necessary car repair, an urgent home repair if you own, and a short income interruption.</p><p>You do not need to add every worst case together. Choose a buffer that handles one meaningful event without debt. For some households that may be $1,500; for others it may be one month of essential expenses or the largest likely deductible.</p><h2>How to choose the full target</h2><p>Start with essential monthly expenses. Then consider income stability. A household with two stable and independent incomes may use a lower range than a single-income household in a volatile industry. Variable and seasonal workers often need more because income can decline without formal job loss.</p><p>Add known lump-sum exposure, such as a health or property deductible. Consider how long replacing income might take in your occupation and location. Parents and caregivers may need more flexibility because cutting expenses quickly can be difficult.</p><h2>Where high-cost debt fits</h2><p>After the starter fund is established, compare debt cost and household risk. Very high-rate credit card debt creates a strong case for aggressive payoff, while continuing a smaller contribution to emergency savings. Lower-rate debt may allow faster progress toward the full fund.</p><p>A balanced approach could send most available cash to high-rate debt and a smaller automatic amount to savings. When the debt is cleared, redirect the old payment to the full fund. The exact split is less important than preventing the savings plan from disappearing indefinitely.</p><h2>A practical example</h2><p>Suppose essential expenses are $3,500 per month, the largest likely deductible is $2,500, and current savings are $500. The household chooses a $2,500 starter target because it can handle a deductible or meaningful repair. Saving $500 per month reaches that target in four months.</p><p>Afterward, the household works on high-rate card debt while keeping the $2,500 intact. Its full recommended target is five months of expenses plus the deductible, or $20,000. Once the card is repaid, its former monthly payment is redirected to the $17,500 gap.</p><h2>Keep the fund separate but reachable</h2><p>Emergency money generally needs safety and access more than maximum return. A separate insured savings account can reduce accidental spending while remaining available. Review transfer timing, withdrawal limits, account fees, and deposit insurance coverage.</p><p>Do not put the entire emergency fund in volatile assets. A market decline and income disruption can occur together, forcing a sale at an unfavorable time. Some households use tiers, keeping immediate needs in savings and carefully managing any additional layer with appropriate liquidity.</p><h2>What counts as an emergency?</h2><p>Define the rule before the money is needed. An emergency is necessary, urgent, and unplanned or uncertain in timing. Routine maintenance, annual premiums, holidays, and expected school costs belong in sinking funds. Separating predictable expenses keeps the emergency balance from being repeatedly depleted.</p><h2>Rebuild after using it</h2><p>Using the fund for a genuine emergency is success, not failure. After the event, update the budget and automate rebuilding. If the same type of cost occurs regularly, create a dedicated sinking fund so the emergency account can remain focused on shocks.</p><h2>Why emergency savings matters</h2><p>The <a href='https://www.federalreserve.gov/publications/2026-economic-well-being-of-us-households-in-2025-savings-investments.htm' target='_blank' rel='noopener' style='color:var(--pri)'>Federal Reserve reported</a> that 63% of adults in 2025 would cover a hypothetical $400 expense entirely with cash or its equivalent, while 55% said they had emergency savings for three months of expenses. Those figures show that even modest and longer-duration resilience are not universal.</p><h2>Bottom line</h2><p>Build the starter fund first when you have little cash and a common surprise would force new debt. Then do not stop: balance expensive debt reduction with steady progress toward a full risk-adjusted reserve.</p><p>Use the <a href='../emergency-fund-calculator.html' style='color:var(--pri)'>Emergency Fund Calculator</a> to estimate a range and the <a href='../savings-goal-calculator.html' style='color:var(--pri)'>Savings Goal Calculator</a> to create a timeline. The best target is one tied to your expenses and risks, not a slogan.</p>
@@ -157,20 +155,20 @@
 
     <h2>Frequently Asked Questions</h2>
     <div style="margin-top:16px">
-<details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How much should a starter emergency fund be?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Choose enough to handle one plausible near-term shock without borrowing. A round number can help, but one month of essentials or a major deductible may be more appropriate for your risks.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Should I build an emergency fund before paying credit cards?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">A starter buffer can prevent the next surprise from becoming new card debt. After that, balance high-rate debt payoff with continued progress toward a fuller reserve.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">How many months should a full emergency fund cover?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Three to six months of essential expenses is a common starting range. Variable income, dependents, long job searches, and high deductibles may justify more.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Where should emergency savings be kept?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Prioritize safety and access. Compare insured savings options, transfer timing, account fees, and deposit insurance limits.</div></details>
+<details class="card faq-card"><summary>How much should a starter emergency fund be?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Choose enough to handle one plausible near-term shock without borrowing. A round number can help, but one month of essentials or a major deductible may be more appropriate for your risks.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Should I build an emergency fund before paying credit cards?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">A starter buffer can prevent the next surprise from becoming new card debt. After that, balance high-rate debt payoff with continued progress toward a fuller reserve.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>How many months should a full emergency fund cover?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Three to six months of essential expenses is a common starting range. Variable income, dependents, long job searches, and high deductibles may justify more.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Where should emergency savings be kept?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Prioritize safety and access. Compare insured savings options, transfer timing, account fees, and deposit insurance limits.</div></details>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
-<a href="../emergency-fund-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Emergency Fund Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Build a risk-weighted emergency fund target using essential expenses, income stability, dependents, and deductibles.</div></a>
-<a href="../savings-goal-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Savings Goal Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Set a savings target and see exactly when you will reach your goal.</div></a>
-<a href="../tools/budget-planner/" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Budget Planner</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Create a monthly budget and improve your financial health.</div></a>
+    <h2>Run the numbers</h2>
+    <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+<a href="../emergency-fund-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Emergency Fund Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Build a risk-weighted emergency fund target using essential expenses, income stability, dependents, and deductibles.</div></a>
+<a href="../savings-goal-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Savings Goal Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Set a savings target and see exactly when you will reach your goal.</div></a>
+<a href="../tools/budget-planner/" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Budget Planner</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Create a monthly budget and improve your financial health.</div></a>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>
+    <h2>Keep reading</h2>
 <a href="emergency-fund-for-freelancers.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>Emergency Funds for Freelancers: Why Three Months May Not Be Enough</h4><div class="art-date">Updated July 2026 &middot; 10 min read</div></a>
 <a href="how-much-emergency-fund.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>How Much Emergency Fund Do You Need?</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a>
 <a href="how-much-should-i-save-each-month.html" class="article-card"><div class="art-cat">Savings</div><h4>How Much Should I Save Each Month</h4><div class="art-date">Updated June 2026 &middot; 9 min read</div></a>
@@ -184,10 +182,10 @@
   if (!list || hs.length === 0) return;
   list.innerHTML = "";
   hs.forEach(function(h, i) {
-    h.id = "section-" + i;
+    if (!h.id) h.id = "section-" + i;
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.href = "#section-" + i;
+    a.href = "#" + h.id;
     a.textContent = h.textContent;
     li.appendChild(a);
     list.appendChild(li);
@@ -196,44 +194,62 @@
 </script>
 
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
+<script defer src="../assets/site-ui.js"></script>
 </body>
 </html>

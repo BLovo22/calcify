@@ -2,41 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Page Not Found | Numbrly</title>
+<meta name="description" content="The Numbrly page you requested could not be found.">
 <meta property="og:title" content="Page Not Found | Numbrly">
 <meta property="og:url" content="https://numbrly.cc/404.html">
 <link rel="canonical" href="https://numbrly.cc/404.html">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404 — Page Not Found | Numbrly</title>
 <link rel="stylesheet" href="style.css">
 <script>
 (function(){
-  var s=localStorage.getItem('theme');
-  if(s) document.documentElement.setAttribute('data-theme',s);
-  else if(window.matchMedia('(prefers-color-scheme:dark)').matches) document.documentElement.setAttribute('data-theme','dark');
+  var theme = localStorage.getItem("theme") || "dark";
+  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.classList.toggle("dark", theme === "dark");
 })();
 </script>
-<style>
-.err{text-align:center;padding:100px 20px}
-.err .code{font-size:80px;font-weight:800;color:var(--pri);line-height:1;margin-bottom:8px}
-.err h1{font-size:22px;margin-bottom:8px}
-.err p{color:var(--muted);font-size:15px;margin-bottom:24px}
-.err .links{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.err .links a{padding:10px 20px;background:var(--pri);color:#fff;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600}
-.err .links a.outline{background:transparent;color:var(--pri);border:1px solid var(--pri)}
-</style>
 </head>
-<body>
+<body class="error-page">
+<a href="/" class="error-brand" aria-label="Numbrly home">
+  <span aria-hidden="true">N</span>
+  <strong>Numbrly</strong>
+</a>
 <main class="main">
-<div class="err">
-<div class="code">404</div>
-<h1>Page not found</h1>
-<p>The page you are looking for does not exist or has been moved.</p>
-<div class="links">
-<a href="/">Go Home</a>
-<a href="/search.html" class="outline">Search</a>
-</div>
-</div>
+  <div class="err">
+    <p class="error-kicker">Lost in the money lab / error 404</p>
+    <div class="code" aria-hidden="true">404</div>
+    <h1>This number does not lead anywhere.</h1>
+    <p>The page may have moved, changed its name, or never existed. The calculators and research desk are still here.</p>
+    <div class="links">
+      <a href="/" class="btn">Return home</a>
+      <a href="/search.html" class="error-link--outline">Search Numbrly</a>
+    </div>
+  </div>
 </main>
+<script defer src="assets/site-ui.js"></script>
 </body>
 </html>

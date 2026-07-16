@@ -91,32 +91,47 @@
 <link rel="stylesheet" href="../tailwind.css">
 <link rel="stylesheet" href="../style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
 <body>
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
 <main class="main">
@@ -125,27 +140,10 @@
   </div>
 
   <article class="article-body">
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">Should You Delay Social Security If You Expect to Live to 80?</h1>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated July 2026 &middot; 9 min read</p>
+    <h1 class="article-title">Should You Delay Social Security If You Expect to Live to 80?</h1>
+    <p class="article-meta">Reviewed July 2026 &middot; 9 min read &middot; Numbrly research desk</p>
 
-    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>
-    <script>
-    (function(){
-      var hs = document.querySelectorAll(".article-body h2");
-      var list = document.getElementById("tocList");
-      if (!list || hs.length === 0) return;
-      hs.forEach(function(h, i) {
-        h.id = "section-" + i;
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = "#section-" + i;
-        a.textContent = h.textContent;
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-    })();
-    </script>
-
+    <div class="toc" id="toc"><h4>In this guide</h4><ol id="tocList"></ol></div>
     <p>Should you <strong>delay Social Security until 70</strong> if you expect to live to 80? In a common full-retirement-age-67 example, delayed claiming is very close to catching early claiming at 80, but it has not yet caught claiming at 67. That does not automatically make 67 the correct choice. A claiming decision is also about monthly income, longevity insurance, household survivor protection, and whether other assets can fund the waiting years.</p><p>“I expect to live to 80” is itself uncertain. A reasonable plan should work if life is shorter than expected and remain durable if it is much longer.</p>
 
     <h2>What the Simple Age-80 Math Shows</h2><p>Assume a $2,000 monthly retirement benefit at full retirement age 67. Claiming at 62 produces about $1,400 per month after the standard 30% reduction for claiming 60 months early. Delaying from 67 to 70 produces about $2,480 per month using an 8% annual delayed retirement credit for someone born in 1943 or later.</p><table class='data-table'><thead><tr><th>Claim age</th><th>Monthly benefit</th><th>Cumulative through age 80</th></tr></thead><tbody><tr><td>62</td><td>$1,400</td><td>$302,400</td></tr><tr><td>67</td><td>$2,000</td><td>$312,000</td></tr><tr><td>70</td><td>$2,480</td><td>$297,600</td></tr></tbody></table><p>Under these no-COLA, no-tax, whole-year assumptions, claiming at 67 pays the most through exactly age 80. It leads age-62 claiming by $9,600 and age-70 claiming by $14,400. Delayed claiming catches early claiming at about age 80.4 and catches FRA claiming at about age 82.5.</p><h2>Why an Age-80 Horizon Is Not the Whole Decision</h2><p>A break-even calculation treats each dollar the same and assumes the only objective is cumulative gross benefits. Retirement planning has other objectives. Someone with little liquid savings may value checks at 62 more than a higher payment later. Someone with a strong portfolio and concern about living into the 90s may value the larger age-70 payment as protection against longevity.</p><p>The larger delayed amount continues for life and generally receives future percentage cost-of-living adjustments on a larger base. That can make it useful for managing late-life fixed expenses. The tradeoff is spending other assets or continuing to work during the delay.</p><h2>Consider the Higher Earner and Survivor Protection</h2><p>For a married couple, the decision is not just two independent break-even calculations. The higher earner's benefit may influence the survivor benefit available after one spouse dies. A strategy that appears slightly behind at age 80 for the worker alone can still support the household's survivor objective.</p><p>Spousal and survivor rules are detailed, and the lower earner's claiming decision can follow a different logic from the higher earner's. Use official SSA estimates for both people and obtain qualified advice when the household relies heavily on one earnings record.</p><h2>Can Your Portfolio Safely Bridge the Delay?</h2><p>Waiting from 67 to 70 in this example means replacing $72,000 of foregone gross benefits before considering COLAs. Waiting from 62 to 70 means replacing $134,400. That money may come from work, cash, taxable investments, or retirement-account withdrawals.</p><p>Bridge withdrawals have tax and portfolio consequences. Selling investments after a market decline can damage a plan, while planned withdrawals in lower-tax years may create opportunities. The question is not simply whether the account balance can cover three or eight years; it is whether the entire retirement plan remains resilient after doing so.</p><h2>Work Can Change the Early-Claiming Result</h2><p>If you claim before full retirement age and continue working, Social Security's retirement earnings test may temporarily withhold some benefits when earnings exceed applicable limits. The calculation changes in the year full retirement age is reached, and SSA later adjusts the benefit for months withheld. This makes a simple “monthly benefit times months” comparison incomplete for a worker with substantial earnings.</p><p>Working longer can also replace lower earnings years in the 35-year benefit calculation. Use your current Social Security Statement and update the analysis when work plans change.</p><h2>Taxes and Medicare Affect Spendable Income</h2><p>Depending on combined income, part of Social Security benefits can be included in federal taxable income. State treatment varies. Retirement-account withdrawals used to bridge a delay can also affect taxable income and Medicare income-related premiums. A gross-benefit break-even age does not reveal which strategy produces the highest after-tax household spending.</p><p>Model the claiming decision alongside pensions, required distributions, Roth conversions, wages, and investment income. Tax rules are personal and can change, so use a qualified professional for a high-stakes filing or conversion decision.</p><h2>A Better Decision Checklist</h2><ul><li><strong>Liquidity:</strong> Can essential expenses be paid comfortably while waiting?</li><li><strong>Health:</strong> What do current health, family history, and insurance needs suggest without treating them as certainty?</li><li><strong>Household:</strong> How does the higher earner's decision affect a surviving spouse?</li><li><strong>Work:</strong> Will the earnings test or additional covered earnings matter?</li><li><strong>Taxes:</strong> How do benefits and bridge withdrawals interact with taxable income?</li><li><strong>Risk preference:</strong> Do you value earlier access or a larger lifelong monthly floor?</li></ul><h2>Test More Than Age 80</h2><p>Use the <a href='../social-security-break-even-calculator.html'>Social Security Break-Even Calculator</a> to compare totals at 75, 80, 85, and 90. The companion guide <a href='social-security-62-vs-67-vs-70.html'>Social Security at 62 vs. 67 vs. 70</a> shows the crossover math.</p><p>If your planning horizon is exactly 80, the middle strategy leads in the simplified example. If longevity reaches 85 or 90, delayed claiming produces the highest cumulative total in that example. No calculator knows your lifespan, so choose a strategy that fits both the arithmetic and the role Social Security plays in the household plan.</p>
@@ -157,20 +155,20 @@
 
     <h2>Frequently Asked Questions</h2>
     <div style="margin-top:16px">
-<details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">If I live to 80, is it better to claim Social Security at 67 or 70?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">In a simplified FRA-67 example with no COLA or taxes, claiming at 67 has paid more through exact age 80. Age-70 claiming catches it around age 82.5.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">When does age-70 claiming catch age-62 claiming?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">With a $2,000 FRA benefit and FRA 67, the simplified crossover is around age 80.4.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Does delaying Social Security help a surviving spouse?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">The higher earner's claiming decision can affect survivor protection, but household rules are detailed and should be evaluated with official SSA estimates.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Should I use savings while delaying Social Security?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">It can be part of a plan, but bridge withdrawals affect liquidity, taxes, and portfolio risk. Test the entire retirement plan rather than the benefit in isolation.</div></details>
+<details class="card faq-card"><summary>If I live to 80, is it better to claim Social Security at 67 or 70?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">In a simplified FRA-67 example with no COLA or taxes, claiming at 67 has paid more through exact age 80. Age-70 claiming catches it around age 82.5.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>When does age-70 claiming catch age-62 claiming?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">With a $2,000 FRA benefit and FRA 67, the simplified crossover is around age 80.4.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Does delaying Social Security help a surviving spouse?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">The higher earner's claiming decision can affect survivor protection, but household rules are detailed and should be evaluated with official SSA estimates.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Should I use savings while delaying Social Security?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">It can be part of a plan, but bridge withdrawals affect liquidity, taxes, and portfolio risk. Test the entire retirement plan rather than the benefit in isolation.</div></details>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
-<a href="../social-security-break-even-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Social Security Break-Even Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Compare estimated benefits and cumulative payouts when claiming Social Security early, at FRA, or after delaying.</div></a>
-<a href="../retirement-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Retirement Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Project your retirement nest egg and see what changes get you to your goal faster.</div></a>
-<a href="../investment-fee-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Investment Fee Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Compare two expense ratios or advisory fees and see how recurring fees can change long-term investment value.</div></a>
+    <h2>Run the numbers</h2>
+    <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+<a href="../social-security-break-even-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Social Security Break-Even Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Compare estimated benefits and cumulative payouts when claiming Social Security early, at FRA, or after delaying.</div></a>
+<a href="../retirement-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Retirement Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Project your retirement nest egg and see what changes get you to your goal faster.</div></a>
+<a href="../investment-fee-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Investment Fee Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Compare two expense ratios or advisory fees and see how recurring fees can change long-term investment value.</div></a>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>
+    <h2>Keep reading</h2>
 <a href="social-security-62-vs-67-vs-70.html" class="article-card"><div class="art-cat">Retirement</div><h4>Social Security at 62 vs. 67 vs. 70: Where Is the Break-Even Age?</h4><div class="art-date">Updated July 2026 &middot; 9 min read</div></a>
 <a href="how-much-do-i-need-when-retire.html" class="article-card"><div class="art-cat">Retirement</div><h4>How Much Do I Need When Retire? A Step-by-Step Guide to Your Number</h4><div class="art-date">Updated June 2026 &middot; 7 min read</div></a>
 <a href="how-much-emergency-fund.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>How Much Emergency Fund Do You Need?</h4><div class="art-date">Updated June 2026 &middot; 5 min read</div></a>
@@ -184,10 +182,10 @@
   if (!list || hs.length === 0) return;
   list.innerHTML = "";
   hs.forEach(function(h, i) {
-    h.id = "section-" + i;
+    if (!h.id) h.id = "section-" + i;
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.href = "#section-" + i;
+    a.href = "#" + h.id;
     a.textContent = h.textContent;
     li.appendChild(a);
     list.appendChild(li);
@@ -196,44 +194,62 @@
 </script>
 
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
+<script defer src="../assets/site-ui.js"></script>
 </body>
 </html>

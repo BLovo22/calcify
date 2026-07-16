@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Numbrly — Free Financial Calculators & Money Guides</title>
 <link rel="stylesheet" href="tailwind.css">
+<link rel="stylesheet" href="style.css">
 <meta name="description" content="Free online financial calculators: mortgage, compound interest, loan, ROI, retirement & more. Make smarter money decisions with easy-to-use tools and expert guides.">
 <link rel="canonical" href="https://numbrly.cc/">
 <meta property="og:title" content="Numbrly — Free Financial Calculators & Money Guides">
@@ -16,22 +17,6 @@
 <meta name="twitter:description" content="Free online financial calculators: mortgage, compound interest, loan, ROI. Make smarter money decisions with easy-to-use tools and expert guides.">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<style>
-  :root { --pri: #2563eb; }
-  .dark body { background-color: #0f1117; }
-  .dark .bg-white, .dark .bg-gray-50 { background-color: #1a1d27 !important; }
-  .dark .text-gray-900, .dark .text-gray-800 { color: #e2e4e9 !important; }
-  .dark .text-gray-600, .dark .text-gray-500, .dark .text-gray-400 { color: #8b8fa3 !important; }
-  .dark .border-gray-200, .dark .border-gray-100 { border-color: #2a2d3a !important; }
-  .dark .bg-pri-light, .dark .bg-blue-50 { background-color: rgba(37,99,235,.12) !important; }
-  .dark .shadow-sm { box-shadow: 0 1px 3px rgba(0,0,0,.2) !important; }
-  .dark .hover\:shadow-lg:hover { box-shadow: 0 8px 30px rgba(0,0,0,.3) !important; }
-  .dark input, .dark select { background-color: #0f1117 !important; color: #e2e4e9 !important; border-color: #2a2d3a !important; }
-  .dark input::placeholder { color: #8b8fa3 !important; }
-  .dark .bg-gradient-to-br { background-image: none !important; }
-  .dark .from-blue-50 { --tw-gradient-from: rgba(37,99,235,.08) !important; }
-  .dark .to-white { --tw-gradient-to: #1a1d27 !important; }
-</style>
 
 <script type="application/ld+json">
 {
@@ -51,161 +36,186 @@
   ]
 }
 </script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+<body class="home-page">
 
 <!-- Header -->
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
+<main id="main-content">
 <!-- Hero -->
-<section class="bg-gradient-to-br from-blue-50 via-white to-gray-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 text-center">
-    <span class="inline-block bg-pri text-white text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide mb-5">&#x1F4CA; Free &amp; No Sign-Up</span>
-    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
-      Financial calculators<br class="sm:hidden"> <span class="text-pri">that actually help</span>
-    </h1>
-    <p class="text-gray-500 text-base md:text-lg max-w-xl mx-auto mb-8">
-      Mortgage, compound interest, loans, ROI &mdash; crunch your numbers in seconds. All private, all free, no account needed.
-    </p>
-    <div class="flex flex-col sm:flex-row justify-center gap-3">
-      <a href="#calculators" class="inline-flex items-center justify-center px-6 py-3 bg-pri text-white font-semibold rounded-xl hover:bg-pri-dark transition shadow-lg shadow-pri/20">
-        Explore Calculators &#x2192;
-      </a>
-      <a href="/guides/" class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 text-gray-700 font-semibold rounded-xl hover:border-pri hover:text-pri transition">
-        Read Guides
-      </a>
+<section class="home-hero">
+  <div class="home-hero__grid">
+    <div>
+      <p class="hero-kicker">Independent personal finance tools / no account</p>
+      <h1>Make the number <em>make sense.</em></h1>
+      <p class="home-hero__copy">Run the calculation, see the trade-off, and understand what changes the answer. Free planning tools with plain-English context.</p>
+      <div class="home-hero__actions">
+        <a href="#calculators" class="hero-action">Open the calculators</a>
+        <a href="/guides/" class="hero-action hero-action--ghost">Read the research desk</a>
+      </div>
+    </div>
+    <div class="hero-board" aria-label="Numbrly at a glance">
+      <div class="hero-board__top">
+        <span>Numbrly index / 2026</span>
+        <span class="hero-board__status">Live</span>
+      </div>
+      <div class="hero-board__number" data-count-to="25">25</div>
+      <div class="hero-board__label">calculators ready to use</div>
+      <div class="hero-chart" aria-hidden="true">
+        <span style="--bar:24%;--i:0"></span>
+        <span style="--bar:40%;--i:1"></span>
+        <span style="--bar:34%;--i:2"></span>
+        <span style="--bar:58%;--i:3"></span>
+        <span style="--bar:52%;--i:4"></span>
+        <span style="--bar:76%;--i:5"></span>
+        <span style="--bar:68%;--i:6"></span>
+        <span style="--bar:92%;--i:7"></span>
+      </div>
+      <div class="hero-board__stats">
+        <div class="hero-board__stat"><strong data-count-to="44">44</strong><span>Research guides</span></div>
+        <div class="hero-board__stat"><strong data-count-to="0" data-count-prefix="$">$0</strong><span>To get started</span></div>
+        <div class="hero-board__stat"><strong data-count-to="100" data-count-suffix="%">100%</strong><span>Browser based</span></div>
+      </div>
     </div>
   </div>
 </section>
+<div class="signal-tape" aria-hidden="true">
+  <div class="signal-tape__track">
+    <span>Mortgage</span><span>Credit</span><span>Investing</span><span>Retirement</span><span>Debt payoff</span><span>Cars</span><span>Emergency funds</span><span>Social Security</span>
+    <span>Mortgage</span><span>Credit</span><span>Investing</span><span>Retirement</span><span>Debt payoff</span><span>Cars</span><span>Emergency funds</span><span>Social Security</span>
+  </div>
+</div>
 
 <!-- Popular Calculators -->
-<section id="calculators" class="max-w-6xl mx-auto px-4 py-16">
-  <div class="text-center mb-10">
-    <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">&#x1F6E0; Popular Calculators</h2>
-    <p class="text-gray-500 max-w-lg mx-auto">Start here. These are the tools people use most to make smarter money moves.</p>
+<section id="calculators" class="home-section home-tools-section">
+  <div class="home-section__head">
+    <span class="section-index">01 / TOOLS</span>
+    <h2>Start with the decision in front of you.</h2>
+    <p>Focused calculators for the questions that cost real money: housing, credit, debt, retirement, and the next big purchase.</p>
   </div>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-    <!-- Mortgage -->
-    <a href="/mortgage-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F3E0;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Mortgage Calculator</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Monthly payments, amortization schedule, and extra payment savings — see the full picture.</p>
+  <div class="popular-grid">
+    <a href="/mortgage-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">M01</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Mortgage Calculator</h3>
+      <p>Monthly payments, amortization, and the real effect of paying extra.</p>
     </a>
-    <!-- Home Affordability -->
-    <a href="/home-affordability-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F3E1;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Home Affordability</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Estimate how much house you can afford with income, debt, taxes, insurance, HOA, and PMI.</p>
+    <a href="/home-affordability-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">M02</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Home Affordability</h3>
+      <p>Turn income, debt, taxes, insurance, HOA, and PMI into a realistic price range.</p>
     </a>
-    <!-- Mortgage Payoff -->
-    <a href="/mortgage-payoff-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F3E6;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Mortgage Payoff</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">See how extra monthly payments or a lump sum can shorten your loan and reduce interest.</p>
+    <a href="/mortgage-payoff-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">M03</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Mortgage Payoff</h3>
+      <p>See how extra monthly payments or a lump sum change your payoff date and interest.</p>
     </a>
-    <!-- Compound Interest -->
-    <a href="/compound-interest-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F4C8;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Compound Interest</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Watch your money grow. Compare starting at 25 vs. 35 — the difference is staggering.</p>
+    <a href="/compound-interest-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">I01</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Compound Interest</h3>
+      <p>Model how time, contributions, and return assumptions shape long-term growth.</p>
     </a>
-    <!-- Credit Card Payoff -->
-    <a href="/credit-card-payoff-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F4B3;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Credit Card Payoff</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">See how fast you can clear your debt. Compare snowball vs. avalanche methods.</p>
+    <a href="/credit-card-payoff-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">D01</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Credit Card Payoff</h3>
+      <p>Find a debt-free date and compare the cost of different monthly payments.</p>
     </a>
-    <!-- Debt Payoff -->
-    <a href="/debt-payoff-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F4CB;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Debt Payoff</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Compare debt snowball and avalanche across multiple balances and see your debt-free date.</p>
+    <a href="/debt-payoff-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">D02</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Debt Payoff</h3>
+      <p>Compare snowball and avalanche strategies across multiple balances.</p>
     </a>
-    <!-- Credit Utilization -->
-    <a href="/credit-utilization-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F4B3;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Credit Utilization</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Combine every card balance and limit, then find the exact paydown needed for your target utilization.</p>
+    <a href="/credit-utilization-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">C01</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Credit Utilization</h3>
+      <p>Combine card limits and balances, then calculate the paydown needed for your target.</p>
     </a>
-    <!-- Retirement -->
-    <a href="/retirement-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F474;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Retirement Planner</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Are you on track? Project your nest egg and find the gap between now and retirement.</p>
+    <a href="/retirement-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">R01</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Retirement Planner</h3>
+      <p>Project your nest egg and measure the gap between today and retirement.</p>
     </a>
-    <!-- 401(k) Match -->
-    <a href="/401k-employer-match-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F3E6;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">401(k) Employer Match</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">See whether you are getting the full employer match and what those matching dollars could become.</p>
+    <a href="/401k-employer-match-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">R02</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>401(k) Employer Match</h3>
+      <p>Check whether you are capturing the full match and what it could become.</p>
     </a>
-    <!-- ROI -->
-    <a href="/roi-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F4CA;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">ROI Calculator</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Calculate your return on investment instantly. Compare side-by-side to pick the winner.</p>
+    <a href="/roi-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">I02</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>ROI Calculator</h3>
+      <p>Measure return, annualized performance, and compare investment scenarios.</p>
     </a>
-    <!-- Rent vs Buy -->
-    <a href="/rent-vs-buy-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F3D8;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Rent vs. Buy</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Compare estimated net costs after financing, ownership expenses, transaction costs, rent growth, and home equity.</p>
+    <a href="/rent-vs-buy-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">M04</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Rent vs. Buy</h3>
+      <p>Compare financing, ownership costs, transaction fees, rent growth, and equity.</p>
     </a>
-    <!-- Budget Planner -->
-    <a href="/tools/budget-planner/" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F4D2;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Budget Planner</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Build a monthly budget, check your savings rate, and compare against the 50/30/20 rule.</p>
+    <a href="/tools/budget-planner/" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">P01</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Budget Planner</h3>
+      <p>Build a monthly plan, examine your savings rate, and test the 50/30/20 framework.</p>
     </a>
-    <!-- Car Affordability -->
-    <a href="/car-affordability-calculator.html" class="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <div class="text-4xl mb-3">&#x1F697;</div>
-      <h3 class="font-bold text-lg mb-1 group-hover:text-pri transition">Car Affordability</h3>
-      <p class="text-gray-500 text-sm leading-relaxed">Size a realistic vehicle price after taxes, fees, insurance, fuel, maintenance, and financing.</p>
+    <a href="/car-affordability-calculator.html" class="home-tool-card">
+      <div class="home-tool-card__top"><span class="home-tool-card__icon">P02</span><span class="home-tool-card__arrow" aria-hidden="true">&nearr;</span></div>
+      <h3>Car Affordability</h3>
+      <p>Size a realistic vehicle price after financing and the full cost of ownership.</p>
     </a>
   </div>
-  <div class="text-center mt-8">
-    <a href="/#all-tools" class="inline-flex items-center gap-1 text-pri font-semibold text-sm hover:underline">
-      View all 25 calculators &#x2192;
-    </a>
-  </div>
+  <a href="/#all-tools" class="home-link">Browse all 25 calculators</a>
 </section>
 
 <!-- Calculator Categories -->
-<section id="all-tools" class="max-w-6xl mx-auto px-4 py-16 border-t border-gray-200">
-  <div class="text-center mb-10">
-    <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">&#x1F4C2; All Calculators by Category</h2>
-    <p class="text-gray-500 max-w-lg mx-auto">Every tool we offer, organized so you can find exactly what you need.</p>
+<section id="all-tools" class="home-section">
+  <div class="home-section__head">
+    <span class="section-index">02 / INDEX</span>
+    <h2>The complete money lab.</h2>
+    <p>Every calculator, grouped by the kind of decision you are making—not by financial jargon.</p>
   </div>
   
-  <div class="space-y-10">
+  <div class="category-stack">
     <!-- Mortgage & Home -->
-    <div>
-      <h3 class="text-lg font-bold mb-4 flex items-center gap-2">&#x1F3E0; Mortgage &amp; Home</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div class="category-cluster">
+      <h3 data-count="06 tools">Mortgage &amp; Home</h3>
+      <div class="category-links">
         <a href="/mortgage-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F4B0; Mortgage Calculator</a>
         <a href="/home-affordability-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F3E1; Home Affordability</a>
         <a href="/mortgage-payoff-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F3E6; Mortgage Payoff</a>
@@ -215,9 +225,9 @@
       </div>
     </div>
     <!-- Investing -->
-    <div>
-      <h3 class="text-lg font-bold mb-4 flex items-center gap-2">&#x1F4C8; Investing</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div class="category-cluster">
+      <h3 data-count="04 tools">Investing</h3>
+      <div class="category-links">
         <a href="/compound-interest-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F331; Compound Interest</a>
         <a href="/roi-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F4CA; ROI Calculator</a>
         <a href="/inflation-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F4C9; Inflation Calculator</a>
@@ -225,9 +235,9 @@
       </div>
     </div>
     <!-- Debt -->
-    <div>
-      <h3 class="text-lg font-bold mb-4 flex items-center gap-2">&#x1F4B3; Debt &amp; Loans</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div class="category-cluster">
+      <h3 data-count="05 tools">Debt &amp; Loans</h3>
+      <div class="category-links">
         <a href="/loan-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F4CB; Loan Calculator</a>
         <a href="/credit-card-payoff-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F504; Credit Card Payoff</a>
         <a href="/debt-payoff-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F4CB; Debt Payoff</a>
@@ -236,9 +246,9 @@
       </div>
     </div>
     <!-- Personal Finance -->
-    <div>
-      <h3 class="text-lg font-bold mb-4 flex items-center gap-2">&#x1F4B0; Personal Finance</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div class="category-cluster">
+      <h3 data-count="07 tools">Personal Finance</h3>
+      <div class="category-links">
         <a href="/tools/budget-planner/" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F4D2; Budget Planner</a>
         <a href="/tools/net-worth-calculator/" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F4BC; Net Worth</a>
         <a href="/savings-goal-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F3AF; Savings Goal</a>
@@ -249,9 +259,9 @@
       </div>
     </div>
     <!-- Retirement -->
-    <div>
-      <h3 class="text-lg font-bold mb-4 flex items-center gap-2">&#x1F3E6; Retirement &amp; Social Security</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div class="category-cluster">
+      <h3 data-count="03 tools">Retirement &amp; Social Security</h3>
+      <div class="category-links">
         <a href="/retirement-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F474; Retirement Planner</a>
         <a href="/401k-employer-match-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x1F3E6; 401(k) Employer Match</a>
         <a href="/social-security-break-even-calculator.html" class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium hover:border-pri hover:text-pri transition shadow-sm">&#x2696; Social Security Break-Even</a>
@@ -261,140 +271,140 @@
 </section>
 
 <!-- Guides -->
-<section class="max-w-6xl mx-auto px-4 py-16 border-t border-gray-200">
-  <div class="text-center mb-10">
-    <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">&#x1F4D6; Financial Guides</h2>
-    <p class="text-gray-500 max-w-lg mx-auto">Deep-dive articles that explain the "why" behind the numbers.</p>
+<section class="home-section">
+  <div class="home-section__head">
+    <span class="section-index">03 / GUIDES</span>
+    <h2>Context changes the answer.</h2>
+    <p>Research-led explainers for the assumptions, trade-offs, and rules behind each calculation.</p>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="guides-grid">
     <!-- AUTO_GUIDE_CARDS_START -->
-    <a href="/guides/2026-401k-contribution-limits.html" class="group bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <span class="inline-block text-xs font-semibold text-pri bg-pri-light px-2 py-1 rounded mb-3">RETIREMENT</span>
-      <h4 class="font-bold mb-2 group-hover:text-pri transition">2026 401(k) Contribution Limits: Under 50, 50+, and Ages 60–63</h4>
-      <p class="text-gray-500 text-sm">Updated July 2026 &middot; 8 min read</p>
+    <a href="/guides/2026-401k-contribution-limits.html" class="editorial-guide-card">
+      <div class="editorial-guide-card__meta"><span>RETIREMENT</span><span>8 min</span></div>
+      <h4>2026 401(k) Contribution Limits: Under 50, 50+, and Ages 60–63</h4>
     </a>
-    <a href="/guides/2026-car-loan-interest-deduction.html" class="group bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <span class="inline-block text-xs font-semibold text-pri bg-pri-light px-2 py-1 rounded mb-3">PERSONAL FINANCE</span>
-      <h4 class="font-bold mb-2 group-hover:text-pri transition">2026 Car Loan Interest Deduction: Who Qualifies and How Much Can You Save?</h4>
-      <p class="text-gray-500 text-sm">Updated July 2026 &middot; 10 min read</p>
+    <a href="/guides/2026-car-loan-interest-deduction.html" class="editorial-guide-card">
+      <div class="editorial-guide-card__meta"><span>PERSONAL FINANCE</span><span>10 min</span></div>
+      <h4>2026 Car Loan Interest Deduction: Who Qualifies and How Much Can You Save?</h4>
     </a>
-    <a href="/guides/48-vs-60-vs-72-month-car-loan.html" class="group bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <span class="inline-block text-xs font-semibold text-pri bg-pri-light px-2 py-1 rounded mb-3">PERSONAL FINANCE</span>
-      <h4 class="font-bold mb-2 group-hover:text-pri transition">48 vs. 60 vs. 72-Month Car Loan: The Real Cost Difference</h4>
-      <p class="text-gray-500 text-sm">Updated July 2026 &middot; 9 min read</p>
+    <a href="/guides/48-vs-60-vs-72-month-car-loan.html" class="editorial-guide-card">
+      <div class="editorial-guide-card__meta"><span>PERSONAL FINANCE</span><span>9 min</span></div>
+      <h4>48 vs. 60 vs. 72-Month Car Loan: The Real Cost Difference</h4>
     </a>
-    <a href="/guides/apr-vs-interest-rate-vs-points.html" class="group bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:border-pri transition-all duration-200">
-      <span class="inline-block text-xs font-semibold text-pri bg-pri-light px-2 py-1 rounded mb-3">MORTGAGE</span>
-      <h4 class="font-bold mb-2 group-hover:text-pri transition">APR vs. Interest Rate vs. Mortgage Points: How to Compare Loan Estimates</h4>
-      <p class="text-gray-500 text-sm">Updated July 2026 &middot; 9 min read</p>
+    <a href="/guides/apr-vs-interest-rate-vs-points.html" class="editorial-guide-card">
+      <div class="editorial-guide-card__meta"><span>MORTGAGE</span><span>9 min</span></div>
+      <h4>APR vs. Interest Rate vs. Mortgage Points: How to Compare Loan Estimates</h4>
     </a>
     <!-- AUTO_GUIDE_CARDS_END -->
   </div>
-  <div class="text-center mt-8">
-    <a href="/guides/" class="inline-flex items-center gap-1 text-pri font-semibold text-sm hover:underline">
-      View all 44 guides &#x2192;
-    </a>
-  </div>
+  <a href="/guides/" class="home-link">Explore all 44 money guides</a>
 </section>
 
 <!-- FAQ -->
-<section class="max-w-6xl mx-auto px-4 py-16 border-t border-gray-200">
-  <div class="text-center mb-10">
-    <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">&#x2753; Frequently Asked Questions</h2>
+<section class="home-section">
+  <div class="home-section__head">
+    <span class="section-index">04 / NOTES</span>
+    <h2>Before you use the answer.</h2>
+    <p>What the tools do, what stays in your browser, and where an estimate stops being advice.</p>
   </div>
-  <div class="max-w-3xl mx-auto space-y-3">
-    <details class="group bg-white border border-gray-200 rounded-2xl shadow-sm">
-      <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-800 list-none">
-        Are Numbrly calculators really free?
-        <span class="text-gray-400 group-open:rotate-180 transition-transform">&#x25BC;</span>
+  <div class="home-faq-list">
+    <details class="faq-card">
+      <summary>
+        <span data-index="01"></span>
+        <strong>Are Numbrly calculators really free?</strong>
+        <span aria-hidden="true">+</span>
       </summary>
-      <p class="px-6 pb-5 text-gray-500 text-sm leading-relaxed">Yes. Every calculator on Numbrly is completely free. No paywalls, no premium tiers, no hidden fees. We may display ads to support the site, but the tools remain unrestricted.</p>
+      <p>Yes. Every calculator is free to use, with no account, premium tier, or locked result. Advertising may support the site, but it does not restrict the tools.</p>
     </details>
-    <details class="group bg-white border border-gray-200 rounded-2xl shadow-sm">
-      <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-800 list-none">
-        Is my data private?
-        <span class="text-gray-400 group-open:rotate-180 transition-transform">&#x25BC;</span>
+    <details class="faq-card">
+      <summary>
+        <span data-index="02"></span>
+        <strong>What happens to the numbers I enter?</strong>
+        <span aria-hidden="true">+</span>
       </summary>
-      <p class="px-6 pb-5 text-gray-500 text-sm leading-relaxed">Absolutely. All calculations run entirely in your browser. No financial data is ever sent to a server, stored, or shared with anyone. You do not even need to create an account.</p>
+      <p>Calculations run in your browser. Some tools can remember entries on your device with local storage. Like most websites, hosting and advertising services may still receive ordinary usage data; see the privacy policy for details.</p>
     </details>
-    <details class="group bg-white border border-gray-200 rounded-2xl shadow-sm">
-      <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-800 list-none">
-        How accurate are the results?
-        <span class="text-gray-400 group-open:rotate-180 transition-transform">&#x25BC;</span>
+    <details class="faq-card">
+      <summary>
+        <span data-index="03"></span>
+        <strong>How should I interpret a result?</strong>
+        <span aria-hidden="true">+</span>
       </summary>
-      <p class="px-6 pb-5 text-gray-500 text-sm leading-relaxed">Our calculators use standard financial formulas (compound interest, amortization, etc.) and produce mathematically accurate results. However, they are for educational and planning purposes only — not financial advice.</p>
+      <p>Each result is an estimate based on the inputs and assumptions shown. It is useful for planning and comparison, but taxes, lender rules, market returns, fees, and personal circumstances can change the real outcome.</p>
     </details>
-    <details class="group bg-white border border-gray-200 rounded-2xl shadow-sm">
-      <summary class="flex items-center justify-between px-6 py-4 cursor-pointer font-semibold text-gray-800 list-none">
-        Do I need to sign up?
-        <span class="text-gray-400 group-open:rotate-180 transition-transform">&#x25BC;</span>
+    <details class="faq-card">
+      <summary>
+        <span data-index="04"></span>
+        <strong>Do I need to sign up?</strong>
+        <span aria-hidden="true">+</span>
       </summary>
-      <p class="px-6 pb-5 text-gray-500 text-sm leading-relaxed">No. Numbrly requires no registration, no email, and no account. Just open any tool and start calculating immediately.</p>
+      <p>No. Numbrly requires no registration or email. Open a tool, change the assumptions, and compare the result immediately.</p>
     </details>
   </div>
 </section>
+</main>
 
 <!-- Footer -->
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
 
-<script>
-(function(){
-  var stored = localStorage.getItem('theme');
-  if (stored === 'dark') {
-    document.documentElement.classList.add('dark');
-    document.documentElement.setAttribute('data-theme', 'dark');
-    document.getElementById('themeBtn').innerHTML = '&#x2600;&#xFE0F;';
-  } else {
-    document.getElementById('themeBtn').innerHTML = '&#x1F319;';
-  }
-  window.toggleTheme = function(){
-    var isDark = document.documentElement.classList.toggle('dark');
-    var theme = isDark ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-    document.getElementById('themeBtn').innerHTML = isDark ? '&#x2600;&#xFE0F;' : '&#x1F319;';
-  };
-})();
-</script>
 
+
+<script defer src="assets/site-ui.js"></script>
 </body>
 </html>

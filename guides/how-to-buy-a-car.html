@@ -99,32 +99,47 @@
 <link rel="stylesheet" href="../tailwind.css">
 <link rel="stylesheet" href="../style.css">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
-<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+
+<script>(function(){var r=document.documentElement;function p(n){r.setAttribute("data-theme",n);r.classList.toggle("dark",n==="dark");var b=document.getElementById("themeBtn");if(b){b.setAttribute("aria-pressed",String(n==="dark"));var i=b.querySelector("[data-theme-icon]");if(i)i.textContent=n==="dark"?"☀":"◐"}}var s=localStorage.getItem("theme");if(!s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";p(s);window.toggleTheme=function(){var n=r.getAttribute("data-theme")==="dark"?"light":"dark";p(n);localStorage.setItem("theme",n)};document.addEventListener("DOMContentLoaded",function(){p(r.getAttribute("data-theme")||s)},{once:true})})();</script>
 </head>
 <body>
 <!-- SHARED HEADER -->
-<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
-    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
-      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
-      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-    </form>
-    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
-      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
-      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
-      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+<header class="site-header">
+  <div class="site-header__shell">
+    <a href="/" class="site-brand" aria-label="Numbrly home">
+      <span class="site-brand__mark" aria-hidden="true">N</span>
+      <span class="site-brand__word">Numbrly</span>
+      <span class="site-brand__tag">personal<br>finance lab</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/#calculators" data-nav="tools">Tools</a>
+      <a href="/guides/" data-nav="guides">Guides</a>
+      <a href="/#about" data-nav="about">About</a>
     </nav>
-    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
-    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+
+    <form class="site-search" role="search" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <svg class="site-search__icon" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+      </svg>
+      <input type="search" name="q" aria-label="Search calculators and guides" placeholder="Search the money lab">
+      <span class="site-search__key" aria-hidden="true">/</span>
+    </form>
+
+    <button type="button" onclick="toggleTheme()" id="themeBtn" class="theme-toggle" title="Toggle color theme" aria-label="Toggle color theme" aria-pressed="false">
+      <span data-theme-icon aria-hidden="true">◐</span>
+    </button>
+    <button type="button" id="menuBtn" class="menu-toggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false">
+      <span aria-hidden="true"></span>
     </button>
   </div>
-  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
-    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
-    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
-    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
-  </div>
+
+  <nav id="mobileNav" class="mobile-nav hidden" aria-label="Mobile navigation">
+    <a href="/#calculators" data-nav="tools">Tools</a>
+    <a href="/guides/" data-nav="guides">Guides</a>
+    <a href="/#about" data-nav="about">About</a>
+    <a href="/privacy-policy.html">Privacy</a>
+  </nav>
 </header>
 
 <main class="main">
@@ -133,27 +148,10 @@
   </div>
 
   <article class="article-body">
-    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">How to Buy a Car: Smart Steps Before Financing</h1>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:32px">Updated June 2026 &middot; 9 min read</p>
+    <h1 class="article-title">How to Buy a Car: Smart Steps Before Financing</h1>
+    <p class="article-meta">Reviewed June 2026 &middot; 9 min read &middot; Numbrly research desk</p>
 
-    <div class="toc" id="toc"><h4>&#x1F4D1; Table of Contents</h4><ol id="tocList"></ol></div>
-    <script>
-    (function(){
-      var hs = document.querySelectorAll(".article-body h2");
-      var list = document.getElementById("tocList");
-      if (!list || hs.length === 0) return;
-      hs.forEach(function(h, i) {
-        h.id = "section-" + i;
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = "#section-" + i;
-        a.textContent = h.textContent;
-        li.appendChild(a);
-        list.appendChild(li);
-      });
-    })();
-    </script>
-
+    <div class="toc" id="toc"><h4>In this guide</h4><ol id="tocList"></ol></div>
     <p>Learning <strong>how to buy a car</strong> is partly about choosing a vehicle, but it is also about protecting your budget. A car can affect your monthly cash flow for years through the payment, insurance, fuel, maintenance, registration, repairs, and depreciation.</p><p>The smartest car purchase starts before you visit a dealership or click through online listings. You need a realistic budget, a financing plan, a total cost estimate, and a checklist for comparing offers.</p><p>This guide walks through the practical steps to buy a car without letting the monthly payment hide the full cost.</p>
 
     <h2>Step 1: Decide How Much Car You Can Afford</h2><p>Before shopping, estimate the full monthly cost of the car. The payment is only one piece. You should also include insurance, gas or charging, maintenance, parking, registration, taxes, and a repair cushion.</p><p>A common mistake is shopping from the maximum payment a dealer says you can qualify for. Qualification is not the same as affordability. A lender may approve a payment that still makes your budget stressful.</p><p>Start with your monthly income and existing bills. If a new car payment would make it hard to save, pay debt, or handle emergencies, the car is probably too expensive for your current plan. Numbrly's <a href="../tools/budget-planner/" style="color:var(--pri)">Budget Planner</a> can help you see whether the payment fits your full monthly budget.</p><h2>Step 2: Save for a Down Payment</h2><p>A down payment can reduce the amount you borrow, lower your monthly payment, and help protect you from owing more than the car is worth. The right amount depends on the vehicle price, loan terms, interest rate, trade-in value, and your cash reserves.</p><p>Do not empty your emergency fund just to make the down payment larger. A car often brings extra costs shortly after purchase, especially if it is used. Keep enough cash for insurance changes, registration, maintenance, and ordinary life surprises.</p><p>If you are not ready yet, set a target and timeline with the <a href="../savings-goal-calculator.html" style="color:var(--pri)">Savings Goal Calculator</a>. A few months of preparation can give you more options and less pressure at the dealership.</p><h2>Step 3: Get Financing Before You Shop</h2><p>If you plan to borrow, compare financing before negotiating the car. Check rates from banks, credit unions, and reputable online lenders. A preapproval can help you understand your budget and gives you a benchmark when the dealer offers financing.</p><p>Focus on the annual percentage rate, loan term, total interest, monthly payment, and any fees. A longer loan can make the payment look smaller, but it may increase total interest and keep you in debt longer.</p><p>Use the <a href="../loan-calculator.html" style="color:var(--pri)">Loan Calculator</a> to compare loan amounts, interest rates, and terms before signing anything.</p><h2>Step 4: Compare New, Used, and Certified Pre-Owned</h2><p>New cars often include the latest features and full warranty coverage, but they usually cost more and may depreciate faster in the first years. Used cars can cost less, but condition, maintenance history, mileage, and inspection quality matter more.</p><p>Certified pre-owned vehicles can sit between the two. They may include manufacturer inspection standards and limited warranty coverage, but they can also cost more than similar non-certified used vehicles.</p><p>The right choice depends on your budget, expected ownership period, reliability needs, warranty preference, and how much risk you are willing to manage.</p><h2>Step 5: Research the Total Cost of Ownership</h2><p>The cheapest purchase price is not always the cheapest car to own. Before choosing a model, compare fuel economy, insurance costs, repair reputation, tire prices, maintenance intervals, registration costs, and expected depreciation.</p><p>Call your insurance company before buying. Two vehicles with similar prices can have very different insurance premiums. If you finance the car, the lender may require comprehensive and collision coverage, which can raise costs compared with an older paid-off vehicle.</p><p>Also think about your real use. A large vehicle may be convenient for occasional trips but expensive for daily commuting. A luxury used car may be affordable to buy but costly to repair.</p><h2>Step 6: Inspect and Test Drive Carefully</h2><p>For a used car, review the vehicle history report, service records, title status, mileage, recalls, tire condition, brake feel, warning lights, fluid leaks, and signs of accident damage. A clean listing is not a substitute for a careful inspection.</p><p>Take a real test drive. Try city streets, highway speeds, braking, turning, parking, climate controls, technology, visibility, and seat comfort. Listen for unusual sounds and check whether the vehicle tracks straight.</p><p>For used vehicles, consider a pre-purchase inspection by an independent mechanic. The inspection costs money, but it may reveal problems that save you far more than the inspection fee.</p><h2>Step 7: Negotiate the Out-the-Door Price</h2><p>When comparing offers, ask for the out-the-door price. This is the total price including the vehicle, taxes, title, registration, dealer fees, add-ons, and other charges.</p><p>Negotiating only the monthly payment can hide the real cost. A dealer can lower the payment by extending the loan, increasing the down payment, or changing the financing terms. Always compare the full price and the full loan terms.</p><p>Review optional add-ons carefully. Extended warranties, protection packages, service plans, gap coverage, accessories, and maintenance products may or may not be useful. Do not let add-ons appear in the contract without understanding the price and whether they are optional.</p><h2>Step 8: Read Before You Sign</h2><p>Before signing, compare the contract against the offer you agreed to. Check the vehicle identification number, sale price, trade-in value, down payment, loan amount, APR, term, monthly payment, taxes, fees, and add-ons.</p><p>Do not rely on verbal promises. If something matters, it should be written in the final documents. If numbers changed or you feel rushed, pause and ask questions.</p><p>For used cars, understand whether the vehicle is sold with a warranty or as-is. The Federal Trade Commission requires a Buyers Guide on used cars sold by dealers, and that guide explains important warranty information. Read it before making the final decision.</p><h2>Common Car Buying Mistakes</h2><ul><li><strong>Shopping without a budget:</strong> You may fall in love with a car before knowing whether it fits your life.</li><li><strong>Only comparing monthly payments:</strong> A lower payment can still cost more if the loan term is longer.</li><li><strong>Skipping financing comparisons:</strong> Dealer financing may be convenient, but it should be compared with outside offers.</li><li><strong>Ignoring insurance:</strong> Insurance can materially change the true monthly cost.</li><li><strong>Skipping inspection:</strong> A used car can look clean and still have expensive problems.</li><li><strong>Accepting add-ons without review:</strong> Optional products can raise the financed amount quickly.</li></ul><h2>Simple Car Buying Checklist</h2><ul><li>Set a maximum all-in monthly transportation budget.</li><li>Save a down payment without draining emergency savings.</li><li>Check financing before shopping.</li><li>Compare total cost of ownership, not just price.</li><li>Research reliability, insurance, and maintenance costs.</li><li>Test drive and inspect the vehicle carefully.</li><li>Ask for the out-the-door price in writing.</li><li>Review every number before signing.</li></ul><h2>Bottom Line</h2><p>Buying a car is easier when you separate the emotional decision from the financial decision. Choose the car you like, but make the numbers prove that it fits.</p><p>A smart purchase starts with a budget, a down payment plan, financing comparisons, total cost research, careful inspection, and a written out-the-door price. If the deal only works because the payment is stretched over a very long loan, it may not be the right car yet.</p>
@@ -165,21 +163,21 @@
 
     <h2>Frequently Asked Questions</h2>
     <div style="margin-top:16px">
-<details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What is the first step when buying a car?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">The first step is setting a realistic budget based on the full cost of ownership, not just the monthly payment. Include insurance, fuel, maintenance, taxes, registration, and repairs.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Should I get preapproved before buying a car?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Getting preapproved can help you understand your budget and compare dealer financing against outside offers. Review the APR, loan term, fees, and total interest before choosing.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">Is it better to buy a new or used car?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">New cars may offer warranty coverage and newer features, while used cars may cost less upfront. The better choice depends on budget, reliability, depreciation, inspection results, and ownership plans.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What does out-the-door price mean?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">The out-the-door price is the total amount you pay for the car, including the vehicle price, taxes, title, registration, dealer fees, and add-ons.</div></details>
-<details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600;font-size:15px;list-style:none;display:flex;justify-content:space-between;align-items:center">What should I check before signing a car contract?<span style="color:var(--muted);font-size:12px">&#x25BC;</span></summary><div style="padding:0 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border);padding-top:12px">Check the sale price, trade-in value, down payment, loan amount, APR, term, monthly payment, fees, add-ons, VIN, warranty terms, and whether any verbal promises are written into the contract.</div></details>
+<details class="card faq-card"><summary>What is the first step when buying a car?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">The first step is setting a realistic budget based on the full cost of ownership, not just the monthly payment. Include insurance, fuel, maintenance, taxes, registration, and repairs.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Should I get preapproved before buying a car?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Getting preapproved can help you understand your budget and compare dealer financing against outside offers. Review the APR, loan term, fees, and total interest before choosing.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>Is it better to buy a new or used car?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">New cars may offer warranty coverage and newer features, while used cars may cost less upfront. The better choice depends on budget, reliability, depreciation, inspection results, and ownership plans.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>What does out-the-door price mean?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">The out-the-door price is the total amount you pay for the car, including the vehicle price, taxes, title, registration, dealer fees, and add-ons.</div></details>
+<details class="card faq-card" style="margin-top:8px"><summary>What should I check before signing a car contract?<span aria-hidden="true">&#x2193;</span></summary><div style="padding:0 20px 18px;border-top:1px solid var(--border);padding-top:14px">Check the sale price, trade-in value, down payment, loan amount, APR, term, monthly payment, fees, add-ons, VIN, warranty terms, and whether any verbal promises are written into the contract.</div></details>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F6E0; Try These Calculators</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px">
-<a href="../car-affordability-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Car Affordability Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Estimate a car price that fits after loan payments, sales tax, fees, insurance, fuel, and maintenance.</div></a>
-<a href="../car-loan-interest-deduction-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Car Loan Interest Deduction Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Estimate the 2025-2028 qualified car loan interest deduction, MAGI phaseout, and potential federal tax savings.</div></a>
-<a href="../loan-calculator.html" class="card" style="text-decoration:none;color:inherit;padding:16px 18px"><div style="font-weight:600;font-size:14px">Loan Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:2px">Calculate monthly payments for personal, auto, and student loans with full amortization.</div></a>
+    <h2>Run the numbers</h2>
+    <div class="related-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+<a href="../car-affordability-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Car Affordability Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Estimate a car price that fits after loan payments, sales tax, fees, insurance, fuel, and maintenance.</div></a>
+<a href="../car-loan-interest-deduction-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Car Loan Interest Deduction Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Estimate the 2025-2028 qualified car loan interest deduction, MAGI phaseout, and potential federal tax savings.</div></a>
+<a href="../loan-calculator.html" class="card related-tool-card" style="text-decoration:none;color:inherit"><div style="font-weight:800;font-size:15px">Loan Calculator</div><div style="color:var(--muted);font-size:12px;margin-top:5px">Calculate monthly payments for personal, auto, and student loans with full amortization.</div></a>
     </div>
 
-    <h2 style="margin-top:40px">&#x1F4D6; Related Articles</h2>
+    <h2>Keep reading</h2>
 <a href="how-to-plan-your-money.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>The Complete Money Planning Guide (2026)</h4><div class="art-date">Updated June 2026 &middot; 18 min read</div></a>
 <a href="financial-discipline.html" class="article-card"><div class="art-cat">Personal Finance</div><h4>Financial Discipline: Build Better Money Habits</h4><div class="art-date">Updated June 2026 &middot; 6 min read</div></a>
 <a href="how-much-should-i-save-each-month.html" class="article-card"><div class="art-cat">Savings</div><h4>How Much Should I Save Each Month</h4><div class="art-date">Updated June 2026 &middot; 9 min read</div></a>
@@ -193,10 +191,10 @@
   if (!list || hs.length === 0) return;
   list.innerHTML = "";
   hs.forEach(function(h, i) {
-    h.id = "section-" + i;
+    if (!h.id) h.id = "section-" + i;
     var li = document.createElement("li");
     var a = document.createElement("a");
-    a.href = "#section-" + i;
+    a.href = "#" + h.id;
     a.textContent = h.textContent;
     li.appendChild(a);
     list.appendChild(li);
@@ -205,44 +203,62 @@
 </script>
 
 <!-- SHARED FOOTER -->
-<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
-  <div class="max-w-6xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer id="about" class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__lead">
       <div>
-        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
-        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
-          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
-        </p>
+        <div class="site-footer__kicker">Numbrly / Personal Finance Lab</div>
+        <div class="site-footer__title">Numbers are easier when they explain themselves.</div>
+      </div>
+      <div class="site-footer__stats" aria-label="Numbrly site statistics">
+        <div class="site-footer__stat">
+          <strong data-count-to="25">25</strong>
+          <span>Free tools</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="44">44</strong>
+          <span>Money guides</span>
+        </div>
+        <div class="site-footer__stat">
+          <strong data-count-to="0" data-count-prefix="$">$0</strong>
+          <span>Account cost</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__grid">
+      <div>
+        <a href="/" class="site-footer__brand"><i aria-hidden="true">N</i> Numbrly</a>
+        <p>Private-by-design financial planning tools and clearly sourced guides. Calculations run in your browser; third-party hosting and advertising may still collect ordinary usage data.</p>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
-          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
-          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
-          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
-          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
-          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
-          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
-          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        <h4>Start calculating</h4>
+        <nav aria-label="Featured calculators">
+          <a href="/#all-tools">All calculators</a>
+          <a href="/mortgage-calculator.html">Mortgage payment</a>
+          <a href="/credit-utilization-calculator.html">Credit utilization</a>
+          <a href="/car-affordability-calculator.html">Car affordability</a>
+          <a href="/retirement-calculator.html">Retirement planner</a>
+          <a href="/tools/budget-planner/">Budget planner</a>
         </nav>
       </div>
       <div>
-        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
-        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <a href="/" class="block hover:text-pri transition">Tools</a>
-          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
-          <a href="/search.html" class="block hover:text-pri transition">Search</a>
-          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        <h4>Keep exploring</h4>
+        <nav aria-label="Site links">
+          <a href="/guides/">Money guides</a>
+          <a href="/search.html">Search</a>
+          <a href="/privacy-policy.html">Privacy policy</a>
+          <a href="/#about">About Numbrly</a>
         </nav>
       </div>
     </div>
-    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
-      &copy; 2026 Numbrly. Not financial advice.
+
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Numbrly. Educational estimates, not financial advice.</span>
+      <span>No account required / Built for clear decisions</span>
     </div>
   </div>
 </footer>
+<script defer src="../assets/site-ui.js"></script>
 </body>
 </html>
