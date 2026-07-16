@@ -40,6 +40,7 @@
     "simple-vs-compound-interest"
   ],
   "recommendedCalculators": [
+    "investment-fee-calculator",
     "compound-interest-calculator",
     "roi-calculator",
     "inflation-calculator"

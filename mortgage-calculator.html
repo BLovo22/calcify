@@ -112,7 +112,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="rate">Interest Rate (%)</label>
-          <input type="number" id="rate" value="6.5" min="0.1" max="30" step="0.1">
+          <input type="number" id="rate" value="6.5" min="0" max="30" step="0.1">
         </div>
         <div class="form-group">
           <label for="term">Loan Term (years)</label>
@@ -134,7 +134,7 @@
     </div>
 
     <!-- Result -->
-    <div class="result" id="result" style="max-width:640px">
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:640px">
       <div class="result-num" id="monthly">$2,022</div>
       <div class="result-label">per month (principal + interest)</div>
       <div class="result-grid">
@@ -143,7 +143,7 @@
           <div class="ri-label">Loan Amount</div>
         </div>
         <div class="result-item">
-          <div class="ri-val" id="totalInt">$407,216</div>
+          <div class="ri-val" id="totalInt">$408,142</div>
           <div class="ri-label">Total Interest</div>
         </div>
         <div class="result-item">
@@ -188,9 +188,9 @@
       <ul style="color:var(--muted);font-size:13px;line-height:1.8">
         <li>Loan amount: <strong style="color:var(--text)">$320,000</strong></li>
         <li>Monthly payment (principal + interest): <strong style="color:var(--text)">$2,022/month</strong></li>
-        <li>Total interest over 30 years: <strong style="color:var(--text)">$408,016</strong></li>
-        <li>If they add <strong style="color:var(--text)">$200 extra each month</strong>, they save ~$100,000 in interest and pay off the loan <strong style="color:var(--text)">6 years early</strong>.</li>
-        <li>Total home cost (price + interest): <strong style="color:var(--text)">$728,016</strong> over 30 years.</li>
+        <li>Total interest over 30 years: <strong style="color:var(--text)">$408,142</strong></li>
+        <li>If they add <strong style="color:var(--text)">$200 extra each month</strong>, they save about $105,429 in interest and pay off the loan roughly <strong style="color:var(--text)">6 years 7 months early</strong>.</li>
+        <li>Total loan payments (principal + interest): <strong style="color:var(--text)">$728,142</strong> over 30 years.</li>
       </ul>
     </div>
   </section>
@@ -212,8 +212,8 @@
         <p style="font-size:13px;line-height:1.7">See how even small extra payments dramatically reduce your total interest and shorten your loan.</p>
       </div>
       <div class="card" style="padding:20px">
-        <div class="tag">&#x1F510; 100% Private</div>
-        <p style="font-size:13px;line-height:1.7">All calculations run in your browser. No data is ever sent to a server or shared with anyone.</p>
+        <div class="tag">&#x1F510; Browser-Based</div>
+        <p style="font-size:13px;line-height:1.7">Calculator inputs are processed on this device and are not sent to Numbrly. Advertising services may process separate usage data.</p>
       </div>
     </div>
   </section>
@@ -342,15 +342,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -369,89 +370,48 @@
   </div>
 </footer>
 
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
 <script>
-function calcMortgage(){
-  var price = parseFloat(document.getElementById('homePrice').value) || 400000;
-  var down = parseFloat(document.getElementById('downPayment').value) || 80000;
-  var rate = parseFloat(document.getElementById('rate').value) || 6.5;
-  var termYrs = parseInt(document.getElementById('term').value) || 30;
-  var extra = parseFloat(document.getElementById('extra').value) || 0;
-  var loan = price - down;
-  if(loan <= 0){
-    document.getElementById('monthly').textContent = '$0';
-    document.getElementById('loanAmt').textContent = '$0';
-    document.getElementById('totalInt').textContent = '$0';
-    document.getElementById('payoff').textContent = '—';
-    document.getElementById('savingsBox').style.display = 'none';
-    document.getElementById('schedule').style.display = 'none';
-    document.getElementById('result').classList.add('show');
-    return;
-  }
-  var monthlyRate = rate / 100 / 12;
-  var n = termYrs * 12;
-  var monthly = loan * (monthlyRate * Math.pow(1+monthlyRate,n)) / (Math.pow(1+monthlyRate,n)-1);
-  var totalPayment = monthly * n;
-  var totalInterest = totalPayment - loan;
-
-  document.getElementById('monthly').textContent = '$' + monthly.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  document.getElementById('loanAmt').textContent = '$' + loan.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  document.getElementById('totalInt').textContent = '$' + totalInterest.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-  var now = new Date();
-  var payoffStr = new Date(now.getFullYear() + termYrs, now.getMonth(), 1).toLocaleString('en-US',{month:'short',year:'numeric'});
-
-  var savingsBox = document.getElementById('savingsBox');
-  var savingsText = document.getElementById('savingsText');
-  if(extra > 0){
-    var bal = loan, m = 0, totalPaid = 0;
-    while(bal > 0 && m < n * 2){
-      var interestPart = bal * monthlyRate;
-      var principalPart = (monthly + extra) - interestPart;
-      if(principalPart > bal) principalPart = bal;
-      bal -= principalPart;
-      totalPaid += (monthly + extra);
-      m++;
-      if(bal < 0) bal = 0;
-    }
-    var saved = totalPayment - totalPaid;
-    var yearsSaved = (n - m) / 12;
-    savingsText.textContent = 'By paying $' + extra + ' extra each month, you will: Pay off ' + yearsSaved.toFixed(1) + ' years sooner and save approximately $' + saved.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' in interest.';
-    savingsBox.style.display = 'block';
-    payoffStr = new Date(now.getFullYear() + Math.floor(m/12), now.getMonth() + (m%12), 1).toLocaleString('en-US',{month:'short',year:'numeric'});
-  } else {
-    savingsBox.style.display = 'none';
-  }
-  document.getElementById('payoff').textContent = payoffStr;
-  document.getElementById('result').classList.add('show');
-  buildSchedule(loan, monthlyRate, monthly + extra, n, monthly, termYrs);
-  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+function payoffDate(months){
+  var date = new Date();
+  date.setDate(1);
+  date.setMonth(date.getMonth() + months);
+  return date.toLocaleString("en-US",{month:"short",year:"numeric"});
 }
 
-function buildSchedule(loan, monthlyRate, totalMonthly, n, baseMonthly, termYrs){
-  var bal = loan, table = '', yearlyPrincipal = 0, yearlyInterest = 0, yearCount = 1;
-  var yearData = [];
-  for(var m = 1; m <= n && bal > 0; m++){
-    var intPart = bal * monthlyRate;
-    var prinPart = totalMonthly - intPart;
-    if(prinPart > bal){ prinPart = bal; intPart = 0; }
-    yearlyPrincipal += prinPart;
-    yearlyInterest += intPart;
-    bal -= prinPart;
-    if(bal < 0) bal = 0;
-    if(m % 12 === 0 || bal === 0 || m === n){
-      yearData.push({yr:yearCount, principal:yearlyPrincipal, interest:yearlyInterest, balance: bal > 0 ? bal : 0});
-      yearlyPrincipal = 0; yearlyInterest = 0; yearCount++;
-      if(bal === 0) break;
+function calcMortgage(shouldScroll){
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var extra=read("extra","Extra monthly payment");
+    var result=NumbrlyCalculators.mortgagePlan({
+      homePrice:read("homePrice","Home price"),
+      downPayment:read("downPayment","Down payment"),
+      annualRate:read("rate","Interest rate"),
+      termYears:read("term","Loan term"),
+      extraMonthly:extra
+    });
+    document.getElementById("monthly").textContent=NumbrlyCalculatorUI.money(result.scheduledPayment);
+    document.getElementById("loanAmt").textContent=NumbrlyCalculatorUI.money(result.principal);
+    document.getElementById("totalInt").textContent=NumbrlyCalculatorUI.money(result.baseline.totalInterest);
+    document.getElementById("payoff").textContent=result.principal===0?"Paid in full":payoffDate(result.accelerated.months);
+
+    var savingsBox=document.getElementById("savingsBox");
+    if(extra>0 && result.principal>0){
+      document.getElementById("savingsText").textContent="Pay off "+(result.monthsSaved/12).toFixed(1)+" years sooner and save approximately "+NumbrlyCalculatorUI.money(result.interestSaved)+" in interest.";
+      savingsBox.style.display="block";
+    }else{
+      savingsBox.style.display="none";
     }
-  }
-  table = '<table class="data-table"><thead><tr><th>Year</th><th>Principal Paid</th><th>Interest Paid</th><th>Remaining Balance</th></tr></thead><tbody>';
-  var fmt = function(v){return '$'+v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
-  yearData.forEach(function(y){
-    table += '<tr><td>'+y.yr+'</td><td>'+fmt(y.principal)+'</td><td>'+fmt(y.interest)+'</td><td>'+fmt(y.balance)+'</td></tr>';
+
+    var rows=result.annualSchedule.map(function(year){
+      return "<tr><td>"+year.year+"</td><td>"+NumbrlyCalculatorUI.money(year.principal)+"</td><td>"+NumbrlyCalculatorUI.money(year.interest)+"</td><td>"+NumbrlyCalculatorUI.money(year.balance)+"</td></tr>";
+    }).join("");
+    document.getElementById("scheduleTable").innerHTML='<table class="data-table"><thead><tr><th>Year</th><th>Principal Paid</th><th>Interest Paid</th><th>Remaining Balance</th></tr></thead><tbody>'+rows+"</tbody></table>";
+    document.getElementById("schedule").style.display=result.principal>0?"block":"none";
+    NumbrlyCalculatorUI.showResult();
+    if(shouldScroll!==false) document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
   });
-  table += '</tbody></table>';
-  document.getElementById('scheduleTable').innerHTML = table;
-  document.getElementById('schedule').style.display = 'block';
 }
 
 // Auto-save inputs to localStorage
@@ -476,7 +436,7 @@ function buildSchedule(loan, monthlyRate, totalMonthly, n, baseMonthly, termYrs)
 })();
 
 // Init
-document.addEventListener('DOMContentLoaded', function(){ calcMortgage(); });
+document.addEventListener('DOMContentLoaded', function(){ calcMortgage(false); });
 </script>
 </body>
 </html>

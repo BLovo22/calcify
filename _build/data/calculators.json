@@ -121,6 +121,86 @@
                             "h1":  "Retirement Calculator",
                             "category":  "retirement",
                             "title":  "Retirement Calculator"
+                        },
+                        {
+                            "slug": "bnpl-payment-planner",
+                            "description": "Map every buy now, pay later installment, fee, and due date before a pay-in-4 plan strains your cash flow.",
+                            "icon": "🧾",
+                            "h1": "BNPL Payment Planner",
+                            "category": "debt",
+                            "title": "BNPL Payment Planner"
+                        },
+                        {
+                            "slug": "401k-employer-match-calculator",
+                            "description": "Calculate your 401(k) contribution, employer match, unclaimed match, and the long-term value of matching dollars.",
+                            "icon": "🏦",
+                            "h1": "401(k) Employer Match Calculator",
+                            "category": "retirement",
+                            "title": "401(k) Employer Match Calculator"
+                        },
+                        {
+                            "slug": "credit-utilization-calculator",
+                            "description": "Combine balances and limits across cards, calculate overall utilization, and find the paydown needed for your target.",
+                            "icon": "💳",
+                            "h1": "Credit Utilization Calculator",
+                            "category": "debt",
+                            "title": "Credit Utilization Calculator"
+                        },
+                        {
+                            "slug": "mortgage-refinance-calculator",
+                            "description": "Compare your current mortgage with a refinance, including closing costs, points, break-even time, and lifetime cost.",
+                            "icon": "🔁",
+                            "h1": "Mortgage Refinance Calculator",
+                            "category": "mortgage",
+                            "title": "Mortgage Refinance Calculator"
+                        },
+                        {
+                            "slug": "car-affordability-calculator",
+                            "description": "Estimate a car price that fits after loan payments, sales tax, fees, insurance, fuel, and maintenance.",
+                            "icon": "🚗",
+                            "h1": "Car Affordability Calculator",
+                            "category": "personal-finance",
+                            "title": "Car Affordability Calculator"
+                        },
+                        {
+                            "slug": "car-loan-interest-deduction-calculator",
+                            "description": "Estimate the 2025-2028 qualified car loan interest deduction, MAGI phaseout, and potential federal tax savings.",
+                            "icon": "🧮",
+                            "h1": "Car Loan Interest Deduction Calculator",
+                            "category": "personal-finance",
+                            "title": "Car Loan Interest Deduction Calculator"
+                        },
+                        {
+                            "slug": "investment-fee-calculator",
+                            "description": "Compare two expense ratios or advisory fees and see how recurring fees can change long-term investment value.",
+                            "icon": "📉",
+                            "h1": "Investment Fee Calculator",
+                            "category": "investing",
+                            "title": "Investment Fee Calculator"
+                        },
+                        {
+                            "slug": "mortgage-points-calculator",
+                            "description": "Calculate discount-point cost, monthly payment savings, break-even time, and net savings at common holding periods.",
+                            "icon": "📍",
+                            "h1": "Mortgage Points Break-Even Calculator",
+                            "category": "mortgage",
+                            "title": "Mortgage Points Break-Even Calculator"
+                        },
+                        {
+                            "slug": "emergency-fund-calculator",
+                            "description": "Build a risk-weighted emergency fund target using essential expenses, income stability, dependents, and deductibles.",
+                            "icon": "🛟",
+                            "h1": "Emergency Fund Calculator",
+                            "category": "personal-finance",
+                            "title": "Emergency Fund Calculator"
+                        },
+                        {
+                            "slug": "social-security-break-even-calculator",
+                            "description": "Compare estimated benefits and cumulative payouts when claiming Social Security early, at FRA, or after delaying.",
+                            "icon": "⚖️",
+                            "h1": "Social Security Break-Even Calculator",
+                            "category": "retirement",
+                            "title": "Social Security Break-Even Calculator"
                         }
                     ]
 }

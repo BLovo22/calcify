@@ -68,7 +68,7 @@
 
   <section>
     <div class="card" style="max-width:640px"><div class="form-row"><div class="form-group"><label for="invested">Amount Invested ($)</label><input type="number" id="invested" value="10000" min="1" step="100"></div><div class="form-group"><label for="returned">Amount Returned ($)</label><input type="number" id="returned" value="15000" min="1" step="100"></div></div><button class="btn btn-block" onclick="calcROI()" style="margin-top:8px">Calculate</button></div>
-    <div class="result" id="result" style="max-width:640px"><div class="result-num" id="roiPct">50.00%</div><div class="result-label">return on investment</div>
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:640px"><div class="result-num" id="roiPct">50.00%</div><div class="result-label">return on investment</div>
 <div class="result-grid"><div class="result-item"><div class="ri-val" id="roiInv">$10,000</div><div class="ri-label">Invested</div></div><div class="result-item"><div class="ri-val" id="roiReturn">$15,000</div><div class="ri-label">Returned</div></div><div class="result-item"><div class="ri-val" id="roiGain">$5,000</div><div class="ri-label">Net Gain</div></div></div></div>
   </section>
 
@@ -82,7 +82,7 @@
   <section style="margin-top:40px"><h2>Why Use This Calculator?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px"><div class="card" style="padding:20px"><div class="tag">⚡ Instant Comparison</div><p style="font-size:13px;line-height:1.7">See your ROI percentage immediately. No complicated formulas to remember.</p></div>
 <div class="card" style="padding:20px"><div class="tag">📊 Clear Breakdown</div><p style="font-size:13px;line-height:1.7">View your original investment, total return, and net gain all at once.</p></div>
 <div class="card" style="padding:20px"><div class="tag">🔄 Compare Any Investment</div><p style="font-size:13px;line-height:1.7">Works for stocks, real estate, business ventures, crypto — any scenario with an in and an out.</p></div>
-<div class="card" style="padding:20px"><div class="tag">🔒 100% Private</div><p style="font-size:13px;line-height:1.7">Your numbers never leave your browser.</p></div></div></section>
+<div class="card" style="padding:20px"><div class="tag">🔒 Browser-Based</div><p style="font-size:13px;line-height:1.7">Calculator inputs stay on this device; advertising services may process separate usage data.</p></div></div></section>
 
   <section style="margin-top:40px"><h2>Common Mistakes</h2><div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px"><p><strong style="color:var(--text)">❌ Forgetting to include all costs.</strong> If you bought a \$300,000 house and sold for \$350,000, your ROI is not 16.7%. Subtract closing costs, repairs, and agent fees first. All-in costs matter.</p>
 <p style="margin-top:12px"><strong style="color:var(--text)">❌ Comparing ROI across different time periods.</strong> A 50% ROI over 10 years is very different from 50% over 1 year. Always consider the time horizon or calculate the annualized return.</p>
@@ -113,15 +113,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -139,16 +140,20 @@
     </div>
   </div>
 </footer>
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
 <script>function calcROI(){
-  var inv = parseFloat(document.getElementById('invested').value)||10000;
-  var ret = parseFloat(document.getElementById('returned').value)||15000;
-  var gain = ret-inv;
-  var roiPct = inv>0?((gain/inv)*100):0;
-  document.getElementById('roiPct').textContent=roiPct.toFixed(2)+'%';
-  document.getElementById('roiGain').textContent='$'+gain.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-  document.getElementById('roiInv').textContent='$'+inv.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-  document.getElementById('roiReturn').textContent='$'+ret.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-  document.getElementById('result').classList.add('show');
+  return NumbrlyCalculatorUI.run(function(){
+    var result=NumbrlyCalculators.roi({
+      invested:NumbrlyCalculatorUI.readNumber("invested","Amount invested"),
+      returned:NumbrlyCalculatorUI.readNumber("returned","Amount returned")
+    });
+    document.getElementById("roiPct").textContent=result.percent.toFixed(2)+"%";
+    document.getElementById("roiGain").textContent=NumbrlyCalculatorUI.money(result.gain);
+    document.getElementById("roiInv").textContent=NumbrlyCalculatorUI.money(result.invested);
+    document.getElementById("roiReturn").textContent=NumbrlyCalculatorUI.money(result.returned);
+    NumbrlyCalculatorUI.showResult();
+  });
 }</script>
 <script>
 (function(){

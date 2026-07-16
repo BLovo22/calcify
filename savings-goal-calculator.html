@@ -52,13 +52,13 @@
 <section style="margin-top:20px"><h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F3AF; Savings Goal Calculator</h1><p class="sec-desc" style="font-size:15px;max-width:700px">Set a savings target, enter your monthly contribution, and see exactly how many months and years it will take to reach your goal — including interest earnings along the way.</p></section>
 
 <section><div class="card" style="max-width:640px"><div class="form-row"><div class="form-group"><label for="sgTarget">Savings Target ($)</label><input type="number" id="sgTarget" value="50000" min="1" step="500"></div><div class="form-group"><label for="sgCurrent">Current Savings ($)</label><input type="number" id="sgCurrent" value="5000" min="0" step="100"></div></div><div class="form-row"><div class="form-group"><label for="sgMonthly">Monthly Contribution ($)</label><input type="number" id="sgMonthly" value="500" min="1" step="50"></div><div class="form-group"><label for="sgRate">Annual Interest Rate (%)</label><input type="number" id="sgRate" value="5" min="0" max="20" step="0.1"></div></div><button class="btn btn-block" onclick="calcSavingsGoal()" style="margin-top:8px">Calculate Timeline</button></div>
-<div class="result" id="result" style="max-width:640px"><div class="result-num" id="sgMonths">74</div><div class="result-label">months to reach your goal</div><div class="result-grid"><div class="result-item"><div class="ri-val" id="sgYears">6.2</div><div class="ri-label">Years</div></div><div class="result-item"><div class="ri-val" id="sgFinal">$50,216</div><div class="ri-label">Final Balance</div></div><div class="result-item"><div class="ri-val" id="sgTotal">$42,000</div><div class="ri-label">Total Contributions</div></div></div></div></section>
+<div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:640px"><div class="result-num" id="sgMonths">74</div><div class="result-label">months to reach your goal</div><div class="result-grid"><div class="result-item"><div class="ri-val" id="sgYears">6.2</div><div class="ri-label">Years</div></div><div class="result-item"><div class="ri-val" id="sgFinal">$50,216</div><div class="ri-label">Final Balance</div></div><div class="result-item"><div class="ri-val" id="sgTotal">$42,000</div><div class="ri-label">Total Contributions</div></div></div></div></section>
 
 <section style="margin-top:40px"><h2>How to Use This Calculator</h2><ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px"><li><strong style="color:var(--text)">Set a Savings Target</strong> — the total amount you want to save (house, emergency fund, vacation).</li><li><strong style="color:var(--text)">Enter Current Savings</strong> — how much you have already set aside.</li><li><strong style="color:var(--text)">Enter Monthly Contribution</strong> — how much you can consistently put away each month.</li><li><strong style="color:var(--text)">Set an Interest Rate</strong> — 4-5% for HYSA, or 0% for cash.</li><li><strong style="color:var(--text)">Click Calculate</strong> — see exactly how long until you hit your target.</li></ol></section>
 
 <section style="margin-top:40px"><h2>Example: Saving for a Home Down Payment</h2><p style="color:var(--muted);font-size:14px;line-height:1.8">You want to save <strong style="color:var(--text)">$50,000 for a down payment</strong>. You have $5,000 saved and can contribute $500/month at 5% interest.</p><div class="highlight-box"><h4>&#x1F3E0; The Timeline</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>Time to goal: ~<strong style="color:var(--text)">6 years 2 months</strong></li><li>Total contributions: ~<strong style="color:var(--text)">$42,000</strong></li><li>Interest earned: ~<strong style="color:var(--green)">$8,216</strong></li><li>If you increase to $750/month: ~<strong style="color:var(--text)">4 years 5 months</strong></li></ul></div></section>
 
-<section style="margin-top:40px"><h2>Why Use This Calculator?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px"><div class="card" style="padding:20px"><div class="tag">&#x1F3AF; Clear Timeline</div><p style="font-size:13px;line-height:1.7">Know exactly when you will hit your goal.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4C8; Interest Included</div><p style="font-size:13px;line-height:1.7">Factor in savings interest for realistic growth.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F504; Adjust &amp; Replan</div><p style="font-size:13px;line-height:1.7">Change your contribution to see timeline impact.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F510; 100% Private</div><p style="font-size:13px;line-height:1.7">All calculations stay in your browser.</p></div></div></section>
+<section style="margin-top:40px"><h2>Why Use This Calculator?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px"><div class="card" style="padding:20px"><div class="tag">&#x1F3AF; Clear Timeline</div><p style="font-size:13px;line-height:1.7">Know exactly when you will hit your goal.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4C8; Interest Included</div><p style="font-size:13px;line-height:1.7">Factor in savings interest for realistic growth.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F504; Adjust &amp; Replan</div><p style="font-size:13px;line-height:1.7">Change your contribution to see timeline impact.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F510; Browser-Based</div><p style="font-size:13px;line-height:1.7">Calculator inputs stay on this device; advertising services may process separate usage data.</p></div></div></section>
 
 <section style="margin-top:40px"><h2>Common Mistakes</h2><div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px"><p><strong style="color:var(--text)">&#x274C; Setting unrealistic contributions.</strong> Use a number you have consistently hit for 3+ months.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Forgetting inflation.</strong> A $50,000 goal today may need about $63,300 in 8 years at 3% inflation.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Ignoring rate changes.</strong> HYSA rates change. Use a conservative estimate.</p></div></section>
 
@@ -81,15 +81,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -107,7 +108,24 @@
     </div>
   </div>
 </footer>
-<script>function calcSavingsGoal(){var target=parseFloat(document.getElementById("sgTarget").value)||50000;var current=parseFloat(document.getElementById("sgCurrent").value)||5000;var monthly=parseFloat(document.getElementById("sgMonthly").value)||500;var rate=parseFloat(document.getElementById("sgRate").value)||5;var mr=rate/100/12;var bal=current;var months=0;while(bal<target&&months<1200){bal+=monthly;bal*=1+mr;months++;}document.getElementById("sgMonths").textContent=months;document.getElementById("sgYears").textContent=(months/12).toFixed(1);document.getElementById("sgFinal").textContent="\$"+bal.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("sgTotal").textContent="\$"+(current+monthly*months).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("result").classList.add("show");}</script>
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>function calcSavingsGoal(){
+  return NumbrlyCalculatorUI.run(function(){
+    var result=NumbrlyCalculators.savingsGoal({
+      target:NumbrlyCalculatorUI.readNumber("sgTarget","Savings target"),
+      current:NumbrlyCalculatorUI.readNumber("sgCurrent","Current savings"),
+      monthlyContribution:NumbrlyCalculatorUI.readNumber("sgMonthly","Monthly contribution"),
+      annualRate:NumbrlyCalculatorUI.readNumber("sgRate","Annual interest rate")
+    });
+    if(!result.reached) throw new Error(result.reason+" Remaining amount: "+NumbrlyCalculatorUI.money(result.remaining)+".");
+    document.getElementById("sgMonths").textContent=result.months;
+    document.getElementById("sgYears").textContent=(result.months/12).toFixed(1);
+    document.getElementById("sgFinal").textContent=NumbrlyCalculatorUI.money(result.balance);
+    document.getElementById("sgTotal").textContent=NumbrlyCalculatorUI.money(result.totalContributions);
+    NumbrlyCalculatorUI.showResult();
+  });
+}</script>
 <script>(function(){var pg=location.pathname.split('/').pop()||'savings-goal';var ins=document.querySelectorAll('input[id],select[id]');try{var sv=JSON.parse(localStorage.getItem('Numbrly_'+pg)||'{}');ins.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(x){}ins.forEach(function(e){e.addEventListener('input',function(){try{var a={};ins.forEach(function(x){a[x.id]=x.value;});localStorage.setItem('Numbrly_'+pg,JSON.stringify(a));}catch(y){}});});})();document.addEventListener('DOMContentLoaded',function(){calcSavingsGoal();});</script>
 </body>
 </html>

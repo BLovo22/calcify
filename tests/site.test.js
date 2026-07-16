@@ -4,6 +4,7 @@ const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const vm = require("node:vm");
 
 const ROOT = path.resolve(__dirname, "..");
 
@@ -17,6 +18,19 @@ function walk(dir) {
 
 function publicHtmlFiles() {
   return walk(ROOT).filter(function(filePath) { return filePath.endsWith(".html"); });
+}
+
+function registeredCalculatorPages() {
+  return require("../_build/data/calculators.json").calculators.map(function(item) {
+    const relativePath = item.url
+      ? (item.url.endsWith("/") ? item.url + "index.html" : item.url)
+      : item.slug + ".html";
+    return {
+      slug: item.slug,
+      relativePath,
+      filePath: path.join(ROOT, relativePath)
+    };
+  });
 }
 
 function localPathForRef(filePath, ref) {
@@ -130,4 +144,76 @@ test("sitemap and search index include every calculator", function() {
     assert.ok(sitemap.includes("https://numbrly.cc/" + url), "Sitemap missing " + item.slug);
     assert.ok(search.includes(url), "Search index missing " + item.slug);
   });
+});
+
+test("registered calculators use shared models and accessible result regions", function() {
+  const errors = [];
+  registeredCalculatorPages().forEach(function(page) {
+    const html = fs.readFileSync(page.filePath, "utf8");
+    if (!/assets\/calculators\.js/i.test(html)) {
+      errors.push(page.relativePath + " is missing the shared calculator model");
+    }
+
+    const resultTags = Array.from(html.matchAll(/<div\b[^>]*>/gi), function(match) { return match[0]; })
+      .filter(function(tag) {
+        const className = (tag.match(/\bclass=["']([^"']+)["']/i) || [])[1] || "";
+        return className.split(/\s+/).includes("result");
+      });
+    if (!resultTags.length) {
+      errors.push(page.relativePath + " is missing a result region");
+      return;
+    }
+    resultTags.forEach(function(tag) {
+      if (!/\brole=["']status["']/i.test(tag) || !/\baria-live=["']polite["']/i.test(tag)) {
+        errors.push(page.relativePath + " has a result region without status announcements");
+      }
+    });
+  });
+  assert.deepEqual(errors, []);
+});
+
+test("calculator inline scripts compile and reference existing literal element ids", function() {
+  const errors = [];
+  registeredCalculatorPages().forEach(function(page) {
+    const html = fs.readFileSync(page.filePath, "utf8");
+    const ids = new Set(Array.from(html.matchAll(/\bid=["']([^"']+)["']/gi), function(match) { return match[1]; }));
+
+    for (const match of html.matchAll(/getElementById\(["']([^"']+)["']\)/g)) {
+      if (!ids.has(match[1])) errors.push(page.relativePath + " references missing #" + match[1]);
+    }
+
+    let scriptNumber = 0;
+    for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+      scriptNumber += 1;
+      if (/\bsrc\s*=|application\/ld\+json/i.test(match[1])) continue;
+      try {
+        new vm.Script(match[2], { filename: page.relativePath + "#script-" + scriptNumber });
+      } catch (error) {
+        errors.push(page.relativePath + " script " + scriptNumber + " does not compile: " + error.message);
+      }
+    }
+  });
+  assert.deepEqual(errors, []);
+});
+
+test("privacy copy distinguishes calculator inputs from third-party usage data", function() {
+  const errors = [];
+  publicHtmlFiles().forEach(function(filePath) {
+    const html = fs.readFileSync(filePath, "utf8");
+    if (/100%\s+Private|No data is ever sent|No data sent anywhere|We do not collect, store, or transmit any personal data/i.test(html)) {
+      errors.push(path.relative(ROOT, filePath) + " contains an absolute privacy claim");
+    }
+  });
+  const policy = fs.readFileSync(path.join(ROOT, "privacy-policy.html"), "utf8");
+  if (!/local storage/i.test(policy) || !/Google AdSense/i.test(policy) || !/GitHub Pages/i.test(policy)) {
+    errors.push("privacy-policy.html does not explain storage, advertising, and hosting");
+  }
+  assert.deepEqual(errors, []);
+});
+
+test("debt payoff renders user-provided names as text", function() {
+  const html = fs.readFileSync(path.join(ROOT, "debt-payoff-calculator.html"), "utf8");
+  assert.match(html, /strong\.textContent\s*=\s*row\[1\]/);
+  assert.match(html, /document\.createTextNode\(row\[0\]\)/);
+  assert.doesNotMatch(html, /chosenSummary["']\)\.innerHTML/);
 });

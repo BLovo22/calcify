@@ -5,9 +5,9 @@
   "private": true,
   "scripts": {
     "build": "node _build/build.js",
-    "test": "node --test tests/calculators.test.js tests/site.test.js && node scripts/content-ops.js check",
+    "test": "node --test tests/calculators.test.js tests/calculator-pages.test.js tests/site.test.js && node scripts/content-ops.js check",
     "test:unit": "node --test tests/calculators.test.js",
-    "test:site": "node --test tests/site.test.js",
+    "test:site": "node --test tests/calculator-pages.test.js tests/site.test.js",
     "content:status": "node scripts/content-ops.js status",
     "content:check": "node scripts/content-ops.js check",
     "content:new": "node scripts/content-ops.js new",

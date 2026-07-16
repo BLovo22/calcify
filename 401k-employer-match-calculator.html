@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>401(k) Employer Match Calculator | Numbrly</title>
+  <meta name="description" content="Calculate your annual 401(k) contribution, employer match, unclaimed match, and the potential long-term value of matching dollars.">
+  <link rel="canonical" href="https://numbrly.cc/401k-employer-match-calculator.html">
+  <meta property="og:title" content="401(k) Employer Match Calculator | Numbrly">
+  <meta property="og:description" content="See how much employer match you receive, how much you may be leaving unclaimed, and how the match could grow over time.">
+  <meta property="og:url" content="https://numbrly.cc/401k-employer-match-calculator.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="tailwind.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"401(k) Employer Match Calculator","url":"https://numbrly.cc/401k-employer-match-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much should I contribute to get my full 401(k) match?","acceptedAnswer":{"@type":"Answer","text":"If a plan matches a percentage of contributions up to a stated percentage of pay, you generally need to contribute at least that percentage of eligible pay to receive the maximum match. Check the exact plan document because formulas and vesting rules vary."}},{"@type":"Question","name":"What is the 2026 401(k) contribution limit?","acceptedAnswer":{"@type":"Answer","text":"The 2026 employee elective-deferral limit is $24,500. The general age-50 catch-up limit is $8,000, and the special catch-up limit for ages 60 through 63 is $11,250. The annual-additions limit is the lesser of $72,000 or 100% of compensation, before applicable catch-up contributions."}},{"@type":"Question","name":"Does employer match count toward the employee contribution limit?","acceptedAnswer":{"@type":"Answer","text":"Employer matching contributions generally do not count against the employee elective-deferral limit, but they do count toward the separate overall annual additions limit."}}]}</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Calculators</a> / 401(k) Employer Match</div>
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F4BC; 401(k) Employer Match Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:760px">Estimate your employee contribution, employer match, any match left unclaimed, and what matching dollars could become after years of compounding.</p>
+  </section>
+  <section>
+    <div class="card" style="max-width:760px">
+      <div class="form-row">
+        <div class="form-group"><label for="annualSalary">Annual salary ($)</label><input type="number" id="annualSalary" value="80000" min="1" step="1000"></div>
+        <div class="form-group"><label for="employeeContributionPercent">Your contribution (% of salary)</label><input type="number" id="employeeContributionPercent" value="6" min="0" max="100" step="0.1"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="matchPercent">Employer match (% of your contribution)</label><input type="number" id="matchPercent" value="50" min="0" max="500" step="1"></div>
+        <div class="form-group"><label for="matchLimitPercent">Match applies up to (% of salary)</label><input type="number" id="matchLimitPercent" value="6" min="0" max="100" step="0.1"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="annualReturn">Assumed annual return (%)</label><input type="number" id="annualReturn" value="7" min="-50" max="50" step="0.1"></div>
+        <div class="form-group"><label for="years">Years receiving match</label><input type="number" id="years" value="30" min="1" max="70" step="1"></div>
+      </div>
+      <button class="btn btn-block" onclick="calculateMatch()" style="margin-top:8px">Calculate My Match</button>
+    </div>
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:760px">
+      <div class="result-num" id="employerMatch">$2,400</div>
+      <div class="result-label">estimated employer match per year</div>
+      <div class="result-grid">
+        <div class="result-item"><div class="ri-val" id="employeeContribution">$4,800</div><div class="ri-label">Your Annual Contribution</div></div>
+        <div class="result-item"><div class="ri-val" id="totalAnnualContribution">$7,200</div><div class="ri-label">Total Added Each Year</div></div>
+        <div class="result-item"><div class="ri-val" id="unclaimedMatch">$0</div><div class="ri-label">Match Left Unclaimed</div></div>
+        <div class="result-item"><div class="ri-val" id="projectedMatchValue">$226,711</div><div class="ri-label">Projected Value of Match</div></div>
+      </div>
+      <p id="limitMessage" style="font-size:12px;line-height:1.6;margin-top:14px;color:var(--muted)"></p>
+    </div>
+  </section>
+  <section style="margin-top:40px">
+    <h2>How the Match Formula Works</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">A formula described as “50% of contributions up to 6% of pay” means the employer adds fifty cents for each dollar you contribute, but only on the first 6% of salary. On an $80,000 salary, contributing 6% means you put in $4,800 and the employer adds $2,400. Contributing only 3% would generally produce a $1,200 match under that formula.</p>
+    <div class="highlight-box"><h4>2026 federal limits</h4><p>The IRS employee elective-deferral limit is <strong>$24,500</strong> in 2026. The general age-50 catch-up limit is <strong>$8,000</strong>; participants ages 60–63 may have an <strong>$11,250</strong> catch-up limit. Annual additions are generally limited to the lesser of <strong>$72,000</strong> or <strong>100% of compensation</strong>, before applicable catch-up contributions, and compensation used for contribution calculations is generally capped at <strong>$360,000</strong>. If prior-year wages from the plan sponsor exceeded <strong>$150,000</strong>, 2026 catch-up contributions generally must be Roth when the applicable plan offers catch-up contributions. This calculator does not ask age or prior-year wages and does not determine legal eligibility.</p></div>
+  </section>
+  <section style="margin-top:40px">
+    <h2>What This Estimate Can and Cannot Tell You</h2>
+    <ul style="color:var(--muted);font-size:14px;line-height:1.9;padding-left:20px">
+      <li>It assumes the same salary, contribution rate, match formula, return, and annual match for the selected period.</li>
+      <li>It treats annual matching contributions as end-of-year deposits. Real payroll deposits occur throughout the year.</li>
+      <li>It does not model vesting. Unvested matching dollars may be forfeited when employment ends.</li>
+      <li>It does not account for plan true-ups, per-paycheck matching, contribution limits based on age, taxes, inflation, or investment volatility.</li>
+    </ul>
+  </section>
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      <details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600">How much should I contribute for the full match?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">For the common formula used here, contribute at least the “match applies up to” percentage. Your plan may use tiers, dollar caps, or a per-paycheck formula, so verify the summary plan description.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">Does the match count toward my $24,500 limit?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">Employer match generally does not reduce the employee elective-deferral limit. It does count toward a separate overall annual additions limit.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">Is employer match guaranteed money?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">Not always. A vesting schedule can require you to remain employed before matching contributions become fully yours, and investment value can rise or fall.</div></details>
+    </div>
+  </section>
+  <section style="margin-top:40px">
+    <h2>Official Sources and Related Tools</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">Review the <a href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500" rel="noopener">IRS 2026 retirement plan limit announcement</a> and your employer’s plan documents. Then compare your full retirement path with the <a href="retirement-calculator.html">Retirement Calculator</a> and <a href="compound-interest-calculator.html">Compound Interest Calculator</a>.</p>
+  </section>
+</main>
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>
+function calculateMatch(){
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var output=NumbrlyCalculators.calculate401kMatch({
+      annualSalary:read("annualSalary","Annual salary"),
+      employeeContributionPercent:read("employeeContributionPercent","Employee contribution percentage"),
+      matchPercent:read("matchPercent","Employer match percentage"),
+      matchLimitPercent:read("matchLimitPercent","Match limit percentage"),
+      annualReturn:read("annualReturn","Annual return"),
+      years:read("years","Years",{integer:true})
+    });
+    document.getElementById("employeeContribution").textContent=NumbrlyCalculatorUI.money(output.employeeContribution);
+    document.getElementById("employerMatch").textContent=NumbrlyCalculatorUI.money(output.employerMatch);
+    document.getElementById("totalAnnualContribution").textContent=NumbrlyCalculatorUI.money(output.totalAnnualContribution);
+    document.getElementById("unclaimedMatch").textContent=NumbrlyCalculatorUI.money(output.unclaimedMatch);
+    document.getElementById("projectedMatchValue").textContent=NumbrlyCalculatorUI.money(output.projectedMatchValue);
+    var notes=[];
+    if(output.employeeLimitExceeded)notes.push("Your employee contribution exceeds the regular 2026 $24,500 elective-deferral limit; catch-up eligibility and other rules may change the permitted amount.");
+    if(output.totalLimitExceeded)notes.push("Employee plus employer contributions exceed this estimate's applicable annual-additions limit of "+NumbrlyCalculatorUI.money(output.applicableTotalLimit)+" (the lesser of $72,000 or 100% of entered compensation), before applicable catch-up contributions.");
+    if(output.annualSalary>output.compensationLimit)notes.push("The match calculation uses the 2026 eligible-compensation cap of "+NumbrlyCalculatorUI.money(output.compensationLimit)+".");
+    if(!notes.length)notes.push("The displayed contribution is within the regular limits modeled here, but age, prior-year wages, Roth catch-up, compensation, plan, and aggregation rules can still apply.");
+    document.getElementById("limitMessage").textContent=notes.join(" ");
+    NumbrlyCalculatorUI.showResult();
+  });
+}
+(function(){var ids=document.querySelectorAll("input[id]"),key="Numbrly_401k_match";try{var saved=JSON.parse(localStorage.getItem(key)||"{}");ids.forEach(function(el){if(saved[el.id]!==undefined)el.value=saved[el.id];});}catch(e){}ids.forEach(function(el){el.addEventListener("input",function(){var data={};ids.forEach(function(x){data[x.id]=x.value;});try{localStorage.setItem(key,JSON.stringify(data));}catch(e){}});});document.addEventListener("DOMContentLoaded",calculateMatch);})();
+</script>
+</body>
+</html>

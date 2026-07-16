@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Security Break-Even Calculator: 62 vs. FRA vs. 70 | Numbrly</title>
+  <meta name="description" content="Compare simplified Social Security benefits at an early age, full retirement age, and a delayed age, with break-even ages and lifetime totals.">
+  <link rel="canonical" href="https://numbrly.cc/social-security-break-even-calculator.html">
+  <meta property="og:title" content="Social Security Break-Even Calculator | Numbrly">
+  <meta property="og:description" content="Compare claiming at 62, full retirement age, and 70 using simplified SSA adjustment rules.">
+  <meta property="og:url" content="https://numbrly.cc/social-security-break-even-calculator.html">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="tailwind.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Social Security Break-Even Calculator","url":"https://numbrly.cc/social-security-break-even-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a Social Security break-even age?","acceptedAnswer":{"@type":"Answer","text":"It is the age when cumulative benefits from one claiming strategy catch up with cumulative benefits from another strategy under the calculator assumptions."}},{"@type":"Question","name":"How much does delaying Social Security increase benefits?","acceptedAnswer":{"@type":"Answer","text":"For people born in 1943 or later, delayed retirement credits are generally 8% per year after full retirement age until age 70. No additional delayed credits accrue after age 70."}},{"@type":"Question","name":"Is the highest lifetime total always the best claiming choice?","acceptedAnswer":{"@type":"Answer","text":"No. Health, cash needs, work, taxes, survivor protection, spouse benefits, investment alternatives, and personal risk preferences can matter."}}]}</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Calculators</a> / Social Security Break-Even</div>
+  <section style="margin-top:20px"><h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F4C5; Social Security Break-Even Calculator</h1><p class="sec-desc" style="font-size:15px;max-width:780px">Compare claiming early, at full retirement age, or later. The calculator estimates adjusted monthly benefits, cumulative break-even ages, and totals at ages 75, 80, 85, and 90.</p></section>
+  <section>
+    <div class="card" style="max-width:780px">
+      <div class="form-row"><div class="form-group"><label for="monthlyBenefitAtFRA">Monthly benefit at full retirement age (base-year dollars)</label><input type="number" id="monthlyBenefitAtFRA" value="2000" min="1" step="50"></div><div class="form-group"><label for="fullRetirementAge">Full retirement age (66 to 67)</label><input type="number" id="fullRetirementAge" value="67" min="66" max="67" step="0.083333"></div></div>
+      <div class="form-row"><div class="form-group"><label for="earlyAge">Early claiming age</label><input type="number" id="earlyAge" value="62" min="62" max="67" step="0.083333"></div><div class="form-group"><label for="delayedAge">Delayed claiming age</label><input type="number" id="delayedAge" value="70" min="65" max="70" step="0.083333"></div></div>
+      <div class="form-row"><div class="form-group"><label for="colaPercent">Annual COLA for cumulative totals (%)</label><input type="number" id="colaPercent" value="0" min="0" max="15" step="0.1"></div></div>
+      <p style="font-size:12px;color:var(--muted);line-height:1.6">Monthly benefit cards stay in base-year dollars. When COLA is above zero, the cumulative totals apply the same assumed annual increase to all three strategies beginning at age 62.</p>
+      <button class="btn btn-block" onclick="calculateSocialSecurity()" style="margin-top:8px">Compare Claiming Ages</button>
+    </div>
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:780px">
+      <div class="result-num" id="delayedMonthlyBenefit">$2,480</div><div class="result-label">delayed monthly benefit in base-year dollars, before modeled COLAs</div>
+      <div class="result-grid"><div class="result-item"><div class="ri-val" id="earlyMonthlyBenefit">$1,400</div><div class="ri-label">Early Benefit (Base Dollars)</div></div><div class="result-item"><div class="ri-val" id="fraMonthlyBenefit">$2,000</div><div class="ri-label">FRA Benefit (Base Dollars)</div></div><div class="result-item"><div class="ri-val" id="earlyVsFra">Age 78.7</div><div class="ri-label">FRA Catches Early</div></div><div class="result-item"><div class="ri-val" id="fraVsDelayed">Age 82.5</div><div class="ri-label">Delayed Catches FRA</div></div><div class="result-item"><div class="ri-val" id="earlyVsDelayed">Age 80.4</div><div class="ri-label">Delayed Catches Early</div></div></div>
+    </div>
+    <div class="card" style="max-width:780px;margin-top:18px;overflow-x:auto"><h3 style="font-size:17px;margin-bottom:12px">Cumulative benefits by longevity</h3><table class="data-table" style="width:100%"><thead><tr><th>Through age</th><th>Claim early</th><th>Claim at FRA</th><th>Claim later</th></tr></thead><tbody id="benefitRows"></tbody></table></div>
+  </section>
+  <section style="margin-top:40px"><h2>How the Simplified Benefit Adjustments Work</h2><p style="color:var(--muted);font-size:14px;line-height:1.8">Before full retirement age, the retirement benefit is reduced by 5/9 of 1% for each of the first 36 months and 5/12 of 1% for each additional month. After full retirement age, this calculator uses an 8% annual delayed retirement credit, prorated monthly, for people born in 1943 or later. Delayed credits stop at age 70.</p><div class="highlight-box"><h4>Break-even is not a recommendation</h4><p>A break-even age answers one narrow question: when does one stream of cumulative checks overtake another? It does not value insurance against living a very long time, survivor benefits, immediate cash needs, work rules, taxes, Medicare premiums, investment returns, or peace of mind.</p></div></section>
+  <section style="margin-top:40px"><h2>Important Exclusions</h2><ul style="color:var(--muted);font-size:14px;line-height:1.9;padding-left:20px"><li>No federal or state income tax, earnings test, Medicare premium, or benefit taxation calculation.</li><li>No spouse, divorced-spouse, survivor, disability, family-maximum, windfall, or government-pension analysis.</li><li>No investment return on earlier payments and no discounting of future payments.</li><li>The COLA field applies one uniform annual assumption from age 62 to all three claiming streams. The displayed monthly cards remain in base-year dollars; actual cost-of-living adjustments change and are not guaranteed.</li><li>The model assumes all delayed credits earned through the selected claiming age are reflected immediately. For some claims before age 70, SSA may not apply part of the current-year delayed credit until the following January.</li><li>Your Social Security Statement estimate and birth date should be used for a real decision.</li></ul></section>
+  <section style="margin-top:40px"><h2>Frequently Asked Questions</h2><div style="margin-top:16px"><details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600">Is claiming at 70 always best?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">No. Delaying increases the monthly amount, but a person gives up checks while waiting. Health, household income, survivor planning, work, and liquidity can change the decision.</div></details><details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">Why is the age-62 reduction about 30% when FRA is 67?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">Claiming 60 months early includes 36 months reduced at 5/9 of 1% and 24 additional months reduced at 5/12 of 1%, for a total reduction of about 30%.</div></details><details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">Where do I find my full-retirement-age estimate?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">Use your official Social Security Statement or my Social Security account. The estimate can change with future covered earnings.</div></details></div></section>
+  <section style="margin-top:40px"><h2>Official Sources and Related Tools</h2><p style="color:var(--muted);font-size:14px;line-height:1.8">Check the SSA pages on <a href="https://www.ssa.gov/benefits/retirement/planner/agereduction.html" rel="noopener">early retirement reductions</a> and <a href="https://www.ssa.gov/benefits/retirement/planner/delayret.html" rel="noopener">delayed retirement credits</a>. Use the <a href="retirement-calculator.html">Retirement Calculator</a> to place benefits in a broader savings plan. This educational estimate is not Social Security, tax, legal, or investment advice.</p></section>
+</main>
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>
+function breakEvenText(value){return value==null?"No crossover":"Age "+value.toFixed(1);}
+function calculateSocialSecurity(){
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var output=NumbrlyCalculators.calculateSocialSecurityBreakEven({
+      monthlyBenefitAtFRA:read("monthlyBenefitAtFRA","Monthly benefit at full retirement age"),
+      fullRetirementAge:read("fullRetirementAge","Full retirement age"),
+      earlyAge:read("earlyAge","Early claiming age"),
+      delayedAge:read("delayedAge","Delayed claiming age"),
+      colaPercent:read("colaPercent","COLA")
+    });
+    document.getElementById("earlyMonthlyBenefit").textContent=NumbrlyCalculatorUI.money(output.earlyMonthlyBenefit);
+    document.getElementById("fraMonthlyBenefit").textContent=NumbrlyCalculatorUI.money(output.fraMonthlyBenefit);
+    document.getElementById("delayedMonthlyBenefit").textContent=NumbrlyCalculatorUI.money(output.delayedMonthlyBenefit);
+    document.getElementById("earlyVsFra").textContent=breakEvenText(output.breakEvenEarlyVsFRA);
+    document.getElementById("fraVsDelayed").textContent=breakEvenText(output.breakEvenFRAVsDelayed);
+    document.getElementById("earlyVsDelayed").textContent=breakEvenText(output.breakEvenEarlyVsDelayed);
+    var body=document.getElementById("benefitRows");body.textContent="";
+    output.comparisonRows.forEach(function(row){var tr=document.createElement("tr");[row.age,NumbrlyCalculatorUI.money(row.earlyTotal),NumbrlyCalculatorUI.money(row.fraTotal),NumbrlyCalculatorUI.money(row.delayedTotal)].forEach(function(value){var td=document.createElement("td");td.textContent=value;tr.appendChild(td);});body.appendChild(tr);});
+    NumbrlyCalculatorUI.showResult();
+  });
+}
+(function(){var ids=document.querySelectorAll("input[id]"),key="Numbrly_social_security";try{var saved=JSON.parse(localStorage.getItem(key)||"{}");ids.forEach(function(el){if(saved[el.id]!==undefined)el.value=saved[el.id];});}catch(e){}ids.forEach(function(el){el.addEventListener("input",function(){var data={};ids.forEach(function(x){data[x.id]=x.value;});try{localStorage.setItem(key,JSON.stringify(data));}catch(e){}});});document.addEventListener("DOMContentLoaded",calculateSocialSecurity);})();
+</script>
+</body>
+</html>

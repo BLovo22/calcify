@@ -40,6 +40,7 @@
     "rent-or-buy-analysis"
   ],
   "recommendedCalculators": [
+    "emergency-fund-calculator",
     "savings-goal-calculator"
   ]
 }

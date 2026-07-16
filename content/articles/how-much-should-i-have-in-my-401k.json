@@ -121,6 +121,8 @@
     }
   ],
   "recommendedCalculators": [
+    "401k-employer-match-calculator",
+    "investment-fee-calculator",
     "savings-goal-calculator",
     "retirement-calculator",
     "compound-interest-calculator"

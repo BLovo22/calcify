@@ -90,11 +90,11 @@
   <section>
     <div class="card" style="max-width:640px">
       <div class="form-row"><div class="form-group"><label for="initial">Initial Investment ($)</label><input type="number" id="initial" value="10000" min="0" step="500"></div><div class="form-group"><label for="monthly">Monthly Contribution ($)</label><input type="number" id="monthly" value="500" min="0" step="50"></div></div>
-      <div class="form-row"><div class="form-group"><label for="returnRate">Annual Return (%)</label><input type="number" id="returnRate" value="8" min="0.1" max="50" step="0.1"></div><div class="form-group"><label for="years">Years to Grow</label><input type="number" id="years" value="30" min="1" max="60" step="1"></div></div>
+      <div class="form-row"><div class="form-group"><label for="returnRate">Annual Return (%)</label><input type="number" id="returnRate" value="8" min="0" max="50" step="0.1"></div><div class="form-group"><label for="years">Years to Grow</label><input type="number" id="years" value="30" min="1" max="60" step="1"></div></div>
       <div class="form-row"><div class="form-group"><label for="frequency">Compound Frequency</label><select id="frequency"><option value="12" selected>Monthly</option><option value="4">Quarterly</option><option value="1">Annually</option></select></div></div>
       <button class="btn btn-block" onclick="calcCompound()" style="margin-top:8px">Calculate Growth</button>
     </div>
-    <div class="result" id="result" style="max-width:640px">
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:640px">
       <div class="result-num" id="futureValue"></div>
       <div class="result-label">total value at the end of the period</div>
       <div class="result-grid">
@@ -102,6 +102,12 @@
         <div class="result-item"><div class="ri-val" id="totalEarnings"></div><div class="ri-label">Total Earnings</div></div>
         <div class="result-item"><div class="ri-val" id="earningsPct">0%</div><div class="ri-label">From Earnings</div></div>
       </div>
+    </div>
+    <div id="compoundDetails" style="max-width:760px;margin-top:24px;display:none">
+      <div style="font-size:16px;font-weight:700;margin-bottom:12px">Starting Early Comparison</div>
+      <div id="comparisonTable"></div>
+      <div style="font-size:16px;font-weight:700;margin:24px 0 12px">Year-by-Year Growth</div>
+      <div id="yearTable"></div>
     </div>
   </section>
 
@@ -131,7 +137,7 @@
       <div class="card" style="padding:20px"><div class="tag">&#x23F0; Visualize Time</div><p style="font-size:13px;line-height:1.7">See how 10 extra years of compounding can add hundreds of thousands to your nest egg.</p></div>
       <div class="card" style="padding:20px"><div class="tag">&#x1F4CA; Compare Scenarios</div><p style="font-size:13px;line-height:1.7">Adjust contributions, returns, and time periods to find the path that hits your goal.</p></div>
       <div class="card" style="padding:20px"><div class="tag">&#x1F4A1; Understand Earnings</div><p style="font-size:13px;line-height:1.7">See what percentage of your final balance comes from your own contributions vs. market growth.</p></div>
-      <div class="card" style="padding:20px"><div class="tag">&#x1F510; 100% Private</div><p style="font-size:13px;line-height:1.7">All calculations run in your browser. No data is ever sent to a server.</p></div>
+      <div class="card" style="padding:20px"><div class="tag">&#x1F510; Browser-Based</div><p style="font-size:13px;line-height:1.7">Calculator inputs are processed on this device and are not sent to Numbrly. Advertising services may process separate usage data.</p></div>
     </div>
   </section>
 
@@ -185,15 +191,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -211,65 +218,42 @@
     </div>
   </div>
 </footer>
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
 <script>
-function calcCompound(){
-  var initial = parseFloat(document.getElementById('initial').value) || 10000;
-  var monthly = parseFloat(document.getElementById('monthly').value) || 500;
-  var rate = parseFloat(document.getElementById('returnRate').value) || 8;
-  var years = parseInt(document.getElementById('years').value) || 30;
-  var freq = parseInt(document.getElementById('frequency').value) || 12;
-  var periods = years * freq;
-  var periodRate = rate / 100 / freq;
-  var monthlyPerPeriod = monthly * (12 / freq);
-  // Future value with regular contributions
-  var fv = initial * Math.pow(1 + periodRate, periods);
-  if(periodRate > 0){
-    fv += monthlyPerPeriod * ((Math.pow(1 + periodRate, periods) - 1) / periodRate);
-  } else {
-    fv += monthlyPerPeriod * periods;
-  }
-  var totalContrib = initial + monthly * 12 * years;
-  var earnings = fv - totalContrib;
-  var fmt = function(v){return '$'+v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');};
-  document.getElementById('finalAmt').textContent = fmt(fv);
-  document.getElementById('totalContrib').textContent = fmt(totalContrib);
-  document.getElementById('totalEarnings').textContent = fmt(earnings);
-  document.getElementById('multiplier').textContent = (fv / totalContrib).toFixed(1) + 'x';
-  document.getElementById('result').classList.add('show');
-  // Comparison: 25 vs 35
-  var age25 = calcFVAtAge(25, 65, 500, 8);
-  var age35 = calcFVAtAge(35, 65, 500, 8);
-  document.getElementById('comparisonTable').innerHTML = 
-    '<table class="data-table"><thead><tr><th>Investor</th><th>Starts At</th><th>Monthly</th><th>Years Contributing</th><th>Total Invested</th><th>Balance at 65</th></tr></thead><tbody>'+
-    '<tr><td><strong>Alex</strong></td><td>Age 25</td><td>$500</td><td>40</td><td>'+fmt(500*12*40)+'</td><td><strong>'+fmt(age25)+'</strong></td></tr>'+
-    '<tr><td>Jordan</td><td>Age 35</td><td>$500</td><td>30</td><td>'+fmt(500*12*30)+'</td><td>'+fmt(age35)+'</td></tr>'+
-    '<tr style="background:var(--green-light);font-weight:700"><td>Difference</td><td colspan="3">Starting 10 years earlier</td><td></td><td style="color:var(--green)">+'+fmt(age25-age35)+'</td></tr>'+
-    '</tbody></table>';
-  // Year by year
-  var yrTable = '<table class="data-table"><thead><tr><th>Year</th><th>Balance</th><th>Contributions</th><th>Earnings</th></tr></thead><tbody>';
-  var bal = initial, totalC = initial;
-  for(var y = 1; y <= years; y++){
-    for(var p = 0; p < freq; p++){
-      bal += monthlyPerPeriod;
-      totalC += monthlyPerPeriod;
-      bal *= (1 + periodRate);
-    }
-    yrTable += '<tr><td>'+y+'</td><td>'+fmt(bal)+'</td><td>'+fmt(totalC)+'</td><td>'+fmt(bal - totalC)+'</td></tr>';
-  }
-  yrTable += '</tbody></table>';
-  document.getElementById('yearTable').innerHTML = yrTable;
-  document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+function calcCompound(shouldScroll){
+  return NumbrlyCalculatorUI.run(function(){
+    var result = NumbrlyCalculators.compoundInterest({
+      initial: NumbrlyCalculatorUI.readNumber("initial", "Initial investment"),
+      monthlyContribution: NumbrlyCalculatorUI.readNumber("monthly", "Monthly contribution"),
+      annualRate: NumbrlyCalculatorUI.readNumber("returnRate", "Annual return"),
+      years: NumbrlyCalculatorUI.readNumber("years", "Years to grow", {integer:true}),
+      frequency: NumbrlyCalculatorUI.readNumber("frequency", "Compound frequency", {integer:true})
+    });
+    var fmt = NumbrlyCalculatorUI.money;
+    document.getElementById("futureValue").textContent = fmt(result.finalBalance);
+    document.getElementById("totalContrib").textContent = fmt(result.totalContributions);
+    document.getElementById("totalEarnings").textContent = fmt(result.totalEarnings);
+    document.getElementById("earningsPct").textContent = result.earningsPercent.toFixed(0) + "%";
+
+    var age25 = NumbrlyCalculators.compoundInterest({initial:0,monthlyContribution:500,annualRate:8,years:40,frequency:12});
+    var age35 = NumbrlyCalculators.compoundInterest({initial:0,monthlyContribution:500,annualRate:8,years:30,frequency:12});
+    document.getElementById("comparisonTable").innerHTML =
+      '<table class="data-table"><thead><tr><th>Investor</th><th>Starts At</th><th>Monthly</th><th>Years Contributing</th><th>Total Invested</th><th>Balance at 65</th></tr></thead><tbody>'+
+      '<tr><td><strong>Alex</strong></td><td>Age 25</td><td>$500</td><td>40</td><td>'+fmt(age25.totalContributions)+'</td><td><strong>'+fmt(age25.finalBalance)+'</strong></td></tr>'+
+      '<tr><td>Jordan</td><td>Age 35</td><td>$500</td><td>30</td><td>'+fmt(age35.totalContributions)+'</td><td>'+fmt(age35.finalBalance)+'</td></tr>'+
+      '<tr style="background:var(--green-light);font-weight:700"><td>Difference</td><td colspan="3">Starting 10 years earlier</td><td></td><td style="color:var(--green)">+'+fmt(age25.finalBalance-age35.finalBalance)+'</td></tr>'+
+      '</tbody></table>';
+
+    var rows = result.yearly.map(function(year){
+      return '<tr><td>'+year.year+'</td><td>'+fmt(year.balance)+'</td><td>'+fmt(year.contributions)+'</td><td>'+fmt(year.earnings)+'</td></tr>';
+    }).join("");
+    document.getElementById("yearTable").innerHTML = '<table class="data-table"><thead><tr><th>Year</th><th>Balance</th><th>Contributions</th><th>Earnings</th></tr></thead><tbody>'+rows+'</tbody></table>';
+    document.getElementById("compoundDetails").style.display = "block";
+    NumbrlyCalculatorUI.showResult();
+    if(shouldScroll !== false) document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
 }
-function calcFVAtAge(startAge, endAge, monthly, annualRate){
-  var yrs = endAge - startAge;
-  var r = annualRate/100/12;
-  var n = yrs * 12;
-  if(r === 0) return monthly * n;
-  return monthly * ((Math.pow(1+r,n)-1)/r) * (1+r);
-}
-document.addEventListener('DOMContentLoaded',function(){calcCompound();});
-</script>
-<script>
 </script>
 <script>
 (function(){
@@ -288,7 +272,7 @@ document.addEventListener('DOMContentLoaded',function(){calcCompound();});
     });
   });
 })();
-document.addEventListener('DOMContentLoaded',function(){calcCompound();});
+document.addEventListener('DOMContentLoaded',function(){calcCompound(false);});
 </script>
 </body>
 </html>

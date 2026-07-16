@@ -44,13 +44,13 @@
 <div class="breadcrumb"><a href="index.html">Numbrly</a> / <a href="index.html#calculators">Calculators</a> / Salary to Hourly Calculator</div>
 <section style="margin-top:20px"><h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F4B5; Salary to Hourly Calculator</h1><p class="sec-desc" style="font-size:15px;max-width:700px">Convert your annual salary to an hourly rate instantly. See what you truly earn per hour, day, week, and month — and how overtime or a raise changes the picture.</p></section>
 <section><div class="card" style="max-width:640px"><div class="form-row"><div class="form-group"><label for="salary">Annual Salary ($)</label><input type="number" id="salary" value="60000" min="1" step="1000"></div><div class="form-group"><label for="hours">Hours Worked Per Week</label><input type="number" id="hours" value="40" min="1" max="80" step="1"></div></div><div class="form-row"><div class="form-group"><label for="weeks">Weeks Worked Per Year</label><input type="number" id="weeks" value="52" min="1" max="52" step="1"></div></div><button class="btn btn-block" onclick="calcSalaryToHourly()" style="margin-top:8px">Calculate Rate</button></div>
-<div class="result" id="result" style="max-width:640px"><div class="result-num" id="stHr">$28.85</div><div class="result-label">per hour</div><div class="result-grid"><div class="result-item"><div class="ri-val" id="stDay">$231</div><div class="ri-label">Per Day</div></div><div class="result-item"><div class="ri-val" id="stWeek">$1,154</div><div class="ri-label">Per Week</div></div><div class="result-item"><div class="ri-val" id="stMonth">$5,000</div><div class="ri-label">Per Month</div></div></div></div></section>
+<div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:640px"><div class="result-num" id="stHr">$28.85</div><div class="result-label">per hour</div><div class="result-grid"><div class="result-item"><div class="ri-val" id="stDay">$231</div><div class="ri-label">Per Day</div></div><div class="result-item"><div class="ri-val" id="stWeek">$1,154</div><div class="ri-label">Per Week</div></div><div class="result-item"><div class="ri-val" id="stMonth">$5,000</div><div class="ri-label">Per Month</div></div></div></div></section>
 
 <section style="margin-top:40px"><h2>How to Use This Calculator</h2><ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px"><li><strong style="color:var(--text)">Enter Your Annual Salary</strong> — your gross (pre-tax) yearly income.</li><li><strong style="color:var(--text)">Enter Hours Per Week</strong> — 40 is standard full-time. Adjust if you work part-time or overtime.</li><li><strong style="color:var(--text)">Enter Weeks Per Year</strong> — 52 for year-round. Subtract vacation weeks if unpaid.</li><li><strong style="color:var(--text)">Click Calculate</strong> — see your hourly, daily, weekly, and monthly rates.</li></ol></section>
 
 <section style="margin-top:40px"><h2>Example: What Does a $60,000 Salary Really Mean?</h2><p style="color:var(--muted);font-size:14px;line-height:1.8">A job offer comes with a <strong style="color:var(--text)">$60,000 annual salary</strong>. But what is that per hour?</p><div class="highlight-box"><h4>&#x1F4B0; The Breakdown</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>Hourly rate (40 hrs/wk, 52 wks/yr): <strong style="color:var(--text)">$28.85/hour</strong></li><li>Daily rate (8 hours): <strong style="color:var(--text)">$231/day</strong></li><li>Weekly: <strong style="color:var(--text)">$1,154/week</strong></li><li>Monthly: <strong style="color:var(--text)">$5,000/month</strong></li><li>After ~25% taxes: ~<strong style="color:var(--text)">$21.63/hour</strong> take-home</li></ul></div></section>
 
-<section style="margin-top:40px"><h2>Why Use This Calculator?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px"><div class="card" style="padding:20px"><div class="tag">&#x26A1; Instant Conversion</div><p style="font-size:13px;line-height:1.7">See hourly, daily, weekly, and monthly rates in one click.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4CB; Compare Offers</div><p style="font-size:13px;line-height:1.7">Compare salaried vs. hourly job offers apples-to-apples.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4C6; Adjust Hours</div><p style="font-size:13px;line-height:1.7">See how overtime or a reduced schedule impacts your rate.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F510; 100% Private</div><p style="font-size:13px;line-height:1.7">No data leaves your browser.</p></div></div></section>
+<section style="margin-top:40px"><h2>Why Use This Calculator?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px"><div class="card" style="padding:20px"><div class="tag">&#x26A1; Instant Conversion</div><p style="font-size:13px;line-height:1.7">See hourly, daily, weekly, and monthly rates in one click.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4CB; Compare Offers</div><p style="font-size:13px;line-height:1.7">Compare salaried vs. hourly job offers apples-to-apples.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4C6; Adjust Hours</div><p style="font-size:13px;line-height:1.7">See how overtime or a reduced schedule impacts your rate.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F510; Browser-Based</div><p style="font-size:13px;line-height:1.7">Calculator inputs stay on this device; advertising services may process separate usage data.</p></div></div></section>
 
 <section style="margin-top:40px"><h2>Common Mistakes</h2><div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px"><p><strong style="color:var(--text)">&#x274C; Forgetting this is gross pay.</strong> Your take-home is 20-35% lower after taxes, insurance, and 401k. This calculator shows pre-tax earnings.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Ignoring unpaid time off.</strong> If you get 2 weeks unpaid vacation, you actually work 50 weeks/year. Adjust the weeks field for accuracy.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Not counting commute time.</strong> If you commute 1 hour each way, your effective workday is 10 hours, not 8. This significantly lowers your true hourly rate.</p></div></section>
 
@@ -73,15 +73,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -99,6 +100,21 @@
     </div>
   </div>
 </footer>
-<script>function calcSalaryToHourly(){var sal=parseFloat(document.getElementById("salary").value)||60000;var hrs=parseFloat(document.getElementById("hours").value)||40;var wks=parseFloat(document.getElementById("weeks").value)||52;var hourly=sal/(hrs*wks);document.getElementById("stHr").textContent="\$"+hourly.toFixed(2);document.getElementById("stDay").textContent="\$"+(hourly*8).toFixed(0);document.getElementById("stWeek").textContent="\$"+(hourly*hrs).toFixed(0);document.getElementById("stMonth").textContent="\$"+(sal/12).toFixed(0);document.getElementById("result").classList.add("show");}</script>
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>function calcSalaryToHourly(){
+  return NumbrlyCalculatorUI.run(function(){
+    var result=NumbrlyCalculators.salaryToHourly({
+      salary:NumbrlyCalculatorUI.readNumber("salary","Annual salary"),
+      hoursPerWeek:NumbrlyCalculatorUI.readNumber("hours","Hours worked per week"),
+      weeksPerYear:NumbrlyCalculatorUI.readNumber("weeks","Weeks worked per year")
+    });
+    document.getElementById("stHr").textContent=NumbrlyCalculatorUI.money(result.hourly,2);
+    document.getElementById("stDay").textContent=NumbrlyCalculatorUI.money(result.daily);
+    document.getElementById("stWeek").textContent=NumbrlyCalculatorUI.money(result.weekly);
+    document.getElementById("stMonth").textContent=NumbrlyCalculatorUI.money(result.monthly);
+    NumbrlyCalculatorUI.showResult();
+  });
+}</script>
 <script>(function(){var pg=location.pathname.split("/").pop()||"salary";var ins=document.querySelectorAll("input[id],select[id]");try{var sv=JSON.parse(localStorage.getItem("Numbrly_"+pg)||"{}");ins.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(x){}ins.forEach(function(e){e.addEventListener("input",function(){try{var a={};ins.forEach(function(x){a[x.id]=x.value;});localStorage.setItem("Numbrly_"+pg,JSON.stringify(a));}catch(y){}});});})();document.addEventListener("DOMContentLoaded",function(){calcSalaryToHourly();});</script>
 </body></html>

@@ -126,7 +126,7 @@
       <button class="btn btn-block" onclick="calcPayoff()" style="margin-top:8px">Calculate Payoff</button>
     </div>
 
-    <div class="result" id="result" style="max-width:720px">
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:720px">
       <div class="result-num" id="newPayoff">0 years</div>
       <div class="result-label">new estimated payoff timeline</div>
       <div class="result-grid">
@@ -147,7 +147,7 @@
         <h4>Payoff Comparison</h4>
         <div id="comparisonText" style="color:var(--muted);font-size:13px;line-height:1.8"></div>
       </div>
-      <div id="warningBox" style="display:none;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-top:14px;font-size:13px;line-height:1.6"></div>
+      <div id="warningBox" role="alert" aria-live="assertive" style="display:none;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-top:14px;font-size:13px;line-height:1.6"></div>
     </div>
   </section>
 
@@ -238,15 +238,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -265,73 +266,56 @@
   </div>
 </footer>
 
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
 <script>
-function fmtMoney(value) {
-  return "$" + Math.max(0, value).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 function fmtYears(months) {
-  if (!isFinite(months) || months <= 0) return "0 months";
+  if (!Number.isFinite(months) || months <= 0) return "0 months";
   var years = Math.floor(months / 12);
   var rem = months % 12;
-  if (years === 0) return rem + " months";
+  if (years === 0) return rem + (rem === 1 ? " month" : " months");
   if (rem === 0) return years + (years === 1 ? " year" : " years");
   return years + " yr " + rem + " mo";
 }
-function payoffScenario(balance, annualRate, payment, lumpSum, maxMonths) {
-  var bal = Math.max(balance - lumpSum, 0);
-  var monthlyRate = annualRate / 100 / 12;
-  var months = 0;
-  var interest = 0;
-  if (bal <= 0) return {months: 0, interest: 0, paid: lumpSum};
-  while (bal > 0.01 && months < maxMonths) {
-    var intPart = bal * monthlyRate;
-    var principal = payment - intPart;
-    if (principal <= 0) return {months: Infinity, interest: Infinity, paid: Infinity};
-    if (principal > bal) principal = bal;
-    bal -= principal;
-    interest += intPart;
-    months++;
-  }
-  return {months: months, interest: interest, paid: balance + interest};
+function scenarioLabel(scenario) {
+  return scenario.paidOff
+    ? fmtYears(scenario.months)
+    : "Not paid off after " + fmtYears(scenario.months) + " (" + NumbrlyCalculatorUI.money(scenario.remainingBalance) + " remaining)";
 }
 function calcPayoff() {
-  var balance = parseFloat(document.getElementById("balance").value) || 320000;
-  var rate = parseFloat(document.getElementById("rate").value) || 0;
-  var years = parseFloat(document.getElementById("yearsRemaining").value) || 30;
-  var basePayment = parseFloat(document.getElementById("basePayment").value) || 2022;
-  var extraMonthly = parseFloat(document.getElementById("extraMonthly").value) || 0;
-  var lumpSum = parseFloat(document.getElementById("lumpSum").value) || 0;
-  var maxMonths = Math.ceil(years * 12 * 2);
-  var baseline = payoffScenario(balance, rate, basePayment, 0, maxMonths);
-  var accelerated = payoffScenario(balance, rate, basePayment + extraMonthly, lumpSum, maxMonths);
-  var warning = document.getElementById("warningBox");
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var extraMonthly=read("extraMonthly","Extra monthly payment");
+    var lumpSum=read("lumpSum","One-time extra payment");
+    var result=NumbrlyCalculators.mortgagePayoff({
+      balance:read("balance","Current mortgage balance"),
+      annualRate:read("rate","Interest rate"),
+      yearsRemaining:read("yearsRemaining","Years remaining"),
+      basePayment:read("basePayment","Current monthly payment"),
+      extraMonthly:extraMonthly,
+      lumpSum:lumpSum
+    });
+    var baseline=result.baseline;
+    var accelerated=result.accelerated;
+    var warning=document.getElementById("warningBox");
+    var warnings=[];
+    if(!baseline.paidOff) warnings.push("Current plan: "+baseline.reason+" "+NumbrlyCalculatorUI.money(baseline.remainingBalance)+" remains.");
+    if(!accelerated.paidOff) warnings.push("Accelerated plan: "+accelerated.reason+" "+NumbrlyCalculatorUI.money(accelerated.remainingBalance)+" remains.");
+    warning.textContent=warnings.join(" ");
+    warning.style.display=warnings.length?"block":"none";
 
-  if (!isFinite(baseline.months) || !isFinite(accelerated.months)) {
-    warning.style.display = "block";
-    warning.textContent = "The payment is too low to cover monthly interest. Increase the current monthly payment or lower the rate.";
-    document.getElementById("result").classList.add("show");
-    document.getElementById("newPayoff").textContent = "Payment too low";
-    document.getElementById("interestSaved").textContent = "$0";
-    document.getElementById("timeSaved").textContent = "0 months";
-    document.getElementById("newTotalInterest").textContent = "$0";
-    document.getElementById("comparisonText").innerHTML = "";
-    return;
-  }
-
-  var interestSaved = Math.max(baseline.interest - accelerated.interest, 0);
-  var monthsSaved = Math.max(baseline.months - accelerated.months, 0);
-  warning.style.display = "none";
-  document.getElementById("newPayoff").textContent = fmtYears(accelerated.months);
-  document.getElementById("interestSaved").textContent = fmtMoney(interestSaved);
-  document.getElementById("timeSaved").textContent = fmtYears(monthsSaved);
-  document.getElementById("newTotalInterest").textContent = fmtMoney(accelerated.interest);
-  document.getElementById("comparisonText").innerHTML =
-    "<div>Current plan payoff: <strong style=\"color:var(--text)\">" + fmtYears(baseline.months) + "</strong></div>" +
-    "<div>Accelerated payoff: <strong style=\"color:var(--text)\">" + fmtYears(accelerated.months) + "</strong></div>" +
-    "<div>Current plan interest: <strong style=\"color:var(--text)\">" + fmtMoney(baseline.interest) + "</strong></div>" +
-    "<div>Accelerated interest: <strong style=\"color:var(--text)\">" + fmtMoney(accelerated.interest) + "</strong></div>" +
-    "<div style=\"margin-top:6px\">Extra payment strategy: <strong style=\"color:var(--text)\">" + fmtMoney(extraMonthly) + "/month plus " + fmtMoney(lumpSum) + " one time</strong></div>";
-  document.getElementById("result").classList.add("show");
+    document.getElementById("newPayoff").textContent=scenarioLabel(accelerated);
+    document.getElementById("interestSaved").textContent=result.interestSaved==null?"N/A":NumbrlyCalculatorUI.money(result.interestSaved);
+    document.getElementById("timeSaved").textContent=result.monthsSaved==null?"N/A":fmtYears(result.monthsSaved);
+    document.getElementById("newTotalInterest").textContent=NumbrlyCalculatorUI.money(accelerated.totalInterest);
+    document.getElementById("comparisonText").innerHTML =
+      "<div>Current plan payoff: <strong style=\"color:var(--text)\">"+scenarioLabel(baseline)+"</strong></div>"+
+      "<div>Accelerated payoff: <strong style=\"color:var(--text)\">"+scenarioLabel(accelerated)+"</strong></div>"+
+      "<div>Current plan interest through simulation: <strong style=\"color:var(--text)\">"+NumbrlyCalculatorUI.money(baseline.totalInterest)+"</strong></div>"+
+      "<div>Accelerated interest through simulation: <strong style=\"color:var(--text)\">"+NumbrlyCalculatorUI.money(accelerated.totalInterest)+"</strong></div>"+
+      "<div style=\"margin-top:6px\">Extra payment strategy: <strong style=\"color:var(--text)\">"+NumbrlyCalculatorUI.money(extraMonthly)+"/month plus "+NumbrlyCalculatorUI.money(lumpSum)+" one time</strong></div>";
+    NumbrlyCalculatorUI.showResult();
+  });
 }
 (function(){
   var pg = location.pathname.split("/").pop() || "mortgage-payoff";

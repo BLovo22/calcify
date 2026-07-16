@@ -40,7 +40,7 @@
       {{INPUTS}}
       <button class="btn btn-block" onclick="{{CALC_FN}}()" style="margin-top:8px">Calculate</button>
     </div>
-    <div class="result" id="result" style="max-width:640px">
+    <div class="result" id="result" style="max-width:640px" role="status" aria-live="polite" aria-atomic="true">
       {{RESULT_HTML}}
     </div>
     {{SCHEDULE_HTML}}

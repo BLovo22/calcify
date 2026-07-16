@@ -41,6 +41,8 @@
   ],
   "recommendedCalculators": [
     "mortgage-calculator",
+    "mortgage-points-calculator",
+    "mortgage-refinance-calculator",
     "loan-calculator"
   ]
 }

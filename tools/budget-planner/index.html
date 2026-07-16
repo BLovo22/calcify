@@ -59,17 +59,18 @@
   .privacy-note{border:1px solid #bfdbfe;background:#eff6ff;border-radius:var(--radius);padding:16px 18px;color:#1e3a8a;font-size:13px;line-height:1.7}
   .report-area{background:var(--bg);border-radius:var(--radius);padding:0}
   .analytics-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,360px);gap:20px;align-items:start}
-  .chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-  .chart-card{min-width:0}
+  .chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px}
+  .chart-card{min-width:0;container-type:inline-size}
   .chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
   .chart-head h2{font-size:18px;font-weight:800;letter-spacing:-.2px;line-height:1.25}
   .chart-head p{font-size:12px;color:var(--muted);line-height:1.5;margin-top:3px}
   .chart-wrap{position:relative;width:100%;min-height:240px}
   .chart-wrap canvas{width:100%;height:240px;display:block}
-  .pie-chart-wrap{width:min(100%,280px);aspect-ratio:1/1;min-height:0;margin:0 auto}
+  .pie-chart-wrap{width:min(100%,300px);aspect-ratio:1/1;min-height:0;margin:8px auto 0}
   .pie-chart-wrap canvas{width:100%;height:100%;display:block}
-  .pie-legend{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin-top:14px}
+  .pie-legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,156px),1fr));gap:10px 14px;margin-top:18px}
   .legend-item{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;min-width:0}
+  .legend-item span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .legend-dot{width:10px;height:10px;border-radius:999px;flex:0 0 auto}
   .bar-list{display:grid;gap:12px;margin-top:4px}
   .bar-row{display:grid;gap:6px}
@@ -132,6 +133,10 @@
     .chart-wrap canvas{height:220px}
     .pie-chart-wrap{width:min(100%,260px);min-height:0}
     .pie-chart-wrap canvas{height:100%}
+  }
+  @container (max-width:360px){
+    .pie-legend{grid-template-columns:1fr}
+    .pie-chart-wrap{width:min(100%,270px)}
   }
 </style>
 </head>
@@ -236,13 +241,13 @@
       </div>
 
       <div class="privacy-note">
-        <strong>Your budget data is saved only in your browser.</strong><br>
-        Numbrly does not upload or store your financial information.
+        <strong>Your calculator values stay on this device.</strong><br>
+        They are saved in browser storage and are not sent to Numbrly. Advertising services may process separate usage data.
       </div>
     </div>
 
     <aside class="budget-summary">
-      <div class="result show" style="margin-top:0">
+      <div class="result show" style="margin-top:0" role="status" aria-live="polite" aria-atomic="true">
         <div class="budget-score-ring" id="scoreRing">
           <div class="budget-score-inner">
             <div class="budget-score-value" id="budgetScore">0</div>
@@ -433,15 +438,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -460,6 +466,7 @@
   </div>
 </footer>
 
+<script src="../../assets/calculators.js"></script>
 <script>
 var BUDGET_STORAGE_KEY = "numbrly_budget_planner_data";
 var SNAPSHOT_STORAGE_KEY = "numbrly_budget_planner_snapshots";
@@ -539,11 +546,23 @@ function cssColor(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
-function resizeCanvas(canvas) {
+function resizeCanvas(canvas, options) {
+  options = options || {};
   var rect = canvas.getBoundingClientRect();
   var dpr = window.devicePixelRatio || 1;
-  var width = Math.max(260, Math.round(rect.width || canvas.clientWidth || canvas.width));
-  var height = Math.max(220, Math.round(rect.height || canvas.clientHeight || 240));
+  var measuredWidth = Math.round(rect.width || canvas.clientWidth || canvas.width);
+  var measuredHeight = Math.round(rect.height || canvas.clientHeight || canvas.height || 240);
+  var width;
+  var height;
+  if (options.square) {
+    var side = Math.min(measuredWidth || measuredHeight, measuredHeight || measuredWidth);
+    side = Math.max(options.minSize || 180, Math.round(side || options.minSize || 180));
+    width = side;
+    height = side;
+  } else {
+    width = Math.max(260, measuredWidth);
+    height = Math.max(220, measuredHeight);
+  }
   if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -568,7 +587,7 @@ function getPieBreakdown() {
 function drawPieChart(progress) {
   var canvas = document.getElementById("expensePieChart");
   if (!canvas) return;
-  var chart = resizeCanvas(canvas);
+  var chart = resizeCanvas(canvas, { square: true, minSize: 180 });
   var ctx = chart.ctx;
   var width = chart.width;
   var height = chart.height;
@@ -587,7 +606,7 @@ function drawPieChart(progress) {
     return;
   }
 
-  var radius = Math.min(width, height) * 0.34;
+  var radius = Math.min(width, height) * 0.38;
   var cx = width / 2;
   var cy = height / 2;
   var angle = -Math.PI / 2;
@@ -602,7 +621,7 @@ function drawPieChart(progress) {
     angle += slice;
   });
   ctx.beginPath();
-  ctx.arc(cx, cy, radius * 0.58, 0, Math.PI * 2);
+  ctx.arc(cx, cy, radius * 0.56, 0, Math.PI * 2);
   ctx.fillStyle = card;
   ctx.fill();
   ctx.fillStyle = textColor;
@@ -1075,15 +1094,23 @@ function updateBudgetV2(income, expenses, remaining, needs, wants, plannedSaving
 }
 
 function calculateBudget() {
-  var income = incomeIds.reduce(function(sum, id) { return sum + num(id); }, 0);
-  var expenses = expenseIds.reduce(function(sum, id) { return sum + num(id); }, 0);
-  var remaining = income - expenses;
-  var needs = num("rent") + num("food") + num("transportation") + num("utilities") + num("insurance") + num("healthcare");
-  var wants = num("entertainment") + num("shopping") + num("other");
-  var plannedSavings = num("savings") + num("investments") + Math.max(remaining, 0);
-  var savingsRate = income > 0 ? plannedSavings / income * 100 : 0;
-  var rentRatio = income > 0 ? num("rent") / income * 100 : 100;
-  var expenseRatio = income > 0 ? expenses / income * 100 : 100;
+  var summary = NumbrlyCalculators.budgetSummary({
+    income: incomeIds.map(num),
+    expenses: expenseIds.map(num),
+    needs: ["rent","food","transportation","utilities","insurance","healthcare"].map(num),
+    wants: ["entertainment","shopping","other"].map(num),
+    savings: ["savings","investments"].map(num),
+    rent: num("rent")
+  });
+  var income = summary.income;
+  var expenses = summary.expenses;
+  var remaining = summary.remaining;
+  var needs = summary.needs;
+  var wants = summary.wants;
+  var plannedSavings = summary.plannedSavings;
+  var savingsRate = summary.savingsRate;
+  var rentRatio = summary.rentRatio;
+  var expenseRatio = summary.expenseRatio;
   var score = income > 0 ? Math.round(scoreSavingsRate(savingsRate) + scoreRentRatio(rentRatio) + scoreExpenseRatio(expenseRatio)) : 0;
 
   setText("incomeTotalMini", money(income));

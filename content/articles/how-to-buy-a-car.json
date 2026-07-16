@@ -55,6 +55,8 @@
     "how-much-should-i-save-each-month"
   ],
   "recommendedCalculators": [
+    "car-affordability-calculator",
+    "car-loan-interest-deduction-calculator",
     "loan-calculator",
     "savings-goal-calculator",
     "budget-planner"

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Affordability Calculator - True Monthly Cost | Numbrly</title>
+<meta name="description" content="Estimate how much car you can afford after the loan payment, sales tax, fees, insurance, fuel, and maintenance are included.">
+<meta property="og:title" content="Car Affordability Calculator - True Monthly Cost | Numbrly">
+<meta property="og:description" content="Reverse-calculate an affordable vehicle price from your take-home pay and complete monthly ownership costs.">
+<meta property="og:url" content="https://numbrly.cc/car-affordability-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://numbrly.cc/car-affordability-calculator.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="tailwind.css">
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Car Affordability Calculator","url":"https://numbrly.cc/car-affordability-calculator.html","description":"Estimate an affordable vehicle price based on take-home pay, financing, taxes, fees, and monthly ownership costs.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much of take-home pay should go to a car?","acceptedAnswer":{"@type":"Answer","text":"There is no universal percentage. Set a transportation cap that still leaves room for housing, debt, savings, and emergencies, then include every recurring ownership cost."}},{"@type":"Question","name":"Why is insurance included?","acceptedAnswer":{"@type":"Answer","text":"Insurance is a required and sometimes large ownership cost. Two similarly priced cars can have materially different premiums."}},{"@type":"Question","name":"Does a longer car loan make the car more affordable?","acceptedAnswer":{"@type":"Answer","text":"It lowers the scheduled payment but usually increases total interest and the time you risk owing more than the vehicle is worth."}}]}</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Calculators</a> / Car Affordability Calculator</div>
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F697; Car Affordability Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:760px">Start with the monthly transportation budget you can actually sustain. This calculator subtracts insurance, fuel, and maintenance, then reverse-calculates the maximum vehicle price your remaining payment budget can support.</p>
+  </section>
+
+  <section>
+    <div class="card" style="max-width:780px">
+      <div class="form-row">
+        <div class="form-group"><label for="monthlyTakeHome">Monthly take-home pay</label><input id="monthlyTakeHome" type="number" min="1" step="100" value="6000"></div>
+        <div class="form-group"><label for="targetBudgetPercent">Maximum transportation budget (% of take-home)</label><input id="targetBudgetPercent" type="number" min="1" max="100" step="0.5" value="15"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="downPayment">Cash down payment</label><input id="downPayment" type="number" min="0" step="250" value="5000"></div>
+        <div class="form-group"><label for="tradeIn">Net trade-in credit</label><input id="tradeIn" type="number" min="0" step="250" value="3000"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="apr">Auto loan APR (%)</label><input id="apr" type="number" min="0" max="40" step="0.1" value="7"></div>
+        <div class="form-group"><label for="termMonths">Loan term</label><select id="termMonths"><option value="36">36 months</option><option value="48">48 months</option><option value="60" selected>60 months</option><option value="72">72 months</option><option value="84">84 months</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="salesTaxPercent">Sales tax (%)</label><input id="salesTaxPercent" type="number" min="0" max="20" step="0.1" value="7"></div>
+        <div class="form-group"><label for="fees">Title, registration, and dealer fees</label><input id="fees" type="number" min="0" step="50" value="1200"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="monthlyInsurance">Monthly insurance</label><input id="monthlyInsurance" type="number" min="0" step="10" value="180"></div>
+        <div class="form-group"><label for="monthlyFuel">Monthly fuel or charging</label><input id="monthlyFuel" type="number" min="0" step="10" value="160"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="monthlyMaintenance">Monthly maintenance and repair reserve</label><input id="monthlyMaintenance" type="number" min="0" step="10" value="100"></div>
+      </div>
+      <button class="btn btn-block" type="button" onclick="runCarAffordability()">Calculate Affordable Car Price</button>
+    </div>
+
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:780px">
+      <div class="result-num" id="maxVehiclePrice">$0</div>
+      <div class="result-label" id="vehiclePriceLabel">estimated maximum vehicle selling price before tax and fees</div>
+      <div class="result-grid">
+        <div class="result-item"><div class="ri-val" id="loanPayment">$0</div><div class="ri-label">Loan Payment</div></div>
+        <div class="result-item"><div class="ri-val" id="totalMonthlyCost">$0</div><div class="ri-label">All-In Monthly Cost</div></div>
+        <div class="result-item"><div class="ri-val" id="budgetShare">0%</div><div class="ri-label">Take-Home Pay Share</div></div>
+        <div class="result-item"><div class="ri-val" id="maxLoan">$0</div><div class="ri-label">Maximum Amount Financed</div></div>
+        <div class="result-item"><div class="ri-val" id="upfrontCash">$0</div><div class="ri-label">Estimated Upfront Cash</div></div>
+        <div class="result-item"><div class="ri-val" id="availablePayment">$0</div><div class="ri-label">Budget Available for Loan</div></div>
+      </div>
+      <div id="affordabilityNote" class="highlight-box" style="margin-top:18px"></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Why this starts with total cost</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">A dealer can make almost any vehicle appear to fit by extending the term or increasing the down payment. A durable budget works in the opposite direction: choose a maximum all-in monthly transportation amount, reserve money for non-loan costs, and let the remaining payment determine the price.</p>
+    <div class="tool-grid" style="margin-top:16px">
+      <div class="card"><div class="tag">Insurance</div><p>Get a quote for the exact vehicle before buying. Premiums vary by model, driver, location, coverage, and lender requirements.</p></div>
+      <div class="card"><div class="tag">Maintenance</div><p>New cars still need tires, service, registration, and deductibles. Used and luxury vehicles may need a larger monthly reserve.</p></div>
+      <div class="card"><div class="tag">Loan term</div><p>Long terms reduce the payment but increase interest and negative-equity risk. Compare 48, 60, and 72 months before choosing.</p></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted)">Consumer resource: <a href="https://www.consumerfinance.gov/consumer-tools/auto-loans/" target="_blank" rel="noopener" style="color:var(--pri)">CFPB auto-loan shopping guidance</a>.</p>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      <details class="card" style="padding:0"><summary style="padding:16px 20px;font-weight:600;cursor:pointer">What percentage of take-home pay should go to a car?</summary><div style="padding:12px 20px 16px;color:var(--muted)">Treat any percentage as a starting point, not a rule. A household with expensive housing, childcare, or debt may need a lower cap. Test the all-in amount in your actual budget.</div></details>
+      <details class="card" style="padding:0"><summary style="padding:16px 20px;font-weight:600;cursor:pointer">Does the affordable price include tax and fees?</summary><div style="padding:12px 20px 16px;color:var(--muted)">The headline result is the estimated selling price. The model separately includes sales tax and entered fees when solving for the maximum financed amount.</div></details>
+      <details class="card" style="padding:0"><summary style="padding:16px 20px;font-weight:600;cursor:pointer">Should I use a trade-in value before paying off its loan?</summary><div style="padding:12px 20px 16px;color:var(--muted)">No. Enter only net trade-in credit: the vehicle value minus any loan payoff and transaction adjustments. A negative trade balance should be handled separately rather than treated as a down payment.</div></details>
+    </div>
+  </section>
+  <section style="margin-top:40px"><h2>Related Tools and Guides</h2><div class="tool-grid" style="margin-top:16px"><a class="tool-card" href="loan-calculator.html"><div class="tool-icon">&#x1F4B5;</div><h3>Loan Calculator</h3><p>Compare payment and interest for a specific auto loan.</p></a><a class="tool-card" href="guides/how-much-car-can-you-afford-total-cost.html"><div class="tool-icon">&#x1F4D6;</div><h3>How Much Car Can You Really Afford?</h3><p>Build an ownership budget beyond the sticker price.</p></a><a class="tool-card" href="tools/budget-planner/"><div class="tool-icon">&#x1F4D2;</div><h3>Budget Planner</h3><p>Test the vehicle cost against the rest of your monthly plan.</p></a></div></section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>
+function runCarAffordability(){
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var result=NumbrlyCalculators.calculateCarAffordability({
+      monthlyTakeHome:read("monthlyTakeHome","Monthly take-home pay"),
+      targetBudgetPercent:read("targetBudgetPercent","Transportation budget percentage"),
+      downPayment:read("downPayment","Down payment"),
+      tradeIn:read("tradeIn","Net trade-in credit"),
+      apr:read("apr","Loan APR"),
+      termMonths:read("termMonths","Loan term"),
+      salesTaxPercent:read("salesTaxPercent","Sales tax"),
+      fees:read("fees","Fees"),
+      monthlyInsurance:read("monthlyInsurance","Monthly insurance"),
+      monthlyFuel:read("monthlyFuel","Monthly fuel or charging"),
+      monthlyMaintenance:read("monthlyMaintenance","Monthly maintenance")
+    });
+    var money=NumbrlyCalculatorUI.money;
+    document.getElementById("maxVehiclePrice").textContent=money(Math.max(0,result.maxVehiclePrice));
+    document.getElementById("loanPayment").textContent=money(result.loanMonthlyPayment);
+    document.getElementById("totalMonthlyCost").textContent=money(result.totalMonthlyCost);
+    document.getElementById("budgetShare").textContent=result.budgetShare.toFixed(1)+"%";
+    document.getElementById("maxLoan").textContent=money(Math.max(0,result.maxLoanAmount));
+    document.getElementById("upfrontCash").textContent=money(result.upfrontCash);
+    document.getElementById("availablePayment").textContent=money(Math.max(0,result.availableLoanPayment));
+    document.getElementById("vehiclePriceLabel").textContent=result.affordable
+      ? "estimated maximum vehicle selling price before tax and fees"
+      : "no vehicle price fits the selected all-in monthly budget";
+    var note=!result.affordable
+      ? "Your insurance, fuel, and maintenance estimates already use the full transportation budget. Raise the budget only if the rest of your financial plan supports it, or reduce the recurring costs."
+      : "This is a planning ceiling, not a target. Shopping below it preserves room for premium changes, repairs, parking, registration renewals, and other costs not entered here.";
+    document.getElementById("affordabilityNote").innerHTML="<h4>Budget check</h4><p>"+note+"</p>";
+    NumbrlyCalculatorUI.showResult();
+  });
+}
+(function(){var key="Numbrly_car-affordability-calculator",fields=document.querySelectorAll("input[id],select[id]");try{var saved=JSON.parse(localStorage.getItem(key)||"{}");fields.forEach(function(el){if(saved[el.id]!==undefined)el.value=saved[el.id]})}catch(e){}fields.forEach(function(el){el.addEventListener("input",function(){var data={};fields.forEach(function(node){data[node.id]=node.value});try{localStorage.setItem(key,JSON.stringify(data))}catch(e){}})})})();
+document.addEventListener("DOMContentLoaded",runCarAffordability);
+</script>
+</body>
+</html>

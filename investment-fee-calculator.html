@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Fee Calculator: Compare Expense Ratios | Numbrly</title>
+  <meta name="description" content="Compare two investment fee rates and see their effect on your projected ending balance, including a year-by-year fee-drag table.">
+  <link rel="canonical" href="https://numbrly.cc/investment-fee-calculator.html">
+  <meta property="og:title" content="Investment Fee Calculator | Numbrly">
+  <meta property="og:description" content="See how a small annual fee difference can compound into a large long-term difference.">
+  <meta property="og:url" content="https://numbrly.cc/investment-fee-calculator.html">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="tailwind.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Investment Fee Calculator","url":"https://numbrly.cc/investment-fee-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do investment fees matter so much?","acceptedAnswer":{"@type":"Answer","text":"A recurring fee reduces the money left to compound. The annual difference may look small, but its effect can grow over a long holding period."}},{"@type":"Question","name":"Is an expense ratio the only investment cost?","acceptedAnswer":{"@type":"Answer","text":"No. Advisory fees, sales loads, trading costs, account fees, bid-ask spreads, taxes, and underlying fund expenses may also affect results."}},{"@type":"Question","name":"Does the lower-fee investment always perform better?","acceptedAnswer":{"@type":"Answer","text":"No. Fees are known costs, but investment returns and risks differ. Compare strategy, diversification, risk, services, taxes, and total costs rather than fee alone."}}]}</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Calculators</a> / Investment Fees</div>
+  <section style="margin-top:20px"><h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F4C9; Investment Fee Calculator</h1><p class="sec-desc" style="font-size:15px;max-width:760px">Compare two annual fee rates using the same starting balance, contributions, gross return, and time period. See how much of the ending-value gap comes from compounding after fees.</p></section>
+  <section>
+    <div class="card" style="max-width:760px">
+      <div class="form-row"><div class="form-group"><label for="initialInvestment">Initial investment ($)</label><input type="number" id="initialInvestment" value="50000" min="0" step="1000"></div><div class="form-group"><label for="monthlyContribution">Monthly contribution ($)</label><input type="number" id="monthlyContribution" value="500" min="0" step="50"></div></div>
+      <div class="form-row"><div class="form-group"><label for="annualReturn">Expected gross annual return (%)</label><input type="number" id="annualReturn" value="7" min="-50" max="50" step="0.1"></div><div class="form-group"><label for="years">Investment period (years)</label><input type="number" id="years" value="30" min="1" max="80" step="1"></div></div>
+      <div class="form-row"><div class="form-group"><label for="lowFeePercent">Lower annual fee (%)</label><input type="number" id="lowFeePercent" value="0.03" min="0" max="20" step="0.01"></div><div class="form-group"><label for="highFeePercent">Higher annual fee (%)</label><input type="number" id="highFeePercent" value="1" min="0" max="20" step="0.01"></div></div>
+      <button class="btn btn-block" onclick="calculateFees()" style="margin-top:8px">Compare Fees</button>
+    </div>
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:760px">
+      <div class="result-num" id="feeDifference">$0</div><div class="result-label">projected ending-balance difference</div>
+      <div class="result-grid"><div class="result-item"><div class="ri-val" id="lowFeeEnding">$0</div><div class="ri-label">Lower-Fee Ending Balance</div></div><div class="result-item"><div class="ri-val" id="highFeeEnding">$0</div><div class="ri-label">Higher-Fee Ending Balance</div></div><div class="result-item"><div class="ri-val" id="differencePercent">0%</div><div class="ri-label">Higher-Fee Balance Is Lower By</div></div></div>
+    </div>
+    <div class="card" style="max-width:760px;margin-top:18px;overflow-x:auto"><h3 style="font-size:17px;margin-bottom:12px">Annual comparison</h3><table class="data-table" style="width:100%"><thead><tr><th>Year</th><th>Lower fee</th><th>Higher fee</th><th>Gap</th></tr></thead><tbody id="comparisonRows"></tbody></table></div>
+  </section>
+  <section style="margin-top:40px"><h2>What the Calculator Assumes</h2><p style="color:var(--muted);font-size:14px;line-height:1.8">The calculator subtracts each annual fee from the same gross return, converts the resulting net annual rate to a monthly rate, and assumes contributions are made at the end of each month. It is a controlled comparison: both investments receive the same market return. Actual fund performance is not fixed and fees may be charged differently.</p><div class="highlight-box"><h4>Known cost, uncertain return</h4><p>A fee is a cost you can identify in advance. A fund with a 1% annual cost must overcome that cost before matching an otherwise identical 0% comparison. But two real investments are rarely identical, so fee should be evaluated alongside risk, holdings, tax treatment, tracking, advice, and service.</p></div></section>
+  <section style="margin-top:40px"><h2>Costs This Tool Does Not Include</h2><ul style="color:var(--muted);font-size:14px;line-height:1.9;padding-left:20px"><li>Taxes, sales loads, commissions, bid-ask spreads, transaction charges, and account fees.</li><li>Fees inside underlying investments when comparing an advisory fee.</li><li>Changing returns, contribution timing, withdrawals, inflation, or sequence-of-returns risk.</li><li>The value of planning, tax, behavioral, estate, or other services bundled with an advisory relationship.</li></ul></section>
+  <section style="margin-top:40px"><h2>Frequently Asked Questions</h2><div style="margin-top:16px"><details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600">How can a 1% fee make such a large difference?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">The fee reduces the balance every year and also removes future growth that the deducted dollars might have earned. That second-order compounding effect becomes more visible over longer periods.</div></details><details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">Is an expense ratio charged as a separate bill?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">Fund operating expenses are generally reflected in the fund’s net performance rather than sent as a separate invoice. Read the prospectus and account disclosures for all costs.</div></details><details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">Should I choose the cheapest investment?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">Not automatically. Compare what the investment owns, its risks, diversification, benchmark, tax efficiency, liquidity, and all-in cost. Lower cost is most meaningful when the alternatives serve the same job.</div></details></div></section>
+  <section style="margin-top:40px"><h2>Official Source and Related Tools</h2><p style="color:var(--muted);font-size:14px;line-height:1.8">The SEC’s <a href="https://www.investor.gov/introduction-investing/getting-started/understanding-fees" rel="noopener">Understanding Fees</a> resource explains common investment costs and why they matter. Use the <a href="compound-interest-calculator.html">Compound Interest Calculator</a> for a single growth scenario and the <a href="retirement-calculator.html">Retirement Calculator</a> for a broader planning estimate.</p></section>
+</main>
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>
+function calculateFees(){
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var output=NumbrlyCalculators.calculateInvestmentFees({
+      initialInvestment:read("initialInvestment","Initial investment"),
+      monthlyContribution:read("monthlyContribution","Monthly contribution"),
+      annualReturn:read("annualReturn","Annual return"),
+      lowFeePercent:read("lowFeePercent","Lower fee"),
+      highFeePercent:read("highFeePercent","Higher fee"),
+      years:read("years","Years",{integer:true})
+    });
+    document.getElementById("lowFeeEnding").textContent=NumbrlyCalculatorUI.money(output.lowFeeEndingBalance);
+    document.getElementById("highFeeEnding").textContent=NumbrlyCalculatorUI.money(output.highFeeEndingBalance);
+    document.getElementById("feeDifference").textContent=NumbrlyCalculatorUI.money(output.difference);
+    document.getElementById("differencePercent").textContent=output.differencePercent.toFixed(1)+"%";
+    var body=document.getElementById("comparisonRows");body.textContent="";
+    output.annualRows.forEach(function(row){var tr=document.createElement("tr");[row.year,NumbrlyCalculatorUI.money(row.lowFeeBalance),NumbrlyCalculatorUI.money(row.highFeeBalance),NumbrlyCalculatorUI.money(row.difference)].forEach(function(value){var td=document.createElement("td");td.textContent=value;tr.appendChild(td);});body.appendChild(tr);});
+    NumbrlyCalculatorUI.showResult();
+  });
+}
+(function(){var ids=document.querySelectorAll("input[id]"),key="Numbrly_investment_fees";try{var saved=JSON.parse(localStorage.getItem(key)||"{}");ids.forEach(function(el){if(saved[el.id]!==undefined)el.value=saved[el.id];});}catch(e){}ids.forEach(function(el){el.addEventListener("input",function(){var data={};ids.forEach(function(x){data[x.id]=x.value;});try{localStorage.setItem(key,JSON.stringify(data));}catch(e){}});});document.addEventListener("DOMContentLoaded",calculateFees);})();
+</script>
+</body>
+</html>

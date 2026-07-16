@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Utilization Calculator - Per Card and Overall | Numbrly</title>
+  <meta name="description" content="Calculate credit utilization for up to five cards. See per-card and overall ratios, paydown targets for 30%, 10%, or your own goal, and a payoff priority list.">
+  <link rel="canonical" href="https://numbrly.cc/credit-utilization-calculator.html">
+  <meta property="og:title" content="Credit Utilization Calculator | Numbrly">
+  <meta property="og:description" content="See per-card and overall utilization plus the payment needed to reach your target.">
+  <meta property="og:url" content="https://numbrly.cc/credit-utilization-calculator.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="tailwind.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Credit Utilization Calculator","url":"https://numbrly.cc/credit-utilization-calculator.html","description":"Calculate overall and per-card revolving credit utilization and paydown targets.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is credit utilization calculated?","acceptedAnswer":{"@type":"Answer","text":"Divide a reported revolving balance by its credit limit and multiply by 100. Overall utilization divides total reported balances by total revolving limits."}},{"@type":"Question","name":"Is 30% credit utilization a hard cutoff?","acceptedAnswer":{"@type":"Answer","text":"No. Thirty percent is a common planning benchmark, not a guaranteed score threshold. In general, lower reported utilization is less risky, but scoring results depend on the whole credit file."}},{"@type":"Question","name":"Should I pay the highest-utilization card first?","acceptedAnswer":{"@type":"Answer","text":"That can improve the most heavily used individual account first. If minimizing interest is the main goal, compare APRs too; the best credit-score priority and interest-saving priority may differ."}}]}</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Calculators</a> / Credit Utilization Calculator</div>
+  <section style="margin-top:20px"><h1 style="font-size:28px;font-weight:800;margin-bottom:8px">Credit Utilization Calculator</h1><p class="sec-desc" style="font-size:15px;max-width:760px">Calculate both overall and per-card revolving utilization. Then see how much balance reduction would reach 30%, 10%, or a custom target without pretending any percentage guarantees a particular credit score.</p></section>
+
+  <section>
+    <form class="card" style="max-width:880px" onsubmit="event.preventDefault();calcUtilization()">
+      <div style="overflow-x:auto">
+        <table class="data-table" style="width:100%;margin:0">
+          <thead><tr><th>Card</th><th>Current balance ($)</th><th>Credit limit ($)</th></tr></thead>
+          <tbody>
+            <tr><td><label for="cardName1" class="sr-only">Card 1 name</label><input type="text" id="cardName1" value="Card 1" style="min-width:120px"></td><td><label for="cardBalance1" class="sr-only">Card 1 balance</label><input type="number" id="cardBalance1" value="2200" min="0" step="0.01"></td><td><label for="cardLimit1" class="sr-only">Card 1 limit</label><input type="number" id="cardLimit1" value="5000" min="0" step="0.01"></td></tr>
+            <tr><td><label for="cardName2" class="sr-only">Card 2 name</label><input type="text" id="cardName2" value="Card 2" style="min-width:120px"></td><td><label for="cardBalance2" class="sr-only">Card 2 balance</label><input type="number" id="cardBalance2" value="900" min="0" step="0.01"></td><td><label for="cardLimit2" class="sr-only">Card 2 limit</label><input type="number" id="cardLimit2" value="3000" min="0" step="0.01"></td></tr>
+            <tr><td><label for="cardName3" class="sr-only">Card 3 name</label><input type="text" id="cardName3" value="Card 3" style="min-width:120px"></td><td><label for="cardBalance3" class="sr-only">Card 3 balance</label><input type="number" id="cardBalance3" value="0" min="0" step="0.01"></td><td><label for="cardLimit3" class="sr-only">Card 3 limit</label><input type="number" id="cardLimit3" value="2000" min="0" step="0.01"></td></tr>
+            <tr><td><label for="cardName4" class="sr-only">Card 4 name</label><input type="text" id="cardName4" value="Card 4" style="min-width:120px"></td><td><label for="cardBalance4" class="sr-only">Card 4 balance</label><input type="number" id="cardBalance4" value="0" min="0" step="0.01"></td><td><label for="cardLimit4" class="sr-only">Card 4 limit</label><input type="number" id="cardLimit4" value="0" min="0" step="0.01"></td></tr>
+            <tr><td><label for="cardName5" class="sr-only">Card 5 name</label><input type="text" id="cardName5" value="Card 5" style="min-width:120px"></td><td><label for="cardBalance5" class="sr-only">Card 5 balance</label><input type="number" id="cardBalance5" value="0" min="0" step="0.01"></td><td><label for="cardLimit5" class="sr-only">Card 5 limit</label><input type="number" id="cardLimit5" value="0" min="0" step="0.01"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="form-row" style="margin-top:18px"><div class="form-group"><label for="targetUtilization">Custom overall target (%)</label><input type="number" id="targetUtilization" value="20" min="0" max="100" step="0.1"></div><div class="form-group"><label>&nbsp;</label><button class="btn btn-block" type="submit">Calculate Utilization</button></div></div>
+      <p style="font-size:12px;color:var(--muted);line-height:1.6">Leave unused rows at zero. Enter the balance likely to be reported, not necessarily today's pending balance. A card with a balance must have a positive limit.</p>
+    </form>
+
+    <div id="calculatorError" role="alert" aria-live="assertive" style="display:none;max-width:880px;color:#b91c1c;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px 14px;margin-top:14px;font-size:13px;line-height:1.6"></div>
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:880px">
+      <div class="result-num" id="overallUtilization">31.0%</div><div class="result-label">overall revolving utilization</div>
+      <div class="result-grid">
+        <div class="result-item"><div class="ri-val" id="paydown30">$100</div><div class="ri-label">Pay Down to 30%</div></div>
+        <div class="result-item"><div class="ri-val" id="paydown10">$2,100</div><div class="ri-label">Pay Down to 10%</div></div>
+        <div class="result-item"><div class="ri-val" id="paydownTarget">$1,100</div><div class="ri-label" id="targetLabel">Pay Down to 20%</div></div>
+      </div>
+      <div style="overflow-x:auto;margin-top:18px">
+        <table class="data-table" style="width:100%;margin:0"><thead><tr><th>Card</th><th>Balance</th><th>Limit</th><th>Utilization</th></tr></thead><tbody id="cardResults"></tbody></table>
+      </div>
+      <div class="highlight-box" style="text-align:left;margin-top:18px"><h4>Score-focused priority</h4><ol id="priorityList" style="margin:8px 0 0 20px;color:var(--muted);font-size:13px;line-height:1.8"></ol></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>How Credit Utilization Works</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">Utilization is a ratio of revolving balances to revolving limits. A $1,500 reported balance on a $5,000 limit is 30%. Overall utilization adds all included balances and divides by all included limits. Credit scoring can also consider each account separately, which is why one nearly maxed-out card may matter even when the overall ratio looks moderate.</p>
+    <div class="highlight-box"><h4>Reported balance matters</h4><p>Issuers commonly report account information periodically rather than after every purchase. Paying before a balance is reported may lower the utilization that appears on a credit report, but reporting schedules vary. Paying by the due date remains essential for avoiding a late payment.</p></div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Is 30% the Right Target?</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">Thirty percent is a familiar educational benchmark, not a cliff where scores suddenly become good or bad. FICO explains that “amounts owed” is one part of its scoring framework, and lower utilization generally signals less dependence on revolving debt. The exact score impact depends on the rest of the file and the scoring model. Use 30% as a first milestone, 10% as a more conservative planning target, and zero-interest debt payoff as a separate objective.</p>
+    <ul style="color:var(--muted);font-size:14px;line-height:1.9;padding-left:20px">
+      <li><a href="https://www.myfico.com/credit-education/whats-in-your-credit-score" rel="noopener noreferrer" target="_blank">FICO: What's in your credit score</a></li>
+      <li><a href="https://www.consumerfinance.gov/ask-cfpb/what-is-a-credit-score-en-315/" rel="noopener noreferrer" target="_blank">CFPB: What is a credit score?</a></li>
+      <li><a href="https://www.consumerfinance.gov/ask-cfpb/how-do-i-get-and-keep-a-good-credit-score-en-318/" rel="noopener noreferrer" target="_blank">CFPB: How do I get and keep a good credit score?</a></li>
+    </ul>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Which Card Should You Pay First?</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">This calculator ranks cards by utilization because that is the question being modeled. If your goal is to minimize interest, the highest-APR debt usually deserves priority after all minimums are covered. If your immediate goal is reducing a severely used individual line, paying the highest-utilization card can be useful. You can combine the approaches by first bringing an extreme ratio down, then directing extra cash to the highest APR.</p>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      <details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600">Does a zero balance hurt utilization?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">A zero balance contributes no used credit to the ratio. Whether a particular score changes depends on the entire report and model. You do not need to carry interest-bearing debt to build a payment history.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">What happens if I close a card?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">If the closed card's limit is no longer counted while your balances remain the same, overall utilization rises. Account age, fees, fraud risk, and spending behavior also matter, so utilization is not the only factor in a closure decision.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">Will paying down to 10% guarantee a score increase?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">No. It lowers the modeled utilization, but a score can also reflect payment history, account age, credit mix, inquiries, derogatory information, and the timing of reported updates.</div></details>
+    </div>
+  </section>
+
+  <section style="margin-top:40px"><h2>Related Calculators and Guides</h2><div class="tool-grid" style="margin-top:16px"><a href="credit-card-payoff-calculator.html" class="tool-card"><div class="tool-icon">💳</div><h3>Credit Card Payoff</h3><p>Estimate payoff time and interest for one balance.</p></a><a href="debt-payoff-calculator.html" class="tool-card"><div class="tool-icon">📉</div><h3>Debt Payoff</h3><p>Compare avalanche and snowball ordering across several debts.</p></a><a href="guides/paying-before-statement-date-credit-utilization.html" class="tool-card"><div class="tool-icon">🗓️</div><h3>Statement-Date Payments</h3><p>Understand due dates, statement dates, and reported balances.</p></a></div></section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>
+function calcUtilization() {
+  return NumbrlyCalculatorUI.run(function() {
+    var cards = [];
+    for (var i = 1; i <= 5; i += 1) {
+      var name = document.getElementById("cardName" + i).value.trim() || ("Card " + i);
+      var balance = NumbrlyCalculatorUI.readNumber("cardBalance" + i, name + " balance");
+      var limit = NumbrlyCalculatorUI.readNumber("cardLimit" + i, name + " limit");
+      if (balance > 0 || limit > 0) cards.push({name:name,balance:balance,limit:limit});
+    }
+    if (!cards.length) throw new Error("Enter at least one card with a positive credit limit.");
+    var target = NumbrlyCalculatorUI.readNumber("targetUtilization", "Custom target");
+    var result = NumbrlyCalculators.calculateCreditUtilization({cards:cards,targetUtilization:target});
+    document.getElementById("overallUtilization").textContent = result.overallUtilization.toFixed(1) + "%";
+    document.getElementById("paydown30").textContent = NumbrlyCalculatorUI.money(result.paydownTo30, 2);
+    document.getElementById("paydown10").textContent = NumbrlyCalculatorUI.money(result.paydownTo10, 2);
+    document.getElementById("paydownTarget").textContent = NumbrlyCalculatorUI.money(result.paydownToTarget, 2);
+    document.getElementById("targetLabel").textContent = "Pay Down to " + target.toFixed(1).replace(".0","") + "%";
+    var cardResults = document.getElementById("cardResults");
+    cardResults.innerHTML = "";
+    result.cards.forEach(function(card) {
+      var row = document.createElement("tr");
+      [card.name, NumbrlyCalculatorUI.money(card.balance, 2), NumbrlyCalculatorUI.money(card.limit, 2), card.utilization.toFixed(1) + "%"].forEach(function(value) {
+        var cell = document.createElement("td"); cell.textContent = value; row.appendChild(cell);
+      });
+      cardResults.appendChild(row);
+    });
+    var priority = document.getElementById("priorityList");
+    priority.innerHTML = "";
+    result.priorityOrder.forEach(function(card) {
+      var item = document.createElement("li");
+      item.textContent = card.name + ": " + card.utilization.toFixed(1) + "% used (" + NumbrlyCalculatorUI.money(card.balance, 2) + " of " + NumbrlyCalculatorUI.money(card.limit, 2) + ")";
+      priority.appendChild(item);
+    });
+    NumbrlyCalculatorUI.showResult();
+  });
+}
+(function(){
+  var pageKey = "Numbrly_credit-utilization-calculator";
+  var fields = document.querySelectorAll("input[id]");
+  try { var saved = JSON.parse(localStorage.getItem(pageKey) || "{}"); fields.forEach(function(field){ if (saved[field.id] !== undefined) field.value = saved[field.id]; }); } catch (error) {}
+  fields.forEach(function(field){ field.addEventListener("input", function(){ try { var values = {}; fields.forEach(function(item){ values[item.id] = item.value; }); localStorage.setItem(pageKey, JSON.stringify(values)); } catch (error) {} }); });
+  document.addEventListener("DOMContentLoaded", calcUtilization);
+})();
+</script>
+</body>
+</html>

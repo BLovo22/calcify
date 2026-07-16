@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BNPL Payment Planner - Map Every Pay-in-4 Due Date | Numbrly</title>
+  <meta name="description" content="Plan buy now, pay later installments, fees, and due dates before checkout. See total repayment and cash-flow warnings with Numbrly's free BNPL planner.">
+  <link rel="canonical" href="https://numbrly.cc/bnpl-payment-planner.html">
+  <meta property="og:title" content="BNPL Payment Planner | Numbrly">
+  <meta property="og:description" content="Map every buy now, pay later payment, fee, and due date before you commit.">
+  <meta property="og:url" content="https://numbrly.cc/bnpl-payment-planner.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="tailwind.css">
+  <link rel="stylesheet" href="style.css">
+  <script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"BNPL Payment Planner","url":"https://numbrly.cc/bnpl-payment-planner.html","description":"Plan buy now, pay later installments, fees, due dates, and total repayment.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does a pay-in-4 plan work?","acceptedAnswer":{"@type":"Answer","text":"A typical pay-in-4 plan divides a purchase into four payments, often with the first due at checkout and later payments due on a fixed schedule. Terms, fees, and late-payment policies vary by provider."}},{"@type":"Question","name":"Is buy now, pay later always interest-free?","acceptedAnswer":{"@type":"Answer","text":"No. Some short plans charge no interest when paid on time, but providers may charge fees or offer longer financing with interest. Read the specific agreement before accepting it."}},{"@type":"Question","name":"How many BNPL plans are too many?","acceptedAnswer":{"@type":"Answer","text":"There is no universal number. The practical limit is reached when combined due dates compete with rent, utilities, food, minimum debt payments, or the cash buffer needed for surprises."}}]}</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Calculators</a> / BNPL Payment Planner</div>
+
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">BNPL Payment Planner</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:760px">Turn a pay-in-4 or custom buy now, pay later offer into a dated payment plan. See what leaves your account, when it leaves, and whether the schedule is likely to crowd your cash flow.</p>
+  </section>
+
+  <section>
+    <form class="card" style="max-width:760px" onsubmit="event.preventDefault();calcBnpl()">
+      <div class="form-row">
+        <div class="form-group"><label for="purchaseAmount">Purchase amount ($)</label><input type="number" id="purchaseAmount" value="600" min="0.01" step="0.01" inputmode="decimal"></div>
+        <div class="form-group"><label for="installments">Number of future installments</label><input type="number" id="installments" value="4" min="1" max="36" step="1" inputmode="numeric"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="upfrontPayment">Paid upfront ($)</label><input type="number" id="upfrontPayment" value="0" min="0" step="0.01" inputmode="decimal"></div>
+        <div class="form-group"><label for="feePerInstallment">Fee per installment ($)</label><input type="number" id="feePerInstallment" value="0" min="0" step="0.01" inputmode="decimal"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="firstPaymentDate">First future payment date</label><input type="date" id="firstPaymentDate"></div>
+        <div class="form-group"><label for="intervalDays">Days between payments</label><input type="number" id="intervalDays" value="14" min="1" max="365" step="1" inputmode="numeric"></div>
+      </div>
+      <button class="btn btn-block" type="submit" style="margin-top:8px">Build My Payment Plan</button>
+      <p style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6">Enter only future installments above. If the provider takes a payment at checkout, put it in “Paid upfront.” Fees entered here are planning assumptions; your agreement controls.</p>
+    </form>
+
+    <div id="calculatorError" role="alert" aria-live="assertive" style="display:none;max-width:760px;color:#b91c1c;background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px 14px;margin-top:14px;font-size:13px;line-height:1.6"></div>
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:760px">
+      <div class="result-num" id="regularPayment">$150.00</div>
+      <div class="result-label">regular future payment, including fee</div>
+      <div class="result-grid">
+        <div class="result-item"><div class="ri-val" id="totalFees">$0.00</div><div class="ri-label">Total Fees</div></div>
+        <div class="result-item"><div class="ri-val" id="totalRepayment">$600.00</div><div class="ri-label">Total Repayment</div></div>
+        <div class="result-item"><div class="ri-val" id="financedAmount">$600.00</div><div class="ri-label">Amount Split</div></div>
+      </div>
+      <div class="highlight-box" style="margin-top:18px;text-align:left"><h4 id="riskHeading">Cash-flow check</h4><p id="riskMessage">Compare every due date with your paycheck calendar and essential bills.</p></div>
+      <div style="overflow-x:auto;margin-top:18px">
+        <table class="data-table" style="width:100%;margin:0">
+          <thead><tr><th>Payment</th><th>Due date</th><th>Purchase share</th><th>Fee</th><th>Total due</th></tr></thead>
+          <tbody id="scheduleBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Why Plan BNPL Payments Before Checkout?</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">The checkout screen emphasizes today's smaller payment. Your budget has to absorb the whole purchase. A dated schedule makes overlapping plans visible and lets you compare installments with rent, utilities, groceries, credit-card minimums, and payday timing.</p>
+    <div class="tool-grid" style="margin-top:16px">
+      <div class="card"><div class="tag">Dates, not averages</div><p style="font-size:13px;line-height:1.7">A monthly average can hide two or three withdrawals landing in the same week. The schedule shows the actual due dates you enter.</p></div>
+      <div class="card"><div class="tag">Full cost</div><p style="font-size:13px;line-height:1.7">Fees are added across all future installments so a “small” per-payment charge does not disappear from the decision.</p></div>
+      <div class="card"><div class="tag">Private calculation</div><p style="font-size:13px;line-height:1.7">The math runs in your browser. Calculator inputs are stored locally on this device for convenience and are not sent to Numbrly.</p></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>How to Read the Cash-Flow Warning</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">The warning is a planning prompt, not a credit decision. It becomes more cautious when fees are meaningful, the unpaid purchase amount is large, or payments are closely spaced. The calculator cannot see your income, checking balance, overdraft rules, other BNPL plans, or the provider's late-payment policy. Put the dates on your real bill calendar before accepting an offer.</p>
+    <div class="highlight-box"><h4>Practical test</h4><p>For each due date, subtract essential bills and all other debt payments from the money you expect to have available. If the installment only works by delaying an essential bill, overdrawing, or opening another plan, the purchase is not fitting your current cash flow.</p></div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Research and Consumer Guidance</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">The Federal Reserve's 2025 household survey reported continued BNPL use and found that some users paid late. CFPB research has also documented consumers holding multiple simultaneous pay-in-four loans. Those findings do not mean every plan is harmful; they explain why tracking combined obligations matters.</p>
+    <ul style="color:var(--muted);font-size:14px;line-height:1.9;padding-left:20px">
+      <li><a href="https://www.federalreserve.gov/publications/files/2025-report-economic-well-being-us-households-202605.pdf" rel="noopener noreferrer" target="_blank">Federal Reserve: Economic Well-Being of U.S. Households in 2025</a></li>
+      <li><a href="https://www.consumerfinance.gov/archive/newsroom/cfpb-research-reveals-heavy-buy-now-pay-later-use-among-borrowers-with-high-credit-balances-and-multiple-pay-in-four-loans/" rel="noopener noreferrer" target="_blank">CFPB: Research on repeated and simultaneous BNPL use</a></li>
+    </ul>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Frequently Asked Questions</h2>
+    <div style="margin-top:16px">
+      <details class="card" style="cursor:pointer;padding:0"><summary style="padding:16px 20px;font-weight:600">Does this calculator include interest?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">It accepts a fixed fee per installment, not an APR. It is best for pay-in-4 and other fixed-payment offers. Use the <a href="loan-calculator.html">Loan Calculator</a> for interest-bearing installment financing.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">What if the first payment is due today?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">Enter that checkout charge as the upfront payment, then enter the date of the next withdrawal as the first future payment date. That avoids counting the checkout payment twice.</div></details>
+      <details class="card" style="cursor:pointer;padding:0;margin-top:8px"><summary style="padding:16px 20px;font-weight:600">Can I combine multiple plans?</summary><div style="padding:12px 20px 16px;color:var(--muted);font-size:14px;line-height:1.8;border-top:1px solid var(--border)">Run each plan, copy its schedule to one calendar, and total every date or pay period. A future update may support several plans in one view, but the important step is combining all obligations rather than judging each checkout separately.</div></details>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Related Calculators and Guides</h2>
+    <div class="tool-grid" style="margin-top:16px">
+      <a href="credit-card-payoff-calculator.html" class="tool-card"><div class="tool-icon">💳</div><h3>Credit Card Payoff</h3><p>Estimate the time and interest needed to clear a revolving balance.</p></a>
+      <a href="debt-payoff-calculator.html" class="tool-card"><div class="tool-icon">📋</div><h3>Debt Payoff</h3><p>Prioritize several debts with avalanche or snowball strategies.</p></a>
+      <a href="guides/how-many-bnpl-plans-is-too-many.html" class="tool-card"><div class="tool-icon">🗓️</div><h3>How Many Plans Are Too Many?</h3><p>Use a cash-flow test instead of an arbitrary account count.</p></a>
+    </div>
+  </section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>
+function isoDateFromToday(days) {
+  var date = new Date();
+  date.setHours(12, 0, 0, 0);
+  date.setDate(date.getDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+function calcBnpl() {
+  return NumbrlyCalculatorUI.run(function() {
+    var dateField = document.getElementById("firstPaymentDate");
+    if (!dateField.value) throw new Error("First future payment date is required.");
+    var result = NumbrlyCalculators.calculateBnplPlan({
+      purchaseAmount: NumbrlyCalculatorUI.readNumber("purchaseAmount", "Purchase amount"),
+      installments: NumbrlyCalculatorUI.readNumber("installments", "Number of installments", {integer:true}),
+      upfrontPayment: NumbrlyCalculatorUI.readNumber("upfrontPayment", "Upfront payment"),
+      feePerInstallment: NumbrlyCalculatorUI.readNumber("feePerInstallment", "Fee per installment"),
+      firstPaymentDate: dateField.value,
+      intervalDays: NumbrlyCalculatorUI.readNumber("intervalDays", "Days between payments", {integer:true})
+    });
+    document.getElementById("regularPayment").textContent = NumbrlyCalculatorUI.money(result.installmentPayment, 2);
+    document.getElementById("totalFees").textContent = NumbrlyCalculatorUI.money(result.totalFees, 2);
+    document.getElementById("totalRepayment").textContent = NumbrlyCalculatorUI.money(result.totalRepayment, 2);
+    document.getElementById("financedAmount").textContent = NumbrlyCalculatorUI.money(result.amountFinanced, 2);
+    var feeRate = result.purchaseAmount > 0 ? result.totalFees / result.purchaseAmount * 100 : 0;
+    var riskHeading = "Calendar check required";
+    var riskMessage = "Compare every due date with your paycheck calendar, essential bills, other BNPL plans, and a cash buffer.";
+    if (result.intervalDays <= 7 || feeRate >= 5) {
+      riskHeading = "Higher scheduling or fee pressure";
+      riskMessage = "Payments are frequent or fees are material. Confirm each withdrawal fits after essentials and other debt payments; this planner cannot see your income.";
+    } else if (result.intervalDays <= 14 || result.installments >= 6 || result.totalFees > 0) {
+      riskHeading = "Moderate scheduling pressure";
+      riskMessage = "Closely spaced payments can overlap with other plans. Put all installments on one pay-period calendar before accepting the purchase.";
+    }
+    document.getElementById("riskHeading").textContent = riskHeading;
+    document.getElementById("riskMessage").textContent = riskMessage;
+    var body = document.getElementById("scheduleBody");
+    body.innerHTML = "";
+    result.schedule.forEach(function(item) {
+      var row = document.createElement("tr");
+      [item.installment, new Date(item.dueDate + "T12:00:00").toLocaleDateString("en-US", {year:"numeric",month:"short",day:"numeric"}), NumbrlyCalculatorUI.money(item.principal, 2), NumbrlyCalculatorUI.money(item.fee, 2), NumbrlyCalculatorUI.money(item.payment, 2)].forEach(function(value) {
+        var cell = document.createElement("td");
+        cell.textContent = value;
+        row.appendChild(cell);
+      });
+      body.appendChild(row);
+    });
+    NumbrlyCalculatorUI.showResult();
+  });
+}
+(function(){
+  var pageKey = "Numbrly_bnpl-payment-planner";
+  var fields = document.querySelectorAll("input[id]");
+  try {
+    var saved = JSON.parse(localStorage.getItem(pageKey) || "{}");
+    fields.forEach(function(field){ if (saved[field.id] !== undefined) field.value = saved[field.id]; });
+  } catch (error) {}
+  if (!document.getElementById("firstPaymentDate").value) document.getElementById("firstPaymentDate").value = isoDateFromToday(14);
+  fields.forEach(function(field){ field.addEventListener("input", function(){ try { var values = {}; fields.forEach(function(item){ values[item.id] = item.value; }); localStorage.setItem(pageKey, JSON.stringify(values)); } catch (error) {} }); });
+  document.addEventListener("DOMContentLoaded", calcBnpl);
+})();
+</script>
+</body>
+</html>

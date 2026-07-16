@@ -132,13 +132,13 @@
       </div>
 
       <div class="privacy-note">
-        <strong>Your net worth data is saved only in your browser.</strong><br>
-        Numbrly does not upload or store your financial information.
+        <strong>Your calculator values stay on this device.</strong><br>
+        They are saved in browser storage and are not sent to Numbrly. Advertising services may process separate usage data.
       </div>
     </div>
 
     <aside class="networth-summary">
-      <div class="result show" style="margin-top:0">
+      <div class="result show" style="margin-top:0" role="status" aria-live="polite" aria-atomic="true">
         <div class="result-label">Net Worth</div>
         <div class="networth-main-value" id="netWorth">$0</div>
         <div class="networth-status" id="netWorthStatus">Enter assets and liabilities to see your financial position.</div>
@@ -177,15 +177,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -204,6 +205,7 @@
   </div>
 </footer>
 
+<script src="../../assets/calculators.js"></script>
 <script>
 var NET_WORTH_STORAGE_KEY = "numbrly_net_worth_data";
 var assetIds = ["cash","checkingAccount","savingsAccount","stocks","retirement401k","realEstate","vehicle","otherAssets"];
@@ -268,10 +270,14 @@ function updateBars(totalAssets, totalLiabilities) {
 }
 
 function calculateNetWorth() {
-  var totalAssets = assetIds.reduce(function(sum, id) { return sum + num(id); }, 0);
-  var totalLiabilities = liabilityIds.reduce(function(sum, id) { return sum + num(id); }, 0);
-  var netWorth = totalAssets - totalLiabilities;
-  var debtRatio = totalAssets > 0 ? totalLiabilities / totalAssets * 100 : 0;
+  var summary = NumbrlyCalculators.netWorth({
+    assets: assetIds.map(num),
+    liabilities: liabilityIds.map(num)
+  });
+  var totalAssets = summary.totalAssets;
+  var totalLiabilities = summary.totalLiabilities;
+  var netWorth = summary.netWorth;
+  var debtRatio = summary.debtRatio;
 
   setText("assetTotalMini", money(totalAssets));
   setText("liabilityTotalMini", money(totalLiabilities));

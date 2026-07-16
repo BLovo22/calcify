@@ -43,14 +43,14 @@
 <main class="main">
 <div class="breadcrumb"><a href="index.html">Numbrly</a> / <a href="index.html#calculators">Calculators</a> / Credit Card Payoff Calculator</div>
 <section style="margin-top:20px"><h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F4B3; Credit Card Payoff Calculator</h1><p class="sec-desc" style="font-size:15px;max-width:700px">See exactly how long it will take to pay off your credit card. Compare minimum payments with accelerated strategies — and find the fastest, cheapest path out of debt.</p></section>
-<section><div class="card" style="max-width:640px"><div class="form-row"><div class="form-group"><label for="ccBal">Credit Card Balance ($)</label><input type="number" id="ccBal" value="5000" min="1" step="100"></div><div class="form-group"><label for="ccApr">APR (%)</label><input type="number" id="ccApr" value="20" min="0.1" max="50" step="0.1"></div></div><div class="form-row"><div class="form-group"><label for="ccPay">Monthly Payment ($)</label><input type="number" id="ccPay" value="150" min="1" step="10"></div></div><button class="btn btn-block" onclick="calcCC()" style="margin-top:8px">Calculate Payoff</button></div>
-<div class="result" id="result" style="max-width:640px"><div class="result-num" id="ccMonths">50</div><div class="result-label">months to pay off</div><div class="result-grid"><div class="result-item"><div class="ri-val" id="ccYears">4.2</div><div class="ri-label">Years</div></div><div class="result-item"><div class="ri-val" id="ccInt">$2,359</div><div class="ri-label">Total Interest</div></div><div class="result-item"><div class="ri-val" id="ccTotal">$7,359</div><div class="ri-label">Total Cost</div></div></div></div></section>
+<section><div class="card" style="max-width:640px"><div class="form-row"><div class="form-group"><label for="ccBal">Credit Card Balance ($)</label><input type="number" id="ccBal" value="5000" min="1" step="100"></div><div class="form-group"><label for="ccApr">APR (%)</label><input type="number" id="ccApr" value="20" min="0" max="50" step="0.1"></div></div><div class="form-row"><div class="form-group"><label for="ccPay">Monthly Payment ($)</label><input type="number" id="ccPay" value="150" min="1" step="10"></div></div><button class="btn btn-block" onclick="calcCC()" style="margin-top:8px">Calculate Payoff</button></div>
+<div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:640px"><div class="result-num" id="ccMonths">50</div><div class="result-label">months to pay off</div><div class="result-grid"><div class="result-item"><div class="ri-val" id="ccYears">4.2</div><div class="ri-label">Years</div></div><div class="result-item"><div class="ri-val" id="ccInt">$2,359</div><div class="ri-label">Total Interest</div></div><div class="result-item"><div class="ri-val" id="ccTotal">$7,359</div><div class="ri-label">Total Cost</div></div></div></div></section>
 
 <section style="margin-top:40px"><h2>How to Use This Calculator</h2><ol style="color:var(--muted);font-size:14px;line-height:2;padding-left:20px"><li><strong style="color:var(--text)">Enter Your Balance</strong> — your current credit card balance.</li><li><strong style="color:var(--text)">Enter the APR</strong> — the annual percentage rate on your card. 20-25% is typical for most cards.</li><li><strong style="color:var(--text)">Enter Monthly Payment</strong> — what you can pay each month. Even small increases dramatically shorten payoff time.</li><li><strong style="color:var(--text)">Click Calculate</strong> — see months to payoff, total interest, and total cost.</li></ol></section>
 
 <section style="margin-top:40px"><h2>Example: A $5,000 Balance at 20% APR</h2><p style="color:var(--muted);font-size:14px;line-height:1.8">You have a <strong style="color:var(--text)">$5,000 credit card balance</strong> at 20% APR.</p><div class="highlight-box"><h4>&#x1F4B3; Payoff Comparison</h4><ul style="color:var(--muted);font-size:13px;line-height:1.8"><li>At $150/month: <strong style="color:var(--text)">50 months (4.2 years)</strong>, about $2,359 in interest</li><li>At $300/month: <strong style="color:var(--text)">20 months (1.7 years)</strong>, about $907 in interest — <strong style="color:var(--green)">saves about $1,452!</strong></li><li>At $100/month: <strong style="color:var(--text)">109 months (9.1 years)</strong>, about $5,840 in interest</li><li>Bottom line: paying more than the minimum saves thousands.</li></ul></div></section>
 
-<section style="margin-top:40px"><h2>Why Use This Calculator?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px"><div class="card" style="padding:20px"><div class="tag">&#x23F3; See the End Date</div><p style="font-size:13px;line-height:1.7">Know exactly when you will be debt-free — powerful motivation.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4B0; Compare Strategies</div><p style="font-size:13px;line-height:1.7">Toggle payment amounts to find your optimal payoff plan.</p></div><div class="card" style="padding:20px"><div class="tag">&#x26A0; Minimum Payment Trap</div><p style="font-size:13px;line-height:1.7">See the staggering cost of paying only the minimum each month.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F510; 100% Private</div><p style="font-size:13px;line-height:1.7">No data sent anywhere.</p></div></div></section>
+<section style="margin-top:40px"><h2>Why Use This Calculator?</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px"><div class="card" style="padding:20px"><div class="tag">&#x23F3; See the End Date</div><p style="font-size:13px;line-height:1.7">Know exactly when you will be debt-free — powerful motivation.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F4B0; Compare Strategies</div><p style="font-size:13px;line-height:1.7">Toggle payment amounts to find your optimal payoff plan.</p></div><div class="card" style="padding:20px"><div class="tag">&#x26A0; Minimum Payment Trap</div><p style="font-size:13px;line-height:1.7">See the staggering cost of paying only the minimum each month.</p></div><div class="card" style="padding:20px"><div class="tag">&#x1F510; Browser-Based</div><p style="font-size:13px;line-height:1.7">Calculator inputs stay on this device; advertising services may process separate usage data.</p></div></div></section>
 
 <section style="margin-top:40px"><h2>Common Mistakes</h2><div style="color:var(--muted);font-size:14px;line-height:1.8;margin-top:12px"><p><strong style="color:var(--text)">&#x274C; Paying only a small fixed amount.</strong> A $5,000 balance at 20% APR with $100 monthly payments takes about 9 years and costs roughly $10,840 total.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Adding new charges while paying off debt.</strong> If you keep swiping the card, you are running on a treadmill. Stop new charges until the balance is zero.</p><p style="margin-top:12px"><strong style="color:var(--text)">&#x274C; Ignoring balance transfer offers.</strong> A 0% APR balance transfer card can save you thousands — but watch out for the 3-5% transfer fee.</p></div></section>
 
@@ -73,15 +73,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -99,6 +100,22 @@
     </div>
   </div>
 </footer>
-<script>function calcCC(){var bal=parseFloat(document.getElementById("ccBal").value)||5000;var apr=parseFloat(document.getElementById("ccApr").value)||20;var pay=parseFloat(document.getElementById("ccPay").value)||150;var mr=apr/100/12;var months=0;var totalInt=0;var origBal=bal;while(bal>0&&months<1200){var intPart=bal*mr;var prinPart=pay-intPart;if(prinPart<=0){document.getElementById("ccMonths").textContent="Never (payment too low)";return;}if(prinPart>bal)prinPart=bal;bal-=prinPart;totalInt+=intPart;months++;}document.getElementById("ccMonths").textContent=months;document.getElementById("ccYears").textContent=(months/12).toFixed(1);document.getElementById("ccInt").textContent="\$"+totalInt.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("ccTotal").textContent="\$"+(origBal+totalInt).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,",");document.getElementById("result").classList.add("show");}</script>
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>function calcCC(){
+  return NumbrlyCalculatorUI.run(function(){
+    var result=NumbrlyCalculators.creditCardPayoff({
+      balance:NumbrlyCalculatorUI.readNumber("ccBal","Credit card balance"),
+      annualRate:NumbrlyCalculatorUI.readNumber("ccApr","APR"),
+      monthlyPayment:NumbrlyCalculatorUI.readNumber("ccPay","Monthly payment")
+    });
+    if(!result.paidOff) throw new Error(result.reason+" Remaining balance: "+NumbrlyCalculatorUI.money(result.remainingBalance)+".");
+    document.getElementById("ccMonths").textContent=result.months;
+    document.getElementById("ccYears").textContent=(result.months/12).toFixed(1);
+    document.getElementById("ccInt").textContent=NumbrlyCalculatorUI.money(result.totalInterest);
+    document.getElementById("ccTotal").textContent=NumbrlyCalculatorUI.money(result.totalCost);
+    NumbrlyCalculatorUI.showResult();
+  });
+}</script>
 <script>(function(){var pg=location.pathname.split("/").pop()||"credit-card";var ins=document.querySelectorAll("input[id],select[id]");try{var sv=JSON.parse(localStorage.getItem("Numbrly_"+pg)||"{}");ins.forEach(function(e){if(sv[e.id]!==undefined)e.value=sv[e.id];});}catch(x){}ins.forEach(function(e){e.addEventListener("input",function(){try{var a={};ins.forEach(function(x){a[x.id]=x.value;});localStorage.setItem("Numbrly_"+pg,JSON.stringify(a));}catch(y){}});});})();document.addEventListener("DOMContentLoaded",function(){calcCC();});</script>
 </body></html>

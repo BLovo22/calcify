@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage Points Calculator - Break-Even by Holding Period | Numbrly</title>
+<meta name="description" content="Calculate discount point cost, monthly mortgage savings, break-even time, and net savings after 3, 5, 7, or 10 years.">
+<meta property="og:title" content="Mortgage Points Calculator - Break-Even by Holding Period | Numbrly">
+<meta property="og:description" content="Compare a zero-point mortgage with a lower-rate offer that charges discount points.">
+<meta property="og:url" content="https://numbrly.cc/mortgage-points-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://numbrly.cc/mortgage-points-calculator.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="tailwind.css">
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Mortgage Points Calculator","url":"https://numbrly.cc/mortgage-points-calculator.html","description":"Compare the upfront cost of mortgage discount points with monthly payment savings and break-even time.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does one mortgage point cost?","acceptedAnswer":{"@type":"Answer","text":"One point equals one percent of the loan amount. One point on a $300,000 loan costs $3,000."}},{"@type":"Question","name":"How much does one point lower the rate?","acceptedAnswer":{"@type":"Answer","text":"There is no fixed reduction. It depends on the lender, loan type, and market. Compare actual same-day offers."}},{"@type":"Question","name":"How is the points break-even calculated?","acceptedAnswer":{"@type":"Answer","text":"Divide the incremental upfront cost by the monthly principal-and-interest savings."}}]}</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Calculators</a> / Mortgage Points Calculator</div>
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F4CD; Mortgage Points Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:760px">Compare two otherwise similar mortgage offers: one without discount points and one with a lower rate plus points. See how long it takes monthly payment savings to recover the upfront cost.</p>
+  </section>
+
+  <section>
+    <div class="card" style="max-width:760px">
+      <div class="form-row">
+        <div class="form-group"><label for="loanAmount">Loan amount</label><input id="loanAmount" type="number" min="1" step="1000" value="400000"></div>
+        <div class="form-group"><label for="termYears">Loan term</label><select id="termYears"><option value="30" selected>30 years</option><option value="20">20 years</option><option value="15">15 years</option><option value="10">10 years</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="rateWithoutPoints">Rate without points (%)</label><input id="rateWithoutPoints" type="number" min="0" max="30" step="0.01" value="6.5"></div>
+        <div class="form-group"><label for="rateWithPoints">Rate with points (%)</label><input id="rateWithPoints" type="number" min="0" max="30" step="0.01" value="6.125"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="pointsPurchased">Points purchased</label><input id="pointsPurchased" type="number" min="0" max="10" step="0.125" value="1"></div>
+        <div class="form-group"><label for="otherUpfrontCosts">Other incremental upfront costs</label><input id="otherUpfrontCosts" type="number" min="0" step="100" value="0"></div>
+      </div>
+      <button class="btn btn-block" type="button" onclick="runMortgagePoints()">Calculate Points Break-Even</button>
+    </div>
+
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:760px">
+      <div class="result-num" id="breakEven">0 months</div>
+      <div class="result-label">estimated cash break-even period</div>
+      <div class="result-grid">
+        <div class="result-item"><div class="ri-val" id="pointCost">$0</div><div class="ri-label">Discount Point Cost</div></div>
+        <div class="result-item"><div class="ri-val" id="totalUpfront">$0</div><div class="ri-label">Total Incremental Upfront</div></div>
+        <div class="result-item"><div class="ri-val" id="monthlySavings">$0</div><div class="ri-label">Monthly P&amp;I Savings</div></div>
+        <div class="result-item"><div class="ri-val" id="paymentWithout">$0</div><div class="ri-label">Payment Without Points</div></div>
+        <div class="result-item"><div class="ri-val" id="paymentWith">$0</div><div class="ri-label">Payment With Points</div></div>
+      </div>
+      <div style="overflow-x:auto;margin-top:18px">
+        <table class="data-table"><thead><tr><th>Keep Loan For</th><th>Payment Savings</th><th>Net After Upfront Cost</th></tr></thead><tbody id="holdingRows"></tbody></table>
+      </div>
+      <div id="pointsNote" class="highlight-box" style="margin-top:18px"></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>What this comparison does and does not show</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">The calculator isolates principal-and-interest payment savings and compares them with the incremental upfront cost. It assumes the loan amount and term are the same. Taxes, insurance, escrow, mortgage insurance, tax deductibility, investment opportunity cost, and differences in unrelated lender fees are not modeled.</p>
+    <div class="card"><h3>Use actual Loan Estimates</h3><p>The CFPB explains that one point equals 1% of the loan amount, but the rate reduction per point is not fixed. Compare offers from the same day and make sure the loans have the same type, term, and features. Points should be tied to a discounted rate on the Loan Estimate and Closing Disclosure.</p></div>
+    <p style="font-size:13px;color:var(--muted)">Official source: <a href="https://www.consumerfinance.gov/ask-cfpb/how-should-i-use-lender-credits-and-points-also-called-discount-points-en-136/" target="_blank" rel="noopener" style="color:var(--pri)">CFPB guidance on points and lender credits</a>.</p>
+  </section>
+
+  <section style="margin-top:40px"><h2>Frequently Asked Questions</h2><div style="margin-top:16px">
+    <details class="card" style="padding:0"><summary style="padding:16px 20px;font-weight:600;cursor:pointer">What is one mortgage point?</summary><div style="padding:12px 20px 16px;color:var(--muted)">One point costs 1% of the loan amount. A lender can quote fractional points, such as 0.5 or 1.375 points.</div></details>
+    <details class="card" style="padding:0"><summary style="padding:16px 20px;font-weight:600;cursor:pointer">Are points worthwhile if I refinance or sell early?</summary><div style="padding:12px 20px 16px;color:var(--muted)">Usually not if you exit before break-even, because you stop receiving the monthly savings before they recover the upfront cost. Compare against your realistic holding period.</div></details>
+    <details class="card" style="padding:0"><summary style="padding:16px 20px;font-weight:600;cursor:pointer">Should I include every closing cost?</summary><div style="padding:12px 20px 16px;color:var(--muted)">Include costs that differ between the two offers. Costs that are identical do not change the points decision. Keep prepaids and escrow deposits separate from true lender and settlement costs.</div></details>
+  </div></section>
+  <section style="margin-top:40px"><h2>Related Tools and Guides</h2><div class="tool-grid" style="margin-top:16px"><a class="tool-card" href="mortgage-refinance-calculator.html"><div class="tool-icon">&#x1F504;</div><h3>Refinance Calculator</h3><p>Compare a new loan against your current balance and term.</p></a><a class="tool-card" href="mortgage-calculator.html"><div class="tool-icon">&#x1F3E0;</div><h3>Mortgage Calculator</h3><p>Estimate payment and amortization.</p></a><a class="tool-card" href="guides/mortgage-points-break-even.html"><div class="tool-icon">&#x1F4D6;</div><h3>Mortgage Points Break-Even Guide</h3><p>Choose points based on how long you expect to keep the loan.</p></a></div></section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>
+function runMortgagePoints(){
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var result=NumbrlyCalculators.calculateMortgagePoints({
+      loanAmount:read("loanAmount","Loan amount"),
+      rateWithoutPoints:read("rateWithoutPoints","Rate without points"),
+      rateWithPoints:read("rateWithPoints","Rate with points"),
+      pointsPurchased:read("pointsPurchased","Points purchased"),
+      otherUpfrontCosts:read("otherUpfrontCosts","Other upfront costs"),
+      termYears:read("termYears","Loan term")
+    });
+    var money=NumbrlyCalculatorUI.money;
+    var months=result.breakEvenMonths;
+    document.getElementById("breakEven").textContent=Number.isFinite(months)&&months>=0
+      ? (months===0?"Immediate (0 months)":Math.ceil(months)+" months ("+(months/12).toFixed(1)+" years)")
+      : "No break-even";
+    document.getElementById("pointCost").textContent=money(result.pointCost);
+    document.getElementById("totalUpfront").textContent=money(result.totalUpfrontCost);
+    document.getElementById("monthlySavings").textContent=money(result.monthlySavings);
+    document.getElementById("paymentWithout").textContent=money(result.monthlyPaymentWithoutPoints);
+    document.getElementById("paymentWith").textContent=money(result.monthlyPaymentWithPoints);
+    var rows=[3,5,7,10].map(function(years){
+      var net=result.netSavingsByYears[years];
+      return "<tr><td>"+years+" years</td><td>"+money(result.monthlySavings*years*12)+"</td><td style=\"font-weight:700;color:"+(net>=0?"var(--green)":"#b91c1c")+"\">"+money(net)+"</td></tr>";
+    }).join("");
+    document.getElementById("holdingRows").innerHTML=rows;
+    var note=result.monthlySavings<=0
+      ? "The point offer does not lower the monthly payment with these inputs, so there is no economic break-even."
+      : "Break-even assumes you keep this exact loan and make scheduled payments. Selling, refinancing, or prepaying before break-even can prevent the points from paying back.";
+    document.getElementById("pointsNote").innerHTML="<h4>Holding-period test</h4><p>"+note+"</p>";
+    NumbrlyCalculatorUI.showResult();
+  });
+}
+(function(){var key="Numbrly_mortgage-points-calculator",fields=document.querySelectorAll("input[id],select[id]");try{var saved=JSON.parse(localStorage.getItem(key)||"{}");fields.forEach(function(el){if(saved[el.id]!==undefined)el.value=saved[el.id]})}catch(e){}fields.forEach(function(el){el.addEventListener("input",function(){var data={};fields.forEach(function(node){data[node.id]=node.value});try{localStorage.setItem(key,JSON.stringify(data))}catch(e){}})})})();
+document.addEventListener("DOMContentLoaded",runMortgagePoints);
+</script>
+</body>
+</html>

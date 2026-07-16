@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Fund Calculator - Risk-Adjusted Savings Target | Numbrly</title>
+<meta name="description" content="Estimate a risk-adjusted emergency fund range using essential expenses, income stability, dependents, deductibles, job-search time, and current savings.">
+<meta property="og:title" content="Emergency Fund Calculator - Risk-Adjusted Savings Target | Numbrly">
+<meta property="og:description" content="Build a transparent emergency savings target for steady, variable, or seasonal income.">
+<meta property="og:url" content="https://numbrly.cc/emergency-fund-calculator.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://numbrly.cc/emergency-fund-calculator.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="tailwind.css">
+<link rel="stylesheet" href="style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4970468814214538" crossorigin="anonymous" defer></script>
+<script>(function(){var s=localStorage.getItem("theme");if(s){document.documentElement.setAttribute("data-theme",s);if(s==="dark")document.documentElement.classList.add("dark")}else if(window.matchMedia("(prefers-color-scheme:dark)").matches){document.documentElement.setAttribute("data-theme","dark");document.documentElement.classList.add("dark")}window.toggleTheme=function(){var c=document.documentElement.getAttribute("data-theme");var n=c==="dark"?"light":"dark";document.documentElement.setAttribute("data-theme",n);if(n==="dark")document.documentElement.classList.add("dark");else document.documentElement.classList.remove("dark");localStorage.setItem("theme",n);document.getElementById("themeBtn").innerHTML=n==="dark"?"☀️":"🌙";};})();</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Emergency Fund Calculator","url":"https://numbrly.cc/emergency-fund-calculator.html","description":"Estimate an emergency savings range based on essential expenses and household risk factors.","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many months should an emergency fund cover?","acceptedAnswer":{"@type":"Answer","text":"Three to six months is a common starting range, but variable or seasonal income, dependents, long job searches, and high deductibles can support a larger target."}},{"@type":"Question","name":"What counts as an essential expense?","acceptedAnswer":{"@type":"Answer","text":"Include expenses you would still need during an income interruption, such as housing, basic food, utilities, insurance, transportation, healthcare, and minimum debt payments."}},{"@type":"Question","name":"Where should emergency savings be kept?","acceptedAnswer":{"@type":"Answer","text":"Emergency money generally needs to be safe and accessible. Compare insured savings products and understand withdrawal timing and account terms."}}]}</script>
+</head>
+<body>
+<!-- SHARED HEADER -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center gap-4">
+    <a href="/" class="text-xl font-extrabold text-pri tracking-tight shrink-0">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+    <form class="flex-1 max-w-md mx-auto relative" onsubmit="event.preventDefault(); window.location.href='/search.html?q='+encodeURIComponent(this.q.value)">
+      <input type="text" name="q" aria-label="Search calculators and guides" placeholder="Search calculators & guides..." class="w-full pl-9 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-pri/30 focus:border-pri transition text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500">
+      <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    </form>
+    <nav class="hidden sm:flex items-center gap-1 text-sm font-medium">
+      <a href="/" class="px-3 py-2 rounded-lg bg-pri-light text-pri">Tools</a>
+      <a href="/guides/" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">Guides</a>
+      <a href="/#about" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 hover:text-pri hover:bg-pri-light transition">About</a>
+    </nav>
+    <button onclick="toggleTheme()" id="themeBtn" title="Toggle dark mode" aria-label="Toggle dark mode" class="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-pri hover:text-pri transition text-lg">&#x1F319;</button>
+    <button id="menuBtn" aria-label="Open menu" class="sm:hidden shrink-0 w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300" onclick="document.getElementById('mobileNav').classList.toggle('hidden')">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobileNav" class="hidden sm:hidden border-t border-gray-200 dark:border-gray-700 px-4 py-3 space-y-2">
+    <a href="/" class="block px-3 py-2 rounded-lg bg-pri-light text-pri font-medium text-sm">Tools</a>
+    <a href="/guides/" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">Guides</a>
+    <a href="/#about" class="block px-3 py-2 rounded-lg text-gray-600 dark:text-gray-300 font-medium text-sm">About</a>
+  </div>
+</header>
+
+<main class="main">
+  <div class="breadcrumb"><a href="/">Numbrly</a> / <a href="/#calculators">Calculators</a> / Emergency Fund Calculator</div>
+  <section style="margin-top:20px">
+    <h1 style="font-size:28px;font-weight:800;margin-bottom:8px">&#x1F6DF; Emergency Fund Calculator</h1>
+    <p class="sec-desc" style="font-size:15px;max-width:780px">Replace a one-size-fits-all savings rule with a transparent range based on essential expenses, income stability, dependents, insurance exposure, and a realistic job-search period.</p>
+  </section>
+
+  <section>
+    <div class="card" style="max-width:780px">
+      <div class="form-row">
+        <div class="form-group"><label for="essentialMonthlyExpenses">Essential monthly expenses</label><input id="essentialMonthlyExpenses" type="number" min="1" step="100" value="3500"></div>
+        <div class="form-group"><label for="incomeStability">Income pattern</label><select id="incomeStability"><option value="steady" selected>Steady salary / stable hours</option><option value="variable">Variable income / commission / freelance</option><option value="seasonal">Seasonal or highly concentrated income</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="dependents">Financial dependents</label><input id="dependents" type="number" min="0" max="20" step="1" value="1"></div>
+        <div class="form-group"><label for="insuranceDeductible">Largest likely insurance deductible</label><input id="insuranceDeductible" type="number" min="0" step="100" value="2500"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="jobSearchMonths">Expected job-search or income-replacement time (months, up to 18)</label><input id="jobSearchMonths" type="number" min="0" max="18" step="1" value="4"></div>
+        <div class="form-group"><label for="existingSavings">Current emergency savings</label><input id="existingSavings" type="number" min="0" step="100" value="8000"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="monthlyContribution">Amount you can add each month</label><input id="monthlyContribution" type="number" min="0" step="25" value="500"></div>
+      </div>
+      <button class="btn btn-block" type="button" onclick="runEmergencyFund()">Calculate Emergency Fund</button>
+    </div>
+
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:780px">
+      <div class="result-num" id="recommendedTarget">$0</div>
+      <div class="result-label">recommended planning target</div>
+      <div class="result-grid">
+        <div class="result-item"><div class="ri-val" id="targetRange">$0-$0</div><div class="ri-label">Suggested Range</div></div>
+        <div class="result-item"><div class="ri-val" id="recommendedMonths">0 months</div><div class="ri-label">Recommended Expense Months</div></div>
+        <div class="result-item"><div class="ri-val" id="savingsGap">$0</div><div class="ri-label">Gap to Recommended Target</div></div>
+        <div class="result-item"><div class="ri-val" id="timeline">0 months</div><div class="ri-label">Time at Entered Monthly Savings</div></div>
+        <div class="result-item"><div class="ri-val" id="currentCoverage">0.0 months</div><div class="ri-label">Current Expense Coverage</div></div>
+      </div>
+      <div id="ruleBox" class="highlight-box" style="margin-top:18px"></div>
+    </div>
+  </section>
+
+  <section style="margin-top:40px">
+    <h2>Transparent planning rules</h2>
+    <p style="color:var(--muted);font-size:14px;line-height:1.8">This is a planning heuristic, not an official requirement. The model starts with a lower range for steady income, a larger range for variable income, and the largest range for seasonal income. It then considers dependents and your expected time to replace income. The insurance deductible is added as a separate cash exposure instead of being disguised as another month of expenses.</p>
+    <div class="tool-grid" style="margin-top:16px">
+      <div class="card"><div class="tag">Starter layer</div><p>Before pursuing the full target, a smaller cash buffer can reduce the chance that an ordinary surprise goes on a high-cost credit card.</p></div>
+      <div class="card"><div class="tag">Income layer</div><p>Monthly essential expenses multiplied by risk-adjusted months supports a job loss, client gap, medical leave, or seasonal slowdown.</p></div>
+      <div class="card"><div class="tag">Deductible layer</div><p>A known deductible or similar household exposure can occur while income is interrupted, so the calculator adds it to the expense reserve.</p></div>
+    </div>
+    <p style="font-size:13px;color:var(--muted)">Context: the Federal Reserve reported that in 2025, 55% of adults said they had set aside enough emergency savings to cover three months of expenses. See the <a href="https://www.federalreserve.gov/publications/2026-economic-well-being-of-us-households-in-2025-savings-investments.htm" target="_blank" rel="noopener" style="color:var(--pri)">2025 Survey of Household Economics and Decisionmaking</a>.</p>
+  </section>
+
+  <section style="margin-top:40px"><h2>Frequently Asked Questions</h2><div style="margin-top:16px">
+    <details class="card" style="padding:0"><summary style="padding:16px 20px;font-weight:600;cursor:pointer">Should I count all monthly spending?</summary><div style="padding:12px 20px 16px;color:var(--muted)">Use essential crisis spending, not your normal lifestyle total. Include housing, basic food, utilities, insurance, necessary transportation and healthcare, and minimum debt payments. Exclude expenses you could promptly pause.</div></details>
+    <details class="card" style="padding:0"><summary style="padding:16px 20px;font-weight:600;cursor:pointer">Why might freelancers need more?</summary><div style="padding:12px 20px 16px;color:var(--muted)">Income can decline without formal job loss, multiple clients may be connected to the same economy, invoices can be delayed, and paid leave or severance may be unavailable.</div></details>
+    <details class="card" style="padding:0"><summary style="padding:16px 20px;font-weight:600;cursor:pointer">Should I pay debt before building the full fund?</summary><div style="padding:12px 20px 16px;color:var(--muted)">Many people first build a starter buffer, then balance high-cost debt reduction with progress toward a fuller reserve. The right order depends on debt cost, income risk, insurance, and access to other safe liquidity.</div></details>
+  </div></section>
+  <section style="margin-top:40px"><h2>Related Tools and Guides</h2><div class="tool-grid" style="margin-top:16px"><a class="tool-card" href="savings-goal-calculator.html"><div class="tool-icon">&#x1F3AF;</div><h3>Savings Goal Calculator</h3><p>Model a detailed savings schedule with interest.</p></a><a class="tool-card" href="tools/budget-planner/"><div class="tool-icon">&#x1F4D2;</div><h3>Budget Planner</h3><p>Find a repeatable monthly contribution.</p></a><a class="tool-card" href="guides/starter-vs-full-emergency-fund.html"><div class="tool-icon">&#x1F4D6;</div><h3>Starter vs. Full Emergency Fund</h3><p>Use a two-stage plan when the full target feels distant.</p></a></div></section>
+</main>
+
+<!-- SHARED FOOTER -->
+<footer id="about" class="border-t border-gray-200 bg-white dark:bg-gray-900">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <a href="/" class="text-xl font-extrabold text-pri tracking-tight">Num<span class="text-gray-900 dark:text-white">brly</span></a>
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-3 max-w-sm leading-relaxed">
+          Free financial calculators and guides to help you make smarter money decisions. All calculators are for educational purposes only.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
+          <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
+          <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
+          <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
+          <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Site</h4>
+        <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/" class="block hover:text-pri transition">Tools</a>
+          <a href="/guides/" class="block hover:text-pri transition">Guides</a>
+          <a href="/search.html" class="block hover:text-pri transition">Search</a>
+          <a href="/privacy-policy.html" class="block hover:text-pri transition">Privacy Policy</a>
+        </nav>
+      </div>
+    </div>
+    <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700 text-xs text-gray-400 dark:text-gray-500">
+      &copy; 2026 Numbrly. Not financial advice.
+    </div>
+  </div>
+</footer>
+
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
+<script>
+function runEmergencyFund(){
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var expenses=read("essentialMonthlyExpenses","Essential monthly expenses");
+    var existing=read("existingSavings","Existing emergency savings");
+    var contribution=read("monthlyContribution","Monthly savings amount");
+    var result=NumbrlyCalculators.calculateEmergencyFund({
+      essentialMonthlyExpenses:expenses,
+      incomeStability:document.getElementById("incomeStability").value,
+      dependents:read("dependents","Dependents"),
+      insuranceDeductible:read("insuranceDeductible","Insurance deductible"),
+      jobSearchMonths:read("jobSearchMonths","Expected job-search time"),
+      existingSavings:existing
+    });
+    var money=NumbrlyCalculatorUI.money;
+    var timeline=result.savingsGap<=0?0:(contribution>0?Math.ceil(result.savingsGap/contribution):Infinity);
+    document.getElementById("recommendedTarget").textContent=money(result.recommendedTarget);
+    document.getElementById("targetRange").textContent=money(result.minimumTarget)+" - "+money(result.maximumTarget);
+    document.getElementById("recommendedMonths").textContent=result.recommendedMonths+" months";
+    document.getElementById("savingsGap").textContent=money(result.savingsGap);
+    document.getElementById("timeline").textContent=Number.isFinite(timeline)?(timeline+" months"):"Add monthly savings";
+    document.getElementById("currentCoverage").textContent=(existing/expenses).toFixed(1)+" months";
+    document.getElementById("ruleBox").innerHTML="<h4>Why this target</h4><p>"+result.ruleSummary+"</p>";
+    NumbrlyCalculatorUI.showResult();
+  });
+}
+(function(){var key="Numbrly_emergency-fund-calculator",fields=document.querySelectorAll("input[id],select[id]");try{var saved=JSON.parse(localStorage.getItem(key)||"{}");fields.forEach(function(el){if(saved[el.id]!==undefined)el.value=saved[el.id]})}catch(e){}fields.forEach(function(el){el.addEventListener("input",function(){var data={};fields.forEach(function(node){data[node.id]=node.value});try{localStorage.setItem(key,JSON.stringify(data))}catch(e){}})})})();
+document.addEventListener("DOMContentLoaded",runEmergencyFund);
+</script>
+</body>
+</html>

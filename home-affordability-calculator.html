@@ -110,7 +110,7 @@
         </div>
         <div class="form-group">
           <label for="rate">Mortgage Rate (%)</label>
-          <input type="number" id="rate" value="6.5" min="0.1" max="20" step="0.1">
+          <input type="number" id="rate" value="6.5" min="0" max="20" step="0.1">
         </div>
       </div>
       <div class="form-row">
@@ -150,7 +150,7 @@
       <button class="btn btn-block" onclick="calcAffordability()" style="margin-top:8px">Calculate Affordability</button>
     </div>
 
-    <div class="result" id="result" style="max-width:720px">
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:720px">
       <div class="result-num" id="maxPrice">$0</div>
       <div class="result-label">estimated affordable home price</div>
       <div class="result-grid">
@@ -262,15 +262,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -289,65 +290,38 @@
   </div>
 </footer>
 
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
 <script>
-function fmtMoney(value) {
-  return "$" + Math.max(0, value).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-function monthlyPI(loan, annualRate, years) {
-  if (loan <= 0) return 0;
-  var months = years * 12;
-  var rate = annualRate / 100 / 12;
-  if (rate === 0) return loan / months;
-  return loan * (rate * Math.pow(1 + rate, months)) / (Math.pow(1 + rate, months) - 1);
-}
-function monthlyCost(price, down, annualRate, years, taxRate, insurance, hoa, pmiRate) {
-  var loan = Math.max(price - down, 0);
-  var pi = monthlyPI(loan, annualRate, years);
-  var tax = price * (taxRate / 100) / 12;
-  var downPct = price > 0 ? down / price : 1;
-  var pmi = downPct < 0.20 ? loan * (pmiRate / 100) / 12 : 0;
-  return {total: pi + tax + insurance + hoa + pmi, pi: pi, tax: tax, insurance: insurance, hoa: hoa, pmi: pmi, loan: loan};
-}
 function calcAffordability() {
-  var income = parseFloat(document.getElementById("annualIncome").value) || 90000;
-  var debt = parseFloat(document.getElementById("monthlyDebt").value) || 0;
-  var down = parseFloat(document.getElementById("downPayment").value) || 0;
-  var rate = parseFloat(document.getElementById("rate").value) || 6.5;
-  var years = parseInt(document.getElementById("term").value, 10) || 30;
-  var taxRate = parseFloat(document.getElementById("taxRate").value) || 0;
-  var insurance = parseFloat(document.getElementById("insurance").value) || 0;
-  var hoa = parseFloat(document.getElementById("hoa").value) || 0;
-  var pmiRate = parseFloat(document.getElementById("pmiRate").value) || 0;
-  var backDti = (parseFloat(document.getElementById("backDti").value) || 36) / 100;
-  var monthlyIncome = income / 12;
-  var frontLimit = monthlyIncome * 0.28;
-  var backLimit = Math.max(monthlyIncome * backDti - debt, 0);
-  var housingBudget = Math.min(frontLimit, backLimit);
-
-  var low = 0;
-  var high = Math.max(down + housingBudget * 360, 100000);
-  for (var i = 0; i < 70; i++) {
-    var mid = (low + high) / 2;
-    var cost = monthlyCost(mid, down, rate, years, taxRate, insurance, hoa, pmiRate);
-    if (cost.total <= housingBudget) low = mid;
-    else high = mid;
-  }
-
-  var finalCost = monthlyCost(low, down, rate, years, taxRate, insurance, hoa, pmiRate);
-  var totalDti = monthlyIncome > 0 ? ((finalCost.total + debt) / monthlyIncome) * 100 : 0;
-
-  document.getElementById("maxPrice").textContent = fmtMoney(low);
-  document.getElementById("monthlyBudget").textContent = fmtMoney(housingBudget);
-  document.getElementById("loanAmount").textContent = fmtMoney(finalCost.loan);
-  document.getElementById("usedDti").textContent = totalDti.toFixed(1) + "%";
-  document.getElementById("paymentBreakdown").innerHTML =
-    "<div>Principal + interest: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.pi) + "</strong></div>" +
-    "<div>Property taxes: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.tax) + "</strong></div>" +
-    "<div>Home insurance: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.insurance) + "</strong></div>" +
-    "<div>HOA fees: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.hoa) + "</strong></div>" +
-    "<div>Estimated PMI: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.pmi) + "</strong></div>" +
-    "<div style=\"margin-top:6px\">Total estimated housing payment: <strong style=\"color:var(--text)\">" + fmtMoney(finalCost.total) + "/month</strong></div>";
-  document.getElementById("result").classList.add("show");
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var result=NumbrlyCalculators.homeAffordability({
+      annualIncome:read("annualIncome","Annual household income"),
+      monthlyDebt:read("monthlyDebt","Monthly debt payments"),
+      downPayment:read("downPayment","Down payment"),
+      annualRate:read("rate","Mortgage rate"),
+      termYears:read("term","Loan term"),
+      propertyTaxRate:read("taxRate","Property tax rate"),
+      monthlyInsurance:read("insurance","Home insurance"),
+      monthlyHoa:read("hoa","HOA fees"),
+      pmiRate:read("pmiRate","PMI rate"),
+      backDtiRate:read("backDti","Maximum total DTI")
+    });
+    var costs=result.costs;
+    document.getElementById("maxPrice").textContent=NumbrlyCalculatorUI.money(result.maxPrice);
+    document.getElementById("monthlyBudget").textContent=NumbrlyCalculatorUI.money(result.housingBudget);
+    document.getElementById("loanAmount").textContent=NumbrlyCalculatorUI.money(costs.loan);
+    document.getElementById("usedDti").textContent=result.totalDti.toFixed(1)+"%";
+    document.getElementById("paymentBreakdown").innerHTML =
+      "<div>Principal + interest: <strong style=\"color:var(--text)\">"+NumbrlyCalculatorUI.money(costs.principalAndInterest)+"</strong></div>"+
+      "<div>Property taxes: <strong style=\"color:var(--text)\">"+NumbrlyCalculatorUI.money(costs.propertyTax)+"</strong></div>"+
+      "<div>Home insurance: <strong style=\"color:var(--text)\">"+NumbrlyCalculatorUI.money(costs.insurance)+"</strong></div>"+
+      "<div>HOA fees: <strong style=\"color:var(--text)\">"+NumbrlyCalculatorUI.money(costs.hoa)+"</strong></div>"+
+      "<div>Estimated PMI: <strong style=\"color:var(--text)\">"+NumbrlyCalculatorUI.money(costs.pmi)+"</strong></div>"+
+      "<div style=\"margin-top:6px\">Total estimated housing payment: <strong style=\"color:var(--text)\">"+NumbrlyCalculatorUI.money(costs.total)+"/month</strong></div>";
+    NumbrlyCalculatorUI.showResult();
+  });
 }
 (function(){
   var pg = location.pathname.split("/").pop() || "home-affordability";

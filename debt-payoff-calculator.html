@@ -182,7 +182,7 @@
       <button class="btn btn-block" onclick="calcDebtPayoff()" style="margin-top:12px">Calculate Debt Payoff</button>
     </div>
 
-    <div class="result" id="result" style="max-width:760px">
+    <div class="result" id="result" role="status" aria-live="polite" aria-atomic="true" style="max-width:760px">
       <div class="result-num" id="debtFreeTime">0 months</div>
       <div class="result-label">estimated debt-free timeline</div>
       <div class="result-grid">
@@ -207,7 +207,7 @@
         <h4>Strategy Comparison</h4>
         <div id="compareSummary" style="color:var(--muted);font-size:13px;line-height:1.8"></div>
       </div>
-      <div id="warningBox" style="display:none;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-top:14px;font-size:13px;line-height:1.6"></div>
+      <div id="warningBox" role="alert" aria-live="assertive" style="display:none;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;margin-top:14px;font-size:13px;line-height:1.6"></div>
     </div>
   </section>
 
@@ -298,15 +298,16 @@
       <div>
         <h4 class="font-semibold text-sm text-gray-900 dark:text-white mb-3">Calculators</h4>
         <nav class="space-y-2 text-sm text-gray-500 dark:text-gray-400">
+          <a href="/#all-tools" class="block hover:text-pri transition">All Calculators</a>
           <a href="/tools/budget-planner/" class="block hover:text-pri transition">Budget Planner</a>
           <a href="/tools/net-worth-calculator/" class="block hover:text-pri transition">Net Worth Calculator</a>
           <a href="/mortgage-calculator.html" class="block hover:text-pri transition">Mortgage Calculator</a>
-          <a href="/home-affordability-calculator.html" class="block hover:text-pri transition">Home Affordability Calculator</a>
-          <a href="/mortgage-payoff-calculator.html" class="block hover:text-pri transition">Mortgage Payoff Calculator</a>
+          <a href="/mortgage-refinance-calculator.html" class="block hover:text-pri transition">Mortgage Refinance Calculator</a>
           <a href="/compound-interest-calculator.html" class="block hover:text-pri transition">Compound Interest Calculator</a>
-          <a href="/loan-calculator.html" class="block hover:text-pri transition">Loan Calculator</a>
-          <a href="/debt-payoff-calculator.html" class="block hover:text-pri transition">Debt Payoff Calculator</a>
-          <a href="/retirement-calculator.html" class="block hover:text-pri transition">Retirement Calculator</a>
+          <a href="/credit-utilization-calculator.html" class="block hover:text-pri transition">Credit Utilization Calculator</a>
+          <a href="/car-affordability-calculator.html" class="block hover:text-pri transition">Car Affordability Calculator</a>
+          <a href="/401k-employer-match-calculator.html" class="block hover:text-pri transition">401(k) Match Calculator</a>
+          <a href="/emergency-fund-calculator.html" class="block hover:text-pri transition">Emergency Fund Calculator</a>
         </nav>
       </div>
       <div>
@@ -325,10 +326,9 @@
   </div>
 </footer>
 
+<script src="assets/calculators.js"></script>
+<script src="assets/calculator-ui.js"></script>
 <script>
-function fmtMoney(value) {
-  return "$" + Math.max(0, value).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 function fmtMonths(months) {
   if (!isFinite(months) || months <= 0) return "0 months";
   var years = Math.floor(months / 12);
@@ -337,151 +337,58 @@ function fmtMonths(months) {
   if (rem === 0) return years + (years === 1 ? " year" : " years");
   return years + " yr " + rem + " mo";
 }
-function readDebts() {
-  var debts = [];
-  [
-    { name: document.getElementById("d1Name").value || "Debt 1", bal: parseFloat(document.getElementById("d1Bal").value) || 0, apr: parseFloat(document.getElementById("d1Apr").value) || 0, min: parseFloat(document.getElementById("d1Min").value) || 0 },
-    { name: document.getElementById("d2Name").value || "Debt 2", bal: parseFloat(document.getElementById("d2Bal").value) || 0, apr: parseFloat(document.getElementById("d2Apr").value) || 0, min: parseFloat(document.getElementById("d2Min").value) || 0 },
-    { name: document.getElementById("d3Name").value || "Debt 3", bal: parseFloat(document.getElementById("d3Bal").value) || 0, apr: parseFloat(document.getElementById("d3Apr").value) || 0, min: parseFloat(document.getElementById("d3Min").value) || 0 }
-  ].forEach(function(d, idx) {
-    if (d.bal > 0 && d.min > 0) {
-      debts.push({ id: idx + 1, name: d.name, balance: d.bal, apr: d.apr, min: d.min, paidOffMonth: null });
-    }
-  });
-  return debts;
-}
-function chooseTarget(debts, strategy) {
-  var active = debts.filter(function(d) { return d.balance > 0.01; });
-  if (!active.length) return null;
-  active.sort(function(a, b) {
-    if (strategy === "snowball") {
-      if (a.balance !== b.balance) return a.balance - b.balance;
-      if (a.apr !== b.apr) return b.apr - a.apr;
-      return a.id - b.id;
-    }
-    if (a.apr !== b.apr) return b.apr - a.apr;
-    if (a.balance !== b.balance) return a.balance - b.balance;
-    return a.id - b.id;
-  });
-  return active[0];
-}
-function simulateStrategy(seedDebts, monthlyBudget, strategy) {
-  var debts = seedDebts.map(function(d) {
-    return { id: d.id, name: d.name, balance: d.balance, apr: d.apr, min: d.min, paidOffMonth: null };
-  });
-  var totalPrincipal = debts.reduce(function(sum, d) { return sum + d.balance; }, 0);
-  var totalMinimums = debts.reduce(function(sum, d) { return sum + d.min; }, 0);
-  var maxMonths = 1200;
-  var month = 0;
-  var totalInterest = 0;
-  while (month < maxMonths && debts.some(function(d) { return d.balance > 0.01; })) {
-    month++;
-    debts.forEach(function(d) {
-      if (d.balance > 0.01) {
-        var interest = d.balance * (d.apr / 100 / 12);
-        d.balance += interest;
-        totalInterest += interest;
-      }
-    });
-
-    var remaining = monthlyBudget;
-    var active = debts.filter(function(d) { return d.balance > 0.01; });
-    var requiredMinimums = active.reduce(function(sum, d) { return sum + Math.min(d.min, d.balance); }, 0);
-    if (remaining + 0.001 < requiredMinimums) {
-      return { valid: false, reason: "Monthly budget is below the current minimum payments.", totalMinimums: totalMinimums };
-    }
-
-    active.forEach(function(d) {
-      var due = Math.min(d.min, d.balance);
-      d.balance -= due;
-      remaining -= due;
-      if (d.balance <= 0.01 && d.paidOffMonth === null) {
-        d.balance = 0;
-        d.paidOffMonth = month;
-      }
-    });
-
-    while (remaining > 0.01) {
-      var target = chooseTarget(debts, strategy);
-      if (!target) break;
-      var extraPay = Math.min(remaining, target.balance);
-      target.balance -= extraPay;
-      remaining -= extraPay;
-      if (target.balance <= 0.01 && target.paidOffMonth === null) {
-        target.balance = 0;
-        target.paidOffMonth = month;
-      }
-    }
-  }
-
-  if (debts.some(function(d) { return d.balance > 0.01; })) {
-    return { valid: false, reason: "The debts do not amortize with the current inputs.", totalMinimums: totalMinimums };
-  }
-
-  var payoffOrder = debts
-    .slice()
-    .sort(function(a, b) { return a.paidOffMonth - b.paidOffMonth; })
-    .map(function(d) { return d.name + " (" + fmtMonths(d.paidOffMonth) + ")"; });
-
-  return {
-    valid: true,
-    months: month,
-    totalInterest: totalInterest,
-    totalPaid: totalPrincipal + totalInterest,
-    payoffOrder: payoffOrder,
-    totalMinimums: totalMinimums
-  };
-}
 function calcDebtPayoff() {
-  var monthlyBudget = parseFloat(document.getElementById("monthlyBudget").value) || 0;
-  var strategy = document.getElementById("strategy").value || "avalanche";
-  var debts = readDebts();
-  var warning = document.getElementById("warningBox");
+  return NumbrlyCalculatorUI.run(function(){
+    var read=NumbrlyCalculatorUI.readNumber;
+    var monthlyBudget=read("monthlyBudget","Monthly debt budget");
+    var strategy=document.getElementById("strategy").value||"avalanche";
+    var debts=[1,2,3].map(function(index){
+      return {
+        name:String(document.getElementById("d"+index+"Name").value||"Debt "+index),
+        balance:read("d"+index+"Bal","Debt "+index+" balance"),
+        apr:read("d"+index+"Apr","Debt "+index+" APR"),
+        minimum:read("d"+index+"Min","Debt "+index+" minimum payment")
+      };
+    });
+    var plans=NumbrlyCalculators.debtPayoff({debts:debts,monthlyBudget:monthlyBudget});
+    var avalanche=plans.avalanche;
+    var snowball=plans.snowball;
+    var chosen=strategy==="snowball"?snowball:avalanche;
+    var other=strategy==="snowball"?avalanche:snowball;
+    if(!chosen.valid||!other.valid){
+      var invalid=!chosen.valid?chosen:other;
+      throw new Error(invalid.reason+" Current minimum payments total "+NumbrlyCalculatorUI.money(invalid.totalMinimums)+"/month.");
+    }
 
-  if (!debts.length) {
-    warning.style.display = "block";
-    warning.textContent = "Add at least one debt with a positive balance and minimum payment.";
-    document.getElementById("result").classList.add("show");
-    return;
-  }
-
-  var avalanche = simulateStrategy(debts, monthlyBudget, "avalanche");
-  var snowball = simulateStrategy(debts, monthlyBudget, "snowball");
-  var chosen = strategy === "snowball" ? snowball : avalanche;
-  var other = strategy === "snowball" ? avalanche : snowball;
-
-  if (!chosen.valid || !other.valid) {
-    warning.style.display = "block";
-    warning.textContent = (chosen.reason || other.reason) + " Try increasing the monthly budget above the minimum payments total.";
-    document.getElementById("debtFreeTime").textContent = "Budget too low";
-    document.getElementById("totalInterest").textContent = "$0";
-    document.getElementById("totalPaid").textContent = "$0";
-    document.getElementById("bestStrategy").textContent = "N/A";
-    document.getElementById("chosenSummary").innerHTML = "";
-    document.getElementById("compareSummary").innerHTML = "Current minimum payments total about <strong style=\"color:var(--text)\">" + fmtMoney((chosen.totalMinimums || other.totalMinimums || 0)) + "/month</strong>.";
-    document.getElementById("result").classList.add("show");
-    return;
-  }
-
-  warning.style.display = "none";
-  var lowerInterest = avalanche.totalInterest <= snowball.totalInterest ? "Avalanche" : "Snowball";
-  var otherName = strategy === "snowball" ? "avalanche" : "snowball";
-  var interestDiff = Math.abs(chosen.totalInterest - other.totalInterest);
-  var monthDiff = Math.abs(chosen.months - other.months);
-
-  document.getElementById("debtFreeTime").textContent = fmtMonths(chosen.months);
-  document.getElementById("totalInterest").textContent = fmtMoney(chosen.totalInterest);
-  document.getElementById("totalPaid").textContent = fmtMoney(chosen.totalPaid);
-  document.getElementById("bestStrategy").textContent = lowerInterest;
-  document.getElementById("chosenSummary").innerHTML =
-    "<div>Strategy selected: <strong style=\"color:var(--text)\">" + (strategy === "snowball" ? "Debt Snowball" : "Debt Avalanche") + "</strong></div>" +
-    "<div>Payoff order: <strong style=\"color:var(--text)\">" + chosen.payoffOrder.join(" → ") + "</strong></div>" +
-    "<div>Total monthly debt budget: <strong style=\"color:var(--text)\">" + fmtMoney(monthlyBudget) + "</strong></div>";
-  document.getElementById("compareSummary").innerHTML =
-    "<div>Debt avalanche total interest: <strong style=\"color:var(--text)\">" + fmtMoney(avalanche.totalInterest) + "</strong></div>" +
-    "<div>Debt snowball total interest: <strong style=\"color:var(--text)\">" + fmtMoney(snowball.totalInterest) + "</strong></div>" +
-    "<div style=\"margin-top:6px\">Compared with " + otherName + ", this plan differs by <strong style=\"color:var(--text)\">" + fmtMoney(interestDiff) + "</strong> in interest and <strong style=\"color:var(--text)\">" + fmtMonths(monthDiff) + "</strong> in payoff time.</div>";
-  document.getElementById("result").classList.add("show");
+    document.getElementById("warningBox").style.display="none";
+    document.getElementById("debtFreeTime").textContent=fmtMonths(chosen.months);
+    document.getElementById("totalInterest").textContent=NumbrlyCalculatorUI.money(chosen.totalInterest);
+    document.getElementById("totalPaid").textContent=NumbrlyCalculatorUI.money(chosen.totalPaid);
+    document.getElementById("bestStrategy").textContent=avalanche.totalInterest<=snowball.totalInterest?"Avalanche":"Snowball";
+    renderDebtSummary(document.getElementById("chosenSummary"),[
+      ["Strategy selected: ",strategy==="snowball"?"Debt Snowball":"Debt Avalanche"],
+      ["Payoff order: ",chosen.payoffOrder.map(function(item){return item.name+" ("+fmtMonths(item.month)+")";}).join(" → ")],
+      ["Total monthly debt budget: ",NumbrlyCalculatorUI.money(monthlyBudget)]
+    ]);
+    renderDebtSummary(document.getElementById("compareSummary"),[
+      ["Debt avalanche total interest: ",NumbrlyCalculatorUI.money(avalanche.totalInterest)],
+      ["Debt snowball total interest: ",NumbrlyCalculatorUI.money(snowball.totalInterest)],
+      ["Compared with "+(strategy==="snowball"?"avalanche":"snowball")+", difference: ",NumbrlyCalculatorUI.money(Math.abs(chosen.totalInterest-other.totalInterest))+" in interest and "+fmtMonths(Math.abs(chosen.months-other.months))+" in payoff time."]
+    ]);
+    NumbrlyCalculatorUI.showResult();
+  });
+}
+function renderDebtSummary(container, rows){
+  container.replaceChildren();
+  rows.forEach(function(row){
+    var line=document.createElement("div");
+    line.appendChild(document.createTextNode(row[0]));
+    var strong=document.createElement("strong");
+    strong.style.color="var(--text)";
+    strong.textContent=row[1];
+    line.appendChild(strong);
+    container.appendChild(line);
+  });
 }
 (function(){
   var pg = location.pathname.split("/").pop() || "debt-payoff";
